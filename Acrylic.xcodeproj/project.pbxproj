@@ -9,14 +9,19 @@
 /* Begin PBXBuildFile section */
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
-		AA517543272483CE00C25576 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* ViewController.swift */; };
-		AA517546272483CE00C25576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA517544272483CE00C25576 /* Main.storyboard */; };
+		AA517543272483CE00C25576 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* EditorViewController.swift */; };
 		AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA517547272483CE00C25576 /* Acrylic.xcdatamodeld */; };
 		AA51754B272483CF00C25576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA51754A272483CF00C25576 /* Assets.xcassets */; };
 		AA51754E272483CF00C25576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA51754C272483CF00C25576 /* LaunchScreen.storyboard */; };
 		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
+		AA5175762724844400C25576 /* SCNGeometrySource+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5175722724844400C25576 /* SCNGeometrySource+Colors.swift */; };
+		AA5175772724844400C25576 /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5175732724844400C25576 /* Interpolation.swift */; };
+		AA5175782724844400C25576 /* SCNNode+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5175742724844400C25576 /* SCNNode+Convenience.swift */; };
+		AA5175792724844400C25576 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5175752724844400C25576 /* Grid.swift */; };
+		AA51757C2724846500C25576 /* MeshNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51757B2724846500C25576 /* MeshNode.swift */; };
+		AA51757E2724860400C25576 /* MeshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51757D2724860400C25576 /* MeshView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +45,7 @@
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA517542272483CE00C25576 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AA517545272483CE00C25576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AA517542272483CE00C25576 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		AA517548272483CE00C25576 /* Acrylic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Acrylic.xcdatamodel; sourceTree = "<group>"; };
 		AA51754A272483CF00C25576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA51754D272483CF00C25576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +55,13 @@
 		AA51755E272483CF00C25576 /* AcrylicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
+		AA5175722724844400C25576 /* SCNGeometrySource+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNGeometrySource+Colors.swift"; sourceTree = "<group>"; };
+		AA5175732724844400C25576 /* Interpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
+		AA5175742724844400C25576 /* SCNNode+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNNode+Convenience.swift"; sourceTree = "<group>"; };
+		AA5175752724844400C25576 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		AA51757B2724846500C25576 /* MeshNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshNode.swift; sourceTree = "<group>"; };
+		AA51757D2724860400C25576 /* MeshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +112,12 @@
 		AA51753D272483CE00C25576 /* Acrylic */ = {
 			isa = PBXGroup;
 			children = (
+				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
-				AA517542272483CE00C25576 /* ViewController.swift */,
-				AA517544272483CE00C25576 /* Main.storyboard */,
+				AA517542272483CE00C25576 /* EditorViewController.swift */,
+				AA51757D2724860400C25576 /* MeshView.swift */,
+				AA51757A2724844700C25576 /* Mesh+Helper */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
 				AA51754F272483CF00C25576 /* Info.plist */,
@@ -128,6 +141,18 @@
 				AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */,
 			);
 			path = AcrylicUITests;
+			sourceTree = "<group>";
+		};
+		AA51757A2724844700C25576 /* Mesh+Helper */ = {
+			isa = PBXGroup;
+			children = (
+				AA5175752724844400C25576 /* Grid.swift */,
+				AA5175732724844400C25576 /* Interpolation.swift */,
+				AA5175722724844400C25576 /* SCNGeometrySource+Colors.swift */,
+				AA5175742724844400C25576 /* SCNNode+Convenience.swift */,
+				AA51757B2724846500C25576 /* MeshNode.swift */,
+			);
+			path = "Mesh+Helper";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +261,6 @@
 			files = (
 				AA51754E272483CF00C25576 /* LaunchScreen.storyboard in Resources */,
 				AA51754B272483CF00C25576 /* Assets.xcassets in Resources */,
-				AA517546272483CE00C25576 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +285,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA517543272483CE00C25576 /* ViewController.swift in Sources */,
+				AA51757C2724846500C25576 /* MeshNode.swift in Sources */,
+				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
+				AA5175772724844400C25576 /* Interpolation.swift in Sources */,
+				AA5175792724844400C25576 /* Grid.swift in Sources */,
+				AA51757E2724860400C25576 /* MeshView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
+				AA5175782724844400C25576 /* SCNNode+Convenience.swift in Sources */,
+				AA5175762724844400C25576 /* SCNGeometrySource+Colors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +331,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AA517544272483CE00C25576 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA517545272483CE00C25576 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AA51754C272483CF00C25576 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,16 +463,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Acrylic/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,9 +483,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -469,16 +495,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Acrylic/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,9 +515,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

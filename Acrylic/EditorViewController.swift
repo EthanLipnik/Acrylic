@@ -13,6 +13,15 @@ class EditorViewController: UIViewController {
     lazy var meshView: MeshView = {
         let view = MeshView()
         
+        view.layer.cornerRadius = 30
+        view.layer.cornerCurve = .continuous
+        
+        view.subviews.forEach({ $0.layer.cornerRadius = 30; $0.layer.cornerCurve = .continuous; $0.layer.masksToBounds = true })
+        
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 60
+        view.layer.shadowOpacity = 0.4
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -25,10 +34,10 @@ class EditorViewController: UIViewController {
         
         view.addSubview(meshView)
         NSLayoutConstraint.activate([
-            meshView.topAnchor.constraint(equalTo: view.topAnchor),
-            meshView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            meshView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            meshView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: 10),
+            meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor, constant: -10),
+            meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor, multiplier: 1),
+            meshView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in

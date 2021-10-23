@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MeshKit
 
 class EditorViewController: UIViewController {
     

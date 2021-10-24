@@ -21,8 +21,11 @@ class OptionsViewController: UIHostingController<OptionsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        #if targetEnvironment(macCatalyst)
         view.backgroundColor = UIColor.clear
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        #else
+        view.backgroundColor = UIColor.systemGroupedBackground
+        #endif
     }
 }

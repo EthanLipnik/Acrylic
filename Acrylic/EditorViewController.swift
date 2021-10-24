@@ -68,7 +68,9 @@ class EditorViewController: UIViewController {
         
         view.backgroundColor = UIColor.systemBackground
         
+#if targetEnvironment(macCatalyst)
         view.addSubview(backgroundView)
+#endif
         view.addSubview(meshView)
         view.addSubview(grabberView)
         
@@ -96,7 +98,6 @@ class EditorViewController: UIViewController {
         
         cancellable = meshService.$colors
             .sink { [weak self] colors in
-                print("Getting colors")
                 self?.meshView.create(colors)
             }
         

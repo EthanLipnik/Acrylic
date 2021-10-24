@@ -37,7 +37,7 @@ struct OptionsView: View {
                 }
                 .padding()
             }
-        }.navigationBarHidden(true)
+        }.navigationBarHidden(UIDevice.current.userInterfaceIdiom == .mac)
     }
     
     struct ColorView: View {
@@ -83,9 +83,13 @@ struct OptionsView: View {
                 Divider()
                 content
             }
-            .padding()
+                .padding()
+            
+            let defaultView = view
+                .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Color(.secondarySystemBackground)))
             
             if #available(macCatalyst 15.0, *) {
+#if targetEnvironment(macCatalyst)
                 view
                     .background(ZStack {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -97,9 +101,11 @@ struct OptionsView: View {
                             .fill(Color(uiColor: .separator))
                             .opacity(0.5)
                     }.compositingGroup())
+#else
+                defaultView
+#endif
             } else {
-                view
-                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Color(.secondarySystemBackground)))
+                defaultView
             }
         }
     }

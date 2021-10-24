@@ -19,7 +19,7 @@ class EditorViewController: UIViewController {
         view.subviews.forEach({ $0.layer.cornerRadius = 30; $0.layer.cornerCurve = .continuous; $0.layer.masksToBounds = true })
         
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowRadius = 60
+        view.layer.shadowRadius = 30
         view.layer.shadowOpacity = 0.4
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,16 +62,19 @@ class EditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = UIColor.systemBackground
         
         view.addSubview(meshView)
         view.addSubview(grabberView)
         
         NSLayoutConstraint.activate([
-            meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: 10),
-            meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor, constant: -10),
-            meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor, multiplier: 1),
-            meshView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            meshView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor),
             
             grabberCenterXAnchor,
             grabberCenterYAnchor,
@@ -98,7 +101,7 @@ class EditorViewController: UIViewController {
         let maxYLocation = min(minYLocation, meshView.bounds.height / 2)
         grabberCenterYAnchor.constant = maxYLocation
         
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.05) {
             self.view.layoutSubviews()
         }
         

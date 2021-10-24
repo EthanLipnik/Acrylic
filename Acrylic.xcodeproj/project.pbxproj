@@ -17,6 +17,8 @@
 		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
+		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
+		AAF5617B2724D85F00C7CED4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
+		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
+				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
+				AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
@@ -240,6 +246,8 @@
 				Base,
 			);
 			mainGroup = AA517532272483CE00C25576;
+			packageReferences = (
+			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -282,8 +290,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
+				AAF5617B2724D85F00C7CED4 /* OptionsViewController.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 			);
@@ -463,6 +473,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -495,6 +506,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

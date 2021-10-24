@@ -19,13 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = EditorViewController()
+        window?.rootViewController = SplitViewController(style: .doubleColumn)
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
         if let titleBar = windowScene.titlebar {
-            titleBar.titleVisibility = .hidden
+            let toolbar = NSToolbar(identifier: "Toolbar")
+            toolbar.delegate = self
+            toolbar.displayMode = .iconOnly
+            titleBar.toolbar = toolbar
         }
+        
+        windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)
 #endif
     }
     
@@ -63,3 +68,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+#if targetEnvironment(macCatalyst)
+extension SceneDelegate: NSToolbarDelegate {
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [.toggleSidebar, .init("export")]
+    }
+    
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return toolbarDefaultItemIdentifiers(toolbar)
+    }
+    
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        switch itemIdentifier {
+        case .init("export"):
+            let button = UIBarButtonItem()
+            button.title = "Export"
+            button.image = UIImage(systemName: "square.and.arrow.up")
+            button.action = #selector(export)
+            
+            return NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+        default:
+            return NSToolbarItem(itemIdentifier: itemIdentifier)
+        }
+    }
+    
+    @objc func export() {
+        
+    }
+}
+#endif

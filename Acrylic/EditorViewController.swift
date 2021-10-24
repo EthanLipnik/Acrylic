@@ -7,6 +7,7 @@
 
 import UIKit
 import MeshKit
+import Combine
 
 class EditorViewController: UIViewController {
     
@@ -23,20 +24,6 @@ class EditorViewController: UIViewController {
         view.layer.shadowOpacity = 0.4
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.create([
-            .init(point: (0, 0), location: (0, 0), color: UIColor(red: 0.149, green: 0.275, blue: 0.325, alpha: 1.000)),
-            .init(point: (0, 1), location: (0, 1), color: UIColor(red: 0.157, green: 0.447, blue: 0.443, alpha: 1.000)),
-            .init(point: (0, 2), location: (0, 2), color: UIColor(red: 0.165, green: 0.616, blue: 0.561, alpha: 1.000)),
-            
-            .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
-            .init(point: (1, 1), location: (1, 1), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
-            .init(point: (1, 2), location: (1, 2), color: UIColor(red: 0.914, green: 0.769, blue: 0.416, alpha: 1.000)),
-            
-            .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
-            .init(point: (2, 1), location: (2, 1), color: UIColor(red: 0.933, green: 0.537, blue: 0.349, alpha: 1.000)),
-            .init(point: (2, 2), location: (2, 2), color: UIColor(red: 0.906, green: 0.435, blue: 0.318, alpha: 1.000)),
-        ])
         
         return view
     }()
@@ -56,8 +43,23 @@ class EditorViewController: UIViewController {
         return view
     }()
     
+    lazy var backgroundView: SBAVisualEffectView = {
+        let view = SBAVisualEffectView(blurStyle: .systemUltraThinMaterial)
+        
+        view.frame = self.view.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        return view
+    }()
+    
     lazy var grabberCenterXAnchor: NSLayoutConstraint = grabberView.centerXAnchor.constraint(equalTo: meshView.centerXAnchor)
     lazy var grabberCenterYAnchor: NSLayoutConstraint = grabberView.centerYAnchor.constraint(equalTo: meshView.centerYAnchor)
+    
+    lazy var meshService: MeshService! = {
+        (view.window?.windowScene?.delegate as? SceneDelegate)?.meshService
+    }()
+    
+    private var cancellable: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,7 @@ class EditorViewController: UIViewController {
         
         view.backgroundColor = UIColor.systemBackground
         
+        view.addSubview(backgroundView)
         view.addSubview(meshView)
         view.addSubview(grabberView)
         
@@ -88,6 +91,32 @@ class EditorViewController: UIViewController {
         grabberView.addGestureRecognizer(panGesture)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cancellable = meshService.$colors
+            .sink { [weak self] colors in
+                print("Getting colors")
+                self?.meshView.create(colors)
+            }
+        
+        if meshService.colors.isEmpty {
+            meshService.colors = [
+                .init(point: (0, 0), location: (0, 0), color: UIColor(red: 0.149, green: 0.275, blue: 0.325, alpha: 1.000)),
+                .init(point: (0, 1), location: (0, 1), color: UIColor(red: 0.157, green: 0.447, blue: 0.443, alpha: 1.000)),
+                .init(point: (0, 2), location: (0, 2), color: UIColor(red: 0.165, green: 0.616, blue: 0.561, alpha: 1.000)),
+                
+                .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
+                .init(point: (1, 1), location: (1, 1), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
+                .init(point: (1, 2), location: (1, 2), color: UIColor(red: 0.914, green: 0.769, blue: 0.416, alpha: 1.000)),
+                
+                .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
+                .init(point: (2, 1), location: (2, 1), color: UIColor(red: 0.933, green: 0.537, blue: 0.349, alpha: 1.000)),
+                .init(point: (2, 2), location: (2, 2), color: UIColor(red: 0.906, green: 0.435, blue: 0.318, alpha: 1.000)),
+            ]
+        }
+    }
+    
     @objc func updateGesture(_ recognizer: UIPanGestureRecognizer) {
         let location = recognizer.location(in: meshView)
         
@@ -108,18 +137,12 @@ class EditorViewController: UIViewController {
         let x = min(1.8, max(0.2, location.x / (meshView.bounds.width / 2)))
         let y = 2 - min(1.5, max(0.2, location.y / (meshView.bounds.height / 2)))
         
-        meshView.create([
-            .init(point: (0, 0), location: (0, 0), color: UIColor(red: 0.149, green: 0.275, blue: 0.325, alpha: 1.000)),
-            .init(point: (0, 1), location: (0, 1), color: UIColor(red: 0.157, green: 0.447, blue: 0.443, alpha: 1.000)),
-            .init(point: (0, 2), location: (0, 2), color: UIColor(red: 0.165, green: 0.616, blue: 0.561, alpha: 1.000)),
+        if let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate {
+            let meshService = sceneDelegate.meshService
             
-            .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
-            .init(point: (1, 1), location: (Float(x), Float(y)), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
-            .init(point: (1, 2), location: (1, 2), color: UIColor(red: 0.914, green: 0.769, blue: 0.416, alpha: 1.000)),
-            
-            .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
-            .init(point: (2, 1), location: (2, 1), color: UIColor(red: 0.933, green: 0.537, blue: 0.349, alpha: 1.000)),
-            .init(point: (2, 2), location: (2, 2), color: UIColor(red: 0.906, green: 0.435, blue: 0.318, alpha: 1.000)),
-        ])
+            if let index = meshService.colors.firstIndex(where: { $0.point.x == 1 && $0.point.y == 1 }) {
+                meshService.colors[index].location = (Float(x), Float(y))
+            }
+        }
     }
 }

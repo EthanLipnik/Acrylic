@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SplitViewController: UISplitViewController {
     
@@ -17,6 +18,9 @@ class SplitViewController: UISplitViewController {
         
         preferredDisplayMode = .oneBesideSecondary
         primaryBackgroundStyle = .sidebar
+        minimumPrimaryColumnWidth = 250
+        
+        optionsVC.view.backgroundColor = UIColor.clear
 
         setViewController(optionsVC, for: .primary)
         setViewController(editorVC, for: .secondary)

@@ -17,8 +17,11 @@
 		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
+		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
+		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
+		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
+		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
-		AAF5617B2724D85F00C7CED4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +57,11 @@
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
+		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
+		AA6894E62725016E00A2FE51 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		AA6894E8272501C400A2FE51 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBAVisualEffectView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +134,11 @@
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
-				AAF5617A2724D85F00C7CED4 /* OptionsViewController.swift */,
+				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
+				AA6894E62725016E00A2FE51 /* OptionsView.swift */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
+				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
+				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
 				AA51754F272483CF00C25576 /* Info.plist */,
@@ -291,11 +300,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
+				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
+				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
-				AAF5617B2724D85F00C7CED4 /* OptionsViewController.swift in Sources */,
+				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
+				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +490,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,6 +524,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

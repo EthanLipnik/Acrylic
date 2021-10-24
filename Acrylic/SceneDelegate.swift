@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var meshService = MeshService()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,7 +29,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let toolbar = NSToolbar(identifier: "Toolbar")
             toolbar.delegate = self
             toolbar.displayMode = .iconOnly
+            toolbar.allowsUserCustomization = true
+            
             titleBar.toolbar = toolbar
+            
+            titleBar.separatorStyle = .none
         }
         
         windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)
@@ -71,7 +77,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 #if targetEnvironment(macCatalyst)
 extension SceneDelegate: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.toggleSidebar, .init("export")]
+        return [.init("export")]
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -82,11 +88,29 @@ extension SceneDelegate: NSToolbarDelegate {
         switch itemIdentifier {
         case .init("export"):
             let button = UIBarButtonItem()
-            button.title = "Export"
             button.image = UIImage(systemName: "square.and.arrow.up")
             button.action = #selector(export)
+            button.target = self
             
-            return NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+            let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+            item.label = "Export"
+//            let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+//            item.itemMenu = UIMenu(title: "Export Options", identifier: .init("exportOptions"), children: [
+//                UIAction(title: "4k", identifier: .init("export4k"), handler: { action in
+//                    self.export()
+//                }),
+//                UIAction(title: "2k", identifier: .init("export4k"), handler: { action in
+//                    self.export()
+//                }),
+//                UIAction(title: "1080p", identifier: .init("export4k"), handler: { action in
+//                    self.export()
+//                }),
+//                UIAction(title: "720p", identifier: .init("export4k"), handler: { action in
+//                    self.export()
+//                })
+//            ])
+            
+            return item
         default:
             return NSToolbarItem(itemIdentifier: itemIdentifier)
         }

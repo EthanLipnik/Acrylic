@@ -19,7 +19,7 @@ class EditorViewController: UIViewController {
         
         view.subviews.forEach({ $0.layer.cornerRadius = 30; $0.layer.cornerCurve = .continuous; $0.layer.masksToBounds = true })
         
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowOffset = CGSize(width: 0, height: 10)
         view.layer.shadowRadius = 30
         view.layer.shadowOpacity = 0.4
         
@@ -37,6 +37,9 @@ class EditorViewController: UIViewController {
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowRadius = 10
         view.layer.shadowOpacity = 0.8
+        
+        let pointerInteraction = UIPointerInteraction(delegate: self)
+        view.addInteraction(pointerInteraction)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -98,7 +101,7 @@ class EditorViewController: UIViewController {
         
         cancellable = meshService.$colors
             .sink { [weak self] colors in
-                self?.meshView.create(colors)
+                self?.meshView.create(colors, subdivisions: self?.meshService.subdivsions ?? 18)
             }
         
         if meshService.colors.isEmpty {
@@ -135,8 +138,8 @@ class EditorViewController: UIViewController {
             self.view.layoutSubviews()
         }
         
-        let x = min(1.8, max(0.2, location.x / (meshView.bounds.width / 2)))
-        let y = 2 - min(1.5, max(0.2, location.y / (meshView.bounds.height / 2)))
+        let x = min(1.8, max(0.3, location.x / (meshView.bounds.width / 2)))
+        let y = 2 - min(1.5, max(0.35, location.y / (meshView.bounds.height / 2)))
         
         if let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate {
             let meshService = sceneDelegate.meshService
@@ -145,5 +148,11 @@ class EditorViewController: UIViewController {
                 meshService.colors[index].location = (Float(x), Float(y))
             }
         }
+    }
+}
+
+extension EditorViewController: UIPointerInteractionDelegate {
+    func pointerInteraction(_ interaction: UIPointerInteraction, styleFor region: UIPointerRegion) -> UIPointerStyle? {
+        return .hidden()
     }
 }

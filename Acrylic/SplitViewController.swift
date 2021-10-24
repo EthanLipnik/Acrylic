@@ -18,9 +18,8 @@ class SplitViewController: UISplitViewController {
         
         preferredDisplayMode = .oneBesideSecondary
         primaryBackgroundStyle = .sidebar
-        minimumPrimaryColumnWidth = 250
-        
-        optionsVC.view.backgroundColor = UIColor.clear
+        minimumPrimaryColumnWidth = 320
+        maximumPrimaryColumnWidth = 320
 
         setViewController(optionsVC, for: .primary)
         setViewController(editorVC, for: .secondary)

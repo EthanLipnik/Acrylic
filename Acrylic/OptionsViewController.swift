@@ -25,7 +25,7 @@ class OptionsViewController: UIHostingController<OptionsView> {
         view.backgroundColor = UIColor.clear
         navigationController?.setNavigationBarHidden(true, animated: false)
         #else
-        view.backgroundColor = UIColor.systemGroupedBackground
+        view.backgroundColor = UIColor.secondarySystemBackground
         #endif
     }
 }

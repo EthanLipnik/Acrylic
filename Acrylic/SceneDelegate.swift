@@ -117,7 +117,7 @@ extension SceneDelegate: NSToolbarDelegate {
     }
     
     @objc func export() {
-        
+        meshService.isExporting.toggle()
     }
 }
 #endif

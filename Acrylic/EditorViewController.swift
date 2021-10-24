@@ -62,7 +62,7 @@ class EditorViewController: UIViewController {
         (view.window?.windowScene?.delegate as? SceneDelegate)?.meshService
     }()
     
-    private var cancellable: AnyCancellable?
+    private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,10 +99,29 @@ class EditorViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        cancellable = meshService.$colors
+        meshService.$colors
             .sink { [weak self] colors in
                 self?.meshView.create(colors, subdivisions: self?.meshService.subdivsions ?? 18)
             }
+            .store(in: &cancellables)
+        
+        meshService.$subdivsions
+            .sink { [weak self] subdivions in
+                self?.meshView.create(self?.meshService.colors ?? [], subdivisions: subdivions)
+            }
+            .store(in: &cancellables)
+        
+        meshService.$contentScaleFactor
+            .sink { [weak self] contentScaleFactor in
+                self?.meshView.scaleFactor = CGFloat(contentScaleFactor)
+            }
+            .store(in: &cancellables)
+        
+        meshService.$isRenderingAsWireframe
+            .sink { [weak self] isRenderingAsWireframe in
+                self?.meshView.debugOptions = isRenderingAsWireframe ? [.renderAsWireframe] : []
+            }
+            .store(in: &cancellables)
         
         if meshService.colors.isEmpty {
             meshService.colors = [
@@ -110,11 +129,11 @@ class EditorViewController: UIViewController {
                 .init(point: (0, 1), location: (0, 1), color: UIColor(red: 0.157, green: 0.447, blue: 0.443, alpha: 1.000)),
                 .init(point: (0, 2), location: (0, 2), color: UIColor(red: 0.165, green: 0.616, blue: 0.561, alpha: 1.000)),
                 
-                    .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
+                .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
                 .init(point: (1, 1), location: (1, 1), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
                 .init(point: (1, 2), location: (1, 2), color: UIColor(red: 0.914, green: 0.769, blue: 0.416, alpha: 1.000)),
                 
-                    .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
+                .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
                 .init(point: (2, 1), location: (2, 1), color: UIColor(red: 0.933, green: 0.537, blue: 0.349, alpha: 1.000)),
                 .init(point: (2, 2), location: (2, 2), color: UIColor(red: 0.906, green: 0.435, blue: 0.318, alpha: 1.000)),
             ]
@@ -134,7 +153,7 @@ class EditorViewController: UIViewController {
         let maxYLocation = min(minYLocation, meshView.bounds.height / 2)
         grabberCenterYAnchor.constant = maxYLocation
         
-        UIView.animate(withDuration: 0.05) {
+        UIView.animate(withDuration: 0.05, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveLinear]) {
             self.view.layoutSubviews()
         }
         

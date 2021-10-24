@@ -14,4 +14,7 @@ class MeshService: ObservableObject {
     @Published var height: Int = 3
     @Published var subdivsions: Int = 18
     @Published var contentScaleFactor: Float = 1
+    @Published var isRenderingAsWireframe: Bool = false
+    
+    @Published var isExporting: Bool = false
 }

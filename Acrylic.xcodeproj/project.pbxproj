@@ -11,6 +11,9 @@
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
+		AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C2B27260DEC006932FE /* ExportView.swift */; };
+		AA1A5C2F272612E4006932FE /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA1A5C2E272612E4006932FE /* Blackbird */; };
+		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
 		AA35D984272498D3000BB333 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA35D983272498D3000BB333 /* MeshKit */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
@@ -50,6 +53,8 @@
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Viewport.swift"; sourceTree = "<group>"; };
+		AA1A5C2B27260DEC006932FE /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		AA35D981272498CC000BB333 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeshKit; sourceTree = "<group>"; };
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA35D984272498D3000BB333 /* MeshKit in Frameworks */,
+				AA1A5C2F272612E4006932FE /* Blackbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,9 +161,11 @@
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
 				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
+				AA1A5C2B27260DEC006932FE /* ExportView.swift */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
 				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
+				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
 				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
@@ -202,6 +210,7 @@
 			name = Acrylic;
 			packageProductDependencies = (
 				AA35D983272498D3000BB333 /* MeshKit */,
+				AA1A5C2E272612E4006932FE /* Blackbird */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -276,6 +285,7 @@
 			);
 			mainGroup = AA517532272483CE00C25576;
 			packageReferences = (
+				AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -320,11 +330,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
+				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
 				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
 				AA1A5C242725F973006932FE /* OptionsView+Colors.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
+				AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
@@ -700,7 +712,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:CanisterEditor/Blackbird.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		AA1A5C2E272612E4006932FE /* Blackbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */;
+			productName = Blackbird;
+		};
 		AA35D983272498D3000BB333 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;

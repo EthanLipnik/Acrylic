@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import CoreImage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,7 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = SplitViewController(style: .doubleColumn)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            window?.rootViewController = EditorViewController()
+        } else {
+            window?.rootViewController = SplitViewController(style: .doubleColumn)
+        }
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
@@ -118,6 +124,19 @@ extension SceneDelegate: NSToolbarDelegate {
     
     @objc func export() {
         meshService.isExporting.toggle()
+        
+        meshService.render { [weak self] renderImage in
+            if var topController = self?.window?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage) {
+                    topController.dismiss(animated: true)
+                })
+                
+                topController.present(vc, animated: true)
+            }
+        }
     }
 }
 #endif

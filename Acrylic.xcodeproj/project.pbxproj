@@ -22,6 +22,7 @@
 		AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
 		AA45EBC72726419700593894 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA45EBC9272641A100593894 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA45EBC8272641A100593894 /* MeshKit */; };
+		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* EditorViewController.swift */; };
@@ -433,6 +434,7 @@
 			files = (
 				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
+				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
 				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,

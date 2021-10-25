@@ -7,6 +7,7 @@
 
 import Foundation
 import Intents
+import UniformTypeIdentifiers
 
 class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHandling {
     
@@ -18,14 +19,8 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
         let meshService = MeshService()
         meshService.render { image in
             let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
-            response.image = INFile(data: image.pngData()!, filename: "gradient", typeIdentifier: nil)
+            response.image = INFile(data: image.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
             completion(response)
         }
-//        let photoInfoController = PhotoInfoController()
-//        photoInfoController.fetchPhotoOfTheDay { (photoInfo) in
-//            if let photoInfo = photoInfo {
-//                completion(PhotoOfTheDayIntentResponse.success(photoTitle: photoInfo.title))
-//            }
-//        }
     }
 }

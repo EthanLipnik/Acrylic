@@ -26,6 +26,6 @@ class MeshService: ObservableObject {
         view.scaleFactor = CGFloat(contentScaleFactor)
         view.isHidden = true
         
-        completion(view.generate(size: CGSize(width: 4096, height: 4096)))
+        completion(view.generate(size: CGSize(width: 512, height: 512)))
     }
 }

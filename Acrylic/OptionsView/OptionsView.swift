@@ -34,7 +34,7 @@ struct OptionsView: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 NavigationView {
                     scrollView
-                        .background(Color(.systemGroupedBackground).ignoresSafeArea())
+                        .background(Color(.secondarySystemBackground).ignoresSafeArea())
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle("Options")
                         .toolbar {

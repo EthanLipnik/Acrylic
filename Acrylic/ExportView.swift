@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Blackbird
 
 struct ExportView: View {
     let renderImage: UIImage

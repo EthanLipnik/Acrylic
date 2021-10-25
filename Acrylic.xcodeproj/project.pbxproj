@@ -12,10 +12,16 @@
 		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
 		AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C2B27260DEC006932FE /* ExportView.swift */; };
-		AA1A5C2F272612E4006932FE /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA1A5C2E272612E4006932FE /* Blackbird */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
 		AA35D984272498D3000BB333 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA35D983272498D3000BB333 /* MeshKit */; };
 		AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBAB27262E4500593894 /* CompactViewController.swift */; };
+		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
+		AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBB827263E3A00593894 /* IntentHandler.swift */; };
+		AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
+		AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
+		AA45EBC72726419700593894 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
+		AA45EBC9272641A100593894 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA45EBC8272641A100593894 /* MeshKit */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* EditorViewController.swift */; };
@@ -33,6 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA517533272483CE00C25576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA45EBB327263E3A00593894;
+			remoteInfo = MeshGradientIntent;
+		};
 		AA517555272483CF00C25576 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA517533272483CE00C25576 /* Project object */;
@@ -49,6 +62,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AA45EBC227263E3A00593894 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AA1A5C232725F973006932FE /* OptionsView+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Colors.swift"; sourceTree = "<group>"; };
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
@@ -58,6 +85,13 @@
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		AA35D981272498CC000BB333 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeshKit; sourceTree = "<group>"; };
 		AA45EBAB27262E4500593894 /* CompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactViewController.swift; sourceTree = "<group>"; };
+		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA45EBB527263E3A00593894 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		AA45EBB827263E3A00593894 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		AA45EBBA27263E3A00593894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA45EBBE27263E3A00593894 /* MeshGradientIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeshGradientIntent.entitlements; sourceTree = "<group>"; };
+		AA45EBC327263E7800593894 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMeshGradientIntentHandler.swift; sourceTree = "<group>"; };
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,12 +114,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA45EBB127263E3A00593894 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA45EBC9272641A100593894 /* MeshKit in Frameworks */,
+				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA517538272483CE00C25576 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AA35D984272498D3000BB333 /* MeshKit in Frameworks */,
-				AA1A5C2F272612E4006932FE /* Blackbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +171,21 @@
 		AA35D982272498D3000BB333 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA45EBB527263E3A00593894 /* Intents.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA45EBB727263E3A00593894 /* MeshGradientIntent */ = {
+			isa = PBXGroup;
+			children = (
+				AA45EBBE27263E3A00593894 /* MeshGradientIntent.entitlements */,
+				AA45EBB827263E3A00593894 /* IntentHandler.swift */,
+				AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */,
+				AA45EBBA27263E3A00593894 /* Info.plist */,
+				AA45EBC327263E7800593894 /* Intents.intentdefinition */,
+			);
+			path = MeshGradientIntent;
 			sourceTree = "<group>";
 		};
 		AA517532272483CE00C25576 = {
@@ -140,6 +195,7 @@
 				AA51753D272483CE00C25576 /* Acrylic */,
 				AA517557272483CF00C25576 /* AcrylicTests */,
 				AA517561272483CF00C25576 /* AcrylicUITests */,
+				AA45EBB727263E3A00593894 /* MeshGradientIntent */,
 				AA51753C272483CE00C25576 /* Products */,
 				AA35D982272498D3000BB333 /* Frameworks */,
 			);
@@ -151,6 +207,7 @@
 				AA51753B272483CE00C25576 /* Acrylic.app */,
 				AA517554272483CF00C25576 /* AcrylicTests.xctest */,
 				AA51755E272483CF00C25576 /* AcrylicUITests.xctest */,
+				AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +255,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA45EBB327263E3A00593894 /* MeshGradientIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */;
+			buildPhases = (
+				AA45EBB027263E3A00593894 /* Sources */,
+				AA45EBB127263E3A00593894 /* Frameworks */,
+				AA45EBB227263E3A00593894 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeshGradientIntent;
+			packageProductDependencies = (
+				AA45EBC8272641A100593894 /* MeshKit */,
+			);
+			productName = MeshGradientIntent;
+			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AA51753A272483CE00C25576 /* Acrylic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA517568272483CF00C25576 /* Build configuration list for PBXNativeTarget "Acrylic" */;
@@ -205,15 +282,16 @@
 				AA517537272483CE00C25576 /* Sources */,
 				AA517538272483CE00C25576 /* Frameworks */,
 				AA517539272483CE00C25576 /* Resources */,
+				AA45EBC227263E3A00593894 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AA45EBBC27263E3A00593894 /* PBXTargetDependency */,
 			);
 			name = Acrylic;
 			packageProductDependencies = (
 				AA35D983272498D3000BB333 /* MeshKit */,
-				AA1A5C2E272612E4006932FE /* Blackbird */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -265,6 +343,9 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					AA45EBB327263E3A00593894 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					AA51753A272483CE00C25576 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -288,7 +369,6 @@
 			);
 			mainGroup = AA517532272483CE00C25576;
 			packageReferences = (
-				AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -297,11 +377,19 @@
 				AA51753A272483CE00C25576 /* Acrylic */,
 				AA517553272483CF00C25576 /* AcrylicTests */,
 				AA51755D272483CF00C25576 /* AcrylicUITests */,
+				AA45EBB327263E3A00593894 /* MeshGradientIntent */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA45EBB227263E3A00593894 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA517539272483CE00C25576 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +416,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA45EBB027263E3A00593894 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */,
+				AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */,
+				AA45EBC72726419700593894 /* MeshService.swift in Sources */,
+				AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA517537272483CE00C25576 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +470,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA45EBBC27263E3A00593894 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA45EBB327263E3A00593894 /* MeshGradientIntent */;
+			targetProxy = AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */;
+		};
 		AA517556272483CF00C25576 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA51753A272483CE00C25576 /* Acrylic */;
@@ -395,6 +499,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA45EBC027263E3A00593894 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeshGradientIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.MeshGradientIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA45EBC127263E3A00593894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeshGradientIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.MeshGradientIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		AA517566272483CF00C25576 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -514,11 +672,12 @@
 		AA517569272483CF00C25576 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -549,11 +708,12 @@
 		AA51756A272483CF00C25576 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -680,6 +840,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA45EBC027263E3A00593894 /* Debug */,
+				AA45EBC127263E3A00593894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA517536272483CE00C25576 /* Build configuration list for PBXProject "Acrylic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -718,24 +887,12 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:CanisterEditor/Blackbird.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		AA1A5C2E272612E4006932FE /* Blackbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA1A5C2D272612E4006932FE /* XCRemoteSwiftPackageReference "Blackbird" */;
-			productName = Blackbird;
-		};
 		AA35D983272498D3000BB333 /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MeshKit;
+		};
+		AA45EBC8272641A100593894 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;
 		};

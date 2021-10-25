@@ -37,6 +37,9 @@ struct OptionsView: View {
                         .background(Color(.systemGroupedBackground).ignoresSafeArea())
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle("Options")
+                        .toolbar {
+                            exportButton
+                        }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .ignoresSafeArea()
@@ -48,6 +51,24 @@ struct OptionsView: View {
                     scrollView
                 }
                 .navigationBarHidden(true)
+#if !targetEnvironment(macCatalyst)
+                .toolbar {
+                    exportButton
+                }
+#endif
+            }
+        }
+    }
+    
+    var exportButton: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Button {
+                let scene = UIApplication.shared.connectedScenes.first
+                if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                    sceneDelegate.export()
+                }
+            } label: {
+                Label("Export", systemImage: "square.and.arrow.up")
             }
         }
     }

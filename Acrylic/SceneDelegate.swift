@@ -73,7 +73,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
-
+    @objc final func export() {
+        meshService.isExporting.toggle()
+        
+        meshService.render { [weak self] renderImage in
+            if var topController = self?.window?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage) {
+                    topController.dismiss(animated: true)
+                })
+                
+                topController.present(vc, animated: true)
+            }
+        }
+    }
 }
 
 #if targetEnvironment(macCatalyst)
@@ -115,23 +130,6 @@ extension SceneDelegate: NSToolbarDelegate {
             return item
         default:
             return NSToolbarItem(itemIdentifier: itemIdentifier)
-        }
-    }
-    
-    @objc func export() {
-        meshService.isExporting.toggle()
-        
-        meshService.render { [weak self] renderImage in
-            if var topController = self?.window?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
-                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage) {
-                    topController.dismiss(animated: true)
-                })
-                
-                topController.present(vc, animated: true)
-            }
         }
     }
 }

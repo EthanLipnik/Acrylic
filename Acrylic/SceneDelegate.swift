@@ -23,11 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            window?.rootViewController = EditorViewController()
-        } else {
-            window?.rootViewController = SplitViewController(style: .doubleColumn)
-        }
+        window?.rootViewController = SplitViewController(style: .doubleColumn)
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)

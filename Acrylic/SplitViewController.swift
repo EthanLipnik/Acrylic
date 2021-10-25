@@ -9,9 +9,6 @@ import UIKit
 import SwiftUI
 
 class SplitViewController: UISplitViewController {
-    
-    let editorVC = EditorViewController()
-    let optionsVC = OptionsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +18,8 @@ class SplitViewController: UISplitViewController {
         minimumPrimaryColumnWidth = 320
         maximumPrimaryColumnWidth = 320
 
-        setViewController(optionsVC, for: .primary)
-        setViewController(editorVC, for: .secondary)
+        setViewController(OptionsViewController(), for: .primary)
+        setViewController(EditorViewController(), for: .secondary)
+        setViewController(CompactViewController(), for: .compact)
     }
 }

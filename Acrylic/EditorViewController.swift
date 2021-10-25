@@ -79,7 +79,6 @@ class EditorViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             meshView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
             meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
             meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor),
@@ -89,6 +88,12 @@ class EditorViewController: UIViewController {
             grabberView.widthAnchor.constraint(equalToConstant: 50),
             grabberView.heightAnchor.constraint(equalTo: grabberView.widthAnchor)
         ])
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            meshView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        } else {
+            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        }
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(updateGesture))
         panGesture.allowedScrollTypesMask = [.all]

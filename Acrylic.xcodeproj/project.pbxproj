@@ -15,6 +15,7 @@
 		AA1A5C2F272612E4006932FE /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA1A5C2E272612E4006932FE /* Blackbird */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
 		AA35D984272498D3000BB333 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA35D983272498D3000BB333 /* MeshKit */; };
+		AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBAB27262E4500593894 /* CompactViewController.swift */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* EditorViewController.swift */; };
@@ -56,6 +57,7 @@
 		AA1A5C2B27260DEC006932FE /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		AA35D981272498CC000BB333 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeshKit; sourceTree = "<group>"; };
+		AA45EBAB27262E4500593894 /* CompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactViewController.swift; sourceTree = "<group>"; };
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
+				AA45EBAB27262E4500593894 /* CompactViewController.swift */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
 				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
 				AA1A5C2B27260DEC006932FE /* ExportView.swift */,
@@ -341,6 +344,7 @@
 				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
+				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
@@ -537,7 +541,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -571,7 +575,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

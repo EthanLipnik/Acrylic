@@ -30,12 +30,26 @@ struct OptionsView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Divider()
-                .opacity(0.5)
-            scrollView
+        Group {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                NavigationView {
+                    scrollView
+                        .background(Color(.systemGroupedBackground).ignoresSafeArea())
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Options")
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                .ignoresSafeArea()
+                .shadow(radius: 30, y: -10)
+            } else {
+                VStack(spacing: 0) {
+                    Divider()
+                        .opacity(0.5)
+                    scrollView
+                }
+                .navigationBarHidden(true)
+            }
         }
-        .navigationBarHidden(true)
     }
     
     func clearColors() {

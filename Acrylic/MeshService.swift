@@ -14,18 +14,15 @@ class MeshService: ObservableObject {
     @Published var width: Int = 3
     @Published var height: Int = 3
     @Published var subdivsions: Int = 18
-    @Published var contentScaleFactor: Float = 5
     @Published var isRenderingAsWireframe: Bool = false
     
     @Published var isExporting: Bool = false
     
-    func render(completion: @escaping (UIImage) -> Void) {
+    func render(resolution: CGSize = CGSize(width: 4096, height: 4096), completion: @escaping (UIImage) -> Void) {
         let view = MeshView()
         view.create(colors, width: width, height: height, subdivisions: subdivsions)
-        view.contentScaleFactor = CGFloat(contentScaleFactor)
-        view.scaleFactor = CGFloat(contentScaleFactor)
         view.isHidden = true
         
-        completion(view.generate(size: CGSize(width: 512, height: 512)))
+        completion(view.generate(size: resolution))
     }
 }

@@ -25,22 +25,6 @@ extension OptionsView {
                     }
                 }
             }
-            
-            HStack {
-                Label("Scale Factor", systemImage: "arrow.up.left.and.arrow.down.right")
-                Slider(value: $meshService.contentScaleFactor, in: 1.0...50.0)
-                Text(String(format: "%.1f", meshService.contentScaleFactor))
-                    .font(.system(.headline, design: .rounded))
-                    .foregroundColor(Color.secondary)
-            }
-            .animation(.spring(), value: meshService.contentScaleFactor)
-            .contextMenu {
-                Button("Reset") {
-                    withAnimation {
-                        meshService.contentScaleFactor = 1
-                    }
-                }
-            }
         }
     }
 }

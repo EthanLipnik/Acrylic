@@ -116,12 +116,6 @@ class EditorViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        meshService.$contentScaleFactor
-            .sink { [weak self] contentScaleFactor in
-                self?.meshView.scaleFactor = CGFloat(contentScaleFactor)
-            }
-            .store(in: &cancellables)
-        
         meshService.$isRenderingAsWireframe
             .sink { [weak self] isRenderingAsWireframe in
                 self?.meshView.debugOptions = isRenderingAsWireframe ? [.renderAsWireframe] : []

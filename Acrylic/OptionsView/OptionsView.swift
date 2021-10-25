@@ -91,6 +91,7 @@ struct OptionsView: View {
                 colorsView
                 detailsView
                 viewport
+                renderView
             }
             .padding()
         }

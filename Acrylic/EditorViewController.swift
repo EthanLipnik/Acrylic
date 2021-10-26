@@ -106,13 +106,15 @@ class EditorViewController: UIViewController {
         
         meshService.$colors
             .sink { [weak self] colors in
-                self?.meshView.create(colors, subdivisions: self?.meshService.subdivsions ?? 18)
+                guard let self = self else { return }
+                self.meshView.create(colors, width: self.meshService.width, height: self.meshService.height, subdivisions: self.meshService.subdivsions)
             }
             .store(in: &cancellables)
         
         meshService.$subdivsions
             .sink { [weak self] subdivions in
-                self?.meshView.create(self?.meshService.colors ?? [], subdivisions: subdivions)
+                guard let self = self else { return }
+                self.meshView.create(self.meshService.colors, width: self.meshService.width, height: self.meshService.height, subdivisions: subdivions)
             }
             .store(in: &cancellables)
         
@@ -156,8 +158,11 @@ class EditorViewController: UIViewController {
             self.view.layoutSubviews()
         }
         
-        let x = min(1.8, max(0.3, location.x / (meshView.bounds.width / 2)))
-        let y = 2 - min(1.5, max(0.35, location.y / (meshView.bounds.height / 2)))
+        let width = CGFloat(meshService.width) - 1
+        let height = CGFloat(meshService.height) - 1
+        
+        let x = min(width - 0.2, max(0.3, location.x / (meshView.bounds.width / width)))
+        let y = height - min(height - 0.5, max(0.35, location.y / (meshView.bounds.height / height)))
         
         if let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate {
             let meshService = sceneDelegate.meshService

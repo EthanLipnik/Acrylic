@@ -25,6 +25,24 @@ extension OptionsView {
                     }
                 }
             }
+            DetailView(title: "Points", systemImage: "circle.grid.3x3") {
+                HStack {
+                    Label("Horizontal", systemImage: "arrow.left.arrow.right")
+                    Slider(value: widthIntProxy, in: 3.0...8.0, step: 1.0)
+                    Text("\(meshService.width)")
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundColor(Color.secondary)
+                }
+                .animation(.spring(), value: meshService.width)
+                HStack {
+                    Label("Height", systemImage: "arrow.up.arrow.down")
+                    Slider(value: heightIntProxy, in: 3.0...8.0, step: 1.0)
+                    Text("\(meshService.height)")
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundColor(Color.secondary)
+                }
+                .animation(.spring(), value: meshService.height)
+            }
         }
     }
 }

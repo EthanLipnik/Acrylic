@@ -13,12 +13,15 @@ extension OptionsView {
     var colorsView: some View {
         DetailView(title: "Colors", systemImage: "paintbrush") {
             VStack(spacing: 20) {
-                LazyVGrid(columns: [.init(.adaptive(minimum: 75, maximum: 100), spacing: 10)], spacing: 10) {
-                    ForEach($meshService.colors) { color in
-                        ColorView(color: color)
+                if !meshService.colors.isEmpty {
+                    LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.height), spacing: 10) {
+                        ForEach($meshService.colors) { color in
+                            ColorView(color: color)
+                        }
                     }
+                    .scaledToFit()
+                    .rotationEffect(.degrees(-90))
                 }
-                .rotationEffect(.degrees(-90))
                 HStack {
                     Button("Clear", action: clearColors)
                     Spacer()

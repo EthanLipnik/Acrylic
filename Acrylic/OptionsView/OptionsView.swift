@@ -29,6 +29,26 @@ struct OptionsView: View {
         })
     }
     
+    var widthIntProxy: Binding<Double>{
+        Binding<Double>(get: {
+            //returns the score as a Double
+            return Double(meshService.width)
+        }, set: {
+            //rounds the double to an Int
+            meshService.width = Int($0)
+        })
+    }
+    
+    var heightIntProxy: Binding<Double>{
+        Binding<Double>(get: {
+            //returns the score as a Double
+            return Double(meshService.height)
+        }, set: {
+            //rounds the double to an Int
+            meshService.height = Int($0)
+        })
+    }
+    
     var body: some View {
         Group {
             if UIDevice.current.userInterfaceIdiom == .phone {
@@ -51,11 +71,6 @@ struct OptionsView: View {
                     scrollView
                 }
                 .navigationBarHidden(true)
-#if !targetEnvironment(macCatalyst)
-                .toolbar {
-                    exportButton
-                }
-#endif
             }
         }
     }
@@ -80,9 +95,8 @@ struct OptionsView: View {
     }
     
     func randomizeColors() {
-        for i in 0..<meshService.colors.count {
-            meshService.colors[i].color = UIColor(hue: CGFloat(drand48()), saturation: 0.8, brightness: 1, alpha: 1)
-        }
+        meshService.colors.removeAll()
+        meshService.randomizePointsAndColors()
     }
     
     var scrollView: some View {
@@ -92,6 +106,15 @@ struct OptionsView: View {
                 detailsView
                 viewport
                 renderView
+                
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    Button("Export") {
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                            sceneDelegate.export()
+                        }
+                    }
+                }
             }
             .padding()
         }

@@ -11,12 +11,14 @@ extension OptionsView {
     struct DetailView<Content: View>: View {
         let title: String
         let systemImage: String
+        let withBackground: Bool
         let content: Content
         
-        init(title: String, systemImage: String, @ViewBuilder content: @escaping () -> Content) {
+        init(title: String, systemImage: String, withBackground: Bool = true, @ViewBuilder content: @escaping () -> Content) {
             self.title = title
             self.systemImage = systemImage
             self.content = content()
+            self.withBackground = withBackground
         }
         
         var body: some View {
@@ -32,7 +34,7 @@ extension OptionsView {
             
 #if targetEnvironment(macCatalyst)
             view
-                .background(ZStack {
+                .background(withBackground ? ZStack {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color(.systemBackground))
                         .opacity(0.2)
@@ -41,11 +43,11 @@ extension OptionsView {
                         .stroke(lineWidth: 1)
                         .fill(Color(.separator))
                         .opacity(0.5)
-                }.compositingGroup())
+                }.compositingGroup() : nil)
 #else
             view
-                .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(Color(.tertiarySystemBackground)))
+                .background(withBackground ? RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(Color(.tertiarySystemBackground)) : nil)
 #endif
         }
     }

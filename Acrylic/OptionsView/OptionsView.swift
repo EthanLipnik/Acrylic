@@ -95,14 +95,14 @@ struct OptionsView: View {
     }
     
     func randomizeColors() {
-        meshService.colors.removeAll()
         meshService.randomizePointsAndColors()
     }
     
     var scrollView: some View {
         ScrollView {
             VStack {
-                colorsView
+                ColorsView(clearColorsAction: clearColors, randomizeColorsAction: randomizeColors)
+                    .environmentObject(meshService)
                 detailsView
                 viewport
                 renderView

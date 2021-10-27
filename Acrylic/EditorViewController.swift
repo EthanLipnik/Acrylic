@@ -8,6 +8,7 @@
 import UIKit
 import MeshKit
 import Combine
+import SwiftUI
 
 class EditorViewController: UIViewController {
     
@@ -82,18 +83,13 @@ class EditorViewController: UIViewController {
             meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
             meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
             meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor),
+            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             
             grabberCenterXAnchor,
             grabberCenterYAnchor,
             grabberView.widthAnchor.constraint(equalToConstant: 50),
             grabberView.heightAnchor.constraint(equalTo: grabberView.widthAnchor)
         ])
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            meshView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        } else {
-            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        }
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(updateGesture))
         panGesture.allowedScrollTypesMask = [.all]
@@ -180,4 +176,14 @@ extension EditorViewController: UIPointerInteractionDelegate {
         return .hidden()
     }
 #endif
+}
+
+struct EditorView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> EditorViewController {
+        return .init()
+    }
+    
+    func updateUIViewController(_ uiViewController: EditorViewController, context: Context) {
+        
+    }
 }

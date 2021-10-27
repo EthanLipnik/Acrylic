@@ -10,49 +10,57 @@ import MeshKit
 import UniformTypeIdentifiers
 
 extension OptionsView {
-    var colorsView: some View {
-        let value = Binding<[MeshNode.Color]>(get: { () -> [MeshNode.Color] in
-            return meshService.colors.sorted(by: { $0.point.y > $1.point.y })
-        }) { (value) in
-            meshService.colors = value
-        }
+    struct ColorsView: View {
+        @EnvironmentObject var meshService: MeshService
         
-        return DetailView(title: "Colors", systemImage: "paintbrush") {
-            VStack(spacing: 20) {
-                if !meshService.colors.isEmpty {
-                    LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.width), spacing: 10) {
-                        ForEach(value) { color in
-                            ColorView(color: color)
+        var withBackground: Bool = true
+        let clearColorsAction: () -> Void
+        let randomizeColorsAction: () -> Void
+        
+        var body: some View {
+            let value = Binding<[MeshNode.Color]>(get: { () -> [MeshNode.Color] in
+                return meshService.colors.sorted(by: { $0.point.y > $1.point.y })
+            }) { (value) in
+                meshService.colors = value
+            }
+            
+            return DetailView(title: "Colors", systemImage: "paintbrush", withBackground: withBackground) {
+                VStack(spacing: 20) {
+                    if !meshService.colors.isEmpty {
+                        LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.width), spacing: 10) {
+                            ForEach(value) { color in
+                                ColorView(color: color)
+                            }
                         }
                     }
-                }
-                HStack {
-                    Button("Clear", action: clearColors)
-                    Spacer()
-                    Button("Randomize", action: randomizeColors)
+                    HStack {
+                        Button("Clear", action: clearColorsAction)
+                        Spacer()
+                        Button("Randomize", action: randomizeColorsAction)
+                    }
                 }
             }
-        }
-        .contextMenu {
-            Menu("Paste Colors") {
-                Button("RGB") {
-                    guard let copiedColors = UIPasteboard.general.string, copiedColors.contains("rgb(") else { return }
-                    let rgbList = copiedColors
-                        .replacingOccurrences(of: ",", with: "")
-                        .replacingOccurrences(of: "rgb(", with: "")
-                        .replacingOccurrences(of: ")", with: "")
-                        .split(separator: "\n")
-                        .map({ $0
-                        .components(separatedBy: .whitespaces)
-                        .compactMap({ Int($0) })
-                            .map({ CGFloat($0) / 255 }) })
-                    
-                    for i in 0..<rgbList.count {
-                        if meshService.colors.count > i {
-                            let rgb = rgbList[i]
-                            DispatchQueue.main.async {
-                                withAnimation {
-                                    meshService.colors[i].color = UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
+            .contextMenu {
+                Menu("Paste Colors") {
+                    Button("RGB") {
+                        guard let copiedColors = UIPasteboard.general.string, copiedColors.contains("rgb(") else { return }
+                        let rgbList = copiedColors
+                            .replacingOccurrences(of: ",", with: "")
+                            .replacingOccurrences(of: "rgb(", with: "")
+                            .replacingOccurrences(of: ")", with: "")
+                            .split(separator: "\n")
+                            .map({ $0
+                            .components(separatedBy: .whitespaces)
+                            .compactMap({ Int($0) })
+                                .map({ CGFloat($0) / 255 }) })
+                        
+                        for i in 0..<rgbList.count {
+                            if meshService.colors.count > i {
+                                let rgb = rgbList[i]
+                                DispatchQueue.main.async {
+                                    withAnimation {
+                                        meshService.colors[i].color = UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1)
+                                    }
                                 }
                             }
                         }
@@ -74,6 +82,9 @@ extension OptionsView {
             
             return ColorPicker("", selection: value, supportsOpacity: false)
                 .aspectRatio(1/1, contentMode: .fit)
+                .scaleEffect(2)
+                .padding()
+                .minimumScaleFactor(0.1)
 #if !targetEnvironment(macCatalyst)
                 .hoverEffect()
                 .labelsHidden()

@@ -33,7 +33,6 @@ extension OptionsView {
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.secondary)
                 }
-                .animation(.spring(), value: meshService.width)
                 HStack {
                     Label("Height", systemImage: "arrow.up.arrow.down")
                     Slider(value: heightIntProxy, in: 3.0...8.0, step: 1.0)
@@ -41,7 +40,6 @@ extension OptionsView {
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.secondary)
                 }
-                .animation(.spring(), value: meshService.height)
             }
         }
     }

@@ -10,7 +10,7 @@ import MeshKit
 import UniformTypeIdentifiers
 
 struct OptionsView: View {
-    @ObservedObject var meshService: MeshService = {
+    @StateObject var meshService: MeshService = {
         let scene = UIApplication.shared.connectedScenes.first
         if let sceneDelegate = scene?.delegate as? SceneDelegate {
             return sceneDelegate.meshService
@@ -159,13 +159,11 @@ struct ColorPickerView: UIViewControllerRepresentable {
         }
         
         func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-            
         }
         
         func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
-            selectColor(color)
             
-            viewController.dismiss(animated: true)
+            selectColor(color)
         }
     }
 }

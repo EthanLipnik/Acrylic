@@ -11,16 +11,20 @@ import UniformTypeIdentifiers
 
 extension OptionsView {
     var colorsView: some View {
-        DetailView(title: "Colors", systemImage: "paintbrush") {
+        let value = Binding<[MeshNode.Color]>(get: { () -> [MeshNode.Color] in
+            return meshService.colors.sorted(by: { $0.point.y > $1.point.y })
+        }) { (value) in
+            meshService.colors = value
+        }
+        
+        return DetailView(title: "Colors", systemImage: "paintbrush") {
             VStack(spacing: 20) {
                 if !meshService.colors.isEmpty {
-                    LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.height), spacing: 10) {
-                        ForEach($meshService.colors) { color in
+                    LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.width), spacing: 10) {
+                        ForEach(value) { color in
                             ColorView(color: color)
                         }
                     }
-                    .scaledToFit()
-                    .rotationEffect(.degrees(-90))
                 }
                 HStack {
                     Button("Clear", action: clearColors)
@@ -39,8 +43,8 @@ extension OptionsView {
                         .replacingOccurrences(of: ")", with: "")
                         .split(separator: "\n")
                         .map({ $0
-                            .components(separatedBy: .whitespaces)
-                            .compactMap({ Int($0) })
+                        .components(separatedBy: .whitespaces)
+                        .compactMap({ Int($0) })
                             .map({ CGFloat($0) / 255 }) })
                     
                     for i in 0..<rgbList.count {
@@ -61,38 +65,30 @@ extension OptionsView {
     struct ColorView: View {
         @Binding var color: MeshNode.Color
         
-        @State private var isPresentingPopover: Bool = false
-        
         var body: some View {
-            Button {
-                isPresentingPopover.toggle()
-            } label: {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color(color.color))
-                    .aspectRatio(1/1, contentMode: .fit)
-                    .shadow(color: Color(color.color).opacity(0.4), radius: 10, y: 4)
-                    .rotationEffect(.degrees(90))
+            let value = Binding<Color>(get: { () -> Color in
+                return Color(color.color)
+            }) { (value) in
+                color.color = UIColor(value)
             }
-            .buttonStyle(.plain)
+            
+            return ColorPicker("", selection: value, supportsOpacity: false)
+                .aspectRatio(1/1, contentMode: .fit)
 #if !targetEnvironment(macCatalyst)
-            .hoverEffect()
+                .hoverEffect()
+                .labelsHidden()
 #endif
-            .popover(isPresented: $isPresentingPopover) {
-                ColorPickerView(color: color.color) { color in
-                    self.color.color = color
-                }
-            }
-            .onDrop(of: [UTType.data.identifier], isTargeted: nil) { providers, location in
-                guard let provider = providers.first else { return false }
-                if provider.hasItemConformingToTypeIdentifier("com.apple.uikit.color") {
-                    provider.loadObject(ofClass: UIColor.self) { reading, error in
-                        DispatchQueue.main.async {
-                            color.color = reading as! UIColor
+                .onDrop(of: [UTType.data.identifier], isTargeted: nil) { providers, location in
+                    guard let provider = providers.first else { return false }
+                    if provider.hasItemConformingToTypeIdentifier("com.apple.uikit.color") {
+                        provider.loadObject(ofClass: UIColor.self) { reading, error in
+                            DispatchQueue.main.async {
+                                color.color = reading as! UIColor
+                            }
                         }
                     }
+                    return true
                 }
-                return true
-            }
         }
     }
 }

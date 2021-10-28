@@ -134,7 +134,6 @@ struct EditorView: UIViewControllerRepresentable {
 
 class GrabbersView: UIView {
     
-    private(set) lazy var grabberViews: [GrabberView] = []
     private(set) var width: Int = 0
     private(set) var height: Int = 0
     
@@ -142,14 +141,24 @@ class GrabbersView: UIView {
         self.width = width
         self.height = height
         
-        if subviews.isEmpty {
-            grabberViews = colors.map({ createGrabber($0) })
-            grabberViews.forEach(addSubview)
-        } else {
-            grabberViews.forEach { [bounds] grabber in
-                if let color = colors.first(where: { $0.point == grabber.node.point }) {
-                    grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height))
-                }
+        var updatedGrabbers: Set<GrabberView> = []
+        
+        colors.forEach { color in
+            if let grabber = (subviews as? [GrabberView])?.first(where: { $0.node.point == color.point }) {
+                grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height))
+                
+                updatedGrabbers.insert(grabber)
+            } else {
+                let view = createGrabber(color)
+                addSubview(view)
+                
+                updatedGrabbers.insert(view)
+            }
+        }
+        
+        (subviews as? [GrabberView])?.forEach { grabber in
+            if !updatedGrabbers.contains(where: { $0.node.point == grabber.node.point }) {
+                grabber.removeFromSuperview()
             }
         }
     }
@@ -170,24 +179,8 @@ class GrabbersView: UIView {
     }
     
     @objc func updateGesture(_ recognizer: UIPanGestureRecognizer) {
-        guard let grabberView = grabberViews.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }) else { return }
+        guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }) else { return }
         let location = recognizer.location(in: self)
-        
-        print(grabberView.node)
-        
-//        let xLocation = location.x - (bounds.width / 2)
-//        let minXLocation = max(xLocation, -bounds.width / 2)
-//        let maxXLocation = min(minXLocation, bounds.width / 2)
-//        grabberViews[viewIndex].center.x = maxXLocation
-//
-//        let yLocation = location.y - (bounds.height / 2)
-//        let minYLocation = max(yLocation, -bounds.height / 2)
-//        let maxYLocation = min(minYLocation, bounds.height / 2)
-//        grabberViews[viewIndex].center.y = maxYLocation
-        
-//        UIView.animate(withDuration: 0.05, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveLinear]) { [weak self] in
-//            self?.layoutSubviews()
-//        }
         
         let width = CGFloat(width) - 1
         let height = CGFloat(height) - 1

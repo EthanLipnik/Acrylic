@@ -18,7 +18,7 @@ extension OptionsView {
                     .foregroundColor(Color.secondary)
             }
             HStack {
-                Label("Height", systemImage: "arrow.up.arrow.down")
+                Label("Vertical", systemImage: "arrow.up.arrow.down")
                 Slider(value: heightIntProxy, in: 3.0...6.0, step: 1.0)
                 Text("\(meshService.height)")
                     .font(.system(.headline, design: .rounded))

@@ -187,6 +187,11 @@ class GrabbersView: UIView {
         colors.forEach { color in
             if let grabber = (subviews as? [GrabberView])?.first(where: { $0.node.point == color.point }) {
                 grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height))
+                if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
+                    let meshService = sceneDelegate.meshService
+                    
+                    grabber.updateSelection(meshService.selectedPoint)
+                }
                 
                 updatedGrabbers.insert(grabber)
             } else {

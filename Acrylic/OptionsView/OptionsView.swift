@@ -117,6 +117,7 @@ struct OptionsView: View {
                 }
             }
             .padding()
+            .animation(.spring(), value: meshService.selectedPoint)
         }
     }
 }

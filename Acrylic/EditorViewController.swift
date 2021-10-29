@@ -87,7 +87,7 @@ class EditorViewController: UIViewController {
                 guard let self = self else { return }
                 self.meshView.create(colors, width: self.meshService.width, height: self.meshService.height, subdivisions: self.meshService.subdivsions)
                 
-                self.grabbersView.setPoints(colors, width: self.meshService.width, height: self.meshService.height)
+                self.grabbersView.setPoints(colors.filter({ $0.point.x != 0 && $0.point.x != self.meshService.width - 1 && $0.point.y != 0 && $0.point.y != self.meshService.height - 1 }), width: self.meshService.width, height: self.meshService.height)
             }
             .store(in: &cancellables)
         
@@ -101,6 +101,12 @@ class EditorViewController: UIViewController {
         meshService.$isRenderingAsWireframe
             .sink { [weak self] isRenderingAsWireframe in
                 self?.meshView.debugOptions = isRenderingAsWireframe ? [.renderAsWireframe] : []
+            }
+            .store(in: &cancellables)
+        
+        meshService.$selectedPoint
+            .sink { [weak self] point in
+                self?.grabbersView.subviews.forEach({ ($0 as? GrabbersView.GrabberView)?.updateSelection(point) })
             }
             .store(in: &cancellables)
         
@@ -136,6 +142,35 @@ class GrabbersView: UIView {
     
     private(set) var width: Int = 0
     private(set) var height: Int = 0
+    
+    init() {
+        super.init(frame: .zero)
+        
+        setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private final func setup() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deselectGrabbers))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func deselectGrabbers() {
+        if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
+            let meshService = sceneDelegate.meshService
+            
+            meshService.selectedPoint = nil
+        }
+    }
     
     func setPoints(_ colors: [MeshNode.Color], width: Int, height: Int) {
         self.width = width
@@ -180,6 +215,15 @@ class GrabbersView: UIView {
     
     @objc func updateGesture(_ recognizer: UIPanGestureRecognizer) {
         guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }) else { return }
+        
+        if recognizer.state == .began {
+            if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
+                let meshService = sceneDelegate.meshService
+                
+                meshService.selectedPoint = .init(x: grabberView.node.point.x, y: grabberView.node.point.y)
+            }
+        }
+        
         let location = recognizer.location(in: self)
         
         let width = CGFloat(width) - 1
@@ -220,11 +264,35 @@ class GrabbersView: UIView {
             
             layer.shadowOffset = CGSize(width: 0, height: 4)
             layer.shadowRadius = 10
-            layer.shadowOpacity = 0.8
+            layer.shadowOpacity = 0.4
             
             if let size = parentSize {
                 updateLocation(node.location, meshSize: meshSize, size: size)
             }
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectNode))
+            tapGesture.numberOfTapsRequired = 1
+            addGestureRecognizer(tapGesture)
+        }
+        
+        @objc func selectNode() {
+            if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
+                let meshService = sceneDelegate.meshService
+                
+                meshService.selectedPoint = .init(x: node.point.x, y: node.point.y)
+            }
+        }
+        
+        final func updateSelection(_ selectedPoint: MeshService.Point?) {
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction], animations: { [weak self] in
+                if let selectedPoint = selectedPoint, let node = self?.node, selectedPoint.nodePoint == node.point {
+                    self?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+                    self?.transform = .init(scaleX: 1.1, y: 1.1)
+                } else {
+                    self?.backgroundColor = UIColor.secondarySystemFill
+                    self?.transform = .identity
+                }
+            })
         }
         
         final func updateLocation(_ location: (x: Float, y: Float), meshSize: CGSize, size: CGSize) {

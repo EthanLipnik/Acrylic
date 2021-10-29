@@ -22,14 +22,7 @@ extension OptionsView {
         }
         
         var body: some View {
-            let view = VStack {
-                Label(title, systemImage: systemImage)
-                    .font(.headline.bold())
-                    .foregroundColor(Color.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Divider()
-                content
-            }
+            let view = view
                 .padding()
             
 #if targetEnvironment(macCatalyst)
@@ -49,6 +42,17 @@ extension OptionsView {
                 .background(withBackground ? RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .fill(Color(.tertiarySystemBackground)) : nil)
 #endif
+        }
+        
+        var view: some View {
+            VStack {
+                Label(title, systemImage: systemImage)
+                    .font(.headline.bold())
+                    .foregroundColor(Color.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Divider()
+                content
+            }
         }
     }
 }

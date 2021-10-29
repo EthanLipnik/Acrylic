@@ -16,7 +16,17 @@ class MeshService: ObservableObject {
     @Published var subdivsions: Int = 18
     @Published var isRenderingAsWireframe: Bool = false
     
+    @Published var selectedPoint: Point? = nil
     @Published var isExporting: Bool = false
+    
+    struct Point: Equatable {
+        var x: Int
+        var y: Int
+        
+        var nodePoint: (x: Int, y: Int) {
+            return (x, y)
+        }
+    }
     
     func render(resolution: CGSize = CGSize(width: 4096, height: 4096), completion: @escaping (UIImage) -> Void) {
         let view = MeshView()

@@ -18,21 +18,21 @@ extension OptionsView {
         let randomizeColorsAction: () -> Void
         
         var body: some View {
-            let value = Binding<[MeshNode.Color]>(get: { () -> [MeshNode.Color] in
-                return meshService.colors.sorted(by: { $0.point.y > $1.point.y })
-            }) { (value) in
-                meshService.colors = value
-            }
-            
-            return DetailView(title: "Colors", systemImage: "paintbrush", withBackground: withBackground) {
+            DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
                 VStack(spacing: 20) {
-                    if !meshService.colors.isEmpty {
-                        LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(minimum: 25, maximum: 75), spacing: 10), count: meshService.width), spacing: 10) {
-                            ForEach(value) { color in
-                                ColorView(color: color)
-                            }
+                    let value = Binding<MeshNode.Color?>(get: { () -> MeshNode.Color? in
+                        if let selectedPoint = meshService.selectedPoint {
+                            return meshService.colors.first(where: { $0.point == selectedPoint.nodePoint })
+                        } else {
+                            return nil
+                        }
+                    }) { (value) in
+                        if let selectedPoint = meshService.selectedPoint, let index = meshService.colors.firstIndex(where: { $0.point == selectedPoint.nodePoint }), let value = value {
+                            meshService.colors[index] = value
                         }
                     }
+                    
+                    PointView(node: value)
                     HStack {
                         Button("Clear", action: clearColorsAction)
                         Spacer()
@@ -70,36 +70,41 @@ extension OptionsView {
         }
     }
     
-    struct ColorView: View {
-        @Binding var color: MeshNode.Color
+    struct PointView: View {
+        @Binding var node: MeshNode.Color?
         
         var body: some View {
-            let value = Binding<Color>(get: { () -> Color in
-                return Color(color.color)
-            }) { (value) in
-                color.color = UIColor(value)
-            }
-            
-            return ColorPicker("", selection: value, supportsOpacity: false)
-                .aspectRatio(1/1, contentMode: .fit)
-                .scaleEffect(2)
-                .padding()
-                .minimumScaleFactor(0.1)
-#if !targetEnvironment(macCatalyst)
-                .hoverEffect()
-                .labelsHidden()
-#endif
-                .onDrop(of: [UTType.data.identifier], isTargeted: nil) { providers, location in
-                    guard let provider = providers.first else { return false }
-                    if provider.hasItemConformingToTypeIdentifier("com.apple.uikit.color") {
-                        provider.loadObject(ofClass: UIColor.self) { reading, error in
-                            DispatchQueue.main.async {
-                                color.color = reading as! UIColor
-                            }
+            Group {
+                if let node = node {
+                    let color = Binding<Color>(get: { () -> Color in
+                        return Color(node.color)
+                    }) { (value) in
+                        self.node?.color = UIColor(value)
+                    }
+                    
+                    VStack(spacing: 20) {
+                        HStack {
+                            Label("Point", systemImage: "circle.fill")
+                            Text("\(node.point.x),\(node.point.y)")
+                                .font(.headline.bold())
+                                .foregroundColor(Color.secondary)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        HStack {
+                            Label("Location", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
+                            Text(String(format: "%.1f", node.location.x) + "," + String(format: "%.1f", node.location.y))
+                                .font(.headline.bold())
+                                .foregroundColor(Color.secondary)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        ColorPicker(selection: color, supportsOpacity: false) {
+                            Label("Color", systemImage: "paintbrush.fill")
                         }
                     }
-                    return true
+                } else {
+                    EmptyView()
                 }
+            }
         }
     }
 }

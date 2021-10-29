@@ -255,7 +255,7 @@ class GrabbersView: UIView {
         init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil) {
             self.node = node
             self.meshSize = meshSize
-            super.init(frame: .init(origin: .zero, size: .init(width: 50, height: 50)))
+            super.init(frame: .init(origin: .zero, size: .init(width: 40, height: 40)))
             setup(meshSize: meshSize, parentSize: parentSize)
         }
         

@@ -90,6 +90,7 @@ extension OptionsView {
                                 .foregroundColor(Color.secondary)
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
+                        
                         HStack {
                             Label("Location", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
                             Text(String(format: "%.1f", node.location.x) + "," + String(format: "%.1f", node.location.y))

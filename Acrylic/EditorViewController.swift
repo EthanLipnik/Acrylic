@@ -87,7 +87,7 @@ class EditorViewController: UIViewController {
                 guard let self = self else { return }
                 self.meshView.create(colors, width: self.meshService.width, height: self.meshService.height, subdivisions: self.meshService.subdivsions)
                 
-                self.grabbersView.setPoints(colors.filter({ $0.point.x != 0 && $0.point.x != self.meshService.width - 1 && $0.point.y != 0 && $0.point.y != self.meshService.height - 1 }), width: self.meshService.width, height: self.meshService.height)
+                self.grabbersView.setPoints(colors, width: self.meshService.width, height: self.meshService.height)
             }
             .store(in: &cancellables)
         
@@ -116,15 +116,21 @@ class EditorViewController: UIViewController {
                 .init(point: (0, 1), location: (0, 1), color: UIColor(red: 0.157, green: 0.447, blue: 0.443, alpha: 1.000)),
                 .init(point: (0, 2), location: (0, 2), color: UIColor(red: 0.165, green: 0.616, blue: 0.561, alpha: 1.000)),
                 
-                .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
+                    .init(point: (1, 0), location: (1, 0), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
                 .init(point: (1, 1), location: (1, 1), color: UIColor(red: 0.541, green: 0.694, blue: 0.490, alpha: 1.000)),
                 .init(point: (1, 2), location: (1, 2), color: UIColor(red: 0.914, green: 0.769, blue: 0.416, alpha: 1.000)),
                 
-                .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
+                    .init(point: (2, 0), location: (2, 0), color: UIColor(red: 0.957, green: 0.635, blue: 0.380, alpha: 1.000)),
                 .init(point: (2, 1), location: (2, 1), color: UIColor(red: 0.933, green: 0.537, blue: 0.349, alpha: 1.000)),
                 .init(point: (2, 2), location: (2, 2), color: UIColor(red: 0.906, green: 0.435, blue: 0.318, alpha: 1.000)),
             ]
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        grabbersView.setPoints(meshService.colors, width: meshService.width, height: meshService.height)
     }
 }
 
@@ -214,15 +220,16 @@ class GrabbersView: UIView {
     }
     
     @objc func updateGesture(_ recognizer: UIPanGestureRecognizer) {
-        guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }) else { return }
+        guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }),
+              let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate else { return }
+        
+        let meshService = sceneDelegate.meshService
         
         if recognizer.state == .began {
-            if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
-                let meshService = sceneDelegate.meshService
-                
-                meshService.selectedPoint = .init(x: grabberView.node.point.x, y: grabberView.node.point.y)
-            }
+            meshService.selectedPoint = .init(x: grabberView.node.point.x, y: grabberView.node.point.y)
         }
+        
+        guard grabberView.node.point.x != 0 && grabberView.node.point.x != meshService.width - 1 && grabberView.node.point.y != 0 && grabberView.node.point.y != meshService.height - 1 else { return }
         
         let location = recognizer.location(in: self)
         
@@ -243,9 +250,11 @@ class GrabbersView: UIView {
     
     class GrabberView: UIView {
         var node: MeshNode.Color
+        var meshSize: CGSize
         
         init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil) {
             self.node = node
+            self.meshSize = meshSize
             super.init(frame: .init(origin: .zero, size: .init(width: 50, height: 50)))
             setup(meshSize: meshSize, parentSize: parentSize)
         }
@@ -265,6 +274,11 @@ class GrabbersView: UIView {
             layer.shadowOffset = CGSize(width: 0, height: 4)
             layer.shadowRadius = 10
             layer.shadowOpacity = 0.4
+            
+            if !(node.point.x != 0 && node.point.x != Int(meshSize.width) - 1 && node.point.y != 0 && node.point.y != Int(meshSize.height) - 1) {
+                transform = .init(scaleX: 0.8, y: 0.8)
+                backgroundColor = UIColor.tertiarySystemFill
+            }
             
             if let size = parentSize {
                 updateLocation(node.location, meshSize: meshSize, size: size)
@@ -289,13 +303,21 @@ class GrabbersView: UIView {
                     self?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
                     self?.transform = .init(scaleX: 1.1, y: 1.1)
                 } else {
-                    self?.backgroundColor = UIColor.secondarySystemFill
-                    self?.transform = .identity
+                    if let node = self?.node, let meshSize = self?.meshSize {
+                        if !(node.point.x != 0 && node.point.x != Int(meshSize.width) - 1 && node.point.y != 0 && node.point.y != Int(meshSize.height) - 1) {
+                            self?.transform = .init(scaleX: 0.8, y: 0.8)
+                            self?.backgroundColor = UIColor.tertiarySystemFill
+                        } else {
+                            self?.transform = .identity
+                            self?.backgroundColor = UIColor.secondarySystemFill
+                        }
+                    }
                 }
             })
         }
         
         final func updateLocation(_ location: (x: Float, y: Float), meshSize: CGSize, size: CGSize) {
+            self.meshSize = meshSize
             let point = CGPoint(x: (size.width / (meshSize.width - 1)) * CGFloat(location.x),
                                 y: size.height - ((size.height / (meshSize.height - 1)) * CGFloat(location.y)))
             

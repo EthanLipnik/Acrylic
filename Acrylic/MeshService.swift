@@ -38,6 +38,10 @@ class MeshService: ObservableObject {
     
     func randomizePointsAndColors() {
         var colors: [MeshNode.Color] = []
+        let initialColor = CGFloat.random(in: 0.1..<1)
+        let initialSaturation = CGFloat.random(in: 0.6..<1)
+        let initialBrightness = CGFloat.random(in: 0.8..<1)
+        
         for x in 0..<width {
             for y in 0..<height {
                 var location = (Float(x), Float(y))
@@ -45,7 +49,7 @@ class MeshService: ObservableObject {
                 if x != 0 && x != width - 1 && y != 0 && y != height - 1 {
                     location = (Float.random(in: (Float(x) - 0.6)..<(Float(x) + 0.6)), Float.random(in: (Float(y) - 0.6)..<(Float(y) + 0.6)))
                 }
-                colors.append(.init(point: (x, y), location: location, color: UIColor(hue: CGFloat(drand48()), saturation: 0.8, brightness: 1, alpha: 1), tangent: (2, 2)))
+                colors.append(.init(point: (x, y), location: location, color: UIColor(hue: CGFloat.random(in: (initialColor - 0.2)..<(initialColor + 0.2)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1), tangent: (2, 2)))
             }
         }
         

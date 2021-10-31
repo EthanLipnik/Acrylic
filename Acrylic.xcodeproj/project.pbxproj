@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA1A5C242725F973006932FE /* OptionsView+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Colors.swift */; };
+		AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Selection.swift */; };
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
@@ -81,7 +81,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA1A5C232725F973006932FE /* OptionsView+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Colors.swift"; sourceTree = "<group>"; };
+		AA1A5C232725F973006932FE /* OptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Selection.swift"; sourceTree = "<group>"; };
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Viewport.swift"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				AA6894E62725016E00A2FE51 /* OptionsView.swift */,
-				AA1A5C232725F973006932FE /* OptionsView+Colors.swift */,
+				AA1A5C232725F973006932FE /* OptionsView+Selection.swift */,
 				AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */,
 				AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */,
 				AAEAD89B2726EBEB00BF2EA4 /* OptionsView+Render.swift */,
@@ -456,7 +456,7 @@
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
 				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
-				AA1A5C242725F973006932FE /* OptionsView+Colors.swift in Sources */,
+				AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
 				AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */,
 				AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */,

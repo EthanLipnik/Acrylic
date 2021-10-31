@@ -50,7 +50,7 @@ struct CompactView: View {
                 HStack {
                     Spacer()
                     if isShowingColorsView {
-                        OptionsView.ColorsView(withBackground: false) {
+                        OptionsView.SelectionView(withBackground: false) {
                             for i in 0..<meshService.colors.count {
                                 meshService.colors[i].color = UIColor.white
                             }

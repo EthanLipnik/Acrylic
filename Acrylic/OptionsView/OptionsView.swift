@@ -42,7 +42,7 @@ struct OptionsView: View {
             if oldWidth < Int($0) {
                 for x in oldWidth..<Int($0) {
                     for y in 0..<meshService.height {
-                        let color = MeshNode.Color(point: (x, y), location: (Float(x), Float(y)), color: .white)
+                        let color = MeshNode.Color(point: (x, y), location: (Float(x), Float(y)), color: .white, tangent: (2, 2))
                         meshService.colors.append(color)
                     }
                 }
@@ -72,7 +72,7 @@ struct OptionsView: View {
             if oldHeight < Int($0) {
                 for y in oldHeight..<Int($0) {
                     for x in 0..<meshService.width {
-                        let color = MeshNode.Color(point: (x, y), location: (Float(x), Float(y)), color: .white)
+                        let color = MeshNode.Color(point: (x, y), location: (Float(x), Float(y)), color: .white, tangent: (2, 2))
                         meshService.colors.append(color)
                     }
                 }
@@ -141,7 +141,7 @@ struct OptionsView: View {
     var scrollView: some View {
         ScrollView {
             VStack {
-                ColorsView(clearColorsAction: clearColors, randomizeColorsAction: randomizeColors)
+                SelectionView(clearColorsAction: clearColors, randomizeColorsAction: randomizeColors)
                     .environmentObject(meshService)
                 detailsView
                 viewport

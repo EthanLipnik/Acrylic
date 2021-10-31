@@ -10,7 +10,7 @@ import MeshKit
 import UniformTypeIdentifiers
 
 extension OptionsView {
-    struct ColorsView: View {
+    struct SelectionView: View {
         @EnvironmentObject var meshService: MeshService
         
         var withBackground: Bool = true
@@ -82,6 +82,18 @@ extension OptionsView {
                         self.node?.color = UIColor(value)
                     }
                     
+                    let uTangent = Binding<Float>(get: { () -> Float in
+                        return node.tangent.u
+                    }) { (value) in
+                        self.node?.tangent.u = value
+                    }
+                    
+                    let vTangent = Binding<Float>(get: { () -> Float in
+                        return node.tangent.v
+                    }) { (value) in
+                        self.node?.tangent.v = value
+                    }
+                    
                     VStack(spacing: 20) {
                         HStack {
                             Label("Point", systemImage: "circle.fill")
@@ -100,6 +112,14 @@ extension OptionsView {
                         }
                         ColorPicker(selection: color, supportsOpacity: false) {
                             Label("Color", systemImage: "paintbrush.fill")
+                        }
+                        DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
+                            Slider(value: uTangent, in: 0.0...5.0) {
+                                Label("uTangent", systemImage: "trapezoid.and.line.horizontal.fill")
+                            }
+                            Slider(value: vTangent, in: 0.0...5.0) {
+                                Label("vTangent", systemImage: "trapezoid.and.line.vertical.fill")
+                            }
                         }
                     }
                 } else {

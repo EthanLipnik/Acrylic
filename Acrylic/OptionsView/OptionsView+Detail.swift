@@ -93,7 +93,6 @@ extension OptionsView {
                     Text("\(meshService.width)")
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.secondary)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 HStack {
                     Stepper(value: heightIntProxy, in: 3.0...6.0) {
@@ -103,18 +102,20 @@ extension OptionsView {
                     Text("\(meshService.height)")
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.secondary)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             
             return DetailView(title: "Detail", systemImage: "sparkles", withBackground: withBackground) {
                 VStack(spacing: 20) {
                     HStack {
-                        Label("Subdivsions", systemImage: "rectangle.split.3x3.fill")
-                        Slider(value: subdivsionsIntProxy, in: 4.0...36.0, step: 2.0)
+                        Stepper(value: subdivsionsIntProxy, in: 4.0...36.0, step: 2.0) {
+                            Label("Subdivsion", systemImage: "rectangle.split.3x3.fill")
+                        }
                         Text("\(meshService.subdivsions)")
                             .font(.system(.headline, design: .rounded))
                             .foregroundColor(Color.secondary)
+                            .allowsTightening(true)
+                            .minimumScaleFactor(0.8)
                     }
                     .animation(.spring(), value: meshService.subdivsions)
                     .contextMenu {

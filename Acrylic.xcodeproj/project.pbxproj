@@ -38,7 +38,6 @@
 		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
 		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
 		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
-		AAEAD89C2726EBEB00BF2EA4 /* OptionsView+Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEAD89B2726EBEB00BF2EA4 /* OptionsView+Render.swift */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,7 +114,6 @@
 		AA6894E62725016E00A2FE51 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		AA6894E8272501C400A2FE51 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBAVisualEffectView.swift; sourceTree = "<group>"; };
-		AAEAD89B2726EBEB00BF2EA4 /* OptionsView+Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Render.swift"; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,7 +160,6 @@
 				AA1A5C232725F973006932FE /* OptionsView+Selection.swift */,
 				AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */,
 				AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */,
-				AAEAD89B2726EBEB00BF2EA4 /* OptionsView+Render.swift */,
 				AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */,
 			);
 			path = OptionsView;
@@ -468,7 +465,6 @@
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
-				AAEAD89C2726EBEB00BF2EA4 /* OptionsView+Render.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

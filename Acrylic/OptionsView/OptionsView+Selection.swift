@@ -35,8 +35,14 @@ extension OptionsView {
                     PointView(node: value)
                     HStack {
                         Button("Clear", action: clearColorsAction)
+#if !targetEnvironment(macCatalyst)
+                            .hoverEffect()
+#endif
                         Spacer()
                         Button("Randomize", action: randomizeColorsAction)
+#if !targetEnvironment(macCatalyst)
+                            .hoverEffect()
+#endif
                     }
                 }
             }

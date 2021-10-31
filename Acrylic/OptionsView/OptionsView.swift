@@ -21,19 +21,13 @@ struct OptionsView: View {
     
     var body: some View {
         Group {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                NavigationView {
-                    scrollView
-                        .background(Color(.secondarySystemBackground).ignoresSafeArea())
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationTitle("Options")
-                        .toolbar {
-                            exportButton
-                        }
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .ignoresSafeArea()
-                .shadow(radius: 30, y: -10)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                scrollView
+                    .background(Color(.secondarySystemBackground).ignoresSafeArea())
+                    .navigationTitle("Acrylic")
+                    .toolbar {
+                        exportButton
+                    }
             } else {
                 VStack(spacing: 0) {
                     Divider()
@@ -77,16 +71,6 @@ struct OptionsView: View {
                     .environmentObject(meshService)
                 ViewportView()
                     .environmentObject(meshService)
-                renderView
-                
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    Button("Export") {
-                        let scene = UIApplication.shared.connectedScenes.first
-                        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-                            sceneDelegate.export()
-                        }
-                    }
-                }
             }
             .padding()
             .animation(.spring(), value: meshService.selectedPoint)

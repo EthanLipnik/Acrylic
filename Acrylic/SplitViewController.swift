@@ -18,7 +18,7 @@ class SplitViewController: UISplitViewController {
         minimumPrimaryColumnWidth = 320
         maximumPrimaryColumnWidth = 320
 
-        setViewController(OptionsViewController(), for: .primary)
+        setViewController(UINavigationController(rootViewController: OptionsViewController()), for: .primary)
         setViewController(EditorViewController(), for: .secondary)
         setViewController(CompactViewController(), for: .compact)
     }

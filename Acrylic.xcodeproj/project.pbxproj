@@ -38,6 +38,7 @@
 		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
 		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
 		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
+		AAD40FBD272F330000932173 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AAD40FBC272F330000932173 /* Blackbird */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD40FBD272F330000932173 /* Blackbird in Frameworks */,
 				AA35D984272498D3000BB333 /* MeshKit in Frameworks */,
 				AA6655002728EB3A006A5237 /* VisualEffects in Frameworks */,
 			);
@@ -307,6 +309,7 @@
 			packageProductDependencies = (
 				AA35D983272498D3000BB333 /* MeshKit */,
 				AA6654FF2728EB3A006A5237 /* VisualEffects */,
+				AAD40FBC272F330000932173 /* Blackbird */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -385,6 +388,7 @@
 			mainGroup = AA517532272483CE00C25576;
 			packageReferences = (
 				AA6654FE2728EB3A006A5237 /* XCRemoteSwiftPackageReference "VisualEffects" */,
+				AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -522,7 +526,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -550,7 +554,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -697,7 +701,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -735,7 +739,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -920,6 +924,14 @@
 				kind = branch;
 			};
 		};
+		AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:CanisterEditor/Blackbird.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -935,6 +947,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA6654FE2728EB3A006A5237 /* XCRemoteSwiftPackageReference "VisualEffects" */;
 			productName = VisualEffects;
+		};
+		AAD40FBC272F330000932173 /* Blackbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */;
+			productName = Blackbird;
 		};
 /* End XCSwiftPackageProductDependency section */
 

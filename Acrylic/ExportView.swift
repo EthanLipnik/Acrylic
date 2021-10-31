@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Blackbird
 
 struct ExportView: View {
     let renderImage: UIImage
@@ -19,8 +20,9 @@ struct ExportView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: renderImage)
-                .resizable()
+//            Image(uiImage: renderImage)
+//                .resizable()
+            BlackbirdView(image: $image)
                 .aspectRatio(1/1, contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(radius: 30, y: 10)
@@ -81,10 +83,24 @@ struct ExportView: View {
         }
         .padding()
         .onAppear {
-            image = renderImage.ciImage ?? CIImage(image: renderImage) ?? .blue
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                self.image = CIImage(image: self.renderImage)!
+                self.applyFilters()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                    self.image = CIImage(image: self.renderImage)!
+                    self.applyFilters()
+                }
+            }
         }
 #if targetEnvironment(macCatalyst)
         .frame(maxWidth: 400)
 #endif
+    }
+    
+    func applyFilters() {
+        let baseImage = CIImage(image: self.renderImage)!
+        
+        self.image = baseImage
     }
 }

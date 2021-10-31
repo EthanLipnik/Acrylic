@@ -89,6 +89,7 @@ extension OptionsView {
                 HStack {
                     Stepper(value: widthIntProxy, in: 3.0...6.0) {
                         Label("Width", systemImage: "arrow.left.arrow.right")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     Text("\(meshService.width)")
                         .font(.system(.headline, design: .rounded))
@@ -97,8 +98,8 @@ extension OptionsView {
                 HStack {
                     Stepper(value: heightIntProxy, in: 3.0...6.0) {
                         Label("Vertical", systemImage: "arrow.up.arrow.down")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    
                     Text("\(meshService.height)")
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(Color.secondary)
@@ -110,6 +111,7 @@ extension OptionsView {
                     HStack {
                         Stepper(value: subdivsionsIntProxy, in: 4.0...36.0, step: 2.0) {
                             Label("Subdivsion", systemImage: "rectangle.split.3x3.fill")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         Text("\(meshService.subdivsions)")
                             .font(.system(.headline, design: .rounded))

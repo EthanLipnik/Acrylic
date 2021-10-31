@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Blackbird",
+        "repositoryURL": "git@github.com:CanisterEditor/Blackbird.git",
+        "state": {
+          "branch": null,
+          "revision": "4362028a6476d1895601ab0749e8ea259943407a",
+          "version": "0.7.1"
+        }
+      },
+      {
         "package": "VisualEffects",
         "repositoryURL": "https://github.com/twostraws/VisualEffects.git",
         "state": {

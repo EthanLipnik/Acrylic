@@ -20,6 +20,7 @@ struct CompactView: View {
     
     @State private var isShowingColorsView: Bool = false
     @State private var isShowingViewportView: Bool = false
+    @State private var isShowingDetailView: Bool = false
     
     @Namespace var nspace
     
@@ -29,7 +30,46 @@ struct CompactView: View {
                 .ignoresSafeArea()
                 .id("editor")
             VStack {
-                HStack {
+                HStack(alignment: .top) {
+                    if isShowingDetailView {
+                        OptionsView.DetailsView(withBackground: false)
+                            .environmentObject(meshService)
+                            .overlay(
+                                Button(action: {
+                                    withAnimation(.spring()) {
+                                        isShowingDetailView.toggle()
+                                        isShowingColorsView = false
+                                        isShowingViewportView = false
+                                    }
+                                }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.title3.bold())
+                                        .padding()
+                                }), alignment: .topTrailing)
+                            .background(VisualEffectBlur(blurStyle: .systemUltraThinMaterial)
+                                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                            .shadow(radius: 30)
+                                            .matchedGeometryEffect(id: "detailsView-background", in: nspace))
+                            .matchedGeometryEffect(id: "detailsView", in: nspace)
+                            .transition(.scale(scale: isShowingViewportView ? 0 : 0.9, anchor: .topLeading))
+                    } else {
+                        Button {
+                            withAnimation(.spring()) {
+                                isShowingDetailView.toggle()
+                                isShowingColorsView = false
+                                isShowingViewportView = false
+                            }
+                        } label: {
+                            Image(systemName: "sparkles")
+                                .font(.title3.bold())
+                                .padding()
+                        }
+                        .background(VisualEffectBlur()
+                                        .clipShape(Circle())
+                                        .shadow(radius: 30)
+                                        .matchedGeometryEffect(id: "detailsView-background", in: nspace))
+                        .matchedGeometryEffect(id: "detailsView", in: nspace)
+                    }
                     Spacer()
                     Button {
                         let scene = UIApplication.shared.connectedScenes.first
@@ -57,6 +97,7 @@ struct CompactView: View {
                                     withAnimation(.spring()) {
                                         isShowingViewportView.toggle()
                                         isShowingColorsView = false
+                                        isShowingDetailView = false
                                     }
                                 }, label: {
                                     Image(systemName: "xmark.circle.fill")
@@ -74,6 +115,7 @@ struct CompactView: View {
                             withAnimation(.spring()) {
                                 isShowingViewportView.toggle()
                                 isShowingColorsView = false
+                                isShowingDetailView = false
                             }
                         } label: {
                             Image(systemName: "viewfinder")
@@ -101,6 +143,7 @@ struct CompactView: View {
                                 withAnimation(.spring()) {
                                     isShowingColorsView.toggle()
                                     isShowingViewportView = false
+                                    isShowingDetailView = false
                                 }
                             }, label: {
                                 Image(systemName: "xmark.circle.fill")
@@ -118,6 +161,7 @@ struct CompactView: View {
                             withAnimation(.spring()) {
                                 isShowingColorsView.toggle()
                                 isShowingViewportView = false
+                                isShowingDetailView = false
                             }
                         } label: {
                             Image(systemName: "paintbrush")

@@ -144,7 +144,8 @@ struct OptionsView: View {
                 SelectionView(clearColorsAction: clearColors, randomizeColorsAction: randomizeColors)
                     .environmentObject(meshService)
                 detailsView
-                viewport
+                ViewportView()
+                    .environmentObject(meshService)
                 renderView
                 
                 if UIDevice.current.userInterfaceIdiom == .pad {

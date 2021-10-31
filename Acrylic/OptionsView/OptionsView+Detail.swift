@@ -6,23 +6,29 @@
 //
 
 import SwiftUI
+import MeshKit
 
 extension OptionsView {
     var detailsView: some View {
         let scaleView = DetailView(title: "Points", systemImage: "circle.grid.3x3") {
             HStack {
-                Label("Horizontal", systemImage: "arrow.left.arrow.right")
-                Slider(value: widthIntProxy, in: 3.0...6.0, step: 1.0)
+                Stepper(value: widthIntProxy, in: 3.0...6.0) {
+                    Label("Width", systemImage: "arrow.left.arrow.right")
+                }
                 Text("\(meshService.width)")
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color.secondary)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
             HStack {
-                Label("Vertical", systemImage: "arrow.up.arrow.down")
-                Slider(value: heightIntProxy, in: 3.0...6.0, step: 1.0)
+                Stepper(value: heightIntProxy, in: 3.0...6.0) {
+                    Label("Vertical", systemImage: "arrow.up.arrow.down")
+                }
+                
                 Text("\(meshService.height)")
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color.secondary)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         

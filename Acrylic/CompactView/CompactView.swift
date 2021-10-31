@@ -19,6 +19,7 @@ struct CompactView: View {
     }()
     
     @State private var isShowingColorsView: Bool = false
+    @State private var isShowingViewportView: Bool = false
     
     @Namespace var nspace
     
@@ -47,7 +48,44 @@ struct CompactView: View {
                 }
                 
                 Spacer()
-                HStack {
+                HStack(alignment: .bottom) {
+                    if isShowingViewportView {
+                        OptionsView.ViewportView(withBackground: false)
+                            .environmentObject(meshService)
+                            .overlay(
+                                Button(action: {
+                                    withAnimation(.spring()) {
+                                        isShowingViewportView.toggle()
+                                        isShowingColorsView = false
+                                    }
+                                }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.title3.bold())
+                                        .padding()
+                                }), alignment: .topTrailing)
+                            .background(VisualEffectBlur(blurStyle: .systemUltraThinMaterial)
+                                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                            .shadow(radius: 30)
+                                            .matchedGeometryEffect(id: "viewportView-background", in: nspace))
+                            .matchedGeometryEffect(id: "viewportView", in: nspace)
+                            .transition(.scale(scale: isShowingViewportView ? 0 : 0.9, anchor: .bottomLeading))
+                    } else {
+                        Button {
+                            withAnimation(.spring()) {
+                                isShowingViewportView.toggle()
+                                isShowingColorsView = false
+                            }
+                        } label: {
+                            Image(systemName: "viewfinder")
+                                .font(.title3.bold())
+                                .padding()
+                        }
+                        .background(VisualEffectBlur()
+                                        .clipShape(Circle())
+                                        .shadow(radius: 30)
+                                        .matchedGeometryEffect(id: "viewportView-background", in: nspace))
+                        .matchedGeometryEffect(id: "viewportView", in: nspace)
+                    }
                     Spacer()
                     if isShowingColorsView {
                         OptionsView.SelectionView(withBackground: false) {
@@ -62,6 +100,7 @@ struct CompactView: View {
                             Button(action: {
                                 withAnimation(.spring()) {
                                     isShowingColorsView.toggle()
+                                    isShowingViewportView = false
                                 }
                             }, label: {
                                 Image(systemName: "xmark.circle.fill")
@@ -78,6 +117,7 @@ struct CompactView: View {
                         Button {
                             withAnimation(.spring()) {
                                 isShowingColorsView.toggle()
+                                isShowingViewportView = false
                             }
                         } label: {
                             Image(systemName: "paintbrush")

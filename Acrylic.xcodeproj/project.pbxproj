@@ -11,9 +11,7 @@
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
-		AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C2B27260DEC006932FE /* ExportView.swift */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
-		AA35D984272498D3000BB333 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA35D983272498D3000BB333 /* MeshKit */; };
 		AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBAB27262E4500593894 /* CompactViewController.swift */; };
 		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
 		AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBB827263E3A00593894 /* IntentHandler.swift */; };
@@ -33,12 +31,14 @@
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
 		AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* CompactView.swift */; };
-		AA6655002728EB3A006A5237 /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = AA6654FF2728EB3A006A5237 /* VisualEffects */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
 		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
 		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
-		AAD40FBD272F330000932173 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AAD40FBC272F330000932173 /* Blackbird */; };
+		AAB8853327E95A1000B43BC5 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853227E95A1000B43BC5 /* Blackbird */; };
+		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
+		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
+		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,9 +85,7 @@
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Viewport.swift"; sourceTree = "<group>"; };
-		AA1A5C2B27260DEC006932FE /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		AA35D981272498CC000BB333 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeshKit; sourceTree = "<group>"; };
 		AA45EBAB27262E4500593894 /* CompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactViewController.swift; sourceTree = "<group>"; };
 		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA45EBB527263E3A00593894 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -115,6 +113,9 @@
 		AA6894E62725016E00A2FE51 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		AA6894E8272501C400A2FE51 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBAVisualEffectView.swift; sourceTree = "<group>"; };
+		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
+		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
+		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,9 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD40FBD272F330000932173 /* Blackbird in Frameworks */,
-				AA35D984272498D3000BB333 /* MeshKit in Frameworks */,
-				AA6655002728EB3A006A5237 /* VisualEffects in Frameworks */,
+				AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */,
+				AAB8853327E95A1000B43BC5 /* Blackbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,14 +167,6 @@
 			path = OptionsView;
 			sourceTree = "<group>";
 		};
-		AA35D980272498CC000BB333 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				AA35D981272498CC000BB333 /* MeshKit */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		AA35D982272498D3000BB333 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,7 +190,7 @@
 		AA517532272483CE00C25576 = {
 			isa = PBXGroup;
 			children = (
-				AA35D980272498CC000BB333 /* Packages */,
+				AAB8853427E95A3300B43BC5 /* Packages */,
 				AA51753D272483CE00C25576 /* Acrylic */,
 				AA517557272483CF00C25576 /* AcrylicTests */,
 				AA517561272483CF00C25576 /* AcrylicUITests */,
@@ -225,10 +217,11 @@
 				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
+				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
 				AA6654FA2728E9E9006A5237 /* CompactView */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
 				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
-				AA1A5C2B27260DEC006932FE /* ExportView.swift */,
+				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
 				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
@@ -266,6 +259,14 @@
 				AA6654F82728E9E6006A5237 /* CompactView.swift */,
 			);
 			path = CompactView;
+			sourceTree = "<group>";
+		};
+		AAB8853427E95A3300B43BC5 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				AAB8853527E95A3300B43BC5 /* MeshKit */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,9 +308,8 @@
 			);
 			name = Acrylic;
 			packageProductDependencies = (
-				AA35D983272498D3000BB333 /* MeshKit */,
-				AA6654FF2728EB3A006A5237 /* VisualEffects */,
-				AAD40FBC272F330000932173 /* Blackbird */,
+				AAB8853227E95A1000B43BC5 /* Blackbird */,
+				AAB8853627E95ACF00B43BC5 /* MeshKit */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -387,8 +387,7 @@
 			);
 			mainGroup = AA517532272483CE00C25576;
 			packageReferences = (
-				AA6654FE2728EB3A006A5237 /* XCRemoteSwiftPackageReference "VisualEffects" */,
-				AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */,
+				AAB8853127E95A1000B43BC5 /* XCRemoteSwiftPackageReference "Blackbird" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -459,11 +458,12 @@
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
 				AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
-				AA1A5C2C27260DEC006932FE /* ExportView.swift in Sources */,
 				AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
+				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,
 				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
+				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
 				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
@@ -714,8 +714,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -752,8 +751,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -916,42 +914,29 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AA6654FE2728EB3A006A5237 /* XCRemoteSwiftPackageReference "VisualEffects" */ = {
+		AAB8853127E95A1000B43BC5 /* XCRemoteSwiftPackageReference "Blackbird" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/twostraws/VisualEffects.git";
+			repositoryURL = "https://github.com/CanisterEditor/Blackbird.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:CanisterEditor/Blackbird.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AA35D983272498D3000BB333 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MeshKit;
-		};
 		AA45EBC8272641A100593894 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;
 		};
-		AA6654FF2728EB3A006A5237 /* VisualEffects */ = {
+		AAB8853227E95A1000B43BC5 /* Blackbird */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA6654FE2728EB3A006A5237 /* XCRemoteSwiftPackageReference "VisualEffects" */;
-			productName = VisualEffects;
-		};
-		AAD40FBC272F330000932173 /* Blackbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AAD40FBB272F330000932173 /* XCRemoteSwiftPackageReference "Blackbird" */;
+			package = AAB8853127E95A1000B43BC5 /* XCRemoteSwiftPackageReference "Blackbird" */;
 			productName = Blackbird;
+		};
+		AAB8853627E95ACF00B43BC5 /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MeshKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

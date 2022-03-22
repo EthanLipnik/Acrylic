@@ -3,19 +3,10 @@
     "pins": [
       {
         "package": "Blackbird",
-        "repositoryURL": "git@github.com:CanisterEditor/Blackbird.git",
-        "state": {
-          "branch": null,
-          "revision": "4362028a6476d1895601ab0749e8ea259943407a",
-          "version": "0.7.1"
-        }
-      },
-      {
-        "package": "VisualEffects",
-        "repositoryURL": "https://github.com/twostraws/VisualEffects.git",
+        "repositoryURL": "https://github.com/CanisterEditor/Blackbird.git",
         "state": {
           "branch": "main",
-          "revision": "508a01b5432aa8b54a40698eccbacb68d436f8a8",
+          "revision": "aea8957711f8400391af1e01835332499a0d2303",
           "version": null
         }
       }

@@ -81,9 +81,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 while let presentedViewController = topController.presentedViewController {
                     topController = presentedViewController
                 }
-                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage) {
-                    topController.dismiss(animated: true)
-                })
+                let vc = ExportViewController(renderImage: renderImage)
                 
 //                let vc = ExportViewController(renderImage)
                 

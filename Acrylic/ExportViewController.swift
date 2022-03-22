@@ -80,6 +80,8 @@ class ExportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.systemBackground
+        
         view.addSubview(blackbirdView)
         view.addSubview(blurSlider)
         view.addSubview(exportButton)
@@ -94,9 +96,9 @@ class ExportViewController: UIViewController {
             blurSlider.topAnchor.constraint(equalTo: blackbirdView.bottomAnchor, constant: 20),
             blurSlider.leadingAnchor.constraint(equalTo: blackbirdView.leadingAnchor),
             blurSlider.trailingAnchor.constraint(equalTo: blackbirdView.trailingAnchor),
-            blurSlider.bottomAnchor.constraint(equalTo: exportButton.topAnchor),
+            blurSlider.bottomAnchor.constraint(lessThanOrEqualTo: exportButton.topAnchor),
             
-            exportButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            exportButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             exportButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             cancelButton.bottomAnchor.constraint(equalTo: exportButton.bottomAnchor),

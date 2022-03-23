@@ -76,9 +76,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIDevice.current.userInterfaceIdiom == .phone ? .portrait : .landscape
     }
+    
+#if targetEnvironment(macCatalyst)
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return true
+    }
+    
+    @objc func showHelp(_ sender: Any?) {
+        let url = URL(string: "https://github.com/EthanLipnik/Acrylic/issues/new")!
+        UIApplication.shared.open(url)
+    }
+#endif
 }
-

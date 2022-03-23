@@ -178,7 +178,8 @@ class ExportViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if traitCollection.horizontalSizeClass == .regular {
+//        if traitCollection.horizontalSizeClass == .regular {
+        if UIDevice.current.userInterfaceIdiom == .mac {
             stackView.axis = .horizontal
             preferredContentSize = CGSize(width: 1024, height: 512)
         } else {

@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class SplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +21,11 @@ class SplitViewController: UISplitViewController {
         setViewController(UINavigationController(rootViewController: OptionsViewController()), for: .primary)
         setViewController(EditorViewController(), for: .secondary)
         setViewController(CompactViewController(), for: .compact)
+        
+        delegate = self
+    }
+    
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        svc.presentsWithGesture = displayMode != .oneBesideSecondary
     }
 }

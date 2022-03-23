@@ -17,6 +17,27 @@ class ExportViewController: UIViewController {
     }()
     lazy var filteredImage: CIImage? = nil
     
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
+    lazy var optionsStackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        
+        return stackView
+    }()
+    
     lazy var blackbirdView: UIBlackbirdView = {
         let blackbirdView = UIBlackbirdView()
         
@@ -27,21 +48,11 @@ class ExportViewController: UIViewController {
         
         blackbirdView.image = baseImage
         
-        blackbirdView.translatesAutoresizingMaskIntoConstraints = false
-        
         return blackbirdView
     }()
     
-    lazy var blurSlider: UISlider = {
-        let slider = UISlider()
-        
-        slider.maximumValue = 200
-        
-        slider.addTarget(self, action: #selector(blurDidChange(_:)), for: .valueChanged)
-        
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        
-        return slider
+    lazy var blurSlider: SliderView = {
+        return SliderView(title: "Blur", valueChanged: blurDidChange(_:))
     }()
     
     lazy var cancelButton: UIButton = {
@@ -66,6 +77,8 @@ class ExportViewController: UIViewController {
         return button
     }()
     
+    lazy var buttonsView = UIView()
+    
     lazy var blur: Float = 0
     
     init(renderImage: UIImage) {
@@ -82,27 +95,33 @@ class ExportViewController: UIViewController {
         
         view.backgroundColor = UIColor.systemBackground
         
-        view.addSubview(blackbirdView)
-        view.addSubview(blurSlider)
-        view.addSubview(exportButton)
-        view.addSubview(cancelButton)
+        view.addSubview(stackView)
+        
+        stackView.addArrangedSubview(blackbirdView)
+        stackView.addArrangedSubview(optionsStackView)
+        
+        optionsStackView.addArrangedSubview(blurSlider)
+        optionsStackView.addArrangedSubview(UIView())
+        optionsStackView.addArrangedSubview(buttonsView)
+        
+        buttonsView.addSubview(exportButton)
+        buttonsView.addSubview(cancelButton)
         
         NSLayoutConstraint.activate([
-            blackbirdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            
             blackbirdView.heightAnchor.constraint(equalTo: blackbirdView.widthAnchor),
-            blackbirdView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
-            blackbirdView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
             
-            blurSlider.topAnchor.constraint(equalTo: blackbirdView.bottomAnchor, constant: 20),
-            blurSlider.leadingAnchor.constraint(equalTo: blackbirdView.leadingAnchor),
-            blurSlider.trailingAnchor.constraint(equalTo: blackbirdView.trailingAnchor),
-            blurSlider.bottomAnchor.constraint(lessThanOrEqualTo: exportButton.topAnchor),
+            exportButton.topAnchor.constraint(equalTo: buttonsView.topAnchor),
+            exportButton.bottomAnchor.constraint(equalTo: buttonsView.safeAreaLayoutGuide.bottomAnchor),
+            exportButton.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
             
-            exportButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            exportButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+            cancelButton.topAnchor.constraint(equalTo: exportButton.topAnchor),
             cancelButton.bottomAnchor.constraint(equalTo: exportButton.bottomAnchor),
-            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            cancelButton.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor)
         ])
     }
     
@@ -115,10 +134,8 @@ class ExportViewController: UIViewController {
         }
     }
     
-    @objc func blurDidChange(_ sender: UISlider) {
-        let value = sender.value
-        
-        blur = value
+    @objc func blurDidChange(_ value: Float) {
+        blur = value * 100
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.applyFilters()
@@ -156,6 +173,68 @@ class ExportViewController: UIViewController {
         activityController.popoverPresentationController?.sourceView = exportButton
         self.present(activityController, animated: true)
 #endif
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        if traitCollection.horizontalSizeClass == .regular {
+            stackView.axis = .horizontal
+            preferredContentSize = CGSize(width: 1024, height: 512)
+        } else {
+            stackView.axis = .vertical
+            preferredContentSize = .zero
+        }
+    }
+    
+    class SliderView: UIView {
+        let title: String
+        let valueChanged: (Float) -> Void
+        
+        init(title: String, valueChanged: @escaping (Float) -> Void) {
+            self.title = title
+            self.valueChanged = valueChanged
+            super.init(frame: .zero)
+            setup()
+        }
+        
+        override init(frame: CGRect) {
+            fatalError()
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError()
+        }
+        
+        private func setup() {
+            let stackView = UIStackView()
+            stackView.axis = .vertical
+            stackView.spacing = 4
+            
+            let titleLabel = UILabel()
+            titleLabel.text = title
+            titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+            titleLabel.textAlignment = .left
+            stackView.addArrangedSubview(titleLabel)
+            
+            let slider = UISlider()
+            slider.addTarget(self, action: #selector(valueDidChange(_:)), for: .valueChanged)
+            stackView.addArrangedSubview(slider)
+            
+            addSubview(stackView)
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                stackView.topAnchor.constraint(equalTo: topAnchor),
+                stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        }
+        
+        @objc func valueDidChange(_ sender: UISlider) {
+            valueChanged(sender.value)
+        }
     }
 }
 

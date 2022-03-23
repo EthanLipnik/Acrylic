@@ -81,9 +81,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIDevice.current.userInterfaceIdiom == .phone ? .portrait : .landscape
     }
     
+    override func buildMenu(with builder: UIMenuBuilder) {
+        builder.remove(menu: .edit)
+        
+        let exportCommand = UIKeyCommand(input: "E", modifierFlags: [.command], action: #selector(export))
+        exportCommand.title = "Export..."
+        
+        let exportMenu = UIMenu(title: "Export...", image: UIImage(systemName: "square.and.arrow.up"), identifier: UIMenu.Identifier("export"), options: .displayInline, children: [exportCommand])
+        
+        builder.insertSibling(exportMenu, afterMenu: .newScene)
+    }
+    
+    @objc func export() {
+        UIApplication.shared.connectedScenes
+            .compactMap({ $0.delegate as? SceneDelegate })
+            .first(where: { $0.window?.isKeyWindow ?? false })?
+            .export()
+    }
+    
 #if targetEnvironment(macCatalyst)
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return true
+        return action == #selector(showHelp(_:)) || action == #selector(export)
     }
     
     @objc func showHelp(_ sender: Any?) {

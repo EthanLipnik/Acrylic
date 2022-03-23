@@ -87,7 +87,7 @@ extension OptionsView {
         var body: some View {
             let scaleView = DetailView(title: "Points", systemImage: "circle.grid.3x3") {
                 HStack {
-                    Stepper(value: widthIntProxy, in: 3.0...6.0) {
+                    Stepper(value: widthIntProxy, in: 3.0...8.0) {
                         Label("Width", systemImage: "arrow.left.arrow.right")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -96,7 +96,7 @@ extension OptionsView {
                         .foregroundColor(Color.secondary)
                 }
                 HStack {
-                    Stepper(value: heightIntProxy, in: 3.0...6.0) {
+                    Stepper(value: heightIntProxy, in: 3.0...8.0) {
                         Label("Vertical", systemImage: "arrow.up.arrow.down")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }

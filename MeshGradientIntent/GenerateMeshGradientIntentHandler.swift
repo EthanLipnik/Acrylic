@@ -38,23 +38,19 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             meshService.height = intent.height?.intValue ?? 3
             meshService.subdivsions = 36
             meshService.randomizePointsAndColors()
-
-    #if targetEnvironment(macCatalyst)
+            
+#if targetEnvironment(macCatalyst)
             let resolution = CGSize(width: 6144, height: 6144)
-    #else
+#else
             let resolution = CGSize(width: 1280, height: 1280)
-    #endif
+#endif
             
             let render = meshService.render(resolution: resolution)
             
             DispatchQueue.main.async {
-                do {
-                    let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
-                    response.image = INFile(data: render.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
-                    completion(response)
-                } catch {
-                    completion(.init(code: .failure, userActivity: nil))
-                }
+                let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
+                response.image = INFile(data: render.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
+                completion(response)
             }
         }
     }

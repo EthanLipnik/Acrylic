@@ -32,15 +32,29 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
     }
     
     func handle(intent: GenerateMeshGradientIntent, completion: @escaping (GenerateMeshGradientIntentResponse) -> Void) {
-        let meshService = MeshService()
-        meshService.width = intent.width?.intValue ?? 3
-        meshService.height = intent.height?.intValue ?? 3
-        meshService.randomizePointsAndColors()
-        
-        meshService.render(resolution: CGSize(width: 1024, height: 1024)) { image in
-            let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
-            response.image = INFile(data: image.jpegData(compressionQuality: 1)!, filename: "gradient.jpg", typeIdentifier: UTType.png.identifier)
-            completion(response)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let meshService = MeshService()
+            meshService.width = intent.width?.intValue ?? 3
+            meshService.height = intent.height?.intValue ?? 3
+            meshService.randomizePointsAndColors()
+
+    #if targetEnvironment(macCatalyst)
+            let resolution = CGSize(width: 6144, height: 6144)
+    #else
+            let resolution = CGSize(width: 1024, height: 1024)
+    #endif
+            
+            let render = meshService.render(resolution: resolution)
+            
+            DispatchQueue.main.async {
+                do {
+                    let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
+                    response.image = INFile(data: try render.heicData(compressionQuality: 1), filename: "gradient.heic", typeIdentifier: UTType.heic.identifier)
+                    completion(response)
+                } catch {
+                    completion(.init(code: .failure, userActivity: nil))
+                }
+            }
         }
     }
 }

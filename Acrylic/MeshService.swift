@@ -28,12 +28,11 @@ class MeshService: ObservableObject {
         }
     }
     
-    func render(resolution: CGSize = CGSize(width: 4096, height: 4096), completion: @escaping (UIImage) -> Void) {
-        let view = MeshView()
-        view.create(colors, width: width, height: height, subdivisions: subdivsions)
-        view.isHidden = true
+    func render(resolution: CGSize = CGSize(width: 1024, height: 1024)) -> UIImage {
+        let scene = MeshScene()
+        scene.create(colors, width: width, height: height, subdivisions: subdivsions)
         
-        completion(view.generate(size: resolution))
+        return scene.generate(size: resolution)
     }
     
     func randomizePointsAndColors() {
@@ -44,12 +43,14 @@ class MeshService: ObservableObject {
         
         for x in 0..<width {
             for y in 0..<height {
-                var location = (Float(x), Float(y))
-                
-                if x != 0 && x != width - 1 && y != 0 && y != height - 1 {
-                    location = (Float.random(in: (Float(x) - 0.6)..<(Float(x) + 0.6)), Float.random(in: (Float(y) - 0.6)..<(Float(y) + 0.6)))
+                autoreleasepool {
+                    var location = (Float(x), Float(y))
+                    
+                    if x != 0 && x != width - 1 && y != 0 && y != height - 1 {
+                        location = (Float.random(in: (Float(x) - 0.6)..<(Float(x) + 0.6)), Float.random(in: (Float(y) - 0.6)..<(Float(y) + 0.6)))
+                    }
+                    colors.append(.init(point: (x, y), location: location, color: UIColor(hue: CGFloat.random(in: (initialColor - 0.15)..<(initialColor + 0.15)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1), tangent: (2, 2)))
                 }
-                colors.append(.init(point: (x, y), location: location, color: UIColor(hue: CGFloat.random(in: (initialColor - 0.15)..<(initialColor + 0.15)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1), tangent: (2, 2)))
             }
         }
         

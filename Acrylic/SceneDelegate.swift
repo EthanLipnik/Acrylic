@@ -76,16 +76,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @objc final func export() {
         meshService.isExporting.toggle()
         
-        meshService.render { [weak self] renderImage in
-            if var topController = self?.window?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
-                let vc = ExportViewController(renderImage: renderImage)
-//                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
-                
-                topController.present(vc, animated: true)
+        let renderImage = meshService.render()
+        if var topController = window?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
             }
+            let vc = ExportViewController(renderImage: renderImage)
+
+            topController.present(vc, animated: true)
         }
     }
 }

@@ -8,6 +8,7 @@
 import Combine
 import MeshKit
 import UIKit
+import RandomColor
 
 class MeshService: ObservableObject {
     @Published var colors: [MeshNode.Color] = []
@@ -35,11 +36,40 @@ class MeshService: ObservableObject {
         return scene.generate(size: resolution)
     }
     
-    func randomizePointsAndColors() {
+    enum RandomizeMode {
+        case framework
+        case spectrum
+    }
+    
+    func randomizePointsAndColors(_ mode: RandomizeMode = .framework) {
         var colors: [MeshNode.Color] = []
-        let initialColor = CGFloat.random(in: 0.1..<1)
-        let initialSaturation = CGFloat.random(in: 0.6..<1)
-        let initialBrightness = CGFloat.random(in: 0.8..<1)
+        
+        let newColors: [UIColor] = {
+            switch mode {
+            case .framework:
+                let hues: [Hue] = [
+                    .blue,
+                    .orange,
+                    .yellow,
+                    .green,
+                    .pink,
+                    .purple,
+                    .red
+                ]
+                return randomColors(count: width * height, hue: hues.randomElement() ?? .blue, luminosity: .bright)
+            case .spectrum:
+                let initialColor = CGFloat.random(in: 0.1..<1)
+                let initialSaturation = CGFloat.random(in: 0.6..<1)
+                let initialBrightness = CGFloat.random(in: 0.8..<1)
+                
+                var colors: [UIColor] = []
+                for _ in 0..<(width * height) {
+                    colors.append(UIColor(hue: CGFloat.random(in: (initialColor - 0.15)..<(initialColor + 0.15)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1))
+                }
+                
+                return colors
+            }
+        }()
         
         for x in 0..<width {
             for y in 0..<height {
@@ -49,7 +79,7 @@ class MeshService: ObservableObject {
                     if x != 0 && x != width - 1 && y != 0 && y != height - 1 {
                         location = (Float.random(in: (Float(x) - 0.6)..<(Float(x) + 0.6)), Float.random(in: (Float(y) - 0.6)..<(Float(y) + 0.6)))
                     }
-                    colors.append(.init(point: (x, y), location: location, color: UIColor(hue: CGFloat.random(in: (initialColor - 0.15)..<(initialColor + 0.15)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1), tangent: (2, 2)))
+                    colors.append(.init(point: (x, y), location: location, color: newColors[(x * width) + y], tangent: (2, 2)))
                 }
             }
         }

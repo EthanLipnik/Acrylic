@@ -109,7 +109,7 @@ extension OptionsView {
             return DetailView(title: "Detail", systemImage: "sparkles", withBackground: withBackground) {
                 VStack(spacing: 20) {
                     HStack {
-                        Stepper(value: subdivsionsIntProxy, in: 4.0...36.0, step: 2.0) {
+                        Stepper(value: subdivsionsIntProxy, in: 4.0...48.0, step: 2.0) {
                             Label("Subdivsion", systemImage: "rectangle.split.3x3.fill")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }

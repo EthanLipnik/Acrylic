@@ -30,19 +30,20 @@ class AcrylicTests: XCTestCase {
                 let meshService = MeshService()
                 meshService.width = 3
                 meshService.height = 3
+                meshService.subdivsions = 36
                 meshService.randomizePointsAndColors()
                 
 #if targetEnvironment(macCatalyst)
                 let resolution = CGSize(width: 6144, height: 6144)
 #else
-                let resolution = CGSize(width: 1024, height: 1024)
+                let resolution = CGSize(width: 1280, height: 1280)
 #endif
                 
                 let render = meshService.render(resolution: resolution)
                 
                 DispatchQueue.main.async {
                     do {
-                        let _ = try render.heicData(compressionQuality: 1)
+                        let _ = render.pngData()
                     } catch {
                         print(error)
                     }

@@ -17,6 +17,8 @@ extension OptionsView {
         let clearColorsAction: () -> Void
         let randomizeColorsAction: () -> Void
         
+        @State private var showRandomizeConfirmation: Bool = false
+        
         var body: some View {
             DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
                 VStack(spacing: 20) {
@@ -39,10 +41,20 @@ extension OptionsView {
                             .hoverEffect()
 #endif
                         Spacer()
-                        Button("Randomize", action: randomizeColorsAction)
+                        Button("Randomize", role: .destructive) {
+                            showRandomizeConfirmation.toggle()
+                        }
 #if !targetEnvironment(macCatalyst)
-                            .hoverEffect()
+                        .hoverEffect()
 #endif
+                        .confirmationDialog(Text("Are you sure you want to randomize points and colors?"), isPresented: $showRandomizeConfirmation, actions: {
+                            Button("Cancel", role: .cancel) {
+                                showRandomizeConfirmation = false
+                            }
+                            Button("Randomize", role: .destructive, action: randomizeColorsAction)
+                        }, message: {
+                            Text("This will replace your current work.")
+                        })
                     }
                 }
             }

@@ -37,6 +37,8 @@
 		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
 		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
 		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
+		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
+		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
 		AAB8853327E95A1000B43BC5 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853227E95A1000B43BC5 /* Blackbird */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */,
 				AA45EBC9272641A100593894 /* MeshKit in Frameworks */,
 				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
 			);
@@ -136,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
 				AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */,
 				AAB8853327E95A1000B43BC5 /* Blackbird in Frameworks */,
 			);
@@ -291,6 +295,7 @@
 			name = MeshGradientIntent;
 			packageProductDependencies = (
 				AA45EBC8272641A100593894 /* MeshKit */,
+				AA71CA6F27ECACA700C4722D /* RandomColor */,
 			);
 			productName = MeshGradientIntent;
 			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
@@ -314,6 +319,7 @@
 			packageProductDependencies = (
 				AAB8853227E95A1000B43BC5 /* Blackbird */,
 				AAB8853627E95ACF00B43BC5 /* MeshKit */,
+				AA71CA6D27ECAC0A00C4722D /* RandomColor */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -392,6 +398,7 @@
 			mainGroup = AA517532272483CE00C25576;
 			packageReferences = (
 				AAB8853127E95A1000B43BC5 /* XCRemoteSwiftPackageReference "Blackbird" */,
+				AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -922,6 +929,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EthanLipnik/RandomColorSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		AAB8853127E95A1000B43BC5 /* XCRemoteSwiftPackageReference "Blackbird" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CanisterEditor/Blackbird.git";
@@ -936,6 +951,16 @@
 		AA45EBC8272641A100593894 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;
+		};
+		AA71CA6D27ECAC0A00C4722D /* RandomColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
+			productName = RandomColor;
+		};
+		AA71CA6F27ECACA700C4722D /* RandomColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
+			productName = RandomColor;
 		};
 		AAB8853227E95A1000B43BC5 /* Blackbird */ = {
 			isa = XCSwiftPackageProductDependency;

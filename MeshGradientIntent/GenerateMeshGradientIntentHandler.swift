@@ -41,7 +41,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
     #if targetEnvironment(macCatalyst)
             let resolution = CGSize(width: 6144, height: 6144)
     #else
-            let resolution = CGSize(width: 1024, height: 1024)
+            let resolution = CGSize(width: UIScreen.main.nativeBounds.width, height: UIScreen.main.nativeBounds.height)
     #endif
             
             let render = meshService.render(resolution: resolution)

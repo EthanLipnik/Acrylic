@@ -36,9 +36,10 @@ class MeshService: ObservableObject {
         return scene.generate(size: resolution)
     }
     
-    func generate(pallete hues: Hue...,
-                  luminosity: Luminosity = .bright,
-                  shouldRandomizePointLocations: Bool = true) {
+    func generate(pallete hues: RandomColor.Hue...,
+                  luminosity: RandomColor.Luminosity = .bright,
+                  shouldRandomizePointLocations: Bool = true,
+                  positionMultiplier: Float = 0.6) {
         var colors: [MeshNode.Color] = []
         
         let newColors: [UIColor] = hues.flatMap({ randomColors(count: Int(ceil(Float(width * height) / Float(hues.count))), hue: $0, luminosity: luminosity) })
@@ -48,8 +49,8 @@ class MeshService: ObservableObject {
                 autoreleasepool {
                     var location = (Float(x), Float(y))
                     
-                    if x != 0 && x != width - 1 && y != 0 && y != height - 1 {
-                        location = (Float.random(in: (Float(x) - 0.6)..<(Float(x) + 0.6)), Float.random(in: (Float(y) - 0.6)..<(Float(y) + 0.6)))
+                    if (x != 0 && x != width - 1 && y != 0 && y != height - 1) && shouldRandomizePointLocations && positionMultiplier != 0 {
+                        location = (Float.random(in: (Float(x) - positionMultiplier)..<(Float(x) + positionMultiplier)), Float.random(in: (Float(y) - positionMultiplier)..<(Float(y) + positionMultiplier)))
                     }
                     colors.append(.init(point: (x, y), location: location, color: newColors[(x * width) + y], tangent: (2, 2)))
                 }
@@ -61,7 +62,7 @@ class MeshService: ObservableObject {
 }
 
 extension Hue {
-    static func randomPallete(includesMonochrome: Bool = false) -> Hue {
+    static func randomPalette(includesMonochrome: Bool = false) -> Hue {
         var hues: [Hue] = [
             .blue,
             .orange,

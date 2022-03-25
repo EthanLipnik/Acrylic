@@ -134,7 +134,7 @@ struct CompactView: View {
                                 meshService.colors[i].color = UIColor.white
                             }
                         } randomizeColorsAction: {
-                            meshService.generate(pallete: .randomPallete())
+                            meshService.generate(pallete: .randomPalette())
                         }
                         .environmentObject(meshService)
                         .overlay(

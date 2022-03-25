@@ -59,7 +59,7 @@ struct OptionsView: View {
     }
     
     func randomizeColors() {
-        meshService.generate(pallete: .randomPallete())
+        meshService.generate(pallete: .randomPalette())
     }
     
     var scrollView: some View {

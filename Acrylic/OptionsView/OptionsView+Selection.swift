@@ -18,6 +18,7 @@ extension OptionsView {
         let randomizeColorsAction: () -> Void
         
         @State private var showRandomizeConfirmation: Bool = false
+        @AppStorage("shouldWarnAboutRandomizeColors") private var shouldWarnAboutRandomizeColors: Bool = true
         
         var body: some View {
             DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
@@ -42,7 +43,11 @@ extension OptionsView {
 #endif
                         Spacer()
                         Button("Randomize", role: .destructive) {
-                            showRandomizeConfirmation.toggle()
+                            if shouldWarnAboutRandomizeColors {
+                                showRandomizeConfirmation.toggle()
+                            } else {
+                                randomizeColorsAction()
+                            }
                         }
 #if !targetEnvironment(macCatalyst)
                         .hoverEffect()
@@ -52,6 +57,10 @@ extension OptionsView {
                                 showRandomizeConfirmation = false
                             }
                             Button("Randomize", role: .destructive, action: randomizeColorsAction)
+                            Button("Randomize and don't ask me again", role: .destructive) {
+                                randomizeColorsAction()
+                                shouldWarnAboutRandomizeColors = false
+                            }
                         }, message: {
                             Text("This will replace your current work.")
                         })

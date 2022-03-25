@@ -37,7 +37,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             meshService.width = intent.width?.intValue ?? 3
             meshService.height = intent.height?.intValue ?? 3
             meshService.subdivsions = 36
-            meshService.randomizePointsAndColors()
+            meshService.generate(pallete: .randomPallete())
             
 #if targetEnvironment(macCatalyst)
             let resolution = CGSize(width: 6144, height: 6144)

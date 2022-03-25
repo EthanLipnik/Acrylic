@@ -36,40 +36,12 @@ class MeshService: ObservableObject {
         return scene.generate(size: resolution)
     }
     
-    enum RandomizeMode {
-        case framework
-        case spectrum
-    }
-    
-    func randomizePointsAndColors(_ mode: RandomizeMode = .framework) {
+    func generate(pallete hues: Hue...,
+                  luminosity: Luminosity = .bright,
+                  shouldRandomizePointLocations: Bool = true) {
         var colors: [MeshNode.Color] = []
         
-        let newColors: [UIColor] = {
-            switch mode {
-            case .framework:
-                let hues: [Hue] = [
-                    .blue,
-                    .orange,
-                    .yellow,
-                    .green,
-                    .pink,
-                    .purple,
-                    .red
-                ]
-                return randomColors(count: width * height, hue: hues.randomElement() ?? .blue, luminosity: .bright)
-            case .spectrum:
-                let initialColor = CGFloat.random(in: 0.1..<1)
-                let initialSaturation = CGFloat.random(in: 0.6..<1)
-                let initialBrightness = CGFloat.random(in: 0.8..<1)
-                
-                var colors: [UIColor] = []
-                for _ in 0..<(width * height) {
-                    colors.append(UIColor(hue: CGFloat.random(in: (initialColor - 0.15)..<(initialColor + 0.15)), saturation: initialSaturation, brightness: initialBrightness, alpha: 1))
-                }
-                
-                return colors
-            }
-        }()
+        let newColors: [UIColor] = hues.flatMap({ randomColors(count: Int(ceil(Float(width * height) / Float(hues.count))), hue: $0, luminosity: luminosity) })
         
         for x in 0..<width {
             for y in 0..<height {
@@ -85,5 +57,25 @@ class MeshService: ObservableObject {
         }
         
         self.colors = colors
+    }
+}
+
+extension Hue {
+    static func randomPallete(includesMonochrome: Bool = false) -> Hue {
+        var hues: [Hue] = [
+            .blue,
+            .orange,
+            .yellow,
+            .green,
+            .pink,
+            .purple,
+            .red
+        ]
+        
+        if includesMonochrome {
+            hues.append(.monochrome)
+        }
+        
+        return hues.randomElement() ?? .monochrome
     }
 }

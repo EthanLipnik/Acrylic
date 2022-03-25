@@ -636,18 +636,18 @@
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>7</integer>
 				<key>INIntentResponseOutput</key>
-				<string>image</string>
+				<string>gradient</string>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
 						<key>INIntentResponseParameterDisplayName</key>
-						<string>Image</string>
+						<string>Gradient</string>
 						<key>INIntentResponseParameterDisplayNameID</key>
 						<string>fdOuUt</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>image</string>
+						<string>gradient</string>
 						<key>INIntentResponseParameterTag</key>
 						<integer>7</integer>
 						<key>INIntentResponseParameterType</key>

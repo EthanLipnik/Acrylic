@@ -77,7 +77,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             
             DispatchQueue.main.async {
                 let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
-                response.image = INFile(data: render.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
+                response.gradient = INFile(data: render.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
                 completion(response)
             }
         }

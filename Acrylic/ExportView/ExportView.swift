@@ -17,13 +17,16 @@ struct ExportView: View {
     var body: some View {
         HStack(spacing: 20) {
             ExportViewControllerView()
-                .aspectRatio(1/1, contentMode: .fit)
+                .aspectRatio(CGFloat(exportService.resolution.width / exportService.resolution.height), contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 .shadow(radius: 15, y: 8)
                 .environmentObject(exportService)
             ExportOptionsView()
                 .environmentObject(exportService)
-        }.padding()
+        }
+        .animation(.spring(), value: exportService.resolution.width)
+        .animation(.spring(), value: exportService.resolution.height)
+        .padding()
     }
 }
 

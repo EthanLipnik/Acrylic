@@ -66,27 +66,6 @@ class ExportViewController: UIViewController {
             self?.blackbirdView.image = self?.exportService.baseImage
         }
     }
-    
-    @objc func export() {
-        let ciImage = exportService.filteredImage ?? exportService.baseImage
-        let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: exportService.baseImage.extent)!
-        let image = UIImage(cgImage: cgImage)
-        
-        let data = image.pngData()!
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("Mesh.png")
-        try! data.write(to: url)
-        
-//#if targetEnvironment(macCatalyst)
-//        let documentExporter = UIDocumentPickerViewController(forExporting: [url])
-//        documentExporter.delegate = self
-//        self.present(documentExporter, animated: true)
-//#else
-//        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-//        activityController.popoverPresentationController?.sourceRect = exportButton.bounds
-//        activityController.popoverPresentationController?.sourceView = exportButton
-//        self.present(activityController, animated: true)
-//#endif
-    }
 }
 
 extension ExportViewController: UIDocumentPickerDelegate {

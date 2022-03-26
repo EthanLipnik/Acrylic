@@ -10,40 +10,15 @@ import SwiftUI
 
 extension ExportView {
     struct FormatView: View {
-        
-        enum Format: String, Hashable {
-            case png = "PNG"
-            case jpeg = "JPEG"
-            case heif = "HEIF"
-            
-            var hasCompression: Bool {
-                switch self {
-                case .png:
-                    return false
-                case .jpeg, .heif:
-                    return true
-                }
-            }
-            
-            static let allCases: [Self] = {
-                return [
-                    .png,
-                    .jpeg,
-                    .heif
-                ]
-            }()
-        }
-        
-        @State private var selectedFormat: Format = .png
-        @State private var compressionQuality: Float = 1
+        @EnvironmentObject var exportService: ExportService
         
         var body: some View {
             VStack {
                 Text("File")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Picker(selection: $selectedFormat) {
-                    ForEach(Format.allCases, id: \.rawValue) {
+                Picker(selection: $exportService.format) {
+                    ForEach(ExportService.Format.allCases, id: \.rawValue) {
                         Text($0.rawValue)
                             .tag($0)
                     }
@@ -52,11 +27,11 @@ extension ExportView {
                         .frame(width: 90, alignment: .leading)
                 }
                 
-                if selectedFormat.hasCompression {
+                if exportService.format.hasCompression {
                     HStack {
                         Text("Quality:")
                             .frame(width: 90, alignment: .leading)
-                        Slider(value: $compressionQuality, in: 0...1) {
+                        Slider(value: $exportService.compressionQuality, in: 0...1) {
                             Text("")
                         }.labelsHidden()
                     }

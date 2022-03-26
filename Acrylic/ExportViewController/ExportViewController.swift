@@ -8,15 +8,9 @@
 import UIKit
 import SwiftUI
 import Blackbird
+import Combine
 
 class ExportViewController: UIViewController {
-    var renderImage: UIImage
-    
-    lazy var baseImage: CIImage = {
-        return CIImage(image: renderImage)!
-    }()
-    lazy var filteredImage: CIImage? = nil
-    
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -37,29 +31,25 @@ class ExportViewController: UIViewController {
         blackbirdView.layer.cornerCurve = .continuous
         blackbirdView.layer.masksToBounds = true
         
-        blackbirdView.image = baseImage
+        blackbirdView.image = exportService.baseImage
         
         return blackbirdView
     }()
     
     lazy var exportOptionsView: UIView = {
-        let viewController = UIHostingController(rootView: ExportOptionsView())
+        let viewController = UIHostingController(rootView: ExportOptionsView().environmentObject(exportService))
         
         viewController.didMove(toParent: self)
         
         return viewController.view
     }()
     
-    lazy var blurSlider: SliderView = {
-        return SliderView(title: "Blur", valueChanged: blurDidChange(_:))
-    }()
+    private var cancellables: Set<AnyCancellable> = []
     
-    lazy var buttonsView = UIView()
-    
-    lazy var blur: Float = 0
+    let exportService: ExportService
     
     init(renderImage: UIImage) {
-        self.renderImage = renderImage
+        self.exportService = ExportService(renderImage: renderImage)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -85,40 +75,26 @@ class ExportViewController: UIViewController {
             
             blackbirdView.heightAnchor.constraint(equalTo: blackbirdView.widthAnchor)
         ])
+        
+        exportService.$filteredImage
+            .sink { [weak self] image in
+                self?.blackbirdView.image = image
+            }
+            .store(in: &cancellables)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.blackbirdView.image = self?.baseImage
-            self?.blackbirdView.image = self?.baseImage
-        }
-    }
-    
-    @objc func blurDidChange(_ value: Float) {
-        blur = value * 100
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.applyFilters()
-        }
-    }
-    
-    func applyFilters() {
-        let image = baseImage
-            .clampedToExtent()
-            .applyingFilter(.gaussian, radius: NSNumber(value: blur))
-        
-        self.filteredImage = image
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.blackbirdView.image = image
+            self?.blackbirdView.image = self?.exportService.baseImage
+            self?.blackbirdView.image = self?.exportService.baseImage
         }
     }
     
     @objc func export() {
-        let ciImage = filteredImage ?? baseImage
-        let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: baseImage.extent)!
+        let ciImage = exportService.filteredImage ?? exportService.baseImage
+        let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: exportService.baseImage.extent)!
         let image = UIImage(cgImage: cgImage)
         
         let data = image.pngData()!

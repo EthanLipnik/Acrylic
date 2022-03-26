@@ -20,12 +20,9 @@ extension ExportViewController {
                 
                 HStack {
                     Text("Subdivisions:")
+                        .frame(width: 90, alignment: .leading)
                     Slider(value: $subdivisions, in: 4...64, step: 1) {
                         Text("")
-                    } minimumValueLabel: {
-                        Text("4")
-                    } maximumValueLabel: {
-                        Text("64")
                     }.labelsHidden()
                 }
                 

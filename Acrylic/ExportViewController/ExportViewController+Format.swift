@@ -42,22 +42,22 @@ extension ExportViewController.ExportOptionsView {
                 Text("File")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Picker("Format:", selection: $selectedFormat) {
+                Picker(selection: $selectedFormat) {
                     ForEach(Format.allCases, id: \.rawValue) {
                         Text($0.rawValue)
                             .tag($0)
                     }
+                } label: {
+                    Text("Format:")
+                        .frame(width: 90, alignment: .leading)
                 }
                 
                 if selectedFormat.hasCompression {
                     HStack {
-                        Text("Compression Quality:")
+                        Text("Quality:")
+                            .frame(width: 90, alignment: .leading)
                         Slider(value: $compressionQuality, in: 0...1) {
                             Text("")
-                        } minimumValueLabel: {
-                            Text("0%")
-                        } maximumValueLabel: {
-                            Text("100%")
                         }.labelsHidden()
                     }
                 }

@@ -12,6 +12,7 @@
 		AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */; };
 		AA03D92727EEA87C00BAE4C4 /* ExportViewController+QualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */; };
 		AA03D92927EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */; };
+		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA16D65227EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Selection.swift */; };
@@ -97,6 +98,7 @@
 		AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ImageEffectsView.swift"; sourceTree = "<group>"; };
 		AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+QualityView.swift"; sourceTree = "<group>"; };
 		AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ResolutionView.swift"; sourceTree = "<group>"; };
+		AA0AD66227EEB671009F822D /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		AA1A5C232725F973006932FE /* OptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Selection.swift"; sourceTree = "<group>"; };
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
+				AA0AD66227EEB671009F822D /* ExportService.swift */,
 				AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */,
 				AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */,
 				AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */,
@@ -508,6 +511,7 @@
 				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
+				AA0AD66327EEB671009F822D /* ExportService.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
 				AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */,
 				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,

@@ -21,17 +21,23 @@ extension ExportViewController {
                 
                 HStack {
                     Text("Width:")
+                        .frame(width: 90, alignment: .leading)
                     TextField("ex) 4096", text: $width)
                         .textFieldStyle(.roundedBorder)
+                        .frame(width: 60)
                     Text("px")
                         .foregroundColor(.secondary)
+                    Spacer()
                 }
                 HStack {
                     Text("Height:")
+                        .frame(width: 90, alignment: .leading)
                     TextField("ex) 4096", text: $width)
                         .textFieldStyle(.roundedBorder)
+                        .frame(width: 60)
                     Text("px")
                         .foregroundColor(.secondary)
+                    Spacer()
                 }
             }
         }

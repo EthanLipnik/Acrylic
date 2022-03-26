@@ -10,17 +10,19 @@ import SwiftUI
 
 extension ExportViewController {
     struct ExportOptionsView: View {
+        @EnvironmentObject var exportService: ExportService
+        
         var body: some View {
             VStack {
                 GroupBox {
                     VStack {
                         FormatView()
                         Divider()
+                        ResolutionView()
+                        Divider()
                         ImageEffectsView()
                         Divider()
                         QualityView()
-                        Divider()
-                        ResolutionView()
                     }.padding(10)
                     Spacer()
                 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 extension ExportViewController {
     struct ImageEffectsView: View {
-        @State private var blurValue: Float = 0
+        @EnvironmentObject var exportService: ExportService
         
         var body: some View {
             VStack {
@@ -19,12 +19,9 @@ extension ExportViewController {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
                     Text("Blur:")
-                    Slider(value: $blurValue, in: 0...200) {
+                        .frame(width: 90, alignment: .leading)
+                    Slider(value: $exportService.blur, in: 0...200) {
                         Text("")
-                    } minimumValueLabel: {
-                        Text("0%")
-                    } maximumValueLabel: {
-                        Text("200%")
                     }.labelsHidden()
                 }
             }

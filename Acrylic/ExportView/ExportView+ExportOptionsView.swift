@@ -1,5 +1,5 @@
 //
-//  ExportViewController+ExportOptionsView.swift
+//  ExportView+ExportOptionsView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 3/25/22.
@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-extension ExportViewController {
+extension ExportView {
     struct ExportOptionsView: View {
         @EnvironmentObject var exportService: ExportService
+        @Environment(\.presentationMode) var presentationMode
         
         var body: some View {
             VStack {
@@ -21,14 +22,12 @@ extension ExportViewController {
                         ResolutionView()
                         Divider()
                         ImageEffectsView()
-                        Divider()
-                        QualityView()
                     }.padding(10)
                     Spacer()
                 }
                 HStack {
                     Button("Cancel") {
-                        
+                        presentationMode.wrappedValue.dismiss()
                     }
                     .keyboardShortcut(.cancelAction)
                     Spacer()

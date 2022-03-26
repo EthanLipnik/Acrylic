@@ -1,0 +1,112 @@
+//
+//  ExportViewController.swift
+//  Acrylic
+//
+//  Created by Ethan Lipnik on 3/21/22.
+//
+
+import UIKit
+import SwiftUI
+import Blackbird
+import Combine
+
+class ExportViewController: UIViewController {
+    
+    lazy var blackbirdView: UIBlackbirdView = {
+        let blackbirdView = UIBlackbirdView()
+        
+        blackbirdView.backgroundColor = UIColor.systemBackground
+        
+        blackbirdView.translatesAutoresizingMaskIntoConstraints = false
+        
+        blackbirdView.image = exportService.baseImage
+        
+        return blackbirdView
+    }()
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    var exportService: ExportService
+    
+    init(exportService: ExportService) {
+        self.exportService = exportService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.systemBackground
+        
+        view.addSubview(blackbirdView)
+        
+        NSLayoutConstraint.activate([
+            blackbirdView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blackbirdView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blackbirdView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blackbirdView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
+        
+        exportService.$filteredImage
+            .sink { [weak self] image in
+                self?.blackbirdView.image = image
+            }
+            .store(in: &cancellables)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.blackbirdView.image = self?.exportService.baseImage
+            self?.blackbirdView.image = self?.exportService.baseImage
+        }
+    }
+    
+    @objc func export() {
+        let ciImage = exportService.filteredImage ?? exportService.baseImage
+        let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: exportService.baseImage.extent)!
+        let image = UIImage(cgImage: cgImage)
+        
+        let data = image.pngData()!
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("Mesh.png")
+        try! data.write(to: url)
+        
+//#if targetEnvironment(macCatalyst)
+//        let documentExporter = UIDocumentPickerViewController(forExporting: [url])
+//        documentExporter.delegate = self
+//        self.present(documentExporter, animated: true)
+//#else
+//        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//        activityController.popoverPresentationController?.sourceRect = exportButton.bounds
+//        activityController.popoverPresentationController?.sourceView = exportButton
+//        self.present(activityController, animated: true)
+//#endif
+    }
+}
+
+extension ExportViewController: UIDocumentPickerDelegate {
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        self.dismiss(animated: true)
+    }
+}
+
+struct ExportViewControllerView: UIViewControllerRepresentable {
+    @EnvironmentObject var exportService: ExportService
+    
+    func makeUIViewController(context: Context) -> ExportViewController {
+        return ExportViewController(exportService: exportService)
+    }
+    
+    func updateUIViewController(_ uiViewController: ExportViewController, context: Context) {
+        uiViewController.exportService = exportService
+    }
+}

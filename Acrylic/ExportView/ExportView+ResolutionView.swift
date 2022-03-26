@@ -1,5 +1,5 @@
 //
-//  ExportViewController+ResolutionView.swift
+//  ExportView+ResolutionView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 3/25/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension ExportViewController {
+extension ExportView {
     struct ResolutionView: View {
         
         @State private var width: String = "4096"

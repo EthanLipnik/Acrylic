@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA03D92127EEA1C700BAE4C4 /* ExportViewController+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */; };
-		AA03D92327EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */; };
-		AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */; };
-		AA03D92727EEA87C00BAE4C4 /* ExportViewController+QualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */; };
-		AA03D92927EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */; };
+		AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */; };
+		AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */; };
+		AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */; };
+		AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */; };
+		AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */; };
 		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA16D65227EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
@@ -51,6 +51,7 @@
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
+		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,11 +94,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+Format.swift"; sourceTree = "<group>"; };
-		AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ExportOptionsView.swift"; sourceTree = "<group>"; };
-		AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ImageEffectsView.swift"; sourceTree = "<group>"; };
-		AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+QualityView.swift"; sourceTree = "<group>"; };
-		AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ResolutionView.swift"; sourceTree = "<group>"; };
+		AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+Format.swift"; sourceTree = "<group>"; };
+		AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ExportOptionsView.swift"; sourceTree = "<group>"; };
+		AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ImageEffectsView.swift"; sourceTree = "<group>"; };
+		AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+QualityView.swift"; sourceTree = "<group>"; };
+		AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ResolutionView.swift"; sourceTree = "<group>"; };
 		AA0AD66227EEB671009F822D /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		AA1A5C232725F973006932FE /* OptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Selection.swift"; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
 		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,18 +180,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA03D91F27EEA1B000BAE4C4 /* ExportViewController */ = {
+		AA03D91F27EEA1B000BAE4C4 /* ExportView */ = {
 			isa = PBXGroup;
 			children = (
-				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
 				AA0AD66227EEB671009F822D /* ExportService.swift */,
-				AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */,
-				AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */,
-				AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */,
-				AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */,
-				AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */,
+				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
+				AAEC94F727EF58E100F8BD37 /* ExportView.swift */,
+				AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */,
+				AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */,
+				AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */,
+				AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */,
+				AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */,
 			);
-			path = ExportViewController;
+			path = ExportView;
 			sourceTree = "<group>";
 		};
 		AA1A5C222725F957006932FE /* OptionsView */ = {
@@ -258,7 +261,7 @@
 				AA6654FA2728E9E9006A5237 /* CompactView */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
 				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
-				AA03D91F27EEA1B000BAE4C4 /* ExportViewController */,
+				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
 				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
@@ -498,12 +501,13 @@
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
-				AA03D92327EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift in Sources */,
+				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
 				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
 				AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
+				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
@@ -513,15 +517,15 @@
 				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
 				AA0AD66327EEB671009F822D /* ExportService.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
-				AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */,
+				AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */,
 				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,
-				AA03D92927EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift in Sources */,
+				AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
-				AA03D92127EEA1C700BAE4C4 /* ExportViewController+Format.swift in Sources */,
-				AA03D92727EEA87C00BAE4C4 /* ExportViewController+QualityView.swift in Sources */,
+				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
+				AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

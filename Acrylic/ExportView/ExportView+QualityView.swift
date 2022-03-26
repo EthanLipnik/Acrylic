@@ -1,5 +1,5 @@
 //
-//  ExportViewController+ImageEffectsView.swift
+//  ExportView+QualityView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 3/25/22.
@@ -8,21 +8,26 @@
 import Foundation
 import SwiftUI
 
-extension ExportViewController {
-    struct ImageEffectsView: View {
-        @EnvironmentObject var exportService: ExportService
+extension ExportView {
+    struct QualityView: View {
+        @State private var subdivisions: Float = 18
         
         var body: some View {
             VStack {
-                Text("Image Effects")
+                Text("Quality")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                
                 HStack {
-                    Text("Blur:")
+                    Text("Subdivisions:")
                         .frame(width: 90, alignment: .leading)
-                    Slider(value: $exportService.blur, in: 0...200) {
+                    Slider(value: $subdivisions, in: 4...64, step: 1) {
                         Text("")
                     }.labelsHidden()
+                }
+                
+                VStack {
+                    
                 }
             }
         }

@@ -1,5 +1,5 @@
 //
-//  ExportViewController+Format.swift
+//  ExportView+Format.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 3/25/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension ExportViewController.ExportOptionsView {
+extension ExportView {
     struct FormatView: View {
         
         enum Format: String, Hashable {

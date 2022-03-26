@@ -8,6 +8,7 @@
 import SwiftUI
 import MeshKit
 import UniformTypeIdentifiers
+import RandomColor
 
 extension OptionsView {
     struct SelectionView: View {
@@ -15,10 +16,7 @@ extension OptionsView {
         
         var withBackground: Bool = true
         let clearColorsAction: () -> Void
-        let randomizeColorsAction: () -> Void
         
-        @State private var showRandomizeConfirmation: Bool = false
-        @AppStorage("shouldWarnAboutRandomizeColors") private var shouldWarnAboutRandomizeColors: Bool = true
         
         var body: some View {
             DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
@@ -42,28 +40,29 @@ extension OptionsView {
                             .hoverEffect()
 #endif
                         Spacer()
-                        Button("Randomize", role: .destructive) {
-                            if shouldWarnAboutRandomizeColors {
-                                showRandomizeConfirmation.toggle()
-                            } else {
-                                randomizeColorsAction()
+                        if #available(iOS 15.0, macOS 15.0, *) {
+                            Menu("New Palette") {
+                                GeneratePaletteButton(title: "Blue", hue: .blue)
+                                GeneratePaletteButton(title: "Green", hue: .green)
+                                GeneratePaletteButton(title: "Red", hue: .red)
+                                GeneratePaletteButton(title: "Orange", hue: .orange)
+                                GeneratePaletteButton(title: "Pink", hue: .pink)
+                                GeneratePaletteButton(title: "Purple", hue: .purple)
+                                GeneratePaletteButton(title: "Monochrome", hue: .monochrome)
+                                GeneratePaletteButton(title: "Rainbow", hue: .random)
+                                GeneratePaletteButton(title: "Random", hue: .randomPalette())
+                            } primaryAction: {
+                                meshService.generate(pallete: .random)
+                            }
+                        } else {
+                            Button("Randomize") {
+                                meshService.generate(pallete: .random)
                             }
                         }
-#if !targetEnvironment(macCatalyst)
-                        .hoverEffect()
-#endif
-                        .confirmationDialog(Text("Are you sure you want to randomize points and colors?"), isPresented: $showRandomizeConfirmation, actions: {
-                            Button("Cancel", role: .cancel) {
-                                showRandomizeConfirmation = false
-                            }
-                            Button("Randomize", role: .destructive, action: randomizeColorsAction)
-                            Button("Randomize and don't ask me again", role: .destructive) {
-                                randomizeColorsAction()
-                                shouldWarnAboutRandomizeColors = false
-                            }
-                        }, message: {
-                            Text("This will replace your current work.")
-                        })
+                        
+                        Button("Randomize") {
+                            meshService.randomizePositions()
+                        }
                     }
                 }
             }
@@ -95,6 +94,27 @@ extension OptionsView {
                 }
             }
         }
+        
+        @ViewBuilder
+        private func GeneratePaletteButton(title: String, hue: Hue) -> some View {
+            Menu(title) {
+                Button("Default") {
+                    meshService.generate(pallete: hue, shouldRandomizePointLocations: false)
+                }.keyboardShortcut(.defaultAction)
+                
+                Button("Light") {
+                    meshService.generate(pallete: hue, luminosity: .light, shouldRandomizePointLocations: false)
+                }
+                
+                Button("Dark") {
+                    meshService.generate(pallete: hue, luminosity: .dark, shouldRandomizePointLocations: false)
+                }
+                
+                Button("Random") {
+                    meshService.generate(pallete: hue, luminosity: .random, shouldRandomizePointLocations: false)
+                }
+            }
+        }
     }
     
     struct PointView: View {
@@ -103,7 +123,7 @@ extension OptionsView {
         var body: some View {
             Group {
                 if let node = node {
-                    let color = Binding<Color>(get: { () -> Color in
+                    let color = Binding<SwiftUI.Color>(get: { () -> SwiftUI.Color in
                         return Color(node.color)
                     }) { (value) in
                         self.node?.color = UIColor(value)

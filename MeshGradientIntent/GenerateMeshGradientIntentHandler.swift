@@ -127,3 +127,20 @@ extension RandomColor.Luminosity {
         }
     }
 }
+
+extension ColorPalette {
+    var allCases: [ColorPalette] {
+        get {
+            return [
+                .monochrome,
+                .blue,
+                .green,
+                .orange,
+                .pink,
+                .purple,
+                .rainbow,
+                .random
+            ]
+        }
+    }
+}

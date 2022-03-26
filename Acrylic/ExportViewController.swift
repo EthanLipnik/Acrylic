@@ -10,7 +10,7 @@ import SwiftUI
 import Blackbird
 
 class ExportViewController: UIViewController {
-    let renderImage: UIImage
+    var renderImage: UIImage
     
     lazy var baseImage: CIImage = {
         return CIImage(image: renderImage)!
@@ -56,7 +56,13 @@ class ExportViewController: UIViewController {
     }()
     
     lazy var cancelButton: UIButton = {
-        let button = UIButton(configuration: .bordered())
+        let button: UIButton
+        if #available(iOS 15, macOS 12, *) {
+            button = UIButton(configuration: .bordered())
+        } else {
+            button = UIButton()
+        }
+        
         button.setTitle("Cancel", for: .normal)
         button.addAction(UIAction(handler: { [weak self] _ in
             self?.dismiss(animated: true)
@@ -68,7 +74,13 @@ class ExportViewController: UIViewController {
     }()
     
     lazy var exportButton: UIButton = {
-        let button = UIButton(configuration: .borderedProminent())
+        let button: UIButton
+        if #available(iOS 15, macOS 12, *) {
+            button = UIButton(configuration: .borderedProminent())
+        } else {
+            button = UIButton()
+        }
+        
         button.setTitle("Export...", for: .normal)
         button.addTarget(self, action: #selector(export), for: .touchUpInside)
         

@@ -65,7 +65,7 @@ struct OptionsView: View {
     var scrollView: some View {
         ScrollView {
             VStack {
-                SelectionView(clearColorsAction: clearColors, randomizeColorsAction: randomizeColors)
+                SelectionView(clearColorsAction: clearColors)
                     .environmentObject(meshService)
                 DetailsView()
                     .environmentObject(meshService)

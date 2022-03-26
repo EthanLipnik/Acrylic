@@ -52,29 +52,58 @@ class MeshService: ObservableObject {
                     if (x != 0 && x != width - 1 && y != 0 && y != height - 1) && shouldRandomizePointLocations && positionMultiplier != 0 {
                         location = (Float.random(in: (Float(x) - positionMultiplier)..<(Float(x) + positionMultiplier)), Float.random(in: (Float(y) - positionMultiplier)..<(Float(y) + positionMultiplier)))
                     }
-                    colors.append(.init(point: (x, y), location: location, color: newColors[(x * width) + y], tangent: (2, 2)))
+                    
+                    var colorIndex: Int = 0
+                    let xColorIndex = (x * width) + y
+                    let yColorIndex = (y * height) + x
+                    
+                    if xColorIndex < newColors.count {
+                        colorIndex = xColorIndex
+                    } else if yColorIndex < newColors.count {
+                        colorIndex = yColorIndex
+                    }
+                    
+                    colors.append(.init(point: (x, y), location: location, color: newColors[min(colorIndex, newColors.count - 1)], tangent: (2, 2)))
                 }
             }
         }
         
         self.colors = colors
     }
+    
+    func randomizePositions(positionMultiplier: Float = 0.6) {
+        for i in 0..<colors.count {
+            let x = colors[i].point.x
+            let y = colors[i].point.y
+            
+            if (x != 0 && x != width - 1 && y != 0 && y != height - 1) && positionMultiplier != 0 {
+                colors[i].location = (Float.random(in: (Float(x) - positionMultiplier)..<(Float(x) + positionMultiplier)), Float.random(in: (Float(y) - positionMultiplier)..<(Float(y) + positionMultiplier)))
+            }
+        }
+    }
 }
 
 extension Hue {
+    static var allCases: [Hue] {
+        get {
+            return [
+                .blue,
+                .orange,
+                .yellow,
+                .green,
+                .pink,
+                .purple,
+                .red,
+                .monochrome
+            ]
+        }
+    }
+    
     static func randomPalette(includesMonochrome: Bool = false) -> Hue {
-        var hues: [Hue] = [
-            .blue,
-            .orange,
-            .yellow,
-            .green,
-            .pink,
-            .purple,
-            .red
-        ]
+        var hues = allCases
         
         if includesMonochrome {
-            hues.append(.monochrome)
+            hues.removeLast()
         }
         
         return hues.randomElement() ?? .monochrome

@@ -45,8 +45,7 @@ struct CompactView: View {
                                         .font(.title3.bold())
                                         .padding()
                                 }), alignment: .topTrailing)
-                            .background(RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Material.ultraThin)
+                            .background(BlurView(style: .roundedRectangle(cornerRadius: 20), effect: .ultraThin)
                                 .shadow(radius: 30)
                                 .matchedGeometryEffect(id: "detailsView-background", in: nspace))
                             .matchedGeometryEffect(id: "detailsView", in: nspace)
@@ -63,8 +62,7 @@ struct CompactView: View {
                                 .font(.title3.bold())
                                 .padding()
                         }
-                        .background(Circle()
-                            .fill(Material.regular)
+                        .background(BlurView(style: .circle)
                             .shadow(radius: 30)
                             .matchedGeometryEffect(id: "detailsView-background", in: nspace))
                         .matchedGeometryEffect(id: "detailsView", in: nspace)
@@ -80,8 +78,7 @@ struct CompactView: View {
                             .font(.title3.bold())
                             .padding()
                     }
-                    .background(Circle()
-                        .fill(Material.regular)
+                    .background(BlurView(style: .circle)
                         .shadow(radius: 30))
                     
                 }
@@ -103,8 +100,7 @@ struct CompactView: View {
                                         .font(.title3.bold())
                                         .padding()
                                 }), alignment: .topTrailing)
-                            .background(RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Material.ultraThin)
+                            .background(BlurView(style: .roundedRectangle(cornerRadius: 20), effect: .ultraThin)
                                 .shadow(radius: 30)
                                 .matchedGeometryEffect(id: "viewportView-background", in: nspace))
                             .matchedGeometryEffect(id: "viewportView", in: nspace)
@@ -121,8 +117,7 @@ struct CompactView: View {
                                 .font(.title3.bold())
                                 .padding()
                         }
-                        .background(Circle()
-                            .fill(Material.regular)
+                        .background(BlurView(style: .circle)
                             .shadow(radius: 30)
                             .matchedGeometryEffect(id: "viewportView-background", in: nspace))
                         .matchedGeometryEffect(id: "viewportView", in: nspace)
@@ -133,8 +128,6 @@ struct CompactView: View {
                             for i in 0..<meshService.colors.count {
                                 meshService.colors[i].color = UIColor.white
                             }
-                        } randomizeColorsAction: {
-                            meshService.generate(pallete: .randomPalette())
                         }
                         .environmentObject(meshService)
                         .overlay(
@@ -149,8 +142,7 @@ struct CompactView: View {
                                     .font(.title3.bold())
                                     .padding()
                             }), alignment: .topTrailing)
-                        .background(RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .fill(Material.ultraThin)
+                        .background(BlurView(style: .roundedRectangle(cornerRadius: 20), effect: .ultraThin)
                             .shadow(radius: 30)
                             .matchedGeometryEffect(id: "colorsView-background", in: nspace))
                         .matchedGeometryEffect(id: "colorsView", in: nspace)
@@ -167,8 +159,7 @@ struct CompactView: View {
                                 .font(.title3.bold())
                                 .padding()
                         }
-                        .background(Circle()
-                            .fill(Material.regular)
+                        .background(BlurView(style: .circle)
                             .shadow(radius: 30)
                             .matchedGeometryEffect(id: "colorsView-background", in: nspace))
                         .matchedGeometryEffect(id: "colorsView", in: nspace)

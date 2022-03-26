@@ -15,7 +15,7 @@ struct ExportView: View {
     }
     
     var body: some View {
-        HStack(spacing: 20) {
+        Stack(spacing: 20) {
             ExportViewControllerView()
                 .aspectRatio(CGFloat(exportService.resolution.width / exportService.resolution.height), contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
@@ -28,6 +28,12 @@ struct ExportView: View {
         .animation(.spring(), value: exportService.resolution.height)
         .padding()
     }
+    
+#if targetEnvironment(macCatalyst)
+    typealias Stack = HStack
+#else
+    typealias Stack = VStack
+#endif
 }
 
 struct ExportView_Previews: PreviewProvider {

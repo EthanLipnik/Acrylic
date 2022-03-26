@@ -81,13 +81,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
-//            let vc = ExportViewController(renderImage: renderImage)
             let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
             
 #if targetEnvironment(macCatalyst)
             vc.preferredContentSize = CGSize(width: 1024, height: 512)
+#else
+            vc.modalPresentationStyle = .formSheet
 #endif
-
+            
             topController.present(vc, animated: true)
         }
     }

@@ -19,14 +19,19 @@ extension ExportView {
         var body: some View {
             VStack {
                 GroupBox {
-                    VStack {
-                        FormatView()
-                        Divider()
-                        ResolutionView()
-                        Divider()
-                        ImageEffectsView()
-                    }.padding(10)
-                    Spacer()
+                    ScrollView {
+                        VStack {
+                            FormatView()
+                            Divider()
+                            ResolutionView()
+                            Divider()
+                            ImageEffectsView()
+                        }.padding(10)
+                        Spacer()
+                    }
+#if !targetEnvironment(macCatalyst)
+                    .padding(-10)
+#endif
                 }
                 HStack {
                     Button("Cancel") {

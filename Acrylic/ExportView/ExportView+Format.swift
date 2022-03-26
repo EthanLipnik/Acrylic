@@ -26,6 +26,9 @@ extension ExportView {
                     Text("Format:")
                         .frame(width: 90, alignment: .leading)
                 }
+#if !targetEnvironment(macCatalyst)
+                .pickerStyle(.segmented)
+#endif
                 
                 if exportService.format.hasCompression {
                     HStack {

@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Blackbird",
-        "repositoryURL": "https://github.com/CanisterEditor/Blackbird.git",
-        "state": {
-          "branch": "main",
-          "revision": "aea8957711f8400391af1e01835332499a0d2303",
-          "version": null
-        }
-      },
-      {
         "package": "RandomColor",
         "repositoryURL": "https://github.com/EthanLipnik/RandomColorSwift.git",
         "state": {

@@ -19,7 +19,7 @@ class ExportViewController: UIViewController {
         
         blackbirdView.translatesAutoresizingMaskIntoConstraints = false
         
-        blackbirdView.image = exportService.baseImage
+        blackbirdView.image = exportService.filteredImage ?? exportService.baseImage
         
         return blackbirdView
     }()
@@ -53,18 +53,16 @@ class ExportViewController: UIViewController {
         
         exportService.$filteredImage
             .sink { [weak self] image in
-                self?.blackbirdView.image = image
+                self?.blackbirdView.image = image ?? self?.exportService.baseImage
+                self?.blackbirdView.draw()
             }
             .store(in: &cancellables)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.blackbirdView.image = self?.exportService.baseImage
-            self?.blackbirdView.image = self?.exportService.baseImage
-        }
+        blackbirdView.draw()
     }
 }
 

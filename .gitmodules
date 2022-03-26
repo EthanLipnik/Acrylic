@@ -1,3 +1,6 @@
 [submodule "MeshKit"]
 	path = MeshKit
 	url = https://github.com/EthanLipnik/MeshKit
+[submodule "Blackbird"]
+	path = Blackbird
+	url = https://github.com/EthanLipnik/Blackbird.git

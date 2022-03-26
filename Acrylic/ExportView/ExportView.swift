@@ -10,8 +10,8 @@ import SwiftUI
 struct ExportView: View {
     @StateObject var exportService: ExportService
     
-    init(renderImage: UIImage) {
-        self._exportService = .init(wrappedValue: ExportService(renderImage: renderImage))
+    init(renderImage: UIImage, meshService: MeshService) {
+        self._exportService = .init(wrappedValue: ExportService(renderImage: renderImage, meshService: meshService))
     }
     
     var body: some View {
@@ -32,6 +32,6 @@ struct ExportView: View {
 
 struct ExportView_Previews: PreviewProvider {
     static var previews: some View {
-        ExportView(renderImage: UIImage())
+        ExportView(renderImage: UIImage(), meshService: .init())
     }
 }

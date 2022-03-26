@@ -8,32 +8,61 @@
 import Combine
 import UIKit
 import Blackbird
+import UniformTypeIdentifiers
 
 class ExportService: ObservableObject {
     @Published var blur: Float = 0 {
         didSet {
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                self?.applyFilters()
-            }
+            applyFilters()
         }
     }
-    @Published var resolution: (width: Float, height: Float) = (4096, 4096)
+    @Published var resolution: (width: CGFloat, height: CGFloat) = (4096, 4096) {
+        didSet {
+            renderImage = meshService.render(resolution: CGSize(width: resolution.width, height: resolution.height))
+            baseImage = CIImage(image: renderImage)!
+            applyFilters()
+        }
+    }
     @Published var format: Format = .png
-    @Published var compressionQuality: Float = 1
+    @Published var compressionQuality: CGFloat = 1
     
     @Published var filteredImage: CIImage? = nil
+    
+    private var meshService: MeshService
     
     enum Format: String, Hashable {
         case png = "PNG"
         case jpeg = "JPEG"
-        case heif = "HEIF"
+        case heic = "HEIC"
         
         var hasCompression: Bool {
             switch self {
             case .png:
                 return false
-            case .jpeg, .heif:
+            case .jpeg, .heic:
                 return true
+            }
+        }
+        
+        var fileExtension: String {
+            switch self {
+            case .png:
+                return "png"
+            case .jpeg:
+                return "jpg"
+            case .heic:
+                return "heic"
+            }
+        }
+        
+        var type: UTType {
+            switch self {
+            case .png:
+                return .png
+            case .jpeg:
+                return .jpeg
+            case .heic:
+                return .heic
             }
         }
         
@@ -41,7 +70,7 @@ class ExportService: ObservableObject {
             return [
                 .png,
                 .jpeg,
-                .heif
+                .heic
             ]
         }()
     }
@@ -52,38 +81,50 @@ class ExportService: ObservableObject {
         return CIImage(image: renderImage)!
     }()
     
-    init(renderImage: UIImage) {
+    init(renderImage: UIImage, meshService: MeshService) {
         self.renderImage = renderImage
+        self.meshService = meshService
     }
     
     func applyFilters() {
-        let image = baseImage
-            .clampedToExtent()
-            .applyingFilter(.gaussian, radius: NSNumber(value: blur))
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.filteredImage = image
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            let image = self.baseImage
+                .clampedToExtent()
+                .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
+                .cropped(to: self.baseImage.extent)
+            
+            DispatchQueue.main.async {
+                self.filteredImage = image
+            }
         }
     }
     
-    @objc func export() {
+    func export() -> Result<ImageDocument, Error> {
         let ciImage = filteredImage ?? baseImage
         let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: baseImage.extent)!
         let image = UIImage(cgImage: cgImage)
         
-        let data = image.pngData()!
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("Mesh.png")
-        try! data.write(to: url)
+        var data: Data? = nil
         
-//#if targetEnvironment(macCatalyst)
-//        let documentExporter = UIDocumentPickerViewController(forExporting: [url])
-//        documentExporter.delegate = self
-//        self.present(documentExporter, animated: true)
-//#else
-//        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-//        activityController.popoverPresentationController?.sourceRect = exportButton.bounds
-//        activityController.popoverPresentationController?.sourceView = exportButton
-//        self.present(activityController, animated: true)
-//#endif
+        switch format {
+        case .png:
+            data = image.pngData()
+        case .jpeg:
+            data = image.jpegData(compressionQuality: compressionQuality)
+        case .heic:
+            do {
+                data = try image.heicData(compressionQuality: compressionQuality)
+            } catch {
+                return .failure(error)
+            }
+        }
+        
+        if let data = data {
+            return .success(ImageDocument(imageData: data))
+        } else {
+            return .failure(CocoaError(.fileReadUnknown))
+        }
     }
 }

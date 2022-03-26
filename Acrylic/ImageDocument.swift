@@ -10,12 +10,14 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ImageDocument: FileDocument {
-    static var readableContentTypes: [UTType] { [.image, .png, .jpeg] }
+    static var readableContentTypes: [UTType] { [.image, .png, .jpeg, .heic, .heif] }
     
     var imageData: Data
+    var fileName: String
     
-    init(imageData: Data) {
+    init(imageData: Data, fileName: String = "Mesh") {
         self.imageData = imageData
+        self.fileName = fileName
     }
     
     init(configuration: ReadConfiguration) throws {
@@ -25,10 +27,12 @@ struct ImageDocument: FileDocument {
         }
         
         self.imageData = data
+        self.fileName = "Mesh"
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         let fileWrapper = FileWrapper(regularFileWithContents: imageData)
+        fileWrapper.filename = fileName
         return fileWrapper
     }
     

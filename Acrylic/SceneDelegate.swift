@@ -82,7 +82,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 topController = presentedViewController
             }
 //            let vc = ExportViewController(renderImage: renderImage)
-            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
+            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
             
 #if targetEnvironment(macCatalyst)
             vc.preferredContentSize = CGSize(width: 1024, height: 512)

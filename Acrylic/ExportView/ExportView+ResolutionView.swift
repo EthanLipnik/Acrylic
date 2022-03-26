@@ -43,10 +43,10 @@ extension ExportView {
                 }
             }
             .onChange(of: width, perform: { newValue in
-                exportService.resolution.width = Float(newValue) ?? 1
+                exportService.resolution.width = CGFloat(Float(newValue) ?? 1)
             })
             .onChange(of: height, perform: { newValue in
-                exportService.resolution.height = Float(newValue) ?? 1
+                exportService.resolution.height = CGFloat(Float(newValue) ?? 1)
             })
             .contextMenu {
                 Button("6k") {

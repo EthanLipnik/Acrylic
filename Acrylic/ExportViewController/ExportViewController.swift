@@ -29,15 +29,6 @@ class ExportViewController: UIViewController {
         return stackView
     }()
     
-    lazy var optionsStackView: UIStackView = {
-        let stackView = UIStackView()
-        
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        
-        return stackView
-    }()
-    
     lazy var blackbirdView: UIBlackbirdView = {
         let blackbirdView = UIBlackbirdView()
         
@@ -51,42 +42,16 @@ class ExportViewController: UIViewController {
         return blackbirdView
     }()
     
+    lazy var exportOptionsView: UIView = {
+        let viewController = UIHostingController(rootView: ExportOptionsView())
+        
+        viewController.didMove(toParent: self)
+        
+        return viewController.view
+    }()
+    
     lazy var blurSlider: SliderView = {
         return SliderView(title: "Blur", valueChanged: blurDidChange(_:))
-    }()
-    
-    lazy var cancelButton: UIButton = {
-        let button: UIButton
-        if #available(iOS 15, macOS 12, *) {
-            button = UIButton(configuration: .bordered())
-        } else {
-            button = UIButton()
-        }
-        
-        button.setTitle("Cancel", for: .normal)
-        button.addAction(UIAction(handler: { [weak self] _ in
-            self?.dismiss(animated: true)
-        }), for: .touchUpInside)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    lazy var exportButton: UIButton = {
-        let button: UIButton
-        if #available(iOS 15, macOS 12, *) {
-            button = UIButton(configuration: .borderedProminent())
-        } else {
-            button = UIButton()
-        }
-        
-        button.setTitle("Export...", for: .normal)
-        button.addTarget(self, action: #selector(export), for: .touchUpInside)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
     }()
     
     lazy var buttonsView = UIView()
@@ -110,14 +75,7 @@ class ExportViewController: UIViewController {
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(blackbirdView)
-        stackView.addArrangedSubview(optionsStackView)
-        
-        optionsStackView.addArrangedSubview(blurSlider)
-        optionsStackView.addArrangedSubview(UIView())
-        optionsStackView.addArrangedSubview(buttonsView)
-        
-        buttonsView.addSubview(exportButton)
-        buttonsView.addSubview(cancelButton)
+        stackView.addArrangedSubview(exportOptionsView)
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
@@ -125,15 +83,7 @@ class ExportViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
-            blackbirdView.heightAnchor.constraint(equalTo: blackbirdView.widthAnchor),
-            
-            exportButton.topAnchor.constraint(equalTo: buttonsView.topAnchor),
-            exportButton.bottomAnchor.constraint(equalTo: buttonsView.safeAreaLayoutGuide.bottomAnchor),
-            exportButton.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
-            
-            cancelButton.topAnchor.constraint(equalTo: exportButton.topAnchor),
-            cancelButton.bottomAnchor.constraint(equalTo: exportButton.bottomAnchor),
-            cancelButton.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor)
+            blackbirdView.heightAnchor.constraint(equalTo: blackbirdView.widthAnchor)
         ])
     }
     

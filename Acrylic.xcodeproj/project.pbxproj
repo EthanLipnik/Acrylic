@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA03D92127EEA1C700BAE4C4 /* ExportViewController+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */; };
+		AA03D92327EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */; };
+		AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */; };
+		AA03D92727EEA87C00BAE4C4 /* ExportViewController+QualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */; };
+		AA03D92927EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA16D65227EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Selection.swift */; };
@@ -87,6 +92,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+Format.swift"; sourceTree = "<group>"; };
+		AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ExportOptionsView.swift"; sourceTree = "<group>"; };
+		AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ImageEffectsView.swift"; sourceTree = "<group>"; };
+		AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+QualityView.swift"; sourceTree = "<group>"; };
+		AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportViewController+ResolutionView.swift"; sourceTree = "<group>"; };
 		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		AA1A5C232725F973006932FE /* OptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Selection.swift"; sourceTree = "<group>"; };
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
@@ -166,6 +176,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA03D91F27EEA1B000BAE4C4 /* ExportViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
+				AA03D92227EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift */,
+				AA03D92027EEA1C700BAE4C4 /* ExportViewController+Format.swift */,
+				AA03D92427EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift */,
+				AA03D92627EEA87C00BAE4C4 /* ExportViewController+QualityView.swift */,
+				AA03D92827EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift */,
+			);
+			path = ExportViewController;
+			sourceTree = "<group>";
+		};
 		AA1A5C222725F957006932FE /* OptionsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,7 +255,7 @@
 				AA6654FA2728E9E9006A5237 /* CompactView */,
 				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
 				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
-				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
+				AA03D91F27EEA1B000BAE4C4 /* ExportViewController */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 				AA517542272483CE00C25576 /* EditorViewController.swift */,
 				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
@@ -472,6 +495,7 @@
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
+				AA03D92327EEA65C00BAE4C4 /* ExportViewController+ExportOptionsView.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
 				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
 				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
@@ -485,11 +509,15 @@
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
+				AA03D92527EEA75E00BAE4C4 /* ExportViewController+ImageEffectsView.swift in Sources */,
 				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,
+				AA03D92927EEA95700BAE4C4 /* ExportViewController+ResolutionView.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
+				AA03D92127EEA1C700BAE4C4 /* ExportViewController+Format.swift in Sources */,
+				AA03D92727EEA87C00BAE4C4 /* ExportViewController+QualityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

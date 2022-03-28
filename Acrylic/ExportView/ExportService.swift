@@ -18,8 +18,6 @@ class ExportService: ObservableObject {
     }
     @Published var resolution: (width: CGFloat, height: CGFloat) = (4096, 4096) {
         didSet {
-            renderImage = meshService.render(resolution: CGSize(width: resolution.width, height: resolution.height))
-            baseImage = CIImage(image: renderImage)!
             applyFilters()
         }
     }
@@ -27,8 +25,6 @@ class ExportService: ObservableObject {
     @Published var compressionQuality: CGFloat = 1
     
     @Published var filteredImage: CIImage? = nil
-    
-    private var meshService: MeshService
     
     enum Format: String, Hashable {
         case png = "PNG"
@@ -83,7 +79,6 @@ class ExportService: ObservableObject {
     
     init(renderImage: UIImage, meshService: MeshService) {
         self.renderImage = renderImage
-        self.meshService = meshService
     }
     
     func applyFilters() {
@@ -93,8 +88,9 @@ class ExportService: ObservableObject {
             let image = self.baseImage
                 .clampedToExtent()
                 .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
-                .cropped(to: self.baseImage.extent)
+                .cropped(to: CGRect(x: self.baseImage.extent.origin.x, y: self.baseImage.extent.origin.y, width: self.resolution.width, height: self.resolution.height))
             
+            print(self.baseImage.extent.size, self.resolution)
             DispatchQueue.main.async {
                 self.filteredImage = image
             }

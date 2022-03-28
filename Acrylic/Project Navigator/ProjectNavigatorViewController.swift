@@ -174,7 +174,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     func openDocument(_ document: Document) {
         switch document {
         case .mesh(let meshDocument):
-            let editorViewController = SplitViewController(meshDocument)
+            let editorViewController = MeshEditorViewController(meshDocument)
             editorViewController.modalPresentationStyle = .fullScreen
             present(editorViewController, animated: true)
         default:
@@ -202,7 +202,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         document.save(to: url, for: .forCreating)
         
         document.open { [weak self] _ in
-            let editorViewController = SplitViewController(document)
+            let editorViewController = MeshEditorViewController(document)
             editorViewController.modalPresentationStyle = .fullScreen
             self?.present(editorViewController, animated: true) {
                 self?.meshDocuments.append(Document.mesh(document))

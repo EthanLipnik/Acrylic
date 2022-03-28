@@ -14,10 +14,10 @@
 		AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */; };
 		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Selection.swift */; };
-		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
-		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
-		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
+		AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */; };
+		AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */; };
+		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
+		AA1A5C2A2725FA46006932FE /* Mesht.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* Mesht.swift */; };
 		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
 		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
 		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
@@ -33,16 +33,16 @@
 		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
-		AA517543272483CE00C25576 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* EditorViewController.swift */; };
+		AA517543272483CE00C25576 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* MeshViewController.swift */; };
 		AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA517547272483CE00C25576 /* Acrylic.xcdatamodeld */; };
 		AA51754B272483CF00C25576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA51754A272483CF00C25576 /* Assets.xcassets */; };
 		AA51754E272483CF00C25576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA51754C272483CF00C25576 /* LaunchScreen.storyboard */; };
 		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
-		AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* CompactView.swift */; };
+		AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
+		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
 		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
 		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
 		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
@@ -54,7 +54,7 @@
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
-		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
+		AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,10 +103,10 @@
 		AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ResolutionView.swift"; sourceTree = "<group>"; };
 		AA0AD66227EEB671009F822D /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
-		AA1A5C232725F973006932FE /* OptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Selection.swift"; sourceTree = "<group>"; };
-		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
-		AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Detail.swift"; sourceTree = "<group>"; };
-		AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Viewport.swift"; sourceTree = "<group>"; };
+		AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Selection.swift"; sourceTree = "<group>"; };
+		AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+DetailView.swift"; sourceTree = "<group>"; };
+		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
+		AA1A5C292725FA46006932FE /* Mesht.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesht.swift; sourceTree = "<group>"; };
 		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA517542272483CE00C25576 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		AA517542272483CE00C25576 /* MeshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshViewController.swift; sourceTree = "<group>"; };
 		AA517548272483CE00C25576 /* Acrylic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Acrylic.xcdatamodel; sourceTree = "<group>"; };
 		AA51754A272483CF00C25576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA51754D272483CF00C25576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,9 +133,9 @@
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
-		AA6654F82728E9E6006A5237 /* CompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactView.swift; sourceTree = "<group>"; };
+		AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorCompactView.swift; sourceTree = "<group>"; };
 		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
-		AA6894E62725016E00A2FE51 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
 		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
-		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,11 +205,11 @@
 		AA1A5C222725F957006932FE /* OptionsView */ = {
 			isa = PBXGroup;
 			children = (
-				AA6894E62725016E00A2FE51 /* OptionsView.swift */,
-				AA1A5C232725F973006932FE /* OptionsView+Selection.swift */,
-				AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */,
-				AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */,
-				AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */,
+				AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */,
+				AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */,
+				AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */,
+				AA1A5C292725FA46006932FE /* Mesht.swift */,
+				AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */,
 			);
 			path = OptionsView;
 			sourceTree = "<group>";
@@ -331,9 +331,9 @@
 		AAD7239127F0F39C00198144 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
-				AA517542272483CE00C25576 /* EditorViewController.swift */,
-				AA6654F82728E9E6006A5237 /* CompactView.swift */,
-				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
+				AA517542272483CE00C25576 /* MeshViewController.swift */,
+				AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */,
+				AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 			);
 			path = Editor;
@@ -530,32 +530,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
+				AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */,
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
-				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
-				AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */,
-				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
+				AA1A5C2A2725FA46006932FE /* Mesht.swift in Sources */,
+				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
+				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
-				AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */,
+				AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,
-				AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */,
+				AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
 				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
 				AA0AD66327EEB671009F822D /* ExportService.swift in Sources */,
-				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
+				AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */,
 				AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */,
 				AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */,
 				AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
-				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
+				AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
@@ -618,7 +618,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -648,7 +648,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -797,12 +797,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Acrylic/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save exports to device";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -834,12 +835,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Acrylic/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save exports to device";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

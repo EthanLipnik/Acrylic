@@ -1,5 +1,5 @@
 //
-//  CompactView.swift
+//  MeshEditorCompactView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/26/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompactView: View {
+struct MeshEditorCompactView: View {
     @EnvironmentObject var meshService: MeshService
     
     @State private var isShowingColorsView: Bool = false
@@ -26,7 +26,7 @@ struct CompactView: View {
             VStack {
                 HStack(alignment: .top) {
                     if isShowingDetailView {
-                        OptionsView.DetailsView(withBackground: false)
+                        MeshOptionsView.DetailsView(withBackground: false)
                             .environmentObject(meshService)
                             .overlay(
                                 Button(action: {
@@ -81,7 +81,7 @@ struct CompactView: View {
                 Spacer()
                 HStack(alignment: .bottom) {
                     if isShowingViewportView {
-                        OptionsView.ViewportView(withBackground: false)
+                        MeshOptionsView.ViewportView(withBackground: false)
                             .environmentObject(meshService)
                             .overlay(
                                 Button(action: {
@@ -119,7 +119,7 @@ struct CompactView: View {
                     }
                     Spacer()
                     if isShowingColorsView {
-                        OptionsView.SelectionView(withBackground: false) {
+                        MeshOptionsView.SelectionView(withBackground: false) {
                             for i in 0..<meshService.colors.count {
                                 meshService.colors[i].color = UIColor.white
                             }
@@ -177,6 +177,6 @@ struct CompactView: View {
 
 struct CompactView_Previews: PreviewProvider {
     static var previews: some View {
-        CompactView {}
+        MeshEditorCompactView {}
     }
 }

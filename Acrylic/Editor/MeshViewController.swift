@@ -1,5 +1,5 @@
 //
-//  EditorViewController.swift
+//  MeshViewController.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/23/21.
@@ -10,7 +10,7 @@ import MeshKit
 import Combine
 import SwiftUI
 
-class EditorViewController: UIViewController {
+class MeshViewController: UIViewController {
     
     lazy var meshView: MeshView = {
         let view = MeshView()
@@ -125,11 +125,11 @@ class EditorViewController: UIViewController {
 struct EditorView: UIViewControllerRepresentable {
     @EnvironmentObject var meshService: MeshService
     
-    func makeUIViewController(context: Context) -> EditorViewController {
+    func makeUIViewController(context: Context) -> MeshViewController {
         return .init(meshService)
     }
     
-    func updateUIViewController(_ uiViewController: EditorViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: MeshViewController, context: Context) {
         uiViewController.meshService = meshService
     }
 }

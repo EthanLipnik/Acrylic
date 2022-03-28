@@ -1,5 +1,5 @@
 //
-//  OptionsView+DetailView.swift
+//  MeshOptionsView+DetailView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/24/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension OptionsView {
+extension MeshOptionsView {
     struct DetailView<Content: View>: View {
         let title: String
         let systemImage: String

@@ -1,5 +1,5 @@
 //
-//  OptionsView+Viewport.swift
+//  MeshOptionsView+Viewport.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/24/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension OptionsView {
+extension MeshOptionsView {
     struct ViewportView: View {
         @EnvironmentObject var meshService: MeshService
         
@@ -27,6 +27,6 @@ extension OptionsView {
 
 struct OptionsView_Viewport_Previews: PreviewProvider {
     static var previews: some View {
-        OptionsView.ViewportView()
+        MeshOptionsView.ViewportView()
     }
 }

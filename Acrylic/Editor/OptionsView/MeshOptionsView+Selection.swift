@@ -1,5 +1,5 @@
 //
-//  OptionsView+Colors.swift
+//  MeshOptionsView+Colors.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/24/21.
@@ -10,7 +10,7 @@ import MeshKit
 import UniformTypeIdentifiers
 import RandomColor
 
-extension OptionsView {
+extension MeshOptionsView {
     struct SelectionView: View {
         @EnvironmentObject var meshService: MeshService
         

@@ -77,7 +77,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 topController = presentedViewController
             }
             
-            if let meshService = (topController as? SplitViewController)?.meshService {
+            if let meshService = (topController as? MeshEditorViewController)?.meshService {
                 meshService.isExporting.toggle()
                 
                 let renderImage = meshService.render()
@@ -135,7 +135,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if !(topController is SplitViewController) {
+                if !(topController is MeshEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }
@@ -164,7 +164,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if (topController is SplitViewController) {
+                if (topController is MeshEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }
@@ -185,7 +185,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if !(topController is SplitViewController) {
+                if !(topController is MeshEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }

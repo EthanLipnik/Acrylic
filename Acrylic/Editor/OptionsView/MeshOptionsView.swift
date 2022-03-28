@@ -1,5 +1,5 @@
 //
-//  OptionsView.swift
+//  MeshOptionsView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/23/21.
@@ -9,7 +9,7 @@ import SwiftUI
 import MeshKit
 import UniformTypeIdentifiers
 
-struct OptionsView: View {
+struct MeshOptionsView: View {
     @EnvironmentObject var meshService: MeshService
     
     var closeAction: () -> Void
@@ -83,7 +83,7 @@ struct OptionsView: View {
 
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        OptionsView { // Close action
+        MeshOptionsView { // Close action
             
         }
     }

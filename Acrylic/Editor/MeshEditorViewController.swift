@@ -1,5 +1,5 @@
 //
-//  SplitViewController.swift
+//  MeshEditorViewController.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 10/23/21.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+class MeshEditorViewController: UISplitViewController, UISplitViewControllerDelegate {
     
     var meshService: MeshService = .init()
     
@@ -29,11 +29,11 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         minimumPrimaryColumnWidth = 320
         maximumPrimaryColumnWidth = 320
 
-        setViewController(UINavigationController(rootViewController: UIHostingController(rootView: OptionsView { [weak self] in
+        setViewController(UINavigationController(rootViewController: UIHostingController(rootView: MeshOptionsView { [weak self] in
             self?.dismiss(animated: true)
         }.environmentObject(meshService))), for: .primary)
-        setViewController(EditorViewController(meshService), for: .secondary)
-        setViewController(UINavigationController(rootViewController: UIHostingController(rootView: CompactView { [weak self] in
+        setViewController(MeshViewController(meshService), for: .secondary)
+        setViewController(UINavigationController(rootViewController: UIHostingController(rootView: MeshEditorCompactView { [weak self] in
             self?.dismiss(animated: true)
         }.environmentObject(meshService))), for: .compact)
         

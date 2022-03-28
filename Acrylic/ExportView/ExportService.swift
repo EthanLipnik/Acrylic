@@ -88,9 +88,8 @@ class ExportService: ObservableObject {
             let image = self.baseImage
                 .clampedToExtent()
                 .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
-                .cropped(to: CGRect(x: self.baseImage.extent.origin.x, y: self.baseImage.extent.origin.y, width: self.resolution.width, height: self.resolution.height))
+                .cropped(to: self.baseImage.extent)
             
-            print(self.baseImage.extent.size, self.resolution)
             DispatchQueue.main.async {
                 self.filteredImage = image
             }

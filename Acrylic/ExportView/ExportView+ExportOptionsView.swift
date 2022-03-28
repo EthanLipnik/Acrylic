@@ -62,10 +62,10 @@ extension ExportView {
                         }
                     }
 #else
-                    .sheet(isPresented: $isExportingImage) {
-                        ShareSheet(activityItems: [UIImage(data: imageDocument?.imageData ?? Data()) ?? UIImage()])
-                            .onAppear {
-                                print(UIImage(data: imageDocument!.imageData)!)
+                    .sheet(item: $imageDocument) { document in
+                        ShareSheet(activityItems: [UIImage(data: document.imageData)!])
+                            .onDisappear {
+                                presentationMode.wrappedValue.dismiss()
                             }
                     }
 #endif

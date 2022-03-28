@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct ImageDocument: FileDocument {
+struct ImageDocument: FileDocument, Identifiable {
     static var readableContentTypes: [UTType] { [.image, .png, .jpeg, .heic, .heif] }
+    
+    var id: String { fileName }
     
     var imageData: Data
     var fileName: String

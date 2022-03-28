@@ -191,11 +191,11 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     
     func createDocument() {
         var nameIndex: Int = 0
-        var url = AppDelegate.documentsFolder.appendingPathComponent("Mesh.amg")
+        var url = AppDelegate.documentsFolder.appendingPathComponent("Mesh.amgf")
         
         while FileManager.default.fileExists(atPath: url.path) {
             nameIndex += 1
-            url = AppDelegate.documentsFolder.appendingPathComponent("Mesh \(nameIndex).amg")
+            url = AppDelegate.documentsFolder.appendingPathComponent("Mesh \(nameIndex).amgf")
         }
         
         let document = MeshDocument(fileURL: url)
@@ -253,7 +253,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 //        return .init(identifier: nil, previewProvider: nil) { menu in
 //            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
 //                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
-//                    
+//
 //                })
 //            ])
 //        }

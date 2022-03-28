@@ -6,6 +6,13 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
+
+extension UTType {
+    static var acrylicScene: UTType {
+        UTType(importedAs: "com.acrylic.scene")
+    }
+}
 
 class SceneDocument: UIDocument {
     struct Object: Codable {
@@ -142,4 +149,90 @@ class SceneDocument: UIDocument {
     
     var raytracingOptions: RaytracingOptions = .init()
     var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions = .init()
+    var screenSpaceAmbientOcclusionOptions: ScreenSpaceAmbientOcclusionOptions = .init()
+    
+    var colorFringeOptions: ColorFringeOptions = .init()
+    
+    var previewImage: Data? = nil
+    
+    private struct SceneDescriptorModel: Codable {
+        var camera: Camera
+        
+        var objects: [Object]
+        var lights: [Light]
+        var backgroundColor: Color
+        
+        var useHDR: Bool
+        var useAutoExposure: Bool
+        var antialiasing: Antialiasing
+        var depthOfFieldOptions: DepthOfFieldOptions
+        
+        var raytracingOptions: RaytracingOptions
+        var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions
+        var screenSpaceAmbientOcclusionOptions: ScreenSpaceAmbientOcclusionOptions
+        
+        var colorFringeOptions: ColorFringeOptions
+        
+        init(_ document: SceneDocument) {
+            self.camera = document.camera
+            
+            self.objects = document.objects
+            self.lights = document.lights
+            self.backgroundColor = document.backgroundColor
+            
+            self.useHDR = document.useHDR
+            self.useAutoExposure = document.useAutoExposure
+            self.antialiasing = document.antialiasing
+            self.depthOfFieldOptions = document.depthOfFieldOptions
+            
+            self.raytracingOptions = document.raytracingOptions
+            self.screenSpaceReflectionsOptions = document.screenSpaceReflectionsOptions
+            self.screenSpaceAmbientOcclusionOptions = document.screenSpaceAmbientOcclusionOptions
+            
+            self.colorFringeOptions = document.colorFringeOptions
+        }
+    }
+    
+    override func load(fromContents contents: Any, ofType typeName: String?) throws {
+        guard let topFileWrapper = contents as? FileWrapper,
+              let compressedSceneDescriptor = topFileWrapper.fileWrappers?["SceneDescriptor"]?.regularFileContents as? NSData else {
+            return
+        }
+        
+        let decompressedSceneDescriptor = try compressedSceneDescriptor.decompressed(using: .zlib) as Data
+        let sceneDescriptor = try JSONDecoder().decode(SceneDescriptorModel.self, from: decompressedSceneDescriptor)
+        
+        self.camera = sceneDescriptor.camera
+        self.lights = sceneDescriptor.lights
+        self.backgroundColor = sceneDescriptor.backgroundColor
+        
+        self.useHDR = sceneDescriptor.useHDR
+        self.useAutoExposure = sceneDescriptor.useAutoExposure
+        self.antialiasing = sceneDescriptor.antialiasing
+        self.depthOfFieldOptions = sceneDescriptor.depthOfFieldOptions
+        
+        self.raytracingOptions = sceneDescriptor.raytracingOptions
+        self.screenSpaceReflectionsOptions = sceneDescriptor.screenSpaceReflectionsOptions
+        self.screenSpaceAmbientOcclusionOptions = sceneDescriptor.screenSpaceAmbientOcclusionOptions
+        
+        self.colorFringeOptions = sceneDescriptor.colorFringeOptions
+        
+        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage.heic"]?.regularFileContents
+    }
+    
+    override func contents(forType typeName: String) throws -> Any {
+        let sceneDescriptor = SceneDescriptorModel(self)
+        let sceneDescriptorJSON = try JSONEncoder().encode(sceneDescriptor)
+        let compressedSceneDescriptor = try (sceneDescriptorJSON as NSData).compressed(using: .zlib)
+        let sceneDescriptorFile = FileWrapper(regularFileWithContents: compressedSceneDescriptor as Data)
+        sceneDescriptorFile.preferredFilename = "SceneDescriptor"
+        
+        var fileWrappers: [String: FileWrapper] = ["SceneDescriptor": sceneDescriptorFile]
+        
+        if let previewImage = previewImage {
+            let previewImageFile = FileWrapper(regularFileWithContents: previewImage)
+            fileWrappers["PreviewImage"] = previewImageFile
+        }
+        return FileWrapper(directoryWithFileWrappers: fileWrappers)
+    }
 }

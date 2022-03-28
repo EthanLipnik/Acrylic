@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        let sceneDocument = SceneDocument(fileURL: Self.documentsFolder.appendingPathComponent("Scene.asf"))
+        sceneDocument.save(to: Self.documentsFolder.appendingPathComponent("Scene.asf"), for: .forCreating)
+        
         print(Self.documentsFolder.path)
         
         return true

@@ -24,6 +24,14 @@
 		AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2B0C7327F10C2C00868869 /* CloudKit.framework */; };
 		AA2B0C7627F111C600868869 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
+		AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42DDB927F1F16D003ECF74 /* QuickLook.framework */; };
+		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
+		AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */; };
+		AA42DDC227F1F16D003ECF74 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */; };
+		AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
+		AA42DDD027F1F1F6003ECF74 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDCF27F1F1F6003ECF74 /* MeshKit */; };
+		AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDD127F1F1F6003ECF74 /* RandomColor */; };
 		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
 		AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBB827263E3A00593894 /* IntentHandler.swift */; };
 		AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -59,6 +67,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA42DDC427F1F16D003ECF74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA517533272483CE00C25576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA42DDB727F1F16D003ECF74;
+			remoteInfo = QuickLookExtension;
+		};
 		AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA517533272483CE00C25576 /* Project object */;
@@ -90,6 +105,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */,
+				AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +129,13 @@
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
 		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA42DDB927F1F16D003ECF74 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		AA42DDC127F1F16D003ECF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		AA42DDC327F1F16D003ECF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookExtension.entitlements; sourceTree = "<group>"; };
 		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA45EBB527263E3A00593894 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		AA45EBB827263E3A00593894 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -151,6 +174,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA42DDB527F1F16D003ECF74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */,
+				AA42DDD027F1F1F6003ECF74 /* MeshKit in Frameworks */,
+				AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA45EBB127263E3A00593894 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,8 +265,21 @@
 			children = (
 				AA2B0C7327F10C2C00868869 /* CloudKit.framework */,
 				AA45EBB527263E3A00593894 /* Intents.framework */,
+				AA42DDB927F1F16D003ECF74 /* QuickLook.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */,
+				AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */,
+				AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */,
+				AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */,
+				AA42DDC327F1F16D003ECF74 /* Info.plist */,
+			);
+			path = QuickLookExtension;
 			sourceTree = "<group>";
 		};
 		AA45EBB727263E3A00593894 /* MeshGradientIntent */ = {
@@ -256,6 +302,7 @@
 				AA517557272483CF00C25576 /* AcrylicTests */,
 				AA517561272483CF00C25576 /* AcrylicUITests */,
 				AA45EBB727263E3A00593894 /* MeshGradientIntent */,
+				AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */,
 				AA51753C272483CE00C25576 /* Products */,
 				AA35D982272498D3000BB333 /* Frameworks */,
 			);
@@ -268,6 +315,7 @@
 				AA517554272483CF00C25576 /* AcrylicTests.xctest */,
 				AA51755E272483CF00C25576 /* AcrylicUITests.xctest */,
 				AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */,
+				AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -353,6 +401,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA42DDB727F1F16D003ECF74 /* QuickLookExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */;
+			buildPhases = (
+				AA42DDB427F1F16D003ECF74 /* Sources */,
+				AA42DDB527F1F16D003ECF74 /* Frameworks */,
+				AA42DDB627F1F16D003ECF74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickLookExtension;
+			packageProductDependencies = (
+				AA42DDCF27F1F1F6003ECF74 /* MeshKit */,
+				AA42DDD127F1F1F6003ECF74 /* RandomColor */,
+			);
+			productName = QuickLookExtension;
+			productReference = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AA45EBB327263E3A00593894 /* MeshGradientIntent */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */;
@@ -387,6 +456,7 @@
 			);
 			dependencies = (
 				AA45EBBC27263E3A00593894 /* PBXTargetDependency */,
+				AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */,
 			);
 			name = Acrylic;
 			packageProductDependencies = (
@@ -441,9 +511,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					AA42DDB727F1F16D003ECF74 = {
+						CreatedOnToolsVersion = 13.3;
+					};
 					AA45EBB327263E3A00593894 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -480,11 +553,20 @@
 				AA517553272483CF00C25576 /* AcrylicTests */,
 				AA51755D272483CF00C25576 /* AcrylicUITests */,
 				AA45EBB327263E3A00593894 /* MeshGradientIntent */,
+				AA42DDB727F1F16D003ECF74 /* QuickLookExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA42DDB627F1F16D003ECF74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA42DDC227F1F16D003ECF74 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA45EBB227263E3A00593894 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,6 +600,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA42DDB427F1F16D003ECF74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */,
+				AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */,
+				AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA45EBB027263E3A00593894 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,6 +680,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA42DDB727F1F16D003ECF74 /* QuickLookExtension */;
+			targetProxy = AA42DDC427F1F16D003ECF74 /* PBXContainerItemProxy */;
+		};
 		AA45EBBC27263E3A00593894 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA45EBB327263E3A00593894 /* MeshGradientIntent */;
@@ -606,6 +703,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA42DDC127F1F16D003ECF74 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		AA51754C272483CF00C25576 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -617,6 +722,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA42DDC927F1F16D003ECF74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickLookExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.QuickLookExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA42DDCA27F1F16D003ECF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickLookExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.QuickLookExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		AA45EBC027263E3A00593894 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -968,6 +1129,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA42DDC927F1F16D003ECF74 /* Debug */,
+				AA42DDCA27F1F16D003ECF74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1027,6 +1197,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA42DDCF27F1F1F6003ECF74 /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MeshKit;
+		};
+		AA42DDD127F1F1F6003ECF74 /* RandomColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
+			productName = RandomColor;
+		};
 		AA45EBC8272641A100593894 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;

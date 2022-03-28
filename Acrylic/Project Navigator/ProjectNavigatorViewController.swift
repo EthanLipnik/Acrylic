@@ -225,13 +225,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #endif
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-#if !targetEnvironment(macCatalyst)
-        guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
-        openDocument(document)
-#endif
-    }
-    
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return UIDevice.current.userInterfaceIdiom != .phone
     }
@@ -248,14 +241,21 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         return UIDevice.current.userInterfaceIdiom != .phone
     }
     
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
-        return .init(identifier: nil, previewProvider: nil) { menu in
-            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
-                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
-                    
-                })
-            ])
-        }
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+#if !targetEnvironment(macCatalyst)
+        guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
+        openDocument(document)
+#endif
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+//        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
+//        return .init(identifier: nil, previewProvider: nil) { menu in
+//            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
+//                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
+//                    
+//                })
+//            ])
+//        }
+//    }
 }

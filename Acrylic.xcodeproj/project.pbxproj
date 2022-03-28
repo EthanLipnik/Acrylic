@@ -27,7 +27,6 @@
 		AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42DDB927F1F16D003ECF74 /* QuickLook.framework */; };
 		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
 		AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */; };
-		AA42DDC227F1F16D003ECF74 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */; };
 		AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA42DDD027F1F1F6003ECF74 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDCF27F1F1F6003ECF74 /* MeshKit */; };
@@ -60,6 +59,7 @@
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
+		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
@@ -133,7 +133,6 @@
 		AA42DDB927F1F16D003ECF74 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
-		AA42DDC127F1F16D003ECF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		AA42DDC327F1F16D003ECF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookExtension.entitlements; sourceTree = "<group>"; };
 		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,7 +275,6 @@
 				AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */,
 				AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */,
 				AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */,
-				AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */,
 				AA42DDC327F1F16D003ECF74 /* Info.plist */,
 			);
 			path = QuickLookExtension;
@@ -326,9 +324,9 @@
 				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
-				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
 				AAD7239227F0F3BC00198144 /* Services */,
 				AAD7239027F0F39200198144 /* Files */,
+				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
 				AAD7239127F0F39C00198144 /* Editor */,
 				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
 				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
@@ -563,7 +561,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA42DDC227F1F16D003ECF74 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +604,7 @@
 				AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */,
 				AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */,
 				AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */,
+				AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,14 +701,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AA42DDC027F1F16D003ECF74 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA42DDC127F1F16D003ECF74 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		AA51754C272483CF00C25576 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

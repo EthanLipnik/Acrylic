@@ -7,6 +7,7 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import QuickLook
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate {
     
@@ -22,10 +23,24 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         do {
             let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
                 .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ UTType(filenameExtension: $0.pathExtension) == .acrylicMeshGradient })
+                .filter({ $0.pathExtension == "amg" })
                 .map({ MeshDocument(fileURL: $0) })
             
             return documents.map({ Document.mesh($0) })
+        } catch {
+            print(error)
+            return []
+        }
+    }()
+    
+    lazy var sceneDocuments: [Document] = {
+        do {
+            let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
+                .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
+                .filter({ $0.pathExtension == "ausf" })
+                .map({ SceneDocument(fileURL: $0) })
+            
+            return documents.map({ Document.scene($0) })
         } catch {
             print(error)
             return []
@@ -39,42 +54,31 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     
     enum Document: Hashable {
         case mesh(MeshDocument)
-        case scene(title: String)
+        case scene(SceneDocument)
         
-        func open(completion: ((Bool) -> Void)? = nil) {
+        var uiDocument: UIDocument {
             switch self {
             case .mesh(let meshDocument):
-                meshDocument.open(completionHandler: completion)
-            default:
-                break
+                return meshDocument as UIDocument
+            case .scene(let sceneDocument):
+                return sceneDocument as UIDocument
             }
+        }
+        
+        func open(completion: ((Bool) -> Void)? = nil) {
+            uiDocument.open(completionHandler: completion)
         }
         
         func close(completion: ((Bool) -> Void)? = nil) {
-            switch self {
-            case .mesh(let meshDocument):
-                meshDocument.close(completionHandler: completion)
-            default:
-                break
-            }
+            uiDocument.close(completionHandler: completion)
         }
         
         var documentState: UIDocument.State {
-            switch self {
-            case .mesh(let meshDocument):
-                return meshDocument.documentState
-            default:
-                return .closed
-            }
+            return uiDocument.documentState
         }
         
         var fileUrl: URL? {
-            switch self {
-            case .mesh(let meshDocument):
-                return meshDocument.fileURL
-            case .scene:
-                return nil
-            }
+            return uiDocument.fileUrl
         }
     }
     
@@ -148,6 +152,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     func applySnapshot(loadDocuments: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Document>()
         snapshot.appendSections([.mesh, .scene])
+        dataSource.apply(snapshot, animatingDifferences: true)
         
         if loadDocuments {
             meshDocuments.forEach { document in
@@ -161,9 +166,19 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                     }
                 }
             }
+            
+            sceneDocuments.forEach { document in
+                if document.documentState == .normal {
+                    document.close()
+                }
+                document.open { [weak self] success in
+                    if success {
+                        snapshot.appendItems([document], toSection: .scene)
+                        self?.dataSource.apply(snapshot, animatingDifferences: true)
+                    }
+                }
+            }
         }
-        
-        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,6 +240,13 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #endif
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+#if !targetEnvironment(macCatalyst)
+        guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
+        openDocument(document)
+#endif
+    }
+    
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return UIDevice.current.userInterfaceIdiom != .phone
     }
@@ -241,13 +263,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         return UIDevice.current.userInterfaceIdiom != .phone
     }
     
-    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-#if !targetEnvironment(macCatalyst)
-        guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
-        openDocument(document)
-#endif
-    }
-    
 //    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 //        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
 //        return .init(identifier: nil, previewProvider: nil) { menu in
@@ -258,4 +273,14 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 //            ])
 //        }
 //    }
+}
+
+extension ProjectNavigatorViewController: QLPreviewControllerDataSource {
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return AppDelegate.documentsFolder.appendingPathComponent("Scene.ausf") as NSURL
+    }
 }

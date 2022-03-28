@@ -58,6 +58,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UTExportedTypeDeclarations</key>
@@ -99,7 +103,7 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>asf</string>
+					<string>ausf</string>
 				</array>
 			</dict>
 		</dict>
@@ -141,7 +145,7 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>asf</string>
+					<string>ausf</string>
 				</array>
 			</dict>
 		</dict>

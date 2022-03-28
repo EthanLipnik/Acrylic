@@ -31,6 +31,7 @@
 		AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
 		AA45EBC9272641A100593894 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA45EBC8272641A100593894 /* MeshKit */; };
 		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
+		AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* MeshViewController.swift */; };
@@ -119,6 +120,7 @@
 		AA45EBBE27263E3A00593894 /* MeshGradientIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeshGradientIntent.entitlements; sourceTree = "<group>"; };
 		AA45EBC327263E7800593894 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMeshGradientIntentHandler.swift; sourceTree = "<group>"; };
+		AA4B287727F149CD000FFCAD /* SceneDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDocument.swift; sourceTree = "<group>"; };
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2B0C7127F103A000868869 /* MeshDocument.swift */,
+				AA4B287727F149CD000FFCAD /* SceneDocument.swift */,
 				AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */,
 				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
 			);
@@ -557,6 +560,7 @@
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
+				AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
 				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,

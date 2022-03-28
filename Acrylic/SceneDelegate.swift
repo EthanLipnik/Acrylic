@@ -12,8 +12,6 @@ import CoreImage
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
-    var meshService = MeshService()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = SplitViewController(style: .doubleColumn)
+        window?.rootViewController = UINavigationController(rootViewController: ProjectNavigatorViewController())
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
@@ -72,24 +70,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
+    
     @objc final func export() {
-        meshService.isExporting.toggle()
-        
-        let renderImage = meshService.render()
         if var topController = window?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
-            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
             
+            if let meshService = (topController as? SplitViewController)?.meshService {
+                meshService.isExporting.toggle()
+                
+                let renderImage = meshService.render()
+                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
+                
 #if targetEnvironment(macCatalyst)
-            vc.preferredContentSize = CGSize(width: 1024, height: 512)
+                vc.preferredContentSize = CGSize(width: 1024, height: 512)
 #else
-            vc.modalPresentationStyle = .formSheet
+                vc.modalPresentationStyle = .formSheet
 #endif
-            
-            topController.present(vc, animated: true)
+                
+                topController.present(vc, animated: true)
+            }
+        }
+    }
+    
+    @objc final func goBack() {
+        if var topController = window?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            topController.dismiss(animated: true) { [weak self] in
+#if targetEnvironment(macCatalyst)
+                self?.updateToolbar()
+#endif
+            }
         }
     }
 }
@@ -97,7 +111,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 #if targetEnvironment(macCatalyst)
 extension SceneDelegate: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.toggleSidebar, .init("export")]
+        return [.toggleSidebar, .init("back"), .flexibleSpace, .init("newProject"), .init("export")]
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -106,6 +120,57 @@ extension SceneDelegate: NSToolbarDelegate {
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
+        case .init("back"):
+            let button = UIBarButtonItem()
+            button.image = UIImage(systemName: "chevron.left")
+            button.action = #selector(goBack)
+            button.target = self
+            
+            let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+            item.label = "Back"
+            item.isNavigational = true
+            
+            if var topController = window?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                
+                if !(topController is SplitViewController) {
+                    item.target = nil
+                    item.action = nil
+                }
+            } else {
+                item.target = nil
+                item.action = nil
+            }
+            
+            return item
+        case .init("newProject"):
+            let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
+            item.image = UIImage(systemName: "plus")
+            
+            item.itemMenu = UIMenu(title: "New Project", children: [
+                UIAction(title: "Mesh Gradient", handler: { [weak self] action in
+                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
+                        projectNavigator.createDocument()
+                    }
+                }),
+                UIAction(title: "3D Scene", state: .off, handler: { action in
+                })
+            ])
+            
+            if var topController = window?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                
+                if (topController is SplitViewController) {
+                    item.target = nil
+                    item.action = nil
+                }
+            }
+            
+            return item
         case .init("export"):
             let button = UIBarButtonItem()
             button.image = UIImage(systemName: "square.and.arrow.up")
@@ -114,25 +179,33 @@ extension SceneDelegate: NSToolbarDelegate {
             
             let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
             item.label = "Export"
-//            let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
-//            item.itemMenu = UIMenu(title: "Export Options", identifier: .init("exportOptions"), children: [
-//                UIAction(title: "4k", identifier: .init("export4k"), handler: { action in
-//                    self.export()
-//                }),
-//                UIAction(title: "2k", identifier: .init("export4k"), handler: { action in
-//                    self.export()
-//                }),
-//                UIAction(title: "1080p", identifier: .init("export4k"), handler: { action in
-//                    self.export()
-//                }),
-//                UIAction(title: "720p", identifier: .init("export4k"), handler: { action in
-//                    self.export()
-//                })
-//            ])
+            
+            if var topController = window?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                
+                if !(topController is SplitViewController) {
+                    item.target = nil
+                    item.action = nil
+                }
+            } else {
+                item.target = nil
+                item.action = nil
+            }
             
             return item
         default:
             return NSToolbarItem(itemIdentifier: itemIdentifier)
+        }
+    }
+    
+    func updateToolbar() {
+        guard let toolbar = window?.windowScene?.titlebar?.toolbar else { return }
+        for i in 0..<toolbar.items.count {
+            let item = toolbar.items[i]
+            toolbar.removeItem(at: i)
+            toolbar.insertItem(withItemIdentifier: item.itemIdentifier, at: i)
         }
     }
 }

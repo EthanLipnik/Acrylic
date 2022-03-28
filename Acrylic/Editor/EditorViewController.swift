@@ -29,26 +29,24 @@ class EditorViewController: UIViewController {
         return view
     }()
     
-    lazy var backgroundView: SBAVisualEffectView = {
-        let view = SBAVisualEffectView(blurStyle: .systemUltraThinMaterial)
-        
-        view.frame = self.view.bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        return view
-    }()
-    
     lazy var grabbersView: GrabbersView = {
-        let view = GrabbersView()
+        let view = GrabbersView(meshService)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
-    lazy var meshService: MeshService! = {
-        (view.window?.windowScene?.delegate as? SceneDelegate)?.meshService
-    }()
+    var meshService: MeshService = .init()
+    
+    init(_ meshService: MeshService) {
+        self.meshService = meshService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -59,9 +57,6 @@ class EditorViewController: UIViewController {
         
         view.backgroundColor = UIColor.systemBackground
         
-#if targetEnvironment(macCatalyst)
-        view.addSubview(backgroundView)
-#endif
         view.addSubview(meshView)
         meshView.addSubview(grabbersView)
         
@@ -77,10 +72,6 @@ class EditorViewController: UIViewController {
             grabbersView.bottomAnchor.constraint(equalTo: meshView.bottomAnchor),
             grabbersView.topAnchor.constraint(equalTo: meshView.topAnchor)
         ])
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         meshService.$colors
             .sink { [weak self] colors in
@@ -109,10 +100,19 @@ class EditorViewController: UIViewController {
                 self?.grabbersView.subviews.forEach({ ($0 as? GrabbersView.GrabberView)?.updateSelection(point) })
             }
             .store(in: &cancellables)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if meshService.colors.isEmpty {
-            meshService.generate(pallete: .randomPalette(), shouldRandomizePointLocations: false)
-        }
+        meshView.create(meshService.colors,
+                        width: meshService.width,
+                        height: meshService.height,
+                        subdivisions: meshService.subdivsions)
+        
+        grabbersView.setPoints(meshService.colors,
+                               width: meshService.width,
+                               height: meshService.height)
     }
     
     override func viewWillLayoutSubviews() {
@@ -123,12 +123,14 @@ class EditorViewController: UIViewController {
 }
 
 struct EditorView: UIViewControllerRepresentable {
+    @EnvironmentObject var meshService: MeshService
+    
     func makeUIViewController(context: Context) -> EditorViewController {
-        return .init()
+        return .init(meshService)
     }
     
     func updateUIViewController(_ uiViewController: EditorViewController, context: Context) {
-        
+        uiViewController.meshService = meshService
     }
 }
 
@@ -137,8 +139,11 @@ class GrabbersView: UIView {
     private(set) var width: Int = 0
     private(set) var height: Int = 0
     
-    init() {
+    var meshService: MeshService = .init()
+    
+    init(_ meshService: MeshService = .init()) {
         super.init(frame: .zero)
+        self.meshService = meshService
         
         setup()
     }
@@ -159,11 +164,7 @@ class GrabbersView: UIView {
     }
     
     @objc func deselectGrabbers() {
-        if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
-            let meshService = sceneDelegate.meshService
-            
-            meshService.selectedPoint = nil
-        }
+        meshService.selectedPoint = nil
     }
     
     func setPoints(_ colors: [MeshNode.Color], width: Int, height: Int) {
@@ -175,11 +176,8 @@ class GrabbersView: UIView {
         colors.forEach { color in
             if let grabber = (subviews as? [GrabberView])?.first(where: { $0.node.point == color.point }) {
                 grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height))
-                if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
-                    let meshService = sceneDelegate.meshService
-                    
-                    grabber.updateSelection(meshService.selectedPoint)
-                }
+                
+                grabber.updateSelection(meshService.selectedPoint)
                 
                 updatedGrabbers.insert(grabber)
             } else {
@@ -198,7 +196,7 @@ class GrabbersView: UIView {
     }
     
     final func createGrabber(_ node: MeshNode.Color) -> GrabberView {
-        let view = GrabberView(node, meshSize: CGSize(width: width, height: height), parentSize: bounds.size)
+        let view = GrabberView(node, meshSize: CGSize(width: width, height: height), parentSize: bounds.size, meshService: meshService)
         view.translatesAutoresizingMaskIntoConstraints = true
         
         let pointerInteraction = UIPointerInteraction(delegate: self)
@@ -213,10 +211,9 @@ class GrabbersView: UIView {
     }
     
     @objc func updateGesture(_ recognizer: UIPanGestureRecognizer) {
-        guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }),
-              let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate else { return }
+        guard let grabberView = (subviews as? [GrabberView])?.first(where: { $0.node == (recognizer.view as? GrabberView)?.node }) else { return }
         
-        let meshService = sceneDelegate.meshService
+        let meshService = meshService
         
         if recognizer.state == .began {
             meshService.selectedPoint = .init(x: grabberView.node.point.x, y: grabberView.node.point.y)
@@ -232,12 +229,8 @@ class GrabbersView: UIView {
         let x = min(width, max(0, location.x / (bounds.width / width)))
         let y = height - min(height, max(0, location.y / (bounds.height / height)))
         
-        if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
-            let meshService = sceneDelegate.meshService
-            
-            if let index = meshService.colors.firstIndex(where: { $0.point == grabberView.node.point }) {
-                meshService.colors[index].location = (Float(x), Float(y))
-            }
+        if let index = meshService.colors.firstIndex(where: { $0.point == grabberView.node.point }) {
+            meshService.colors[index].location = (Float(x), Float(y))
         }
     }
     
@@ -245,10 +238,14 @@ class GrabbersView: UIView {
         var node: MeshNode.Color
         var meshSize: CGSize
         
-        init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil) {
+        var meshService: MeshService = .init()
+        
+        init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil, meshService: MeshService = .init()) {
             self.node = node
             self.meshSize = meshSize
             super.init(frame: .init(origin: .zero, size: .init(width: 40, height: 40)))
+            self.meshService = meshService
+            
             setup(meshSize: meshSize, parentSize: parentSize)
         }
         
@@ -282,11 +279,7 @@ class GrabbersView: UIView {
         }
         
         @objc func selectNode() {
-            if let sceneDelegate = window?.windowScene?.delegate as? SceneDelegate {
-                let meshService = sceneDelegate.meshService
-                
-                meshService.selectedPoint = .init(x: node.point.x, y: node.point.y)
-            }
+            meshService.selectedPoint = .init(x: node.point.x, y: node.point.y)
         }
         
         final func updateSelection(_ selectedPoint: MeshService.Point?) {

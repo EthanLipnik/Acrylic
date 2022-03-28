@@ -10,22 +10,25 @@ import MeshKit
 import UniformTypeIdentifiers
 
 struct OptionsView: View {
-    @StateObject var meshService: MeshService = {
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-            return sceneDelegate.meshService
-        } else {
-            return .init()
-        }
-    }()
+    @EnvironmentObject var meshService: MeshService
+    
+    var closeAction: () -> Void
     
     var body: some View {
         Group {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 scrollView
                     .background(Color(.secondarySystemBackground).ignoresSafeArea())
-                    .navigationTitle("Acrylic")
+                    .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
                     .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Button {
+                                closeAction()
+                            } label: {
+                                Label("Done", systemImage: "xmark.circle.fill")
+                            }
+                        }
+                        
                         exportButton
                     }
             } else {
@@ -59,7 +62,7 @@ struct OptionsView: View {
     }
     
     func randomizeColors() {
-        meshService.generate(pallete: .randomPalette())
+        meshService.generate(Palette: .randomPalette())
     }
     
     var scrollView: some View {
@@ -80,7 +83,9 @@ struct OptionsView: View {
 
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        OptionsView()
+        OptionsView { // Close action
+            
+        }
     }
 }
 

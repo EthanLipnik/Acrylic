@@ -52,11 +52,11 @@ extension OptionsView {
                                 GeneratePaletteButton(title: "Rainbow", hue: .random)
                                 GeneratePaletteButton(title: "Random", hue: .randomPalette())
                             } primaryAction: {
-                                meshService.generate(pallete: .random)
+                                meshService.generate(Palette: .random)
                             }
                         } else {
                             Button("Randomize") {
-                                meshService.generate(pallete: .random)
+                                meshService.generate(Palette: .random)
                             }
                         }
                         
@@ -99,19 +99,19 @@ extension OptionsView {
         private func GeneratePaletteButton(title: String, hue: Hue) -> some View {
             Menu(title) {
                 Button("Default") {
-                    meshService.generate(pallete: hue, shouldRandomizePointLocations: false)
+                    meshService.generate(Palette: hue, shouldRandomizePointLocations: false)
                 }.keyboardShortcut(.defaultAction)
                 
                 Button("Light") {
-                    meshService.generate(pallete: hue, luminosity: .light, shouldRandomizePointLocations: false)
+                    meshService.generate(Palette: hue, luminosity: .light, shouldRandomizePointLocations: false)
                 }
                 
                 Button("Dark") {
-                    meshService.generate(pallete: hue, luminosity: .dark, shouldRandomizePointLocations: false)
+                    meshService.generate(Palette: hue, luminosity: .dark, shouldRandomizePointLocations: false)
                 }
                 
                 Button("Random") {
-                    meshService.generate(pallete: hue, luminosity: .random, shouldRandomizePointLocations: false)
+                    meshService.generate(Palette: hue, luminosity: .random, shouldRandomizePointLocations: false)
                 }
             }
         }

@@ -7,14 +7,28 @@
 
 import UIKit
 import CoreData
+import UniformTypeIdentifiers
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    static var documentsFolder: URL = {
+        return FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if !FileManager.default.fileExists(atPath: Self.documentsFolder.path) {
+            do {
+                try FileManager.default.createDirectory(at: Self.documentsFolder, withIntermediateDirectories: true)
+            } catch {
+                print(error)
+            }
+        }
+        
+        print(Self.documentsFolder.path)
+        
         return true
     }
 

@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct CompactView: View {
-    @StateObject var meshService: MeshService = {
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-            return sceneDelegate.meshService
-        } else {
-            return .init()
-        }
-    }()
+    @EnvironmentObject var meshService: MeshService
     
     @State private var isShowingColorsView: Bool = false
     @State private var isShowingViewportView: Bool = false
     @State private var isShowingDetailView: Bool = false
     
     @Namespace var nspace
+    
+    var closeAction: () -> Void
     
     var body: some View {
         ZStack {
@@ -167,11 +162,21 @@ struct CompactView: View {
                 }
             }.padding()
         }
+        .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    closeAction()
+                } label: {
+                    Label("Done", systemImage: "xmark.circle.fill")
+                }
+            }
+        }
     }
 }
 
 struct CompactView_Previews: PreviewProvider {
     static var previews: some View {
-        CompactView()
+        CompactView {}
     }
 }

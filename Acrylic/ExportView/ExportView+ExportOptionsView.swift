@@ -50,6 +50,7 @@ extension ExportView {
                         }
                     }
                     .keyboardShortcut(.defaultAction)
+#if targetEnvironment(macCatalyst)
                     .fileExporter(isPresented: $isExportingImage, document: imageDocument, contentType: exportService.format.type) { result in
                         switch result {
                         case .success(let url):
@@ -60,6 +61,14 @@ extension ExportView {
                             print(error)
                         }
                     }
+#else
+                    .sheet(isPresented: $isExportingImage) {
+                        ShareSheet(activityItems: [UIImage(data: imageDocument?.imageData ?? Data()) ?? UIImage()])
+                            .onAppear {
+                                print(UIImage(data: imageDocument!.imageData)!)
+                            }
+                    }
+#endif
                 }
             }
         }

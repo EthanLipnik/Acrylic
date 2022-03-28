@@ -14,19 +14,21 @@
 		AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */; };
 		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA16D65227EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* OptionsView+Selection.swift */; };
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */; };
+		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
+		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
+		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
+		AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2B0C7327F10C2C00868869 /* CloudKit.framework */; };
+		AA2B0C7627F111C600868869 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
-		AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBAB27262E4500593894 /* CompactViewController.swift */; };
 		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
 		AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBB827263E3A00593894 /* IntentHandler.swift */; };
 		AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
 		AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
-		AA45EBC72726419700593894 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA45EBC9272641A100593894 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA45EBC8272641A100593894 /* MeshKit */; };
 		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
@@ -41,8 +43,6 @@
 		AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* CompactView.swift */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA6894E72725016E00A2FE51 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* OptionsView.swift */; };
-		AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E8272501C400A2FE51 /* OptionsViewController.swift */; };
-		AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */; };
 		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
 		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
 		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
@@ -51,6 +51,8 @@
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
+		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
+		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
@@ -105,8 +107,11 @@
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* OptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* OptionsView+Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+Viewport.swift"; sourceTree = "<group>"; };
+		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
+		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		AA45EBAB27262E4500593894 /* CompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactViewController.swift; sourceTree = "<group>"; };
 		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA45EBB527263E3A00593894 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		AA45EBB827263E3A00593894 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -131,14 +136,14 @@
 		AA6654F82728E9E6006A5237 /* CompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactView.swift; sourceTree = "<group>"; };
 		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
 		AA6894E62725016E00A2FE51 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
-		AA6894E8272501C400A2FE51 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
-		AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBAVisualEffectView.swift; sourceTree = "<group>"; };
 		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
 		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
+		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA90909127EF92790052EB34 /* Blackbird in Frameworks */,
+				AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */,
 				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
 				AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */,
 			);
@@ -208,9 +214,21 @@
 			path = OptionsView;
 			sourceTree = "<group>";
 		};
+		AA2B0C6A27F0FB9600868869 /* Project Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */,
+				AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */,
+				AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */,
+				AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */,
+			);
+			path = "Project Navigator";
+			sourceTree = "<group>";
+		};
 		AA35D982272498D3000BB333 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA2B0C7327F10C2C00868869 /* CloudKit.framework */,
 				AA45EBB527263E3A00593894 /* Intents.framework */,
 			);
 			name = Frameworks;
@@ -258,18 +276,13 @@
 				AA517571272483DD00C25576 /* Acrylic.entitlements */,
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
-				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
-				AA6654FA2728E9E9006A5237 /* CompactView */,
-				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
-				AA6894E8272501C400A2FE51 /* OptionsViewController.swift */,
+				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
+				AAD7239227F0F3BC00198144 /* Services */,
+				AAD7239027F0F39200198144 /* Files */,
+				AAD7239127F0F39C00198144 /* Editor */,
 				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
-				AA1A5C222725F957006932FE /* OptionsView */,
-				AA517542272483CE00C25576 /* EditorViewController.swift */,
-				AA6894EA2725061500A2FE51 /* SBAVisualEffectView.swift */,
-				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
-				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
-				AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */,
 				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
+				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
 				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
@@ -296,15 +309,6 @@
 			path = AcrylicUITests;
 			sourceTree = "<group>";
 		};
-		AA6654FA2728E9E9006A5237 /* CompactView */ = {
-			isa = PBXGroup;
-			children = (
-				AA45EBAB27262E4500593894 /* CompactViewController.swift */,
-				AA6654F82728E9E6006A5237 /* CompactView.swift */,
-			);
-			path = CompactView;
-			sourceTree = "<group>";
-		};
 		AAB8853427E95A3300B43BC5 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +316,35 @@
 				AA90908F27EF90C80052EB34 /* Blackbird */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		AAD7239027F0F39200198144 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA2B0C7127F103A000868869 /* MeshDocument.swift */,
+				AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */,
+				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		AAD7239127F0F39C00198144 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				AA517542272483CE00C25576 /* EditorViewController.swift */,
+				AA6654F82728E9E6006A5237 /* CompactView.swift */,
+				AAF561782724D83600C7CED4 /* SplitViewController.swift */,
+				AA1A5C222725F957006932FE /* OptionsView */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		AAD7239227F0F3BC00198144 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,9 +521,8 @@
 			files = (
 				AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */,
 				AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */,
-				AA45EBC72726419700593894 /* MeshService.swift in Sources */,
+				AA2B0C7627F111C600868869 /* MeshService.swift in Sources */,
 				AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */,
-				AA16D65227EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,13 +533,14 @@
 				AAF561792724D83600C7CED4 /* SplitViewController.swift in Sources */,
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
+				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
+				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* OptionsView+Viewport.swift in Sources */,
-				AA6894E9272501C400A2FE51 /* OptionsViewController.swift in Sources */,
-				AA6894EB2725061500A2FE51 /* SBAVisualEffectView.swift in Sources */,
 				AA1A5C242725F973006932FE /* OptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* EditorViewController.swift in Sources */,
+				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA6654F92728E9E6006A5237 /* CompactView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
@@ -519,13 +552,14 @@
 				AA0AD66327EEB671009F822D /* ExportService.swift in Sources */,
 				AA1A5C282725F9BE006932FE /* OptionsView+Detail.swift in Sources */,
 				AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */,
-				AA45EBAC27262E4500593894 /* CompactViewController.swift in Sources */,
+				AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */,
 				AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
 				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
+				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,
 				AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +636,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SIRI";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -631,6 +666,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SIRI;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

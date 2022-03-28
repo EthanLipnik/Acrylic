@@ -61,7 +61,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             let meshService = MeshService()
             meshService.width = intent.width?.intValue ?? 3
             meshService.height = intent.height?.intValue ?? 3
-            meshService.generate(pallete: .hue(from: intent.colorPalette),
+            meshService.generate(Palette: .hue(from: intent.colorPalette),
                                  luminosity: .luminosity(from: intent.luminosity),
                                  positionMultiplier: intent.positionMultiplier?.floatValue ?? 0.6)
             

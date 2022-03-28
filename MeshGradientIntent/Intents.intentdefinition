@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>INEnumDisplayName</key>
-			<string>Color Pallete</string>
+			<string>Color Palette</string>
 			<key>INEnumDisplayNameID</key>
 			<string>HxIUFr</string>
 			<key>INEnumGeneratesHeader</key>

@@ -20,6 +20,48 @@ class MeshService: ObservableObject {
     @Published var selectedPoint: Point? = nil
     @Published var isExporting: Bool = false
     
+    private var cancellables: Set<AnyCancellable> = []
+    
+#if !SIRI
+    var meshDocument: MeshDocument? = nil
+    
+    init(_ document: MeshDocument? = nil) {
+        self.meshDocument = document
+        
+        if let document = document {
+            self.colors = document.colors
+            self.width = document.width
+            self.height = document.height
+            self.subdivsions = document.subdivisions
+            
+            objectWillChange
+                .debounce(for: .seconds(1), scheduler: DispatchQueue.global(qos: .background))
+                .sink { [weak self] object in
+                    guard let self = self else { return }
+                    self.meshDocument?.colors = self.colors
+                    self.meshDocument?.subdivisions = self.subdivsions
+                    self.meshDocument?.width = self.width
+                    self.meshDocument?.height = self.height
+                    
+                    self.saveDocument()
+                }
+                .store(in: &cancellables)
+        }
+    }
+    
+    func saveDocument() {
+        if let fileUrl = meshDocument?.fileURL {
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
+                self?.meshDocument?.previewImage = previewImage
+                self?.meshDocument?.save(to: fileUrl, for: .forOverwriting)
+                
+                print("🟢 Saved mesh document")
+            }
+        }
+    }
+#endif
+    
     struct Point: Equatable {
         var x: Int
         var y: Int
@@ -36,10 +78,24 @@ class MeshService: ObservableObject {
         return scene.generate(size: resolution)
     }
     
-    func generate(pallete hues: RandomColor.Hue...,
+    func generate(Palette hues: RandomColor.Hue...,
                   luminosity: RandomColor.Luminosity = .bright,
                   shouldRandomizePointLocations: Bool = true,
                   positionMultiplier: Float = 0.6) {
+        self.colors = Self.generateColors(palette: hues,
+                            luminosity: luminosity,
+                            width: width,
+                            height: height,
+                            shouldRandomizePointLocations: shouldRandomizePointLocations,
+                            positionMultiplier: positionMultiplier)
+    }
+    
+    static func generateColors(palette hues: [RandomColor.Hue],
+                               luminosity: RandomColor.Luminosity = .bright,
+                               width: Int = 3,
+                               height: Int = 3,
+                               shouldRandomizePointLocations: Bool = true,
+                               positionMultiplier: Float = 0.6) -> [MeshNode.Color] {
         var colors: [MeshNode.Color] = []
         
         let newColors: [UIColor] = hues.flatMap({ randomColors(count: Int(ceil(Float(width * height) / Float(hues.count))), hue: $0, luminosity: luminosity) })
@@ -68,7 +124,7 @@ class MeshService: ObservableObject {
             }
         }
         
-        self.colors = colors
+        return colors
     }
     
     func randomizePositions(positionMultiplier: Float = 0.6) {

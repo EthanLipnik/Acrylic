@@ -97,10 +97,15 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             cell.doubleClickAction = { [weak self] in
                 self?.openDocument(document)
             }
-            cell.singleClickAction = {
-                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
-            }
 #endif
+            
+            cell.singleClickAction = { [weak self] in
+#if !targetEnvironment(macCatalyst)
+                self?.openDocument(document)
+#else
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+#endif
+            }
             
             return cell
         }
@@ -231,14 +236,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Did select", isDragSelecting)
-        
-#if !targetEnvironment(macCatalyst)
-        guard !isDragSelecting else { return }
-        
-        guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
-        openDocument(document)
-#endif
     }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
@@ -254,18 +251,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        isDragSelecting = true
         return true
-    }
-    
-    var isDragSelecting: Bool = false
-    
-    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-        isDragSelecting = true
-    }
-    
-    func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
-        isDragSelecting = false
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

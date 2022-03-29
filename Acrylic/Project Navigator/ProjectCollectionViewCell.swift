@@ -80,10 +80,10 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     
 #if targetEnvironment(macCatalyst)
     var doubleClickAction: () -> Void = {}
-    var singleClickAction: () -> Void = {}
     @objc func doubleClick() { doubleClickAction() }
-    @objc func singleClick() { singleClickAction() }
 #endif
+    var singleClickAction: () -> Void = {}
+    @objc func singleClick() { singleClickAction() }
     
     override var isSelected: Bool {
         didSet {
@@ -134,12 +134,12 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
         doubleClickGesture.numberOfTapsRequired = 2
         doubleClickGesture.delegate = self
         addGestureRecognizer(doubleClickGesture)
+#endif
         
         let singleClickGesture = UITapGestureRecognizer(target: self, action: #selector(singleClick))
         singleClickGesture.numberOfTapsRequired = 1
         singleClickGesture.delegate = self
         addGestureRecognizer(singleClickGesture)
-#endif
     }
     
     override func prepareForReuse() {

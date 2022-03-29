@@ -37,14 +37,12 @@ class MeshEditorViewController: UISplitViewController, UISplitViewControllerDele
             self?.dismiss(animated: true)
         }.environmentObject(meshService))), for: .compact)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .done)
-        
         delegate = self
     }
     
-    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
-        svc.presentsWithGesture = displayMode != .oneBesideSecondary
-    }
+//    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+//        svc.presentsWithGesture = displayMode != .oneBesideSecondary
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

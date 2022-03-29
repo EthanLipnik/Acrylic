@@ -20,7 +20,7 @@ extension ExportView {
                 HStack {
                     Text("Blur:")
                         .frame(width: 90, alignment: .leading)
-                    Slider(value: $exportService.blur, in: 0...200) {
+                    Slider(value: $exportService.blur, in: 0...100) {
                         Text("")
                     }.labelsHidden()
                 }

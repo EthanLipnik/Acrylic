@@ -61,6 +61,7 @@
 		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
 		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
 		AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785927EE6E08007C3AE4 /* BlurViews.swift */; };
+		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
 		AA90909127EF92790052EB34 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA90909027EF92790052EB34 /* Blackbird */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
@@ -181,6 +182,7 @@
 		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
 		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
+		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
@@ -398,6 +400,24 @@
 			path = AcrylicUITests;
 			sourceTree = "<group>";
 		};
+		AA85DD9027F33EFF00ABEF12 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */,
+				AA517542272483CE00C25576 /* MeshViewController.swift */,
+				AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */,
+				AA1A5C222725F957006932FE /* OptionsView */,
+			);
+			path = Mesh;
+			sourceTree = "<group>";
+		};
+		AA85DD9127F33F0400ABEF12 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		AAB8853427E95A3300B43BC5 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,10 +441,9 @@
 		AAD7239127F0F39C00198144 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
-				AA517542272483CE00C25576 /* MeshViewController.swift */,
-				AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */,
-				AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */,
-				AA1A5C222725F957006932FE /* OptionsView */,
+				AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */,
+				AA85DD9027F33EFF00ABEF12 /* Mesh */,
+				AA85DD9127F33F0400ABEF12 /* Scene */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -709,6 +728,7 @@
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
+				AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */,
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,

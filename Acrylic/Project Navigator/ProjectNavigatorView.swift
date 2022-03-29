@@ -50,7 +50,7 @@ class ProjectNavigatorView: UIView {
         collectionView.register(ProjectCollectionViewCell.self, forCellWithReuseIdentifier: ProjectCollectionViewCell.reuseIdentifer)
         collectionView.register(ProjectHeaderCollectionReusableView.self, forSupplementaryViewOfKind: ProjectHeaderCollectionReusableView.reuseIdentifer, withReuseIdentifier: ProjectHeaderCollectionReusableView.reuseIdentifer)
         
-        if #available(iOS 15.0, macCatalyst 15.0, *) {
+        if #available(iOS 15.0, macOS 12.0, *) {
             collectionView.allowsFocus = UIDevice.current.userInterfaceIdiom != .phone
             collectionView.selectionFollowsFocus = UIDevice.current.userInterfaceIdiom != .phone
         }

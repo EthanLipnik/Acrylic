@@ -23,7 +23,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         do {
             let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
                 .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ $0.pathExtension == "amgf" })
+                .filter({ $0.pathExtension == "amgf" || $0.lastPathComponent.hasSuffix("amgf.icloud") })
                 .map({ MeshDocument(fileURL: $0) })
             
             return documents.map({ Document.mesh($0) })
@@ -37,7 +37,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         do {
             let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
                 .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ $0.pathExtension == "ausf" })
+                .filter({ $0.pathExtension == "ausf" || $0.lastPathComponent.hasSuffix("ausf.icloud") })
                 .map({ SceneDocument(fileURL: $0) })
             
             return documents.map({ Document.scene($0) })
@@ -161,6 +161,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         snapshot.appendItems(meshDocuments, toSection: .mesh)
         snapshot.appendItems(sceneDocuments, toSection: .scene)
         
+        print(sceneDocuments)
+        
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
@@ -184,6 +186,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                         }
 #endif
                     }
+                } else {
+                    print("Failed to open")
                 }
             }
         default:
@@ -227,26 +231,41 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Did select", isDragSelecting)
+        
 #if !targetEnvironment(macCatalyst)
+        guard !isDragSelecting else { return }
+        
         guard let document = dataSource.itemIdentifier(for: indexPath) else { return }
         openDocument(document)
 #endif
     }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        return UIDevice.current.userInterfaceIdiom != .phone
+        return true
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
-        return UIDevice.current.userInterfaceIdiom != .phone
+        return true
     }
     
     func collectionView(_ collectionView: UICollectionView, selectionFollowsFocusForItemAt indexPath: IndexPath) -> Bool {
-        return UIDevice.current.userInterfaceIdiom != .phone
+        return true
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        return UIDevice.current.userInterfaceIdiom != .phone
+        isDragSelecting = true
+        return true
+    }
+    
+    var isDragSelecting: Bool = false
+    
+    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        isDragSelecting = true
+    }
+    
+    func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
+        isDragSelecting = false
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

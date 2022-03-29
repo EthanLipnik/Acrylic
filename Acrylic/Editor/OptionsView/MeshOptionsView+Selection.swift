@@ -40,28 +40,35 @@ extension MeshOptionsView {
                             .hoverEffect()
 #endif
                         Spacer()
-                        if #available(iOS 15.0, macOS 15.0, *) {
-                            Menu("New Palette") {
-                                GeneratePaletteButton(title: "Blue", hue: .blue)
-                                GeneratePaletteButton(title: "Green", hue: .green)
-                                GeneratePaletteButton(title: "Red", hue: .red)
-                                GeneratePaletteButton(title: "Orange", hue: .orange)
-                                GeneratePaletteButton(title: "Pink", hue: .pink)
-                                GeneratePaletteButton(title: "Purple", hue: .purple)
-                                GeneratePaletteButton(title: "Monochrome", hue: .monochrome)
-                                GeneratePaletteButton(title: "Rainbow", hue: .random)
-                                GeneratePaletteButton(title: "Random", hue: .randomPalette())
-                            } primaryAction: {
-                                meshService.generate(Palette: .random)
-                            }
-                        } else {
-                            Button("Randomize") {
-                                meshService.generate(Palette: .random)
-                            }
+                        
+                        Menu {
+                            GeneratePaletteButton(title: "Blue", hue: .blue)
+                            GeneratePaletteButton(title: "Green", hue: .green)
+                            GeneratePaletteButton(title: "Red", hue: .red)
+                            GeneratePaletteButton(title: "Orange", hue: .orange)
+                            GeneratePaletteButton(title: "Pink", hue: .pink)
+                            GeneratePaletteButton(title: "Purple", hue: .purple)
+                            GeneratePaletteButton(title: "Monochrome", hue: .monochrome)
+                            GeneratePaletteButton(title: "Rainbow", hue: .random)
+                            GeneratePaletteButton(title: "Random", hue: .randomPalette())
+                        } label: {
+                            Image(systemName: "paintpalette")
+                        }
+                        .menuStyle(.borderlessButton)
+#if targetEnvironment(macCatalyst)
+                        .foregroundColor(.secondary)
+#endif
+
+                        Button {
+                            meshService.randomizePositions()
+                        } label: {
+                            Image(systemName: "circle.grid.cross")
                         }
                         
-                        Button("Randomize") {
-                            meshService.randomizePositions()
+                        Button {
+                            meshService.generate(Palette: .randomPalette(), luminosity: .bright, shouldRandomizePointLocations: true)
+                        } label: {
+                            Image(systemName: "shuffle.circle")
                         }
                     }
                 }

@@ -8,8 +8,11 @@
 import UIKit
 
 class SceneEditorViewController: EditorViewController<SceneDocument> {
-
+    
+    var sceneService: SceneService
+    
     init(_ document: SceneDocument) {
+        self.sceneService = .init(document)
         super.init(document, viewControllers: [:])
         
 //        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshOptionsView { [weak self] in

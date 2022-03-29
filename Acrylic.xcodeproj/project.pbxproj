@@ -64,6 +64,8 @@
 		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
 		AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */; };
 		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
+		AA85DD9B27F341EC00ABEF12 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */; };
+		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
 		AA90909127EF92790052EB34 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA90909027EF92790052EB34 /* Blackbird */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
@@ -187,6 +189,8 @@
 		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorViewController.swift; sourceTree = "<group>"; };
 		AA85DD9827F3415C00ABEF12 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
+		AA85DD9C27F3422000ABEF12 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
+				AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
+				AA85DD9C27F3422000ABEF12 /* SceneService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
+				AA85DD9B27F341EC00ABEF12 /* SceneViewController.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
 				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
@@ -763,6 +770,7 @@
 				AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
+				AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */,
 				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,
 				AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */,
 			);

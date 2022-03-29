@@ -17,7 +17,7 @@
 		AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */; };
 		AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
-		AA1A5C2A2725FA46006932FE /* Mesht.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* Mesht.swift */; };
+		AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */; };
 		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
 		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
 		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
@@ -28,7 +28,6 @@
 		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
 		AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */; };
 		AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA42DDD027F1F1F6003ECF74 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDCF27F1F1F6003ECF74 /* MeshKit */; };
 		AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDD127F1F1F6003ECF74 /* RandomColor */; };
 		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
@@ -42,6 +41,9 @@
 		AA4BBDDE27F2962C00B45FA6 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */; };
 		AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */; };
 		AA4BBDE527F2962C00B45FA6 /* ThumbnailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA4BBDEA27F2991D00B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
+		AA4BBDEC27F2992500B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
+		AA4BBDED27F2992500B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* MeshViewController.swift */; };
@@ -134,7 +136,7 @@
 		AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Selection.swift"; sourceTree = "<group>"; };
 		AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
-		AA1A5C292725FA46006932FE /* Mesht.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesht.swift; sourceTree = "<group>"; };
+		AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+ViewportView.swift"; sourceTree = "<group>"; };
 		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
@@ -266,7 +268,7 @@
 				AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */,
 				AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */,
 				AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */,
-				AA1A5C292725FA46006932FE /* Mesht.swift */,
+				AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */,
 				AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */,
 			);
 			path = OptionsView;
@@ -668,8 +670,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */,
+				AA4BBDED27F2992500B45FA6 /* UIImage+Additions.swift in Sources */,
 				AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */,
-				AA42DDCD27F1F1E6003ECF74 /* UIImage+Additions.swift in Sources */,
 				AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +684,7 @@
 				AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */,
 				AA2B0C7627F111C600868869 /* MeshService.swift in Sources */,
 				AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */,
+				AA4BBDEA27F2991D00B45FA6 /* UIImage+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +693,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */,
+				AA4BBDEC27F2992500B45FA6 /* UIImage+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +708,7 @@
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
-				AA1A5C2A2725FA46006932FE /* Mesht.swift in Sources */,
+				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
 				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
 				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
@@ -802,7 +806,7 @@
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -830,7 +834,7 @@
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

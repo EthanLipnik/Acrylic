@@ -31,7 +31,7 @@ class PreviewViewController: UIViewController, QLPreviewingController {
         // Call the completion handler so Quick Look knows that the preview is fully loaded.
         // Quick Look will display a loading spinner while the completion handler is not called.
         switch url.pathExtension {
-        case "ausf":
+        case "ausf", "amgf":
             handler(nil)
         default:
             handler(CocoaError(.fileReadUnknown))

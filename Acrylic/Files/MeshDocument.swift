@@ -24,28 +24,19 @@ class MeshDocument: UIDocument {
     var height: Int = 3
     var subdivisions: Int = 18
     
-    var previewImage: UIImage? = nil
+    var previewImage: Data? = nil
     
-    private struct JSONModel: Codable {
+    private struct MeshDescriptorModel: Codable {
         var colors: [MeshNode.Color]
         var width: Int
         var height: Int
         var subdivisions: Int
-        var previewImage: String? = nil
         
         init(_ document: MeshDocument) {
             self.colors = document.colors
             self.width = document.width
             self.height = document.height
             self.subdivisions = document.subdivisions
-            
-            if let previewImage = try? document.previewImage?.heicData(compressionQuality: 0.8) as? NSData {
-                do {
-                    self.previewImage = try previewImage.compressed(using: .zlib).base64EncodedString()
-                } catch {
-                    print(error)
-                }
-            }
         }
     }
     
@@ -69,25 +60,37 @@ class MeshDocument: UIDocument {
     }
     
     override func contents(forType typeName: String) throws -> Any {
-        // Encode your document with an instance of NSData or NSFileWrapper
-        return try JSONEncoder().encode(JSONModel(self))
+        let meshDescriptor = MeshDescriptorModel(self)
+        let meshDescriptorJSON = try JSONEncoder().encode(meshDescriptor)
+        let compressedmeshDescriptor = try (meshDescriptorJSON as NSData).compressed(using: .zlib)
+        let meshDescriptorFile = FileWrapper(regularFileWithContents: compressedmeshDescriptor as Data)
+        meshDescriptorFile.preferredFilename = "MeshDescriptor"
+        
+        var fileWrappers: [String: FileWrapper] = ["MeshDescriptor": meshDescriptorFile]
+        
+        if let previewImage = previewImage {
+            let previewImageFile = FileWrapper(regularFileWithContents: previewImage)
+            fileWrappers["PreviewImage.heic"] = previewImageFile
+        }
+        return FileWrapper(directoryWithFileWrappers: fileWrappers)
     }
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
-        // Load your document from contents
-        guard let data = contents as? Data else { throw CocoaError(.fileReadUnknownStringEncoding) }
-        
-        let model = try JSONDecoder().decode(JSONModel.self, from: data)
-        self.colors = model.colors
-        self.width = model.width
-        self.height = model.height
-        self.subdivisions = model.subdivisions
-        
-        if let base64 = model.previewImage,
-           let data = NSData(base64Encoded: base64),
-           let decompressedData = try? data.decompressed(using: .zlib),
-           let image = UIImage(data: decompressedData as Data) {
-            self.previewImage = image
+        guard let topFileWrapper = contents as? FileWrapper,
+              let compressedMeshDescriptor = topFileWrapper.fileWrappers?["MeshDescriptor"]?.regularFileContents as? NSData else {
+            return
         }
+        
+        let decompressedMeshDescriptor = try compressedMeshDescriptor.decompressed(using: .zlib) as Data
+        let meshDescriptor = try JSONDecoder().decode(MeshDescriptorModel.self, from: decompressedMeshDescriptor)
+        
+        self.colors = meshDescriptor.colors
+        self.width = meshDescriptor.width
+        self.height = meshDescriptor.height
+        self.subdivisions = meshDescriptor.subdivisions
+        
+        print(meshDescriptor)
+        
+        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage.heic"]?.regularFileContents
     }
 }

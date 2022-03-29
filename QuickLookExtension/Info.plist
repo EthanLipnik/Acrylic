@@ -11,6 +11,7 @@
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>com.acrylic.scene</string>
+				<string>com.acrylic.mesh-gradient</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

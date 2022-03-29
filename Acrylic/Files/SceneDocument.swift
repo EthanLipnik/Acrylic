@@ -231,7 +231,7 @@ class SceneDocument: UIDocument {
         
         if let previewImage = previewImage {
             let previewImageFile = FileWrapper(regularFileWithContents: previewImage)
-            fileWrappers["PreviewImage"] = previewImageFile
+            fileWrappers["PreviewImage.heic"] = previewImageFile
         }
         return FileWrapper(directoryWithFileWrappers: fileWrappers)
     }

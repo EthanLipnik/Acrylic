@@ -13,12 +13,12 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     
     var document: ProjectNavigatorViewController.Document? = nil {
         didSet {
-            switch document {
-            case .mesh(let document):
-                self.imageView.image = document.previewImage
-            default:
-                break
+            guard let document = document, let fileUrl = document.fileUrl else {
+                
+                self.imageView.image = nil
+                return
             }
+            self.imageView.image = UIImage(contentsOfFile: fileUrl.appendingPathComponent("PreviewImage.heic").path)
         }
     }
     

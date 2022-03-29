@@ -52,8 +52,12 @@ class MeshService: ObservableObject {
     func saveDocument() {
         if let fileUrl = meshDocument?.fileURL {
             DispatchQueue.global(qos: .background).async { [weak self] in
-                let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
-                self?.meshDocument?.previewImage = previewImage
+                do {
+                    let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
+                    self?.meshDocument?.previewImage = try previewImage?.heicData(compressionQuality: 0.5)
+                } catch {
+                    print("Failed to render and save preview")
+                }
                 self?.meshDocument?.save(to: fileUrl, for: .forOverwriting)
                 
                 print("🟢 Saved mesh document")

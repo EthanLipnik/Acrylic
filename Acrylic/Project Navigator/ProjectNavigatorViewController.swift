@@ -19,11 +19,11 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         return view
     }()
     
-    lazy var meshDocuments: [Document] = {
+    var meshDocuments: [Document] {
         do {
             let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
                 .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ $0.pathExtension == "amg" })
+                .filter({ $0.pathExtension == "amgf" })
                 .map({ MeshDocument(fileURL: $0) })
             
             return documents.map({ Document.mesh($0) })
@@ -31,9 +31,9 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             print(error)
             return []
         }
-    }()
+    }
     
-    lazy var sceneDocuments: [Document] = {
+    var sceneDocuments: [Document] {
         do {
             let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
                 .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
@@ -45,7 +45,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             print(error)
             return []
         }
-    }()
+    }
     
     enum Section: CaseIterable {
         case mesh
@@ -134,7 +134,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        applySnapshot(loadDocuments: false)
+        applySnapshot()
         
         let newProjectButton = UIBarButtonItem(systemItem: .add)
         newProjectButton.menu = UIMenu(title: "New Project", image: UIImage(systemName: "add"), children: [
@@ -154,36 +154,14 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #endif
     }
     
-    func applySnapshot(loadDocuments: Bool = true) {
+    func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Document>()
         snapshot.appendSections([.mesh, .scene])
-        dataSource.apply(snapshot, animatingDifferences: true)
         
-        if loadDocuments {
-            meshDocuments.forEach { document in
-                if document.documentState == .normal {
-                    document.close()
-                }
-                document.open { [weak self] success in
-                    if success {
-                        snapshot.appendItems([document], toSection: .mesh)
-                        self?.dataSource.apply(snapshot, animatingDifferences: true)
-                    }
-                }
-            }
-            
-            sceneDocuments.forEach { document in
-                if document.documentState == .normal {
-                    document.close()
-                }
-                document.open { [weak self] success in
-                    if success {
-                        snapshot.appendItems([document], toSection: .scene)
-                        self?.dataSource.apply(snapshot, animatingDifferences: true)
-                    }
-                }
-            }
-        }
+        snapshot.appendItems(meshDocuments, toSection: .mesh)
+        snapshot.appendItems(sceneDocuments, toSection: .scene)
+        
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,19 +172,23 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     func openDocument(_ document: Document) {
         switch document {
         case .mesh(let meshDocument):
-            let editorViewController = MeshEditorViewController(meshDocument)
-            editorViewController.modalPresentationStyle = .fullScreen
-            present(editorViewController, animated: true)
+            meshDocument.open { [weak self] success in
+                if success {
+                    let editorViewController = MeshEditorViewController(meshDocument)
+                    editorViewController.modalPresentationStyle = .fullScreen
+                    self?.present(editorViewController, animated: true) {
+#if targetEnvironment(macCatalyst)
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                            sceneDelegate.updateToolbar()
+                        }
+#endif
+                    }
+                }
+            }
         default:
             break
         }
-        
-#if targetEnvironment(macCatalyst)
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-            sceneDelegate.updateToolbar()
-        }
-#endif
     }
     
     func createDocument() {
@@ -225,7 +207,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             let editorViewController = MeshEditorViewController(document)
             editorViewController.modalPresentationStyle = .fullScreen
             self?.present(editorViewController, animated: true) {
-                self?.meshDocuments.append(Document.mesh(document))
                 self?.applySnapshot()
             }
             
@@ -268,16 +249,16 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         return UIDevice.current.userInterfaceIdiom != .phone
     }
     
-//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
-//        return .init(identifier: nil, previewProvider: nil) { menu in
-//            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
-//                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
-//
-//                })
-//            ])
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
+        return .init(identifier: nil, previewProvider: nil) { menu in
+            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
+                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
+                    
+                })
+            ])
+        }
+    }
 }
 
 extension ProjectNavigatorViewController: QLPreviewControllerDataSource {

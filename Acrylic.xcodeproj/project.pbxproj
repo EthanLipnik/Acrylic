@@ -39,6 +39,9 @@
 		AA45EBC9272641A100593894 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA45EBC8272641A100593894 /* MeshKit */; };
 		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
 		AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
+		AA4BBDDE27F2962C00B45FA6 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */; };
+		AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */; };
+		AA4BBDE527F2962C00B45FA6 /* ThumbnailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
 		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
 		AA517543272483CE00C25576 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* MeshViewController.swift */; };
@@ -81,6 +84,13 @@
 			remoteGlobalIDString = AA45EBB327263E3A00593894;
 			remoteInfo = MeshGradientIntent;
 		};
+		AA4BBDE327F2962C00B45FA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA517533272483CE00C25576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA4BBDDB27F2962C00B45FA6;
+			remoteInfo = ThumbnailExtension;
+		};
 		AA517555272483CF00C25576 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA517533272483CE00C25576 /* Project object */;
@@ -105,6 +115,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */,
+				AA4BBDE527F2962C00B45FA6 /* ThumbnailExtension.appex in Embed App Extensions */,
 				AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -143,6 +154,11 @@
 		AA45EBC327263E7800593894 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMeshGradientIntentHandler.swift; sourceTree = "<group>"; };
 		AA4B287727F149CD000FFCAD /* SceneDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDocument.swift; sourceTree = "<group>"; };
+		AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ThumbnailExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = SDKROOT; };
+		AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
+		AA4BBDE227F2962C00B45FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA4BBDE627F2962D00B45FA6 /* ThumbnailExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThumbnailExtension.entitlements; sourceTree = "<group>"; };
 		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +206,14 @@
 				AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */,
 				AA45EBC9272641A100593894 /* MeshKit in Frameworks */,
 				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA4BBDD927F2962C00B45FA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA4BBDDE27F2962C00B45FA6 /* QuickLookThumbnailing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +289,7 @@
 				AA2B0C7327F10C2C00868869 /* CloudKit.framework */,
 				AA45EBB527263E3A00593894 /* Intents.framework */,
 				AA42DDB927F1F16D003ECF74 /* QuickLook.framework */,
+				AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -292,6 +317,16 @@
 			path = MeshGradientIntent;
 			sourceTree = "<group>";
 		};
+		AA4BBDDF27F2962C00B45FA6 /* ThumbnailExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AA4BBDE627F2962D00B45FA6 /* ThumbnailExtension.entitlements */,
+				AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */,
+				AA4BBDE227F2962C00B45FA6 /* Info.plist */,
+			);
+			path = ThumbnailExtension;
+			sourceTree = "<group>";
+		};
 		AA517532272483CE00C25576 = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +336,7 @@
 				AA517561272483CF00C25576 /* AcrylicUITests */,
 				AA45EBB727263E3A00593894 /* MeshGradientIntent */,
 				AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */,
+				AA4BBDDF27F2962C00B45FA6 /* ThumbnailExtension */,
 				AA51753C272483CE00C25576 /* Products */,
 				AA35D982272498D3000BB333 /* Frameworks */,
 			);
@@ -314,6 +350,7 @@
 				AA51755E272483CF00C25576 /* AcrylicUITests.xctest */,
 				AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */,
 				AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */,
+				AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -441,6 +478,23 @@
 			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA4BBDE727F2962D00B45FA6 /* Build configuration list for PBXNativeTarget "ThumbnailExtension" */;
+			buildPhases = (
+				AA4BBDD827F2962C00B45FA6 /* Sources */,
+				AA4BBDD927F2962C00B45FA6 /* Frameworks */,
+				AA4BBDDA27F2962C00B45FA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ThumbnailExtension;
+			productName = ThumbnailExtension;
+			productReference = AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AA51753A272483CE00C25576 /* Acrylic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA517568272483CF00C25576 /* Build configuration list for PBXNativeTarget "Acrylic" */;
@@ -455,6 +509,7 @@
 			dependencies = (
 				AA45EBBC27263E3A00593894 /* PBXTargetDependency */,
 				AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */,
+				AA4BBDE427F2962C00B45FA6 /* PBXTargetDependency */,
 			);
 			name = Acrylic;
 			packageProductDependencies = (
@@ -518,6 +573,9 @@
 					AA45EBB327263E3A00593894 = {
 						CreatedOnToolsVersion = 13.1;
 					};
+					AA4BBDDB27F2962C00B45FA6 = {
+						CreatedOnToolsVersion = 13.3;
+					};
 					AA51753A272483CE00C25576 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -552,6 +610,7 @@
 				AA51755D272483CF00C25576 /* AcrylicUITests */,
 				AA45EBB327263E3A00593894 /* MeshGradientIntent */,
 				AA42DDB727F1F16D003ECF74 /* QuickLookExtension */,
+				AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -565,6 +624,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AA45EBB227263E3A00593894 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA4BBDDA27F2962C00B45FA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -616,6 +682,14 @@
 				AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */,
 				AA2B0C7627F111C600868869 /* MeshService.swift in Sources */,
 				AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA4BBDD827F2962C00B45FA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +762,11 @@
 			target = AA45EBB327263E3A00593894 /* MeshGradientIntent */;
 			targetProxy = AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */;
 		};
+		AA4BBDE427F2962C00B45FA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */;
+			targetProxy = AA4BBDE327F2962C00B45FA6 /* PBXContainerItemProxy */;
+		};
 		AA517556272483CF00C25576 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA51753A272483CE00C25576 /* Acrylic */;
@@ -717,13 +796,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -745,13 +824,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -773,7 +852,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -803,7 +882,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -822,6 +901,62 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SIRI;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA4BBDE827F2962D00B45FA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThumbnailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.ThumbnailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA4BBDE927F2962D00B45FA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThumbnailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.ThumbnailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -952,7 +1087,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -990,7 +1125,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1133,6 +1268,15 @@
 			buildConfigurations = (
 				AA45EBC027263E3A00593894 /* Debug */,
 				AA45EBC127263E3A00593894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA4BBDE727F2962D00B45FA6 /* Build configuration list for PBXNativeTarget "ThumbnailExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA4BBDE827F2962D00B45FA6 /* Debug */,
+				AA4BBDE927F2962D00B45FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

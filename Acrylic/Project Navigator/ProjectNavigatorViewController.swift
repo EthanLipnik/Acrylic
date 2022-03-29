@@ -78,7 +78,12 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         }
         
         var fileUrl: URL? {
-            return uiDocument.fileUrl
+            switch self {
+            case .mesh(let meshDocument):
+                return meshDocument.fileURL
+            case .scene(let sceneDocument):
+                return sceneDocument.fileURL
+            }
         }
     }
     

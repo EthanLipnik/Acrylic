@@ -6,19 +6,17 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
-			<key>QLIsDataBasedPreview</key>
-			<true/>
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>com.acrylic.scene</string>
 			</array>
-			<key>QLSupportsSearchableItems</key>
-			<false/>
+			<key>QLThumbnailMinimumDimension</key>
+			<integer>0</integer>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.quicklook.preview</string>
+		<string>com.apple.quicklook.thumbnail</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).PreviewProvider</string>
+		<string>$(PRODUCT_MODULE_NAME).ThumbnailProvider</string>
 	</dict>
 </dict>
 </plist>

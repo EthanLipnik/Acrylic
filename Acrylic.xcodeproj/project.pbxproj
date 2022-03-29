@@ -15,7 +15,7 @@
 		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
 		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
 		AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */; };
-		AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */; };
+		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */; };
 		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
@@ -62,6 +62,8 @@
 		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
 		AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785927EE6E08007C3AE4 /* BlurViews.swift */; };
 		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
+		AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */; };
+		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
 		AA90909127EF92790052EB34 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA90909027EF92790052EB34 /* Blackbird */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
@@ -136,7 +138,7 @@
 		AA0AD66227EEB671009F822D /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Selection.swift"; sourceTree = "<group>"; };
-		AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+DetailView.swift"; sourceTree = "<group>"; };
+		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+ViewportView.swift"; sourceTree = "<group>"; };
 		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -183,6 +185,8 @@
 		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
 		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorViewController.swift; sourceTree = "<group>"; };
+		AA85DD9827F3415C00ABEF12 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
@@ -273,7 +277,6 @@
 				AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */,
 				AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */,
 				AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */,
-				AA1A5C252725F99E006932FE /* MeshOptionsView+DetailView.swift */,
 			);
 			path = OptionsView;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 		AA85DD9127F33F0400ABEF12 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -442,6 +446,8 @@
 			isa = PBXGroup;
 			children = (
 				AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */,
+				AA85DD9827F3415C00ABEF12 /* OptionsView.swift */,
+				AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */,
 				AA85DD9027F33EFF00ABEF12 /* Mesh */,
 				AA85DD9127F33F0400ABEF12 /* Scene */,
 			);
@@ -727,6 +733,7 @@
 				AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */,
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
+				AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */,
 				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
 				AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */,
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
@@ -740,6 +747,7 @@
 				AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
+				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
 				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,
 				AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
@@ -750,7 +758,7 @@
 				AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */,
 				AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */,
 				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
-				AA1A5C262725F99E006932FE /* MeshOptionsView+DetailView.swift in Sources */,
+				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,

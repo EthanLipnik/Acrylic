@@ -14,7 +14,7 @@ extension MeshOptionsView {
         var withBackground: Bool = true
         
         var body: some View {
-            DetailView(title: "Viewport", systemImage: "viewfinder", withBackground: withBackground) {
+            OptionsView.DetailView(title: "Viewport", systemImage: "viewfinder", withBackground: withBackground) {
                 Toggle(isOn: $meshService.isRenderingAsWireframe) {
                     Label("Show as Wireframe", systemImage: "squareshape.split.2x2.dotted")
                 }

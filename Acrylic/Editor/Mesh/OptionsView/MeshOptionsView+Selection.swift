@@ -19,7 +19,7 @@ extension MeshOptionsView {
         
         
         var body: some View {
-            DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
+            OptionsView.DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
                 VStack(spacing: 20) {
                     let value = Binding<MeshNode.Color?>(get: { () -> MeshNode.Color? in
                         if let selectedPoint = meshService.selectedPoint {
@@ -167,7 +167,7 @@ extension MeshOptionsView {
                         ColorPicker(selection: color, supportsOpacity: false) {
                             Label("Color", systemImage: "paintbrush.fill")
                         }
-                        DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
+                        OptionsView.DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
                             Slider(value: uTangent, in: 0.0...5.0) {
                                 Label("uTangent", systemImage: "trapezoid.and.line.horizontal.fill")
                             }

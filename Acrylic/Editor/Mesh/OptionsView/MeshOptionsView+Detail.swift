@@ -85,7 +85,7 @@ extension MeshOptionsView {
         }
         
         var body: some View {
-            let scaleView = DetailView(title: "Points", systemImage: "circle.grid.3x3") {
+            let scaleView = OptionsView.DetailView(title: "Points", systemImage: "circle.grid.3x3") {
                 HStack {
                     Stepper(value: widthIntProxy, in: 3.0...8.0) {
                         Label("Width", systemImage: "arrow.left.arrow.right")
@@ -106,7 +106,7 @@ extension MeshOptionsView {
                 }
             }
             
-            return DetailView(title: "Detail", systemImage: "sparkles", withBackground: withBackground) {
+            return OptionsView.DetailView(title: "Detail", systemImage: "sparkles", withBackground: withBackground) {
                 VStack(spacing: 20) {
                     HStack {
                         Stepper(value: subdivsionsIntProxy, in: 4.0...48.0, step: 2.0) {

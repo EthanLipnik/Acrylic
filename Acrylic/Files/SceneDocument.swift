@@ -14,8 +14,8 @@ extension UTType {
     }
 }
 
-class SceneDocument: UIDocument {
-    struct Object: Codable, Hashable {
+class SceneDocument: UIDocument, ObservableObject {
+    struct Object: Identifiable, Codable, Hashable {
         enum Shape: Codable, Hashable {
             case plane
             case sphere
@@ -24,6 +24,7 @@ class SceneDocument: UIDocument {
             case custom(fileUrl: URL)
         }
         
+        var id: UUID = UUID()
         var shape: Shape
         var material: Material
         
@@ -33,14 +34,24 @@ class SceneDocument: UIDocument {
         var scale: Vector3 = .init(x: 1, y: 1, z: 1)
     }
     
-    struct Camera: Codable, Hashable {
+    struct Camera: Identifiable, Codable, Hashable {
+        var id: UUID = UUID()
         var position: Vector3 = .zero
         var rotation: Vector4 = .zero
         var eulerAngles: Vector3 = .zero
         var scale: Vector3 = .init(x: 1, y: 1, z: 1)
+        
+        var screenSpaceAmbientOcclusionOptions: ScreenSpaceAmbientOcclusionOptions = .init()
+        var depthOfFieldOptions: DepthOfFieldOptions = .init()
+        var bloomOptions: BloomOptions = .init()
+        
+        var colorFringeOptions: ColorFringeOptions = .init()
+        
+        var useHDR: Bool = false
+        var useAutoExposure: Bool = false
     }
     
-    struct Light: Codable, Hashable {
+    struct Light: Identifiable, Codable, Hashable {
         enum LightType: Codable, Hashable {
             case directional
             case omni
@@ -48,6 +59,8 @@ class SceneDocument: UIDocument {
             case area
             case spot
         }
+        
+        var id: UUID = UUID()
         
         var lightType: LightType
         var intensity: Float = 1
@@ -106,7 +119,7 @@ class SceneDocument: UIDocument {
     struct ScreenSpaceReflectionsOptions: Codable, Hashable {
         var isEnabled: Bool = false
         var sampleCount: Int = 64
-        var maxDistance: Int = 128
+        var maxDistance: Float = 128
     }
     
     struct ScreenSpaceAmbientOcclusionOptions: Codable, Hashable {
@@ -144,63 +157,42 @@ class SceneDocument: UIDocument {
         case multisampling16X
     }
     
-    var camera: Camera = .init()
+    @Published var cameras: Set<Camera> = [.init()]
     
-    var objects: Set<Object> = []
-    var lights: Set<Light> = []
-    var backgroundColor: Color = .init(uiColor: .white)
+    @Published var objects: Set<Object> = []
+    @Published var lights: Set<Light> = []
+    @Published var backgroundColor: Color = .init(uiColor: .white)
     
-    var useHDR: Bool = false
-    var useAutoExposure: Bool = false
-    var antialiasing: Antialiasing = .none
-    var depthOfFieldOptions: DepthOfFieldOptions = .init()
-    var bloomOptions: BloomOptions = .init()
+    @Published var antialiasing: Antialiasing = .none
     
-    var raytracingOptions: RaytracingOptions = .init()
-    var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions = .init()
-    var screenSpaceAmbientOcclusionOptions: ScreenSpaceAmbientOcclusionOptions = .init()
-    
-    var colorFringeOptions: ColorFringeOptions = .init()
+    @Published var raytracingOptions: RaytracingOptions = .init()
+    @Published var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions = .init()
     
     var previewImage: Data? = nil
     
     private struct SceneDescriptorModel: Codable {
-        var camera: Camera
+        var cameras: Set<Camera>
         
         var objects: Set<Object>
         var lights: Set<Light>
         var backgroundColor: Color
         
-        var useHDR: Bool
-        var useAutoExposure: Bool
         var antialiasing: Antialiasing
-        var depthOfFieldOptions: DepthOfFieldOptions
-        var bloomOptions: BloomOptions
         
         var raytracingOptions: RaytracingOptions
         var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions
-        var screenSpaceAmbientOcclusionOptions: ScreenSpaceAmbientOcclusionOptions
-        
-        var colorFringeOptions: ColorFringeOptions
         
         init(_ document: SceneDocument) {
-            self.camera = document.camera
+            self.cameras = document.cameras
             
             self.objects = document.objects
             self.lights = document.lights
             self.backgroundColor = document.backgroundColor
             
-            self.useHDR = document.useHDR
-            self.useAutoExposure = document.useAutoExposure
             self.antialiasing = document.antialiasing
-            self.depthOfFieldOptions = document.depthOfFieldOptions
-            self.bloomOptions = document.bloomOptions
             
             self.raytracingOptions = document.raytracingOptions
             self.screenSpaceReflectionsOptions = document.screenSpaceReflectionsOptions
-            self.screenSpaceAmbientOcclusionOptions = document.screenSpaceAmbientOcclusionOptions
-            
-            self.colorFringeOptions = document.colorFringeOptions
         }
     }
     
@@ -213,23 +205,16 @@ class SceneDocument: UIDocument {
         let decompressedSceneDescriptor = try compressedSceneDescriptor.decompressed(using: .zlib) as Data
         let sceneDescriptor = try JSONDecoder().decode(SceneDescriptorModel.self, from: decompressedSceneDescriptor)
         
-        self.camera = sceneDescriptor.camera
+        self.cameras = sceneDescriptor.cameras
         self.lights = sceneDescriptor.lights
         self.backgroundColor = sceneDescriptor.backgroundColor
         
-        self.useHDR = sceneDescriptor.useHDR
-        self.useAutoExposure = sceneDescriptor.useAutoExposure
         self.antialiasing = sceneDescriptor.antialiasing
-        self.depthOfFieldOptions = sceneDescriptor.depthOfFieldOptions
-        self.bloomOptions = sceneDescriptor.bloomOptions
         
         self.raytracingOptions = sceneDescriptor.raytracingOptions
         self.screenSpaceReflectionsOptions = sceneDescriptor.screenSpaceReflectionsOptions
-        self.screenSpaceAmbientOcclusionOptions = sceneDescriptor.screenSpaceAmbientOcclusionOptions
         
-        self.colorFringeOptions = sceneDescriptor.colorFringeOptions
-        
-        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage.heic"]?.regularFileContents
+        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage"]?.regularFileContents
     }
     
     override func contents(forType typeName: String) throws -> Any {
@@ -243,7 +228,7 @@ class SceneDocument: UIDocument {
         
         if let previewImage = previewImage {
             let previewImageFile = FileWrapper(regularFileWithContents: previewImage)
-            fileWrappers["PreviewImage.heic"] = previewImageFile
+            fileWrappers["PreviewImage"] = previewImageFile
         }
         return FileWrapper(directoryWithFileWrappers: fileWrappers)
     }

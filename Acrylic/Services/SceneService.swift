@@ -9,24 +9,9 @@ import Combine
 import SceneKit
 import RandomColor
 
-class SceneService: ObservableObject {
-    var sceneDocument: SceneDocument? = nil
+class SceneService {
+    var sceneDocument: SceneDocument
     var scene: SCNScene = .init()
-    
-    @Published var objects: Set<SceneDocument.Object> = []
-    @Published var lights: Set<SceneDocument.Light> = []
-    @Published var camera: SceneDocument.Camera = .init()
-    
-    @Published var useHDR: Bool = false
-    @Published var useAutoExposure: Bool = false
-    @Published var antialiasing: SceneDocument.Antialiasing = .none
-    @Published var screenSpaceReflectionsOptions: SceneDocument.ScreenSpaceReflectionsOptions = .init()
-    @Published var screenSpaceAmbientOcclusionOptions: SceneDocument.ScreenSpaceAmbientOcclusionOptions = .init()
-    @Published var bloomOptions: SceneDocument.BloomOptions = .init()
-    @Published var depthOfFieldOptions: SceneDocument.DepthOfFieldOptions = .init()
-    @Published var colorFringeOptions: SceneDocument.ColorFringeOptions = .init()
-    
-    @Published var backgroundColor: UIColor = .white
     
     private var cancellables: Set<AnyCancellable> = []
 
@@ -37,63 +22,35 @@ class SceneService: ObservableObject {
         case random(ShapePreset)
     }
     
-    init(_ document: SceneDocument? = nil) {
+    init(_ document: SceneDocument) {
         self.sceneDocument = document
         
-        // TODO: Document saving
-        if let document = document {
-            self.objects = document.objects
-            self.lights = document.lights
-            self.camera = document.camera
-            self.useHDR = document.useHDR
-            self.useAutoExposure = document.useAutoExposure
-            self.antialiasing = document.antialiasing
-            self.screenSpaceReflectionsOptions = document.screenSpaceReflectionsOptions
-            self.screenSpaceAmbientOcclusionOptions = document.screenSpaceAmbientOcclusionOptions
-            self.bloomOptions = document.bloomOptions
-            self.depthOfFieldOptions = document.depthOfFieldOptions
-            self.colorFringeOptions = document.colorFringeOptions
-            self.backgroundColor = document.backgroundColor.uiColor
-            
-            objectWillChange
-                .debounce(for: .seconds(1), scheduler: DispatchQueue.global(qos: .background))
-                .sink { [weak self] object in
-                    guard let self = self else { return }
-                    self.updateSceneView()
-                    
-                    self.sceneDocument?.objects = self.objects
-                    self.sceneDocument?.lights = self.lights
-                    self.sceneDocument?.camera = self.camera
-                    self.sceneDocument?.useHDR = self.useHDR
-                    self.sceneDocument?.useAutoExposure = self.useAutoExposure
-                    self.sceneDocument?.antialiasing = self.antialiasing
-                    self.sceneDocument?.screenSpaceReflectionsOptions = self.screenSpaceReflectionsOptions
-                    self.sceneDocument?.screenSpaceAmbientOcclusionOptions = self.screenSpaceAmbientOcclusionOptions
-                    self.sceneDocument?.bloomOptions = self.bloomOptions
-                    self.sceneDocument?.depthOfFieldOptions = self.depthOfFieldOptions
-                    self.sceneDocument?.colorFringeOptions = self.colorFringeOptions
-                    self.sceneDocument?.backgroundColor = .init(uiColor: self.backgroundColor)
-                    
-                    self.saveDocument()
-                }
-                .store(in: &cancellables)
-            
-            if document.objects.isEmpty {
-                setupDebugScene()
-            }
+        if document.objects.isEmpty {
+            setupDebugScene()
+            updateSceneView()
+            saveDocument()
         }
+        
+        sceneDocument.objectWillChange
+            .sink { [weak self] object in
+                self?.updateSceneView()
+            }
+            .store(in: &cancellables)
+        
+        sceneDocument.objectWillChange
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.global(qos: .background))
+            .sink { [weak self] object in
+                self?.saveDocument()
+            }
+            .store(in: &cancellables)
     }
     
     func saveDocument() {
-        if let fileUrl = sceneDocument?.fileURL {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                do {
-                    let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
-                    self?.sceneDocument?.previewImage = try previewImage?.heicData(compressionQuality: 0.5)
-                } catch {
-                    print("Failed to render and save preview")
-                }
-                self?.sceneDocument?.save(to: fileUrl, for: .forOverwriting)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if let fileUrl = self?.sceneDocument.fileURL {
+                let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
+                self?.sceneDocument.previewImage = previewImage?.jpegData(compressionQuality: 0.5)
+                self?.sceneDocument.save(to: fileUrl, for: .forOverwriting)
                 
                 print("🟢 Saved scene document")
             }
@@ -113,19 +70,12 @@ class SceneService: ObservableObject {
                 objects.insert(sphere)
             }
             
-            self.objects = objects
+            sceneDocument.objects = objects
         }
         
         func setupSettings() {
-            useHDR = true
-            useAutoExposure = true
-            antialiasing = .multisampling2X
-            screenSpaceReflectionsOptions = .init(isEnabled: true, sampleCount: 64, maxDistance: 128)
-            screenSpaceAmbientOcclusionOptions = .init(isEnabled: true, intensity: 1.8)
-            bloomOptions = .init(isEnabled: true, intensity: 1.5)
-            depthOfFieldOptions = .init(isEnabled: true, focusDistance: 6, fStop: 0.1, focalLength: 16)
-            colorFringeOptions = .init(isEnabled: true, strength: 0.8, intensity: 0.8)
-            backgroundColor = randomColor(hue: hue, luminosity: .light)
+            sceneDocument.antialiasing = .multisampling2X
+            sceneDocument.screenSpaceReflectionsOptions = .init(isEnabled: true, sampleCount: 64, maxDistance: 128)
         }
         
         func setupLights() {
@@ -137,13 +87,17 @@ class SceneService: ObservableObject {
                                                    color: SceneDocument.Color.init(uiColor: UIColor(hue: 0, saturation: 0, brightness: 0.7, alpha: 1)),
                                                    castsShadow: false)
             
-            self.lights = [directionalLight, ambientLight]
+            sceneDocument.lights = [directionalLight, ambientLight]
         }
         
-        // TODO: - Move some settings to camera than scene
         func setupCameras() {
-            let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12))
-            self.camera = camera
+            let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
+                                              depthOfFieldOptions: .init(isEnabled: true, focusDistance: 6, fStop: 0.1, focalLength: 16),
+                                              bloomOptions: .init(isEnabled: true, intensity: 1.5),
+                                              colorFringeOptions: .init(isEnabled: true, strength: 0.8, intensity: 0.8),
+                                              useHDR: true,
+                                              useAutoExposure: true)
+            sceneDocument.cameras = [camera]
         }
         
         setupObjects()
@@ -153,32 +107,39 @@ class SceneService: ObservableObject {
     }
     
     func updateSceneView() {
-        scene.background.contents = backgroundColor
+        
+        scene.wantsScreenSpaceReflection = sceneDocument.screenSpaceReflectionsOptions.isEnabled
+        scene.screenSpaceReflectionSampleCount = sceneDocument.screenSpaceReflectionsOptions.sampleCount
+        scene.screenSpaceReflectionMaximumDistance = CGFloat(sceneDocument.screenSpaceReflectionsOptions.maxDistance)
+        
+        scene.background.contents = sceneDocument.backgroundColor
         
         // TODO: - Make this diffable
         scene.rootNode.childNodes.forEach({ $0.removeFromParentNode() })
         
+        let camera = sceneDocument.cameras.first!
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.camera?.wantsHDR = useHDR
-        cameraNode.camera?.wantsDepthOfField = depthOfFieldOptions.isEnabled
-        cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(screenSpaceAmbientOcclusionOptions.intensity) : 0
+        cameraNode.camera?.wantsExposureAdaptation = camera.useAutoExposure
+        cameraNode.camera?.wantsHDR = camera.useHDR
+        cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
+        cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
         cameraNode.camera?.motionBlurIntensity = 0.5
-        cameraNode.camera?.bloomIntensity = bloomOptions.isEnabled ? CGFloat(bloomOptions.intensity) : 0
+        cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
         
-        cameraNode.camera?.focusDistance = CGFloat(depthOfFieldOptions.focusDistance)
-        cameraNode.camera?.fStop = CGFloat(depthOfFieldOptions.fStop)
-        cameraNode.camera?.focalLength = CGFloat(depthOfFieldOptions.focalLength)
+        cameraNode.camera?.focusDistance = CGFloat(camera.depthOfFieldOptions.focusDistance)
+        cameraNode.camera?.fStop = CGFloat(camera.depthOfFieldOptions.fStop)
+        cameraNode.camera?.focalLength = CGFloat(camera.depthOfFieldOptions.focalLength)
         cameraNode.camera?.fieldOfView = 50
         cameraNode.camera?.zNear = 0
         
-        cameraNode.camera?.colorFringeStrength = colorFringeOptions.isEnabled ? CGFloat(colorFringeOptions.strength) : 0
-        cameraNode.camera?.colorFringeIntensity = colorFringeOptions.isEnabled ? CGFloat(colorFringeOptions.intensity) : 0
+        cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
+        cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
         cameraNode.camera?.averageGray = 0.2
         cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
         scene.rootNode.addChildNode(cameraNode)
         
-        lights.forEach { light in
+        sceneDocument.lights.forEach { light in
             let lightNode = SCNNode()
             lightNode.light = SCNLight()
             
@@ -205,7 +166,7 @@ class SceneService: ObservableObject {
             scene.rootNode.addChildNode(lightNode)
         }
         
-        objects.forEach { object in
+        sceneDocument.objects.forEach { object in
             let node: SCNNode
             
             switch object.shape {

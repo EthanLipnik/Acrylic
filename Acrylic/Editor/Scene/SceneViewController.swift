@@ -31,7 +31,7 @@ class SceneViewController: UIViewController {
         return view
     }()
     
-    var sceneService: SceneService = .init()
+    let sceneService: SceneService
     
     init(_ sceneService: SceneService) {
         self.sceneService = sceneService
@@ -39,7 +39,7 @@ class SceneViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError()
     }
     
     private var cancellables: Set<AnyCancellable> = []

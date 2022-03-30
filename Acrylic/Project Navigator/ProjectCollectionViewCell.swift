@@ -22,7 +22,7 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
                 return
             }
             
-            if let previewImage = UIImage(contentsOfFile: fileUrl.appendingPathComponent("PreviewImage.heic").path) {
+            if let previewImage = UIImage(contentsOfFile: fileUrl.appendingPathComponent("PreviewImage").path) {
                 self.imageView.image = previewImage
             } else {
                 DispatchQueue.global(qos: .userInitiated).async {

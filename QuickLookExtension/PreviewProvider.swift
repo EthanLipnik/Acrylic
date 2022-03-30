@@ -37,7 +37,7 @@ class PreviewProvider: QLPreviewProvider, QLPreviewingController {
         //You can create a QLPreviewReply in several ways, depending on the format of the data you want to return.
         //To return Data of a supported content type:
         
-        let reply = QLPreviewReply(fileURL: request.fileURL.appendingPathComponent("PreviewImage.heic"))
+        let reply = QLPreviewReply(fileURL: request.fileURL.appendingPathComponent("PreviewImage"))
         
         return reply
     }

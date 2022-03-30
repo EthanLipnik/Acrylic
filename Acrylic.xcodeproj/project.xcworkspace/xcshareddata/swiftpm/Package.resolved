@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "DifferenceKit",
+        "repositoryURL": "https://github.com/ra1028/DifferenceKit.git",
+        "state": {
+          "branch": null,
+          "revision": "62745d7780deef4a023a792a1f8f763ec7bf9705",
+          "version": "1.2.0"
+        }
+      },
+      {
         "package": "FilesProvider",
         "repositoryURL": "https://github.com/amosavian/FileProvider.git",
         "state": {

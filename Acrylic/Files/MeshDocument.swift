@@ -70,7 +70,7 @@ class MeshDocument: UIDocument {
         
         if let previewImage = previewImage {
             let previewImageFile = FileWrapper(regularFileWithContents: previewImage)
-            fileWrappers["PreviewImage.heic"] = previewImageFile
+            fileWrappers["PreviewImage"] = previewImageFile
         }
         return FileWrapper(directoryWithFileWrappers: fileWrappers)
     }
@@ -91,6 +91,6 @@ class MeshDocument: UIDocument {
         
         print(meshDescriptor)
         
-        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage.heic"]?.regularFileContents
+        self.previewImage = topFileWrapper.fileWrappers?["PreviewImage"]?.regularFileContents
     }
 }

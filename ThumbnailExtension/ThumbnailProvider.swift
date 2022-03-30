@@ -17,7 +17,7 @@ class ThumbnailProvider: QLThumbnailProvider {
         // First way: Draw the thumbnail into the current context, set up with UIKit's coordinate system.
         switch request.fileURL.pathExtension {
         case "ausf", "amgf":
-            handler(QLThumbnailReply(imageFileURL: request.fileURL.appendingPathComponent("PreviewImage.heic")), nil)
+            handler(QLThumbnailReply(imageFileURL: request.fileURL.appendingPathComponent("PreviewImage")), nil)
         default:
             handler(nil, CocoaError(.fileReadUnknown))
         }

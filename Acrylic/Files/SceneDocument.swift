@@ -7,6 +7,7 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import DifferenceKit
 
 extension UTType {
     static var acrylicScene: UTType {
@@ -15,8 +16,8 @@ extension UTType {
 }
 
 class SceneDocument: UIDocument, ObservableObject {
-    struct Object: Identifiable, Codable, Hashable {
-        enum Shape: Codable, Hashable {
+    struct Object: Identifiable, Codable, Hashable, Differentiable {
+        enum Shape: Codable, Hashable, Differentiable {
             case plane
             case sphere
             case cube(chamferEdges: Float = 0)
@@ -34,7 +35,7 @@ class SceneDocument: UIDocument, ObservableObject {
         var scale: Vector3 = .init(x: 1, y: 1, z: 1)
     }
     
-    struct Camera: Identifiable, Codable, Hashable {
+    struct Camera: Identifiable, Codable, Hashable, Differentiable {
         var id: UUID = UUID()
         var position: Vector3 = .zero
         var rotation: Vector4 = .zero
@@ -51,7 +52,7 @@ class SceneDocument: UIDocument, ObservableObject {
         var useAutoExposure: Bool = false
     }
     
-    struct Light: Identifiable, Codable, Hashable {
+    struct Light: Identifiable, Codable, Hashable, Differentiable {
         enum LightType: Codable, Hashable {
             case directional
             case omni
@@ -74,14 +75,14 @@ class SceneDocument: UIDocument, ObservableObject {
         var scale: Vector3 = .init(x: 1, y: 1, z: 1)
     }
     
-    struct Vector2: Codable, Hashable {
+    struct Vector2: Codable, Hashable, Differentiable {
         var x: Float
         var y: Float
         
         static var zero: Self = .init(x: 0, y: 0)
     }
     
-    struct Vector3: Codable, Hashable {
+    struct Vector3: Codable, Hashable, Differentiable {
         var x: Float
         var y: Float
         var z: Float
@@ -89,7 +90,7 @@ class SceneDocument: UIDocument, ObservableObject {
         static var zero: Self = .init(x: 0, y: 0, z: 0)
     }
     
-    struct Vector4: Codable, Hashable {
+    struct Vector4: Codable, Hashable, Differentiable {
         var x: Float
         var y: Float
         var z: Float
@@ -98,13 +99,13 @@ class SceneDocument: UIDocument, ObservableObject {
         static var zero: Self = .init(x: 0, y: 0, z: 0, w: 0)
     }
     
-    struct Material: Codable, Hashable {
+    struct Material: Codable, Hashable, Differentiable {
         var color: Color = .init(uiColor: UIColor.white)
         var emmission: Float = 0
         var roughness: Float = 1
     }
     
-    struct Color: Codable, Hashable {
+    struct Color: Codable, Hashable, Differentiable {
         var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
         
         var uiColor : UIColor {
@@ -116,40 +117,40 @@ class SceneDocument: UIDocument, ObservableObject {
         }
     }
     
-    struct ScreenSpaceReflectionsOptions: Codable, Hashable {
+    struct ScreenSpaceReflectionsOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
         var sampleCount: Int = 64
         var maxDistance: Float = 128
     }
     
-    struct ScreenSpaceAmbientOcclusionOptions: Codable, Hashable {
+    struct ScreenSpaceAmbientOcclusionOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
         var intensity: Float = 1
     }
     
-    struct DepthOfFieldOptions: Codable, Hashable {
+    struct DepthOfFieldOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
         var focusDistance: Float = 6
         var fStop: Float = 0.1
         var focalLength: Float = 16
     }
     
-    struct ColorFringeOptions: Codable, Hashable {
+    struct ColorFringeOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
         var strength: Float = 0.8
         var intensity: Float = 0.8
     }
     
-    struct BloomOptions: Codable, Hashable {
+    struct BloomOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
         var intensity: Float = 1.5
     }
     
-    struct RaytracingOptions: Codable, Hashable {
+    struct RaytracingOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
     }
     
-    enum Antialiasing: Codable, Hashable {
+    enum Antialiasing: Codable, Hashable, Differentiable {
         case none
         case multisampling2X
         case multisampling4X

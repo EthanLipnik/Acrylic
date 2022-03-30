@@ -55,6 +55,7 @@
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
 		AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FB827F494B40076F85C /* DifferenceKit */; };
+		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
 		AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
@@ -207,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */,
 				AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */,
 				AA42DDD027F1F1F6003ECF74 /* MeshKit in Frameworks */,
 				AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */,
@@ -489,6 +491,7 @@
 			packageProductDependencies = (
 				AA42DDCF27F1F1F6003ECF74 /* MeshKit */,
 				AA42DDD127F1F1F6003ECF74 /* RandomColor */,
+				AA633FBA27F495CC0076F85C /* DifferenceKit */,
 			);
 			productName = QuickLookExtension;
 			productReference = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */;
@@ -1414,6 +1417,11 @@
 			productName = FilesProvider;
 		};
 		AA633FB827F494B40076F85C /* DifferenceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */;
+			productName = DifferenceKit;
+		};
+		AA633FBA27F495CC0076F85C /* DifferenceKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */;
 			productName = DifferenceKit;

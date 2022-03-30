@@ -98,11 +98,11 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 self?.openDocument(document)
             }
 #endif
-            
             cell.singleClickAction = { [weak self] in
 #if !targetEnvironment(macCatalyst)
                 self?.openDocument(document)
 #else
+                collectionView.indexPathsForSelectedItems?.forEach({ collectionView.deselectItem(at: $0, animated: false) })
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
 #endif
             }
@@ -144,9 +144,10 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         let newProjectButton = UIBarButtonItem(systemItem: .add)
         newProjectButton.menu = UIMenu(title: "New Project", image: UIImage(systemName: "add"), children: [
             UIAction(title: "Mesh Gradient", handler: { [weak self] action in
-                self?.createDocument()
+                self?.createDocument("Mesh", type: .acrylicMeshGradient)
             }),
-            UIAction(title: "3D Scene", state: .off, handler: { action in
+            UIAction(title: "3D Scene", state: .off, handler: { [weak self] action in
+                self?.createDocument("Scene", type: .acrylicScene)
             })
         ])
         navigationItem.rightBarButtonItem = newProjectButton
@@ -184,54 +185,74 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                     let editorViewController = MeshEditorViewController(meshDocument)
                     editorViewController.modalPresentationStyle = .fullScreen
                     self?.present(editorViewController, animated: true) {
-#if targetEnvironment(macCatalyst)
-                        let scene = UIApplication.shared.connectedScenes.first
-                        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-                            sceneDelegate.updateToolbar()
-                        }
-#endif
+                        self?.updateToolbar()
                     }
                 } else {
                     print("Failed to open")
                 }
+            }
+        case .scene(let sceneDocument):
+            sceneDocument.open { [weak self] success in
+                if success {
+                    let editorViewController = SceneEditorViewController(sceneDocument)
+                    editorViewController.modalPresentationStyle = .fullScreen
+                    self?.present(editorViewController, animated: true) {
+                        self?.updateToolbar()
+                    }
+                } else {
+                    print("Failed to open")
+                }
+            }
+        }
+    }
+    
+    func createDocument(_ name: String, type: UTType) {
+        var nameIndex: Int = 0
+        var url = AppDelegate.documentsFolder.appendingPathComponent(name).appendingPathExtension(for: type)
+        
+        while FileManager.default.fileExists(atPath: url.path) {
+            nameIndex += 1
+            url = AppDelegate.documentsFolder.appendingPathComponent("\(name) \(nameIndex)").appendingPathExtension(for: type)
+        }
+        
+        switch type {
+        case .acrylicMeshGradient:
+            let document = MeshDocument(fileURL: url)
+            document.save(to: url, for: .forCreating)
+            
+            document.open { [weak self] _ in
+                let editorViewController = MeshEditorViewController(document)
+                editorViewController.modalPresentationStyle = .fullScreen
+                self?.present(editorViewController, animated: true) {
+                    self?.applySnapshot()
+                }
+                
+                self?.updateToolbar()
+            }
+        case .acrylicScene:
+            let document = SceneDocument(fileURL: url)
+            document.save(to: url, for: .forCreating)
+            
+            document.open { [weak self] _ in
+                let editorViewController = SceneEditorViewController(document)
+                editorViewController.modalPresentationStyle = .fullScreen
+                self?.present(editorViewController, animated: true) {
+                    self?.applySnapshot()
+                }
+                
+                self?.updateToolbar()
             }
         default:
             break
         }
     }
     
-    func createDocument() {
-        var nameIndex: Int = 0
-        var url = AppDelegate.documentsFolder.appendingPathComponent("Mesh.amgf")
-        
-        while FileManager.default.fileExists(atPath: url.path) {
-            nameIndex += 1
-            url = AppDelegate.documentsFolder.appendingPathComponent("Mesh \(nameIndex).amgf")
-        }
-        
-        let document = MeshDocument(fileURL: url)
-        document.save(to: url, for: .forCreating)
-        
-        document.open { [weak self] _ in
-            let editorViewController = MeshEditorViewController(document)
-            editorViewController.modalPresentationStyle = .fullScreen
-            self?.present(editorViewController, animated: true) {
-                self?.applySnapshot()
-            }
-            
+    func updateToolbar() {
 #if targetEnvironment(macCatalyst)
             let scene = UIApplication.shared.connectedScenes.first
             if let sceneDelegate = scene?.delegate as? SceneDelegate {
                 sceneDelegate.updateToolbar()
             }
-#endif
-        }
-        
-#if targetEnvironment(macCatalyst)
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sceneDelegate = scene?.delegate as? SceneDelegate {
-            sceneDelegate.updateToolbar()
-        }
 #endif
     }
     

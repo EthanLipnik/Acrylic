@@ -64,9 +64,9 @@
 		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
 		AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */; };
 		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
-		AA85DD9B27F341EC00ABEF12 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */; };
 		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
 		AA90909127EF92790052EB34 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA90909027EF92790052EB34 /* Blackbird */; };
+		AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3DB5627F3E856000C4516 /* SceneViewController.swift */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
@@ -189,9 +189,9 @@
 		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorViewController.swift; sourceTree = "<group>"; };
 		AA85DD9827F3415C00ABEF12 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
-		AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		AA85DD9C27F3422000ABEF12 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
 		AA90908F27EF90C80052EB34 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
+		AAA3DB5627F3E856000C4516 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		AAB8853527E95A3300B43BC5 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
 		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
-				AA85DD9A27F341EC00ABEF12 /* SceneViewController.swift */,
+				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -745,9 +745,9 @@
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
-				AA85DD9B27F341EC00ABEF12 /* SceneViewController.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
 				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
+				AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */,
 				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
@@ -840,7 +840,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -868,7 +868,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -896,7 +896,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -926,7 +926,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -956,7 +956,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -984,7 +984,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1131,7 +1131,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1169,7 +1169,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;

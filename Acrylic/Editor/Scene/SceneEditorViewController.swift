@@ -15,18 +15,11 @@ class SceneEditorViewController: EditorViewController<SceneDocument> {
         self.sceneService = .init(document)
         super.init(document, viewControllers: [:])
         
-//        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshOptionsView { [weak self] in
-//            self?.dismiss(animated: true)
-//        }))
-//        let compactViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshEditorCompactView { [weak self] in
-//            self?.dismiss(animated: true)
-//        }.environmentObject(meshService)))
-//        
-//        editorViewControllers = [
-//            .primary: primaryViewController,
-//            .secondary: MeshViewController(meshService),
-//            .compact: compactViewController
-//        ]
+        editorViewControllers = [
+            .primary: UIViewController(),
+            .secondary: SceneViewController(sceneService),
+            .compact: UIViewController()
+        ]
     }
     
     required init?(coder: NSCoder) {

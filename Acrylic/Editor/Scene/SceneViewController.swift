@@ -10,14 +10,17 @@ import SceneKit
 import Combine
 
 class SceneViewController: UIViewController {
-
     lazy var sceneView: SCNView = {
         let view = SCNView()
+        
+        view.scene = sceneService.scene
+        view.allowsCameraControl = true
+        view.showsStatistics = true
         
         view.layer.cornerRadius = 30
         view.layer.cornerCurve = .continuous
         
-        view.subviews.forEach({ $0.layer.cornerRadius = 30; $0.layer.cornerCurve = .continuous; $0.layer.masksToBounds = true })
+        view.layer.masksToBounds = true
         
         view.layer.shadowOffset = CGSize(width: 0, height: 10)
         view.layer.shadowRadius = 30
@@ -55,7 +58,7 @@ class SceneViewController: UIViewController {
             sceneView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
             sceneView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
             sceneView.widthAnchor.constraint(equalTo: sceneView.heightAnchor),
-            sceneView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            sceneView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
     }
 }

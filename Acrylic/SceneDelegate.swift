@@ -135,7 +135,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if !(topController is MeshEditorViewController) {
+                if !(topController is MeshEditorViewController || topController is SceneEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }
@@ -152,10 +152,13 @@ extension SceneDelegate: NSToolbarDelegate {
             item.itemMenu = UIMenu(title: "New Project", children: [
                 UIAction(title: "Mesh Gradient", handler: { [weak self] action in
                     if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
-                        projectNavigator.createDocument()
+                        projectNavigator.createDocument("Mesh", type: .acrylicMeshGradient)
                     }
                 }),
-                UIAction(title: "3D Scene", state: .off, handler: { action in
+                UIAction(title: "3D Scene", state: .off, handler: { [weak self] action in
+                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
+                        projectNavigator.createDocument("Scene", type: .acrylicScene)
+                    }
                 })
             ])
             
@@ -164,7 +167,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if (topController is MeshEditorViewController) {
+                if (topController is MeshEditorViewController || topController is SceneEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }
@@ -185,7 +188,7 @@ extension SceneDelegate: NSToolbarDelegate {
                     topController = presentedViewController
                 }
                 
-                if !(topController is MeshEditorViewController) {
+                if !(topController is MeshEditorViewController || topController is SceneEditorViewController) {
                     item.target = nil
                     item.action = nil
                 }

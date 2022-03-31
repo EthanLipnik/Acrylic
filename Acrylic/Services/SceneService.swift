@@ -8,6 +8,7 @@
 import Combine
 import SceneKit
 import RandomColor
+import DifferenceKit
 
 class SceneService {
     var sceneDocument: SceneDocument
@@ -27,13 +28,16 @@ class SceneService {
         
         if document.objects.isEmpty {
             setupDebugScene()
-            updateSceneView()
             saveDocument()
         }
         
-        sceneDocument.objectWillChange
-            .sink { [weak self] object in
-                self?.updateSceneView()
+        setupSceneView()
+        
+        sceneDocument.$objects
+            .sink { objects in
+                let changeSet = StagedChangeset(source: self.sceneDocument.objects,
+                                                target: objects)
+                self.updateSceneDifference(changeSet: changeSet)
             }
             .store(in: &cancellables)
         
@@ -43,6 +47,13 @@ class SceneService {
                 self?.saveDocument()
             }
             .store(in: &cancellables)
+        
+        var objects = document.objects
+        objects.removeFirst()
+        objects.append(.init(shape: .sphere(), material: .init()))
+        
+        objects[4].position.x += Float.random(in: 1..<3)
+        sceneDocument.objects = objects
     }
     
     func saveDocument() {
@@ -61,13 +72,13 @@ class SceneService {
         let hue = RandomColor.Hue.red
         let colors = randomColors(count: 1500, hue: hue, luminosity: .bright)
         func setupObjects() {
-            var objects: Set<SceneDocument.Object> = []
+            var objects: [SceneDocument.Object] = []
             for _ in 0..<1500 {
                 let randomScale = Float.random(in: 0.1..<1)
-                let sphere = SceneDocument.Object(shape: .sphere, material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.5),
+                let sphere = SceneDocument.Object(shape: .sphere(), material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.5),
                                                   position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
                                                   scale: .init(x: randomScale, y: randomScale, z: randomScale))
-                objects.insert(sphere)
+                objects.append(sphere)
             }
             
             sceneDocument.objects = objects
@@ -92,6 +103,7 @@ class SceneService {
         
         func setupCameras() {
             let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
+                                              screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
                                               depthOfFieldOptions: .init(isEnabled: true, focusDistance: 6, fStop: 0.1, focalLength: 16),
                                               bloomOptions: .init(isEnabled: true, intensity: 1.5),
                                               colorFringeOptions: .init(isEnabled: true, strength: 0.8, intensity: 0.8),
@@ -106,7 +118,50 @@ class SceneService {
         setupCameras()
     }
     
-    func updateSceneView() {
+    func updateSceneDifference<Model: Differentiable>(changeSet: StagedChangeset<[Model]>) {
+        changeSet.forEach { change in
+            let inserted = change.elementInserted.map({ change.data[$0.element] })
+            inserted.forEach { insert in
+                if let object = insert as? SceneDocument.Object {
+                    addNode(object)
+                }
+            }
+            
+            let deleted = change.elementDeleted.map({ change.data[$0.element] })
+            deleted.forEach { delete in
+                if let object = delete as? SceneDocument.Object, let node = scene.rootNode.childNode(withName: object.id.uuidString, recursively: false) {
+                    node.removeFromParentNode()
+                }
+            }
+            
+            let updated = change.elementUpdated.map({ change.data[$0.element] })
+            updated.forEach { update in
+                if let object = update as? SceneDocument.Object, let node = scene.rootNode.childNode(withName: object.id.uuidString, recursively: false) {
+                    
+                    let newNode = node
+                    switch object.shape {
+                    case .sphere(let segmentCount):
+                        let sphere = SCNSphere(radius: CGFloat(object.scale.x + object.scale.y + object.scale.z) / 3)
+                        sphere.segmentCount = segmentCount
+                        newNode.geometry = sphere
+                    default:
+                        break
+                    }
+                    newNode.geometry?.firstMaterial?.lightingModel = .physicallyBased
+                    newNode.geometry?.firstMaterial?.diffuse.contents = object.material.color.uiColor
+                    newNode.geometry?.firstMaterial?.roughness.contents = object.material.roughness
+                    
+                    newNode.castsShadow = true
+                    
+                    newNode.position = SCNVector3(object.position.x, object.position.y, object.position.z)
+                    
+                    scene.rootNode.replaceChildNode(node, with: newNode)
+                }
+            }
+        }
+    }
+    
+    func setupSceneView() {
         
         scene.wantsScreenSpaceReflection = sceneDocument.screenSpaceReflectionsOptions.isEnabled
         scene.screenSpaceReflectionSampleCount = sceneDocument.screenSpaceReflectionsOptions.sampleCount
@@ -167,27 +222,33 @@ class SceneService {
         }
         
         sceneDocument.objects.forEach { object in
-            let node: SCNNode
-            
-            switch object.shape {
-            case .sphere:
-                let sphere = SCNSphere(radius: CGFloat(object.scale.x + object.scale.y + object.scale.z) / 3)
-                sphere.segmentCount = 64
-                node = SCNNode(geometry:  sphere)
-            default:
-                // TODO: - Add more shape options
-                node = SCNNode()
-            }
-            node.geometry?.firstMaterial?.lightingModel = .physicallyBased
-            node.geometry?.firstMaterial?.diffuse.contents = object.material.color.uiColor
-            node.geometry?.firstMaterial?.roughness.contents = 0.5
-            
-            node.castsShadow = true
-            
-            node.position = SCNVector3(object.position.x, object.position.y, object.position.z)
-            
-            scene.rootNode.addChildNode(node)
+            addNode(object)
         }
+    }
+    
+    func addNode(_ object: SceneDocument.Object) {
+        let node: SCNNode
+        
+        switch object.shape {
+        case .sphere(let segmentCount):
+            let sphere = SCNSphere(radius: CGFloat(object.scale.x + object.scale.y + object.scale.z) / 3)
+            sphere.segmentCount = segmentCount
+            node = SCNNode(geometry:  sphere)
+        default:
+            // TODO: - Add more shape options
+            node = SCNNode()
+        }
+        node.geometry?.firstMaterial?.lightingModel = .physicallyBased
+        node.geometry?.firstMaterial?.diffuse.contents = object.material.color.uiColor
+        node.geometry?.firstMaterial?.roughness.contents = object.material.roughness
+        
+        node.castsShadow = true
+        
+        node.position = SCNVector3(object.position.x, object.position.y, object.position.z)
+        
+        node.name = object.id.uuidString
+        
+        scene.rootNode.addChildNode(node)
     }
     
     func render(resolution: CGSize = CGSize(width: 1024, height: 1024)) -> UIImage {

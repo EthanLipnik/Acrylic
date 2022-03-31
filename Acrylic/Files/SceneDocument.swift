@@ -19,7 +19,7 @@ class SceneDocument: UIDocument, ObservableObject {
     struct Object: Identifiable, Codable, Hashable, Differentiable {
         enum Shape: Codable, Hashable, Differentiable {
             case plane
-            case sphere
+            case sphere(segmentCount: Int = 32)
             case cube(chamferEdges: Float = 0)
             case pyramid
             case custom(fileUrl: URL)
@@ -33,6 +33,10 @@ class SceneDocument: UIDocument, ObservableObject {
         var rotation: Vector4 = .zero
         var eulerAngles: Vector3 = .zero
         var scale: Vector3 = .init(x: 1, y: 1, z: 1)
+        
+        var differenceIdentifier: UUID {
+            return id
+        }
     }
     
     struct Camera: Identifiable, Codable, Hashable, Differentiable {
@@ -158,10 +162,10 @@ class SceneDocument: UIDocument, ObservableObject {
         case multisampling16X
     }
     
-    @Published var cameras: Set<Camera> = [.init()]
+    @Published var cameras: [Camera] = [.init()]
     
-    @Published var objects: Set<Object> = []
-    @Published var lights: Set<Light> = []
+    @Published var objects: [Object] = []
+    @Published var lights: [Light] = []
     @Published var backgroundColor: Color = .init(uiColor: .white)
     
     @Published var antialiasing: Antialiasing = .none
@@ -171,11 +175,11 @@ class SceneDocument: UIDocument, ObservableObject {
     
     var previewImage: Data? = nil
     
-    private struct SceneDescriptorModel: Codable {
-        var cameras: Set<Camera>
+    struct SceneDescriptorModel: Codable {
+        var cameras: [Camera]
         
-        var objects: Set<Object>
-        var lights: Set<Light>
+        var objects: [Object]
+        var lights: [Light]
         var backgroundColor: Color
         
         var antialiasing: Antialiasing
@@ -207,6 +211,8 @@ class SceneDocument: UIDocument, ObservableObject {
         let sceneDescriptor = try JSONDecoder().decode(SceneDescriptorModel.self, from: decompressedSceneDescriptor)
         
         self.cameras = sceneDescriptor.cameras
+        
+        self.objects = sceneDescriptor.objects
         self.lights = sceneDescriptor.lights
         self.backgroundColor = sceneDescriptor.backgroundColor
         

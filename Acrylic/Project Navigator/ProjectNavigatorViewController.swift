@@ -162,12 +162,16 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Document>()
-        snapshot.appendSections([.mesh, .scene])
         
-        snapshot.appendItems(meshDocuments, toSection: .mesh)
-        snapshot.appendItems(sceneDocuments, toSection: .scene)
+        if !meshDocuments.isEmpty {
+            snapshot.appendSections([.mesh])
+            snapshot.appendItems(meshDocuments, toSection: .mesh)
+        }
         
-        print(sceneDocuments)
+        if !sceneDocuments.isEmpty {
+            snapshot.appendSections([.scene])
+            snapshot.appendItems(sceneDocuments, toSection: .scene)
+        }
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }

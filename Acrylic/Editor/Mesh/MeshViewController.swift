@@ -24,7 +24,7 @@ class MeshViewController: UIViewController {
         view.layer.shadowRadius = 30
         view.layer.shadowOpacity = 0.4
         
-        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
@@ -61,17 +61,21 @@ class MeshViewController: UIViewController {
         meshView.addSubview(grabbersView)
         
         NSLayoutConstraint.activate([
-            meshView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            meshView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
-            meshView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
-            meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor),
-            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+//            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+//            meshView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
             grabbersView.leadingAnchor.constraint(equalTo: meshView.leadingAnchor),
             grabbersView.trailingAnchor.constraint(equalTo: meshView.trailingAnchor),
             grabbersView.bottomAnchor.constraint(equalTo: meshView.bottomAnchor),
             grabbersView.topAnchor.constraint(equalTo: meshView.topAnchor)
         ])
+        
+//        meshView.widthAnchor.constraint(equalToConstant: .greatestFiniteMagnitude).activate(with: .defaultLow)
+//
+//        meshView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor).activate(with: .defaultHigh)
+//        meshView.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor).activate(with: .defaultHigh)
+//
+//        meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor).activate(with: .required)
         
         meshService.$colors
             .sink { [weak self] colors in
@@ -118,7 +122,11 @@ class MeshViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        grabbersView.setPoints(meshService.colors, width: meshService.width, height: meshService.height)
+        let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.top * 2))
+        meshView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)
+        meshView.center = CGPoint(x: view.center.x, y: view.center.y + (view.safeAreaInsets.top / 2))
+        
+        grabbersView.setPoints(meshService.colors, width: meshService.width, height: meshService.height, withAnimation: false)
     }
 }
 
@@ -167,7 +175,7 @@ class GrabbersView: UIView {
         meshService.selectedPoint = nil
     }
     
-    func setPoints(_ colors: [MeshNode.Color], width: Int, height: Int) {
+    func setPoints(_ colors: [MeshNode.Color], width: Int, height: Int, withAnimation animates: Bool = true) {
         self.width = width
         self.height = height
         
@@ -175,7 +183,7 @@ class GrabbersView: UIView {
         
         colors.forEach { color in
             if let grabber = (subviews as? [GrabberView])?.first(where: { $0.node.point == color.point }) {
-                grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height))
+                grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height), withAnimation: animates)
                 
                 grabber.updateSelection(meshService.selectedPoint)
                 
@@ -243,7 +251,11 @@ class GrabbersView: UIView {
         init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil, meshService: MeshService = .init()) {
             self.node = node
             self.meshSize = meshSize
+#if targetEnvironment(macCatalyst)
+            super.init(frame: .init(origin: .zero, size: .init(width: 20, height: 20)))
+#else
             super.init(frame: .init(origin: .zero, size: .init(width: 40, height: 40)))
+#endif
             self.meshService = meshService
             
             setup(meshSize: meshSize, parentSize: parentSize)
@@ -300,13 +312,17 @@ class GrabbersView: UIView {
             })
         }
         
-        final func updateLocation(_ location: (x: Float, y: Float), meshSize: CGSize, size: CGSize) {
+        final func updateLocation(_ location: (x: Float, y: Float), meshSize: CGSize, size: CGSize, withAnimation animates: Bool = true) {
             self.meshSize = meshSize
             let point = CGPoint(x: (size.width / (meshSize.width - 1)) * CGFloat(location.x),
                                 y: size.height - ((size.height / (meshSize.height - 1)) * CGFloat(location.y)))
             
-            UIView.animate(withDuration: 0.05, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveLinear]) { [weak self] in
-                self?.center = point
+            if animates {
+                UIView.animate(withDuration: 0.05, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveLinear]) { [weak self] in
+                    self?.center = point
+                }
+            } else {
+                center = point
             }
         }
     }
@@ -318,4 +334,13 @@ extension GrabbersView: UIPointerInteractionDelegate {
         return .hidden()
     }
 #endif
+}
+
+extension NSLayoutConstraint {
+    @discardableResult
+    func activate(with priority: UILayoutPriority) -> NSLayoutConstraint {
+        self.priority = priority
+        isActive = true
+        return self
+    }
 }

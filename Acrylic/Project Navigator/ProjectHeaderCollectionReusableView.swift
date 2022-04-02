@@ -13,8 +13,9 @@ class ProjectHeaderCollectionReusableView: UICollectionReusableView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         
-        label.font = UIFont.preferredFont(forTextStyle: .title1, compatibleWith: traitCollection)
+        label.font = UIFont.preferredFont(forTextStyle: .headline, compatibleWith: traitCollection).bold()
         label.textAlignment = .left
+        label.textColor = UIColor.secondaryLabel
         
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
@@ -39,5 +40,20 @@ class ProjectHeaderCollectionReusableView: UICollectionReusableView {
     private func commonInit() {
         addSubview(titleLabel)
         titleLabel.frame = bounds
+    }
+}
+
+extension UIFont {
+    func withTraits(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        let descriptor = fontDescriptor.withSymbolicTraits(traits)
+        return UIFont(descriptor: descriptor!, size: 0) //size 0 means keep the size as it is
+    }
+
+    func bold() -> UIFont {
+        return withTraits(traits: .traitBold)
+    }
+
+    func italic() -> UIFont {
+        return withTraits(traits: .traitItalic)
     }
 }

@@ -61,21 +61,11 @@ class MeshViewController: UIViewController {
         meshView.addSubview(grabbersView)
         
         NSLayoutConstraint.activate([
-//            meshView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-//            meshView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
             grabbersView.leadingAnchor.constraint(equalTo: meshView.leadingAnchor),
             grabbersView.trailingAnchor.constraint(equalTo: meshView.trailingAnchor),
             grabbersView.bottomAnchor.constraint(equalTo: meshView.bottomAnchor),
             grabbersView.topAnchor.constraint(equalTo: meshView.topAnchor)
         ])
-        
-//        meshView.widthAnchor.constraint(equalToConstant: .greatestFiniteMagnitude).activate(with: .defaultLow)
-//
-//        meshView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor).activate(with: .defaultHigh)
-//        meshView.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor).activate(with: .defaultHigh)
-//
-//        meshView.widthAnchor.constraint(equalTo: meshView.heightAnchor).activate(with: .required)
         
         meshService.$colors
             .sink { [weak self] colors in
@@ -122,9 +112,15 @@ class MeshViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.top * 2))
-        meshView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)
-        meshView.center = CGPoint(x: view.center.x, y: view.center.y + (view.safeAreaInsets.top / 2))
+        if traitCollection.horizontalSizeClass == .compact {
+            let meshSize = min(view.bounds.height, view.bounds.width) - 48
+            meshView.frame = CGRect(x: 24, y: 24, width: meshSize, height: meshSize)
+            meshView.center = view.center
+        } else {
+            let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.vertical * 2))
+            meshView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)
+            meshView.center = CGPoint(x: view.center.x, y: view.center.y + (view.safeAreaInsets.top / 2) - (view.safeAreaInsets.bottom / 2))
+        }
         
         grabbersView.setPoints(meshService.colors, width: meshService.width, height: meshService.height, withAnimation: false)
     }
@@ -248,14 +244,16 @@ class GrabbersView: UIView {
         
         var meshService: MeshService = .init()
         
+#if targetEnvironment(macCatalyst)
+        static let grabberSize: (normal: CGFloat, edge: CGFloat) = (20, 10)
+#else
+        static let grabberSize: (normal: CGFloat, edge: CGFloat) = (40, 20)
+#endif
+        
         init(_ node: MeshNode.Color, meshSize: CGSize, parentSize: CGSize? = nil, meshService: MeshService = .init()) {
             self.node = node
             self.meshSize = meshSize
-#if targetEnvironment(macCatalyst)
-            super.init(frame: .init(origin: .zero, size: .init(width: 20, height: 20)))
-#else
-            super.init(frame: .init(origin: .zero, size: .init(width: 40, height: 40)))
-#endif
+            super.init(frame: .init(origin: .zero, size: .init(width: Self.grabberSize.normal, height: Self.grabberSize.normal)))
             self.meshService = meshService
             
             setup(meshSize: meshSize, parentSize: parentSize)
@@ -271,15 +269,16 @@ class GrabbersView: UIView {
         
         final func setup(meshSize: CGSize, parentSize: CGSize?) {
             backgroundColor = UIColor.secondarySystemFill
-            layer.cornerRadius = bounds.width / 2
             
             layer.shadowOffset = CGSize(width: 0, height: 4)
             layer.shadowRadius = 10
             layer.shadowOpacity = 0.4
             
-            if !(node.point.x != 0 && node.point.x != Int(meshSize.width) - 1 && node.point.y != 0 && node.point.y != Int(meshSize.height) - 1) {
-                backgroundColor = UIColor.quaternarySystemFill
+            if node.isEdge(meshSize) {
+                frame = CGRect(origin: .zero, size: CGSize(width: Self.grabberSize.edge, height: Self.grabberSize.edge))
             }
+            
+            layer.cornerRadius = bounds.width / 2
             
             if let size = parentSize {
                 updateLocation(node.location, meshSize: meshSize, size: size)
@@ -300,22 +299,50 @@ class GrabbersView: UIView {
                     self?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
                     self?.transform = .init(scaleX: 1.1, y: 1.1)
                 } else {
-                    if let node = self?.node, let meshSize = self?.meshSize {
-                        if !(node.point.x != 0 && node.point.x != Int(meshSize.width) - 1 && node.point.y != 0 && node.point.y != Int(meshSize.height) - 1) {
-                            self?.backgroundColor = UIColor.quaternarySystemFill
-                        } else {
-                            self?.transform = .identity
-                            self?.backgroundColor = UIColor.secondarySystemFill
-                        }
-                    }
+                    self?.backgroundColor = UIColor.secondarySystemFill
+                    self?.transform = .identity
                 }
             })
         }
         
         final func updateLocation(_ location: (x: Float, y: Float), meshSize: CGSize, size: CGSize, withAnimation animates: Bool = true) {
             self.meshSize = meshSize
-            let point = CGPoint(x: (size.width / (meshSize.width - 1)) * CGFloat(location.x),
-                                y: size.height - ((size.height / (meshSize.height - 1)) * CGFloat(location.y)))
+            
+            var offsetX: CGFloat = 0
+            var offsetY: CGFloat = 0
+            
+            if node.point.x == 0 && node.point.y == Int(meshSize.height) - 1 {
+                // Top Left
+                offsetX = 25
+                offsetY = 25
+            } else if node.point.x == 0 && node.point.y == 0 {
+                // Bottom Left
+                offsetX = 25
+                offsetY = -25
+            } else if node.point.x == Int(meshSize.width) - 1 && node.point.y == Int(meshSize.height) - 1 {
+                // Top Right
+                offsetX = -25
+                offsetY = 25
+            } else if node.point.x == Int(meshSize.width) - 1 && node.point.y == 0 {
+                // Bottom Right
+                offsetX = -25
+                offsetY = -25
+            } else if node.point.y == 0 {
+                // Bottom
+                offsetY = -25
+            } else if node.point.y == Int(meshSize.height) - 1 {
+                // Top
+                offsetY = 25
+            } else if node.point.x == 0 {
+                // Left
+                offsetX = 25
+            } else if node.point.x == Int(meshSize.width) - 1 {
+                // Right
+                offsetX = -25
+            }
+            
+            let point = CGPoint(x: (size.width / (meshSize.width - 1)) * CGFloat(location.x) + offsetX,
+                                y: size.height - ((size.height / (meshSize.height - 1)) * CGFloat(location.y)) + offsetY)
             
             if animates {
                 UIView.animate(withDuration: 0.05, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveLinear]) { [weak self] in
@@ -342,5 +369,17 @@ extension NSLayoutConstraint {
         self.priority = priority
         isActive = true
         return self
+    }
+}
+
+extension UIEdgeInsets {
+    var vertical: CGFloat {
+        return self.top + self.bottom
+    }
+}
+
+extension MeshNode.Color {
+    func isEdge(_ meshSize: CGSize) -> Bool {
+        return !(point.x != 0 && point.x != Int(meshSize.width) - 1 && point.y != 0 && point.y != Int(meshSize.height) - 1)
     }
 }

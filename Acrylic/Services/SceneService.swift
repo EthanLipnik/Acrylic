@@ -47,13 +47,6 @@ class SceneService {
                 self?.saveDocument()
             }
             .store(in: &cancellables)
-        
-        var objects = document.objects
-        objects.removeFirst()
-        objects.append(.init(shape: .sphere(), material: .init()))
-        
-        objects[4].position.x += Float.random(in: 1..<3)
-        sceneDocument.objects = objects
     }
     
     func saveDocument() {
@@ -75,7 +68,8 @@ class SceneService {
             var objects: [SceneDocument.Object] = []
             for _ in 0..<1500 {
                 let randomScale = Float.random(in: 0.1..<1)
-                let sphere = SceneDocument.Object(shape: .sphere(), material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.5),
+                let sphere = SceneDocument.Object(shape: .sphere(),
+                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.5),
                                                   position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
                                                   scale: .init(x: randomScale, y: randomScale, z: randomScale))
                 objects.append(sphere)

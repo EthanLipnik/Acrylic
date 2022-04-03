@@ -7,7 +7,6 @@
 
 import UIKit
 import UniformTypeIdentifiers
-import QuickLook
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate {
     
@@ -264,19 +263,19 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        return true
+        return UIDevice.current.userInterfaceIdiom != .phone
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
-        return true
+        return UIDevice.current.userInterfaceIdiom != .phone
     }
     
     func collectionView(_ collectionView: UICollectionView, selectionFollowsFocusForItemAt indexPath: IndexPath) -> Bool {
-        return true
+        return UIDevice.current.userInterfaceIdiom != .phone
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        return true
+        return UIDevice.current.userInterfaceIdiom != .phone
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -288,15 +287,5 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 })
             ])
         }
-    }
-}
-
-extension ProjectNavigatorViewController: QLPreviewControllerDataSource {
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return 1
-    }
-    
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return AppDelegate.documentsFolder.appendingPathComponent("Scene.ausf") as NSURL
     }
 }

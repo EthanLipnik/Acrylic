@@ -82,12 +82,21 @@ class MeshService: ObservableObject {
                   luminosity: RandomColor.Luminosity = .bright,
                   shouldRandomizePointLocations: Bool = true,
                   positionMultiplier: Float = 0.6) {
-        self.colors = Self.generateColors(palette: hues,
+        var colors = Self.generateColors(palette: hues,
                             luminosity: luminosity,
                             width: width,
                             height: height,
                             shouldRandomizePointLocations: shouldRandomizePointLocations,
                             positionMultiplier: positionMultiplier)
+        
+        if !shouldRandomizePointLocations {
+            for i in 0..<self.colors.count {
+                let oldColor = self.colors[i]
+                colors[i].location = oldColor.location
+            }
+        }
+        
+        self.colors = colors
     }
     
     static func generateColors(palette hues: [RandomColor.Hue],

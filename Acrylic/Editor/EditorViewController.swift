@@ -26,6 +26,10 @@ class EditorViewController<Document: UIDocument>: UISplitViewController {
         super.init(style: .doubleColumn)
     }
     
+    deinit {
+        document.close()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -51,41 +51,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         case scene
     }
     
-    enum Document: Hashable {
-        case mesh(MeshDocument)
-        case scene(SceneDocument)
-        
-        var uiDocument: UIDocument {
-            switch self {
-            case .mesh(let meshDocument):
-                return meshDocument as UIDocument
-            case .scene(let sceneDocument):
-                return sceneDocument as UIDocument
-            }
-        }
-        
-        func open(completion: ((Bool) -> Void)? = nil) {
-            uiDocument.open(completionHandler: completion)
-        }
-        
-        func close(completion: ((Bool) -> Void)? = nil) {
-            uiDocument.close(completionHandler: completion)
-        }
-        
-        var documentState: UIDocument.State {
-            return uiDocument.documentState
-        }
-        
-        var fileUrl: URL? {
-            switch self {
-            case .mesh(let meshDocument):
-                return meshDocument.fileURL
-            case .scene(let sceneDocument):
-                return sceneDocument.fileURL
-            }
-        }
-    }
-    
     lazy var dataSource: UICollectionViewDiffableDataSource<Section, Document> = {
         let dataSource = UICollectionViewDiffableDataSource<Section, Document>(collectionView: navigatorView.collectionView) { (collectionView, indexPath, document) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCollectionViewCell.reuseIdentifer, for: indexPath) as! ProjectCollectionViewCell
@@ -94,12 +59,16 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             
 #if targetEnvironment(macCatalyst)
             cell.doubleClickAction = { [weak self] in
-                self?.openDocument(document)
+                if let fileUrl = document.fileUrl {
+                    self?.view.window?.openDocument(fileUrl)
+                }
             }
 #endif
             cell.singleClickAction = { [weak self] in
 #if !targetEnvironment(macCatalyst)
-                self?.openDocument(document)
+                if let fileUrl = document.fileUrl {
+                    self?.view.window?.openDocument(fileUrl)
+                }
 #else
                 collectionView.indexPathsForSelectedItems?.forEach({ collectionView.deselectItem(at: $0, animated: false) })
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
@@ -180,42 +149,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         applySnapshot()
     }
     
-    func openDocument(_ document: Document) {
-        switch document {
-        case .mesh(let meshDocument):
-#if targetEnvironment(macCatalyst)
-            let activity = NSUserActivity(activityType: "editor")
-            activity.userInfo = ["fileUrl": meshDocument.fileURL]
-            
-            UIApplication.shared.requestSceneSessionActivation(nil, userActivity: activity, options: nil) { (error) in
-                print(error)
-            }
-            
-            if let session = view.window?.windowScene?.session {
-                UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
-                    print(error)
-                }
-            }
-#else
-            let editorViewController = MeshEditorViewController(meshDocument)
-            editorViewController.modalPresentationStyle = .fullScreen
-            self.present(editorViewController, animated: true) { [weak self] in
-                self?.applySnapshot()
-            }
-#endif
-        case .scene(let sceneDocument):
-            sceneDocument.open { [weak self] success in
-                if success {
-                    let editorViewController = SceneEditorViewController(sceneDocument)
-                    editorViewController.modalPresentationStyle = .fullScreen
-                    self?.present(editorViewController, animated: true)
-                } else {
-                    print("Failed to open")
-                }
-            }
-        }
-    }
-    
     func createDocument(_ name: String, type: UTType) {
         var nameIndex: Int = 0
         var url = AppDelegate.documentsFolder.appendingPathComponent(name).appendingPathExtension(for: type)
@@ -230,12 +163,12 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             let document = MeshDocument(fileURL: url)
             document.save(to: url, for: .forCreating)
             
-            openDocument(.mesh(document))
+            view.window?.openDocument(url)
         case .acrylicScene:
             let document = SceneDocument(fileURL: url)
             document.save(to: url, for: .forCreating)
             
-            openDocument(.scene(document))
+            view.window?.openDocument(url)
         default:
             break
         }

@@ -14,10 +14,56 @@ typealias EditorDelegate = EditorSceneDelegate
 typealias EditorDelegate = SceneDelegate
 #endif
 
+enum Document: Hashable {
+    case mesh(MeshDocument)
+    case scene(SceneDocument)
+    
+    static func fromURL(_ url: URL) throws -> Document {
+        switch url.pathExtension {
+        case "amgf":
+            return .mesh(MeshDocument(fileURL: url))
+        case "ausf":
+            return .scene(SceneDocument(fileURL: url))
+        default:
+            throw CocoaError(.fileReadUnknown)
+        }
+    }
+    
+    var uiDocument: UIDocument {
+        switch self {
+        case .mesh(let meshDocument):
+            return meshDocument as UIDocument
+        case .scene(let sceneDocument):
+            return sceneDocument as UIDocument
+        }
+    }
+    
+    func open(completion: ((Bool) -> Void)? = nil) {
+        uiDocument.open(completionHandler: completion)
+    }
+    
+    func close(completion: ((Bool) -> Void)? = nil) {
+        uiDocument.close(completionHandler: completion)
+    }
+    
+    var documentState: UIDocument.State {
+        return uiDocument.documentState
+    }
+    
+    var fileUrl: URL? {
+        switch self {
+        case .mesh(let meshDocument):
+            return meshDocument.fileURL
+        case .scene(let sceneDocument):
+            return sceneDocument.fileURL
+        }
+    }
+}
+
 class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
-    var document: ProjectNavigatorViewController.Document?
+    var document: Document?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -76,6 +122,12 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         document?.close { [weak self] _ in
             self?.document = nil
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let fileUrl = URLContexts.first?.url {
+            self.window?.openDocument(fileUrl, destroysCurrentScene: false)
         }
     }
     

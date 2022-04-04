@@ -13,7 +13,7 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     static let reuseIdentifer = String(describing: ProjectCollectionViewCell.self)
     
     
-    var document: ProjectNavigatorViewController.Document? = nil {
+    var document: Document? = nil {
         didSet {
             guard let document = document, let fileUrl = document.fileUrl else {
                 

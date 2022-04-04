@@ -179,6 +179,13 @@ class GrabbersView: UIView {
         
         colors.forEach { color in
             if let grabber = (subviews as? [GrabberView])?.first(where: { $0.node.point == color.point }) {
+                
+                if color.isEdge(CGSize(width: width, height: height)) {
+                    grabber.frame = CGRect(origin: grabber.frame.origin, size: CGSize(width: GrabberView.grabberSize.edge, height: GrabberView.grabberSize.edge))
+                } else {
+                    grabber.frame = CGRect(origin: grabber.frame.origin, size: CGSize(width: GrabberView.grabberSize.normal, height: GrabberView.grabberSize.normal))
+                }
+                
                 grabber.updateLocation(color.location, meshSize: CGSize(width: width, height: height), size: CGSize(width: bounds.width, height: bounds.height), withAnimation: animates)
                 
                 grabber.updateSelection(meshService.selectedPoint)
@@ -278,8 +285,6 @@ class GrabbersView: UIView {
                 frame = CGRect(origin: .zero, size: CGSize(width: Self.grabberSize.edge, height: Self.grabberSize.edge))
             }
             
-            layer.cornerRadius = bounds.width / 2
-            
             if let size = parentSize {
                 updateLocation(node.location, meshSize: meshSize, size: size)
             }
@@ -351,6 +356,12 @@ class GrabbersView: UIView {
             } else {
                 center = point
             }
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            layer.cornerRadius = bounds.width / 2
         }
     }
 }

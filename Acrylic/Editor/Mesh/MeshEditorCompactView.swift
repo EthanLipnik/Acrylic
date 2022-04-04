@@ -65,7 +65,7 @@ struct MeshEditorCompactView: View {
                     Spacer()
                     Button {
                         let scene = UIApplication.shared.connectedScenes.first
-                        if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                        if let sceneDelegate = scene?.delegate as? EditorDelegate {
                             sceneDelegate.export()
                         }
                     } label: {

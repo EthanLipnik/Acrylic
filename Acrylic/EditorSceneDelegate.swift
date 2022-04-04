@@ -1,27 +1,55 @@
 //
-//  SceneDelegate.swift
+//  EditorSceneDelegate.swift
 //  Acrylic
 //
-//  Created by Ethan Lipnik on 10/23/21.
+//  Created by Ethan Lipnik on 4/3/22.
 //
 
 import UIKit
 import SwiftUI
-import CoreImage
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+#if targetEnvironment(macCatalyst)
+typealias EditorDelegate = EditorSceneDelegate
+#else
+typealias EditorDelegate = SceneDelegate
+#endif
 
+class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-
-
+    
+    var document: ProjectNavigatorViewController.Document?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: ProjectNavigatorViewController())
+        if let userInfo = connectionOptions.userActivities.first(where: { $0.userInfo != nil })?.userInfo,
+           let documentUrl = userInfo["fileUrl"] as? URL {
+            let meshDocument = MeshDocument(fileURL: documentUrl)
+            self.document = .mesh(meshDocument)
+            
+            windowScene.title = documentUrl.lastPathComponent
+            if #available(iOS 15.0, macCatalyst 15.0, *) {
+                windowScene.subtitle = "Last saved: 5 mins ago"
+            }
+            
+            document?.open { [weak self] success in
+                if success {
+                    self?.window?.rootViewController = MeshEditorViewController(meshDocument)
+                } else {
+                    UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                        print(error)
+                    }
+                }
+            }
+        } else {
+            UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                print(error)
+            }
+        }
+        
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
@@ -45,30 +73,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        
+        document?.close { [weak self] _ in
+            self?.document = nil
+        }
     }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return scene.userActivity
     }
     
     @objc final func export() {
@@ -96,9 +108,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 #if targetEnvironment(macCatalyst)
-extension SceneDelegate: NSToolbarDelegate {
+extension EditorSceneDelegate: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.init("newProject")]
+        return [.init("export")]
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -107,33 +119,14 @@ extension SceneDelegate: NSToolbarDelegate {
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
-        case .init("newProject"):
-            let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
-            item.image = UIImage(systemName: "plus")
+        case .init("export"):
+            let button = UIBarButtonItem()
+            button.image = UIImage(systemName: "tray.and.arrow.up.fill")
+            button.action = #selector(export)
+            button.target = self
             
-            item.itemMenu = UIMenu(title: "New Project", children: [
-                UIAction(title: "Mesh Gradient", handler: { [weak self] action in
-                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
-                        projectNavigator.createDocument("Mesh", type: .acrylicMeshGradient)
-                    }
-                }),
-                UIAction(title: "3D Scene", state: .off, handler: { [weak self] action in
-                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
-                        projectNavigator.createDocument("Scene", type: .acrylicScene)
-                    }
-                })
-            ])
-            
-            if var topController = window?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
-                
-                if (topController is MeshEditorViewController || topController is SceneEditorViewController) {
-                    item.target = nil
-                    item.action = nil
-                }
-            }
+            let item = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: button)
+            item.label = "Export"
             
             return item
         default:

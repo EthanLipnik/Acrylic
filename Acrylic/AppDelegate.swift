@@ -40,13 +40,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        if options.userActivities.first?.activityType == "editor" {
+            let config = UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+            config.delegateClass = EditorSceneDelegate.self
+            return config
+        } else {
+            return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        }
+    }
+    
+    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+        return true
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        fatalError(url.path)
+        return false
     }
 
     // MARK: - Core Data stack
@@ -99,22 +118,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     override func buildMenu(with builder: UIMenuBuilder) {
+        super.buildMenu(with: builder)
         builder.remove(menu: .edit)
+        builder.remove(menu: .format)
         
         let exportCommand = UIKeyCommand(input: "E", modifierFlags: [.command], action: #selector(export))
         exportCommand.title = "Export..."
-        
-        let exportMenu = UIMenu(title: "Export...", image: UIImage(systemName: "square.and.arrow.up"), identifier: UIMenu.Identifier("export"), options: .displayInline, children: [exportCommand])
-        
+        let exportMenu = UIMenu(title: "Export...", identifier: UIMenu.Identifier("export"), options: .displayInline, children: [exportCommand])
         builder.insertSibling(exportMenu, afterMenu: .newScene)
     }
     
     @objc func export() {
         UIApplication.shared.connectedScenes
-            .compactMap({ $0.delegate as? SceneDelegate })
+            .compactMap({ $0.delegate as? EditorDelegate })
             .first(where: { $0.window?.isKeyWindow ?? false })?
             .export()
     }
+    
+    @objc func newMesh() { }
     
 #if targetEnvironment(macCatalyst)
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {

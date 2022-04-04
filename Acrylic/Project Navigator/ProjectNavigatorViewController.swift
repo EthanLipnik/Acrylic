@@ -183,25 +183,32 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     func openDocument(_ document: Document) {
         switch document {
         case .mesh(let meshDocument):
-            meshDocument.open { [weak self] success in
-                if success {
-                    let editorViewController = MeshEditorViewController(meshDocument)
-                    editorViewController.modalPresentationStyle = .fullScreen
-                    self?.present(editorViewController, animated: true) {
-                        self?.updateToolbar()
-                    }
-                } else {
-                    print("Failed to open")
+#if targetEnvironment(macCatalyst)
+            let activity = NSUserActivity(activityType: "editor")
+            activity.userInfo = ["fileUrl": meshDocument.fileURL]
+            
+            UIApplication.shared.requestSceneSessionActivation(nil, userActivity: activity, options: nil) { (error) in
+                print(error)
+            }
+            
+            if let session = view.window?.windowScene?.session {
+                UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                    print(error)
                 }
             }
+#else
+            let editorViewController = MeshEditorViewController(meshDocument)
+            editorViewController.modalPresentationStyle = .fullScreen
+            self.present(editorViewController, animated: true) { [weak self] in
+                self?.applySnapshot()
+            }
+#endif
         case .scene(let sceneDocument):
             sceneDocument.open { [weak self] success in
                 if success {
                     let editorViewController = SceneEditorViewController(sceneDocument)
                     editorViewController.modalPresentationStyle = .fullScreen
-                    self?.present(editorViewController, animated: true) {
-                        self?.updateToolbar()
-                    }
+                    self?.present(editorViewController, animated: true)
                 } else {
                     print("Failed to open")
                 }
@@ -223,40 +230,15 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             let document = MeshDocument(fileURL: url)
             document.save(to: url, for: .forCreating)
             
-            document.open { [weak self] _ in
-                let editorViewController = MeshEditorViewController(document)
-                editorViewController.modalPresentationStyle = .fullScreen
-                self?.present(editorViewController, animated: true) {
-                    self?.applySnapshot()
-                }
-                
-                self?.updateToolbar()
-            }
+            openDocument(.mesh(document))
         case .acrylicScene:
             let document = SceneDocument(fileURL: url)
             document.save(to: url, for: .forCreating)
             
-            document.open { [weak self] _ in
-                let editorViewController = SceneEditorViewController(document)
-                editorViewController.modalPresentationStyle = .fullScreen
-                self?.present(editorViewController, animated: true) {
-                    self?.applySnapshot()
-                }
-                
-                self?.updateToolbar()
-            }
+            openDocument(.scene(document))
         default:
             break
         }
-    }
-    
-    func updateToolbar() {
-#if targetEnvironment(macCatalyst)
-            let scene = UIApplication.shared.connectedScenes.first
-            if let sceneDelegate = scene?.delegate as? SceneDelegate {
-                sceneDelegate.updateToolbar()
-            }
-#endif
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

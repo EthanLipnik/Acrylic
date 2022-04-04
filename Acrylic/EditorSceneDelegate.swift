@@ -73,22 +73,34 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         if let userInfo = connectionOptions.userActivities.first(where: { $0.userInfo != nil })?.userInfo,
            let documentUrl = userInfo["fileUrl"] as? URL {
-            let meshDocument = MeshDocument(fileURL: documentUrl)
-            self.document = .mesh(meshDocument)
-            
-            windowScene.title = documentUrl.lastPathComponent
-            if #available(iOS 15.0, macCatalyst 15.0, *) {
-                windowScene.subtitle = "Last saved: 5 mins ago"
-            }
-            
-            document?.open { [weak self] success in
-                if success {
-                    self?.window?.rootViewController = MeshEditorViewController(meshDocument)
-                } else {
-                    UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
-                        print(error)
+            do {
+                self.document = try Document.fromURL(documentUrl)
+                
+                windowScene.title = documentUrl.lastPathComponent
+                if #available(iOS 15.0, macCatalyst 15.0, *) {
+                    windowScene.subtitle = "Last saved: 5 mins ago"
+                }
+                
+                document?.open { [weak self] success in
+                    if success {
+                        switch self?.document {
+                        case .mesh(let meshDocument):
+                            self?.window?.rootViewController = MeshEditorViewController(meshDocument)
+                        case .scene(let sceneDocument):
+                            self?.window?.rootViewController = SceneEditorViewController(sceneDocument)
+                        default:
+                            UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                                print(error)
+                            }
+                        }
+                    } else {
+                        UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                            print(error)
+                        }
                     }
                 }
+            } catch {
+                print(error)
             }
         } else {
             UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in

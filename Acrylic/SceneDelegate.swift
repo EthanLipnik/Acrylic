@@ -190,6 +190,8 @@ extension UIWindow {
                             self?.rootViewController?.present(editorViewController, animated: true)
                         }
                     }
+                    
+                    self?.windowScene?.title = document.fileUrl?.lastPathComponent
                 } else {
                     print("Failed to open")
                 }

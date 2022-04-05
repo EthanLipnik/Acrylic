@@ -18,11 +18,11 @@ class ProjectNavigatorView: UIView {
     lazy var layout: UICollectionViewCompositionalLayout = UICollectionViewCompositionalLayout {
         (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
         
-        let squareItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(1.0),
+        let squareItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                                                    heightDimension: .fractionalHeight(1.0)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(300),
-                                                                                        heightDimension: .absolute(300)),
+                                                                                        heightDimension: .absolute(340)),
                                                      subitems: [squareItem])
         
         let section = NSCollectionLayoutSection(group: group)

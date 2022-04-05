@@ -164,9 +164,7 @@ extension UIWindow {
                 print(error)
             }
         }
-        
 #else
-        
         do {
             let document = try Document.fromURL(url)
             document.open { [weak self] success in

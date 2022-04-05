@@ -158,19 +158,25 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             url = AppDelegate.documentsFolder.appendingPathComponent("\(name) \(nameIndex)").appendingPathExtension(for: type)
         }
         
+        var document: UIDocument?
+        
         switch type {
         case .acrylicMeshGradient:
-            let document = MeshDocument(fileURL: url)
-            document.save(to: url, for: .forCreating)
-            
-            view.window?.openDocument(url)
+            document = MeshDocument(fileURL: url)
         case .acrylicScene:
-            let document = SceneDocument(fileURL: url)
-            document.save(to: url, for: .forCreating)
-            
-            view.window?.openDocument(url)
+            document = SceneDocument(fileURL: url)
         default:
             break
+        }
+        
+        print(Date())
+        document?.save(to: url, for: .forCreating) { [weak self] success in
+            if success {
+                print("Save at", Date())
+                self?.view.window?.openDocument(url)
+            } else {
+                print("Failed to create document")
+            }
         }
     }
     

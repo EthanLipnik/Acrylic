@@ -94,6 +94,7 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                             }
                         }
                     } else {
+                        print("Failed to open document")
                         UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
                             print(error)
                         }

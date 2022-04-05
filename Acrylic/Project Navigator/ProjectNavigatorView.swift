@@ -40,8 +40,9 @@ class ProjectNavigatorView: UIView {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = viewController
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = true
+        collectionView.allowsSelection = UIDevice.current.userInterfaceIdiom != .phone
+        collectionView.allowsMultipleSelection = UIDevice.current.userInterfaceIdiom != .phone
+        collectionView.allowsSelectionDuringEditing = true
         
         collectionView.register(ProjectCollectionViewCell.self, forCellWithReuseIdentifier: ProjectCollectionViewCell.reuseIdentifer)
         collectionView.register(ProjectHeaderCollectionReusableView.self, forSupplementaryViewOfKind: ProjectHeaderCollectionReusableView.reuseIdentifer, withReuseIdentifier: ProjectHeaderCollectionReusableView.reuseIdentifer)

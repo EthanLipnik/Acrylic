@@ -248,6 +248,11 @@ class SceneService {
     func render(resolution: CGSize = CGSize(width: 1024, height: 1024)) -> UIImage {
         let renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice())
         renderer.scene = scene
-        return renderer.snapshot(atTime: .zero, with: resolution, antialiasingMode: .multisampling4X)
+        
+        let renderTime = TimeInterval(1)
+        renderer.update(atTime: .zero)
+        renderer.sceneTime = renderTime
+        
+        return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .multisampling4X)
     }
 }

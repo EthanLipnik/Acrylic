@@ -111,11 +111,23 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         
         let newProjectButton = UIBarButtonItem(systemItem: .add)
         newProjectButton.menu = UIMenu(title: "New Project", image: UIImage(systemName: "add"), children: [
-            UIAction(title: "Mesh Gradient", handler: { [weak self] action in
-                self?.createDocument("Mesh", type: .acrylicMeshGradient)
+            UIAction(title: "Mesh Gradient", handler: { action in
+                Task(priority: .userInitiated) { [weak self] in
+                    do {
+                        try await self?.createDocument("Mesh", type: .acrylicMeshGradient)
+                    } catch {
+                        print(error)
+                    }
+                }
             }),
-            UIAction(title: "3D Scene", state: .off, handler: { [weak self] action in
-                self?.createDocument("Scene", type: .acrylicScene)
+            UIAction(title: "3D Scene", state: .off, handler: { action in
+                Task(priority: .userInitiated) { [weak self] in
+                    do {
+                        try await self?.createDocument("Scene", type: .acrylicScene)
+                    } catch {
+                        print(error)
+                    }
+                }
             })
         ])
         navigationItem.rightBarButtonItem = newProjectButton
@@ -128,7 +140,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #endif
     }
     
-    func applySnapshot() {
+    func applySnapshot(completion: @escaping () -> Void = {}) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Document>()
         
         if !meshDocuments.isEmpty {
@@ -141,7 +153,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             snapshot.appendItems(sceneDocuments, toSection: .scene)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: true, completion: completion)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +161,13 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         applySnapshot()
     }
     
-    func createDocument(_ name: String, type: UTType) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        view.window?.windowScene?.title = nil
+    }
+    
+    func createDocument(_ name: String, type: UTType) async throws {
         var nameIndex: Int = 0
         var url = AppDelegate.documentsFolder.appendingPathComponent(name).appendingPathExtension(for: type)
         
@@ -169,14 +187,14 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             break
         }
         
-        print(Date())
-        document?.save(to: url, for: .forCreating) { [weak self] success in
-            if success {
-                print("Save at", Date())
-                self?.view.window?.openDocument(url)
-            } else {
-                print("Failed to create document")
-            }
+        guard let didSave = await document?.save(to: url, for: .forCreating), didSave else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        
+        applySnapshot { [weak self] in
+#if !targetEnvironment(macCatalyst)
+            self?.view.window?.openDocument(url)
+#endif
         }
     }
     

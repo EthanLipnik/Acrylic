@@ -118,14 +118,26 @@ extension SceneDelegate: NSToolbarDelegate {
             item.image = UIImage(systemName: "plus")
             
             item.itemMenu = UIMenu(title: "New Project", children: [
-                UIAction(title: "Mesh Gradient", handler: { [weak self] action in
-                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
-                        projectNavigator.createDocument("Mesh", type: .acrylicMeshGradient)
+                UIAction(title: "Mesh Gradient", handler: { action in
+                    Task(priority: .userInitiated) { [weak self] in
+                        do {
+                            if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
+                                try await projectNavigator.createDocument("Mesh", type: .acrylicMeshGradient)
+                            }
+                        } catch {
+                            print(error)
+                        }
                     }
                 }),
-                UIAction(title: "3D Scene", state: .off, handler: { [weak self] action in
-                    if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
-                        projectNavigator.createDocument("Scene", type: .acrylicScene)
+                UIAction(title: "3D Scene", state: .off, handler: { action in
+                    Task(priority: .userInitiated) { [weak self] in
+                        do {
+                            if let navigationController = self?.window?.rootViewController as? UINavigationController, let projectNavigator = navigationController.topViewController as? ProjectNavigatorViewController {
+                                try await projectNavigator.createDocument("Scene", type: .acrylicScene)
+                            }
+                        } catch {
+                            print(error)
+                        }
                     }
                 })
             ])

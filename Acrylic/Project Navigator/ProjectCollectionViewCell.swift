@@ -118,11 +118,9 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                layer.borderColor = UIColor.link.cgColor
-                layer.borderWidth = 2
+                contentView.backgroundColor = UIColor.secondarySystemBackground
             } else {
-                layer.borderColor = nil
-                layer.borderWidth = 0
+                contentView.backgroundColor = nil
             }
         }
     }
@@ -150,20 +148,23 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
         imageContainerView.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageContainerView.topAnchor.constraint(equalTo: topAnchor),
-            imageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            imageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            imageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             imageContainerView.heightAnchor.constraint(equalTo: imageContainerView.widthAnchor),
             
             iCloudBadge.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: -10),
             iCloudBadge.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor, constant: -10),
             iCloudBadge.widthAnchor.constraint(equalToConstant: 32),
-            iCloudBadge.heightAnchor.constraint(equalTo: imageContainerView.widthAnchor),
+            iCloudBadge.heightAnchor.constraint(equalTo: iCloudBadge.widthAnchor),
             
             fileNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            fileNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            fileNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            fileNameLabel.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+            fileNameLabel.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor)
         ])
+        
+        contentView.layer.cornerRadius = 20
+        contentView.layer.cornerCurve = .continuous
         
         let pointerInteraction = UIPointerInteraction()
         addInteraction(pointerInteraction)
@@ -191,8 +192,7 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 15).cgPath
-        iCloudBadge.frame = CGRect(x: contentView.bounds.width - 32 - 10, y: contentView.bounds.height - 32 - 10, width: 32, height: 32)
+        imageContainerView.layer.shadowPath = UIBezierPath(roundedRect: imageContainerView.bounds, cornerRadius: 20).cgPath
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

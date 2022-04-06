@@ -7,6 +7,7 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import SwiftUI
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate {
     
@@ -219,12 +220,65 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
-        return .init(identifier: nil, previewProvider: nil) { menu in
-            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: [
-                UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
-                    
-                })
-            ])
+        return .init(identifier: nil, previewProvider: nil) { [weak self] menu in
+            var children: [UIMenuElement] = [
+                UIMenu(title: "", options: .displayInline, children: [
+                    UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
+                        switch document {
+                        case .mesh(let meshDocument):
+                            let meshService = MeshService(meshDocument)
+                            let renderImage = meshService.render()
+                            
+                            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
+                            
+            #if targetEnvironment(macCatalyst)
+                            vc.preferredContentSize = CGSize(width: 1024, height: 512)
+            #else
+                            vc.modalPresentationStyle = .formSheet
+            #endif
+                            self?.present(vc, animated: true)
+                        default:
+                            break
+                        }
+                    })
+                ]),
+                
+                UIMenu(title: "", options: .displayInline, children: [
+                    UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
+                        let alertController = UIAlertController(title: "Delete \(document.fileUrl?.lastPathComponent ?? "document")?", message: "You won't be able to undo this.", preferredStyle: .actionSheet)
+                        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                            if let url = document.fileUrl {
+                                var finalUrl: NSURL?
+                                do {
+                                    try FileManager.default.trashItem(at: url, resultingItemURL: &finalUrl)
+                                    self?.applySnapshot()
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                        }))
+                        
+                        let cell = collectionView.cellForItem(at: indexPath)
+                        alertController.popoverPresentationController?.sourceRect = cell?.bounds ?? CGRect(origin: point, size: .zero)
+                        alertController.popoverPresentationController?.sourceView = cell ?? collectionView
+                        
+                        self?.present(alertController, animated: true)
+                    })
+                ])
+            ]
+            
+#if targetEnvironment(macCatalyst)
+            if let fileUrl = document.fileUrl {
+                children.insert(UIAction(title: "Open in New Window", discoverabilityTitle: "Open document in new window", handler: { action in
+                    self?.view.window?.openDocument(fileUrl, destroysCurrentScene: false)
+                }), at: 0)
+                children.insert(UIAction(title: "Open", discoverabilityTitle: "Open document", handler: { action in
+                    self?.view.window?.openDocument(fileUrl)
+                }), at: 0)
+            }
+#endif
+            
+            return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: children)
         }
     }
 }

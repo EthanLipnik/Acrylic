@@ -32,6 +32,7 @@ class ProjectNavigatorView: UIView {
         
         let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(60))
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: ProjectHeaderCollectionReusableView.reuseIdentifer, alignment: .top)
+        headerItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         section.boundarySupplementaryItems = [headerItem]
         
         return section

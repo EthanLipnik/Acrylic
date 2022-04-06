@@ -189,8 +189,8 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
         iCloudBadge.isHidden = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
         
         imageContainerView.layer.shadowPath = UIBezierPath(roundedRect: imageContainerView.bounds, cornerRadius: 20).cgPath
     }

@@ -37,7 +37,12 @@ class PreviewProvider: QLPreviewProvider, QLPreviewingController {
         //You can create a QLPreviewReply in several ways, depending on the format of the data you want to return.
         //To return Data of a supported content type:
         
-        let reply = QLPreviewReply(fileURL: request.fileURL.appendingPathComponent("PreviewImage"))
+        let imageUrl = request.fileURL.appendingPathComponent("PreviewImage")
+        let image = UIImage(contentsOfFile: imageUrl.path)
+        let reply = QLPreviewReply(dataOfContentType: .image, contentSize: image?.size ?? CGSize(width: 512, height: 512)) { reply in
+            
+            return image?.pngData() ?? (try? Data(contentsOf: imageUrl)) ?? .init()
+        }
         
         return reply
     }

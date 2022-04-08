@@ -8,6 +8,7 @@
 import UIKit
 import UniformTypeIdentifiers
 import SwiftUI
+import DirectoryWatcher
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate {
     
@@ -105,6 +106,18 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         self.view = navigatorView
     }
     
+    lazy var directoryWatcher: DirectoryWatcher? = {
+        let watcher = DirectoryWatcher.watch(AppDelegate.documentsFolder)
+        
+        watcher?.onNewFiles = { [weak self] _ in
+            self?.applySnapshot()
+        }
+        
+        watcher?.onDeletedFiles = watcher?.onNewFiles
+        
+        return watcher
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,6 +152,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #if targetEnvironment(macCatalyst)
         navigationController?.setNavigationBarHidden(true, animated: false)
 #endif
+        
+        let _ = directoryWatcher?.startWatching()
     }
     
     func applySnapshot(completion: @escaping () -> Void = {}) {
@@ -166,6 +181,14 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         super.viewDidAppear(animated)
         
         view.window?.windowScene?.title = nil
+        
+        let _ = directoryWatcher?.startWatching()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let _ = directoryWatcher?.stopWatching()
     }
     
     func createDocument(_ name: String, type: UTType) async throws {
@@ -251,7 +274,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                                 var finalUrl: NSURL?
                                 do {
                                     try FileManager.default.trashItem(at: url, resultingItemURL: &finalUrl)
-                                    self?.applySnapshot()
                                 } catch {
                                     print(error)
                                 }

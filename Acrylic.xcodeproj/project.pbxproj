@@ -69,6 +69,7 @@
 		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
 		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
 		AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3DB5627F3E856000C4516 /* SceneViewController.swift */; };
+		AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */ = {isa = PBXBuildFile; productRef = AAAFF31227FF95BB003D042D /* DirectoryWatcher */; };
 		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
@@ -244,6 +245,7 @@
 				AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */,
 				AA2B82EE27FB2C39003A0249 /* Blackbird in Frameworks */,
 				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
+				AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */,
 				AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +563,7 @@
 				AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */,
 				AA633FB827F494B40076F85C /* DifferenceKit */,
 				AA2B82ED27FB2C39003A0249 /* Blackbird */,
+				AAAFF31227FF95BB003D042D /* DirectoryWatcher */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -647,6 +650,7 @@
 				AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */,
 				AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */,
 				AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -1399,6 +1403,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GianniCarlo/DirectoryWatcher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1443,6 +1455,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
 			productName = RandomColor;
+		};
+		AAAFF31227FF95BB003D042D /* DirectoryWatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */;
+			productName = DirectoryWatcher;
 		};
 		AAB8853627E95ACF00B43BC5 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;

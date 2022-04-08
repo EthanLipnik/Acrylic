@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "DirectoryWatcher",
+        "repositoryURL": "https://github.com/GianniCarlo/DirectoryWatcher.git",
+        "state": {
+          "branch": null,
+          "revision": "76af69f1d19146b0c5d3e38747bb5eabe547143b",
+          "version": "2.7.3"
+        }
+      },
+      {
         "package": "FilesProvider",
         "repositoryURL": "https://github.com/amosavian/FileProvider.git",
         "state": {

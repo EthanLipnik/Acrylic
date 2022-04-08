@@ -12,8 +12,15 @@ import UniformTypeIdentifiers
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var isCloudFolder: Bool = true
     static var documentsFolder: URL = {
-        return FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        if let cloudFolder = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+            isCloudFolder = true
+            return cloudFolder
+        } else {
+            isCloudFolder = false
+            return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        }
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

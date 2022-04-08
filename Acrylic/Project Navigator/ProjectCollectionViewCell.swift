@@ -18,7 +18,6 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
             guard let document = document, let fileUrl = document.fileUrl else {
                 
                 self.imageView.image = nil
-                self.iCloudBadge.isHidden = true
                 self.fileNameLabel.text = "–"
                 return
             }
@@ -35,6 +34,8 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
                         DispatchQueue.main.async { [weak self] in
                             if let error = error {
                                 print(error)
+                                let controller = UIDocumentInteractionController(url: fileUrl)
+                                self?.imageView.image = controller.icons.first
                             } else if let thumbnail = thumbnail {
                                 self?.imageView.image = thumbnail.uiImage
                             }
@@ -43,8 +44,17 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
                 }
             }
             
-            iCloudBadge.isHidden = fileUrl.pathExtension != "icloud"
-            fileNameLabel.text = document.fileUrl?.deletingPathExtension().lastPathComponent
+            var fileNameAttributedString = NSMutableAttributedString(string: fileUrl.deletingPathExtension().lastPathComponent)
+            
+            if fileUrl.pathExtension == "icloud" {
+                fileNameAttributedString = .init(string: fileUrl.deletingPathExtension().deletingPathExtension().lastPathComponent.dropFirst() + " ")
+                
+                let icloudBadgeAttachment = NSTextAttachment(image: UIImage(systemName: "icloud.circle.fill")!)
+                let icloudBadge = NSAttributedString(attachment: icloudBadgeAttachment)
+                fileNameAttributedString.append(icloudBadge)
+            }
+            
+            fileNameLabel.attributedText = fileNameAttributedString
         }
     }
     
@@ -75,24 +85,6 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
         imageView.layer.cornerCurve = .continuous
         
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        return imageView
-    }()
-    
-    lazy var iCloudBadge: UIImageView = {
-        var symbolConfig: UIImage.SymbolConfiguration
-        if #available(iOS 15.0, macOS 12.0, *) {
-            symbolConfig = UIImage.SymbolConfiguration(hierarchicalColor: UIColor.systemFill)
-        } else {
-            symbolConfig = UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.bold)
-        }
-        let imageView = UIImageView(image: UIImage(systemName: "icloud.circle.fill", withConfiguration: symbolConfig))
-        
-        imageView.contentMode = .scaleAspectFit
-        
-        imageView.isHidden = true
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
@@ -142,7 +134,6 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     
     private func commonInit() {
         contentView.addSubview(imageContainerView)
-        contentView.addSubview(iCloudBadge)
         contentView.addSubview(fileNameLabel)
         
         imageContainerView.addSubview(imageView)
@@ -152,11 +143,6 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
             imageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             imageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             imageContainerView.heightAnchor.constraint(equalTo: imageContainerView.widthAnchor),
-            
-            iCloudBadge.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: -10),
-            iCloudBadge.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor, constant: -10),
-            iCloudBadge.widthAnchor.constraint(equalToConstant: 32),
-            iCloudBadge.heightAnchor.constraint(equalTo: iCloudBadge.widthAnchor),
             
             fileNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             fileNameLabel.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
@@ -185,8 +171,7 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        imageView.image = nil
-        iCloudBadge.isHidden = true
+        document = nil
     }
     
     override func layoutIfNeeded() {

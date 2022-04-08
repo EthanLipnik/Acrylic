@@ -17,7 +17,7 @@ class ProjectHeaderCollectionReusableView: UICollectionReusableView {
         label.textAlignment = .left
         label.textColor = UIColor.secondaryLabel
         
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -39,7 +39,13 @@ class ProjectHeaderCollectionReusableView: UICollectionReusableView {
     
     private func commonInit() {
         addSubview(titleLabel)
-        titleLabel.frame = bounds
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor)
+        ])
     }
 }
 

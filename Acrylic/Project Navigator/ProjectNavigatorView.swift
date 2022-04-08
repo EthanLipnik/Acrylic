@@ -12,6 +12,7 @@ class ProjectNavigatorView: UIView {
     weak var viewController: ProjectNavigatorViewController? {
         didSet {
             collectionView.delegate = viewController
+            collectionView.dragDelegate = viewController
         }
     }
     
@@ -30,7 +31,7 @@ class ProjectNavigatorView: UIView {
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20)
         section.interGroupSpacing = 5
         
-        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(60))
+        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(28))
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: ProjectHeaderCollectionReusableView.reuseIdentifer, alignment: .top)
         headerItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         section.boundarySupplementaryItems = [headerItem]
@@ -41,9 +42,12 @@ class ProjectNavigatorView: UIView {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = viewController
+        collectionView.dragDelegate = viewController
         collectionView.allowsSelection = UIDevice.current.userInterfaceIdiom != .phone
         collectionView.allowsMultipleSelection = UIDevice.current.userInterfaceIdiom != .phone
         collectionView.allowsSelectionDuringEditing = true
+        
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         
         collectionView.register(ProjectCollectionViewCell.self, forCellWithReuseIdentifier: ProjectCollectionViewCell.reuseIdentifer)
         collectionView.register(ProjectHeaderCollectionReusableView.self, forSupplementaryViewOfKind: ProjectHeaderCollectionReusableView.reuseIdentifer, withReuseIdentifier: ProjectHeaderCollectionReusableView.reuseIdentifer)

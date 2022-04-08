@@ -77,9 +77,6 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.document = try Document.fromURL(documentUrl)
                 
                 windowScene.title = documentUrl.lastPathComponent
-                if #available(iOS 15.0, macCatalyst 15.0, *) {
-                    windowScene.subtitle = "Last saved: 5 mins ago"
-                }
                 
                 document?.open { [weak self] success in
                     if success {

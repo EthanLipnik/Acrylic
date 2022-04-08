@@ -12,6 +12,7 @@ import CoreImage
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var projectNavigator = ProjectNavigatorViewController()
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: ProjectNavigatorViewController())
+        window?.rootViewController = UINavigationController(rootViewController: projectNavigator)
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
@@ -33,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             titleBar.toolbar = toolbar
             
-            titleBar.separatorStyle = .none
+            titleBar.separatorStyle = .line
         }
         
         windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)
@@ -66,6 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        projectNavigator.applySnapshot()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

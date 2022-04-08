@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 import SwiftUI
 import DirectoryWatcher
 
-class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate {
+class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate {
     
     lazy var navigatorView: ProjectNavigatorView = {
         let view = ProjectNavigatorView()
@@ -20,31 +20,25 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         return view
     }()
     
-    var meshDocuments: [Document] {
+    var documents: (mesh: [Document], scene: [Document]) {
         do {
-            let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
-                .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ $0.pathExtension == "amgf" || $0.lastPathComponent.hasSuffix("amgf.icloud") })
-                .map({ MeshDocument(fileURL: $0) })
+            func isMesh(_ fileUrl: URL) -> Bool {
+                return fileUrl.pathExtension == "amgf" || fileUrl.lastPathComponent.hasSuffix("amgf.icloud")
+            }
+            func isScene(_ fileUrl: URL) -> Bool {
+                return fileUrl.pathExtension == "ausf" || fileUrl.lastPathComponent.hasSuffix("ausf.icloud")
+            }
             
-            return documents.map({ Document.mesh($0) })
+            let documents = (try FileManager.default.contentsOfDirectory(atURL: AppDelegate.documentsFolder, sortedBy: .modified, ascending: false, options: [.skipsSubdirectoryDescendants]) ?? [])
+                .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
+            
+            return (
+                mesh: documents.filter({ isMesh($0) }).map({ Document.mesh(MeshDocument(fileURL: $0)) }),
+                scene: documents.filter({ isScene($0) }).map({ Document.scene(SceneDocument(fileURL: $0)) })
+            )
         } catch {
             print(error)
-            return []
-        }
-    }
-    
-    var sceneDocuments: [Document] {
-        do {
-            let documents = try FileManager.default.contentsOfDirectory(atPath: AppDelegate.documentsFolder.path)
-                .map({ AppDelegate.documentsFolder.appendingPathComponent($0) })
-                .filter({ $0.pathExtension == "ausf" || $0.lastPathComponent.hasSuffix("ausf.icloud") })
-                .map({ SceneDocument(fileURL: $0) })
-            
-            return documents.map({ Document.scene($0) })
-        } catch {
-            print(error)
-            return []
+            return ([], [])
         }
     }
     
@@ -159,14 +153,15 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     func applySnapshot(completion: @escaping () -> Void = {}) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Document>()
         
-        if !meshDocuments.isEmpty {
+        let documents = self.documents
+        if !documents.mesh.isEmpty {
             snapshot.appendSections([.mesh])
-            snapshot.appendItems(meshDocuments, toSection: .mesh)
+            snapshot.appendItems(documents.mesh, toSection: .mesh)
         }
         
-        if !sceneDocuments.isEmpty {
+        if !documents.scene.isEmpty {
             snapshot.appendSections([.scene])
-            snapshot.appendItems(sceneDocuments, toSection: .scene)
+            snapshot.appendItems(documents.scene, toSection: .scene)
         }
         
         dataSource.apply(snapshot, animatingDifferences: true, completion: completion)
@@ -291,16 +286,80 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             
 #if targetEnvironment(macCatalyst)
             if let fileUrl = document.fileUrl {
-                children.insert(UIAction(title: "Open in New Window", discoverabilityTitle: "Open document in new window", handler: { action in
-                    self?.view.window?.openDocument(fileUrl, destroysCurrentScene: false)
-                }), at: 0)
-                children.insert(UIAction(title: "Open", discoverabilityTitle: "Open document", handler: { action in
-                    self?.view.window?.openDocument(fileUrl)
-                }), at: 0)
+                if document.fileUrl?.pathExtension != "icloud" {
+                    let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+                    let fileUrls = selectedIndexPaths.compactMap({ self?.dataSource.itemIdentifier(for: $0)?.fileUrl }) + [fileUrl]
+                    
+                    children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
+                        fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false) })
+                    }), at: 0)
+                    
+                    children.insert(UIAction(title: "Open", discoverabilityTitle: "Open document", handler: { action in
+                        self?.view.window?.openDocument(fileUrl)
+                    }), at: 0)
+                    
+                    if AppDelegate.isCloudFolder {
+                        children.insert(UIAction(title: "Remove download", discoverabilityTitle: "Remove download of document", handler: { action in
+                            do {
+                                try FileManager.default.evictUbiquitousItem(at: fileUrl)
+                            } catch {
+                                print(error)
+                            }
+                        }), at: 2)
+                    }
+                } else {
+                    children.insert(UIAction(title: "Download", discoverabilityTitle: "Download document", handler: { action in
+                        do {
+                            try FileManager.default.startDownloadingUbiquitousItem(at: fileUrl)
+                        } catch {
+                            print(error)
+                        }
+                    }), at: 0)
+                }
             }
 #endif
             
             return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: children)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard let item = dataSource.itemIdentifier(for: indexPath), let fileUrl = item.fileUrl, let provider = NSItemProvider(contentsOf: fileUrl) else { return [] }
+        return [UIDragItem(itemProvider: provider)]
+    }
+}
+
+extension FileManager {
+
+    enum ContentDate {
+        case created, modified, accessed
+
+        var resourceKey: URLResourceKey {
+            switch self {
+            case .created: return .creationDateKey
+            case .modified: return .contentModificationDateKey
+            case .accessed: return .contentAccessDateKey
+            }
+        }
+    }
+
+    func contentsOfDirectory(atURL url: URL, sortedBy: ContentDate, ascending: Bool = true, options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles]) throws -> [String]? {
+
+        let key = sortedBy.resourceKey
+
+        var files = try contentsOfDirectory(at: url, includingPropertiesForKeys: [key], options: options)
+
+        try files.sort {
+
+            let values1 = try $0.resourceValues(forKeys: [key])
+            let values2 = try $1.resourceValues(forKeys: [key])
+
+            if let date1 = values1.allValues.first?.value as? Date, let date2 = values2.allValues.first?.value as? Date {
+
+                return date1.compare(date2) == (ascending ? .orderedAscending : .orderedDescending)
+            }
+            return true
+        }
+        return files.map { $0.lastPathComponent }
     }
 }

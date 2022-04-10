@@ -78,6 +78,7 @@
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
+		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
 		AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +204,7 @@
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOptionsView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -432,6 +434,7 @@
 			children = (
 				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
 				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
+				AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
 				AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */,
 				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
+				AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */,
 				AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */,
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,

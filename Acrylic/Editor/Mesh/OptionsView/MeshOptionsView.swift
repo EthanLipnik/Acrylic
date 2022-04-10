@@ -12,7 +12,8 @@ import UniformTypeIdentifiers
 struct MeshOptionsView: View {
     @EnvironmentObject var meshService: MeshService
     
-    var closeAction: () -> Void
+    var closeAction: (() -> Void)? = nil
+    @State private var renderImage: UIImage? = nil
     
     var body: some View {
         Group {
@@ -22,10 +23,12 @@ struct MeshOptionsView: View {
                     .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
-                            Button {
-                                closeAction()
-                            } label: {
-                                Label("Done", systemImage: "xmark.circle.fill")
+                            if let closeAction = closeAction {
+                                Button {
+                                    closeAction()
+                                } label: {
+                                    Label("Done", systemImage: "xmark.circle.fill")
+                                }
                             }
                         }
                         
@@ -39,16 +42,15 @@ struct MeshOptionsView: View {
                 }
                 .navigationBarHidden(true)
             }
+        }.sheet(item: $renderImage) { renderImage in
+            ExportView(renderImage: renderImage, meshService: meshService)
         }
     }
     
     var exportButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {
-                let scene = UIApplication.shared.connectedScenes.first
-                if let sceneDelegate = scene?.delegate as? EditorDelegate {
-                    sceneDelegate.export()
-                }
+                renderImage = meshService.render()
             } label: {
                 Label("Export", systemImage: "square.and.arrow.up")
             }
@@ -86,5 +88,11 @@ struct OptionsView_Previews: PreviewProvider {
         MeshOptionsView { // Close action
             
         }
+    }
+}
+
+extension UIImage: Identifiable {
+    public var id: String {
+        return self.description
     }
 }

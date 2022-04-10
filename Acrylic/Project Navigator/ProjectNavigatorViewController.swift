@@ -242,21 +242,23 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             var children: [UIMenuElement] = [
                 UIMenu(title: "", options: .displayInline, children: [
                     UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
-                        switch document {
-                        case .mesh(let meshDocument):
-                            let meshService = MeshService(meshDocument)
-                            let renderImage = meshService.render()
-                            
-                            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
-                            
-            #if targetEnvironment(macCatalyst)
-                            vc.preferredContentSize = CGSize(width: 1024, height: 512)
-            #else
-                            vc.modalPresentationStyle = .formSheet
-            #endif
-                            self?.present(vc, animated: true)
-                        default:
-                            break
+                        document.open { _ in
+                            switch document {
+                            case .mesh(let meshDocument):
+                                let meshService = MeshService(meshDocument)
+                                let renderImage = meshService.render()
+                                
+                                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
+                                
+                #if targetEnvironment(macCatalyst)
+                                vc.preferredContentSize = CGSize(width: 1024, height: 512)
+                #else
+                                vc.modalPresentationStyle = .formSheet
+                #endif
+                                self?.present(vc, animated: true)
+                            default:
+                                break
+                            }
                         }
                     })
                 ]),
@@ -284,15 +286,16 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 ])
             ]
             
-#if targetEnvironment(macCatalyst)
             if let fileUrl = document.fileUrl {
                 if document.fileUrl?.pathExtension != "icloud" {
                     let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
                     let fileUrls = selectedIndexPaths.compactMap({ self?.dataSource.itemIdentifier(for: $0)?.fileUrl }) + [fileUrl]
                     
-                    children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
-                        fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false) })
-                    }), at: 0)
+                    if UIDevice.current.userInterfaceIdiom != .phone {
+                        children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
+                            fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false, alwaysUseNewWindow: true) })
+                        }), at: 0)
+                    }
                     
                     children.insert(UIAction(title: "Open", discoverabilityTitle: "Open document", handler: { action in
                         self?.view.window?.openDocument(fileUrl)
@@ -317,7 +320,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                     }), at: 0)
                 }
             }
-#endif
             
             return UIMenu(title: document.fileUrl?.lastPathComponent ?? "Document", children: children)
         }

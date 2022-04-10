@@ -67,6 +67,12 @@
 			<array>
 				<dict>
 					<key>UISceneConfigurationName</key>
+					<string>Editor Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).EditorSceneDelegate</string>
+				</dict>
+				<dict>
+					<key>UISceneConfigurationName</key>
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>

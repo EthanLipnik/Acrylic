@@ -10,7 +10,7 @@ import SceneKit
 import RandomColor
 import DifferenceKit
 
-class SceneService {
+class SceneService: ObservableObject {
     var sceneDocument: SceneDocument
     var scene: SCNScene = .init()
     
@@ -69,7 +69,7 @@ class SceneService {
             for _ in 0..<1500 {
                 let randomScale = Float.random(in: 0.1..<1)
                 let sphere = SceneDocument.Object(shape: .sphere(),
-                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.5),
+                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.3),
                                                   position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
                                                   scale: .init(x: randomScale, y: randomScale, z: randomScale))
                 objects.append(sphere)
@@ -100,7 +100,8 @@ class SceneService {
                                               screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
                                               depthOfFieldOptions: .init(isEnabled: true, focusDistance: 6, fStop: 0.1, focalLength: 16),
                                               bloomOptions: .init(isEnabled: true, intensity: 1.5),
-                                              colorFringeOptions: .init(isEnabled: true, strength: 0.8, intensity: 0.8),
+                                              filmGrainOptions: .init(isEnabled: true, scale: 1, intensity: 0.2),
+                                              colorFringeOptions: .init(isEnabled: true, strength: 0.5, intensity: 0.5),
                                               useHDR: true,
                                               useAutoExposure: true)
             sceneDocument.cameras = [camera]
@@ -173,8 +174,12 @@ class SceneService {
         cameraNode.camera?.wantsHDR = camera.useHDR
         cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
         cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
-        cameraNode.camera?.motionBlurIntensity = 0.5
+//        cameraNode.camera?.motionBlurIntensity = 0.5
         cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
+        
+        cameraNode.camera?.grainIntensity = camera.filmGrainOptions.isEnabled ? CGFloat(camera.filmGrainOptions.intensity) : 0
+        cameraNode.camera?.grainScale = CGFloat(camera.filmGrainOptions.scale)
+        cameraNode.camera?.grainIsColored = true
         
         cameraNode.camera?.focusDistance = CGFloat(camera.depthOfFieldOptions.focusDistance)
         cameraNode.camera?.fStop = CGFloat(camera.depthOfFieldOptions.fStop)

@@ -16,9 +16,17 @@ class MeshEditorViewController: EditorViewController<MeshDocument> {
         self.meshService = .init(document)
         super.init(document, viewControllers: [:])
         
-        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshOptionsView { [weak self] in
-            self?.dismiss(animated: true)
-        }.environmentObject(meshService)))
+        var optionsView: some View {
+            if view.window?.windowScene?.delegate is EditorSceneDelegate {
+                return MeshOptionsView(closeAction: nil).environmentObject(meshService)
+            } else {
+                return MeshOptionsView { [weak self] in
+                    self?.dismiss(animated: true)
+                }.environmentObject(meshService)
+            }
+        }
+        
+        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: optionsView))
         let compactViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshEditorCompactView { [weak self] in
             self?.dismiss(animated: true)
         }.environmentObject(meshService)))

@@ -50,6 +50,7 @@ class SceneDocument: UIDocument, ObservableObject {
         var depthOfFieldOptions: DepthOfFieldOptions = .init()
         var bloomOptions: BloomOptions = .init()
         
+        var filmGrainOptions: FilmGrainOptions = .init()
         var colorFringeOptions: ColorFringeOptions = .init()
         
         var useHDR: Bool = false
@@ -139,10 +140,16 @@ class SceneDocument: UIDocument, ObservableObject {
         var focalLength: Float = 16
     }
     
+    struct FilmGrainOptions: Codable, Hashable, Differentiable {
+        var isEnabled: Bool = false
+        var scale: Float = 1.0
+        var intensity: Float = 0.2
+    }
+    
     struct ColorFringeOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
-        var strength: Float = 0.8
-        var intensity: Float = 0.8
+        var strength: Float = 0.5
+        var intensity: Float = 0.5
     }
     
     struct BloomOptions: Codable, Hashable, Differentiable {

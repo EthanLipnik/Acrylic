@@ -14,6 +14,8 @@ struct MeshEditorCompactView: View {
     @State private var isShowingViewportView: Bool = false
     @State private var isShowingDetailView: Bool = false
     
+    @State private var renderImage: UIImage? = nil
+    
     @Namespace var nspace
     
     var closeAction: () -> Void
@@ -64,10 +66,7 @@ struct MeshEditorCompactView: View {
                     }
                     Spacer()
                     Button {
-                        let scene = UIApplication.shared.connectedScenes.first
-                        if let sceneDelegate = scene?.delegate as? EditorDelegate {
-                            sceneDelegate.export()
-                        }
+                        renderImage = meshService.render()
                     } label: {
                         Image(systemName: "square.and.arrow.up")
                             .font(.title3.bold())
@@ -171,6 +170,9 @@ struct MeshEditorCompactView: View {
                     Label("Done", systemImage: "xmark.circle.fill")
                 }
             }
+        }
+        .sheet(item: $renderImage) { renderImage in
+            ExportView(renderImage: renderImage, meshService: meshService)
         }
     }
 }

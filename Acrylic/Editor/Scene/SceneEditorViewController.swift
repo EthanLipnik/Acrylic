@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneEditorViewController: EditorViewController<SceneDocument> {
     
@@ -15,9 +16,15 @@ class SceneEditorViewController: EditorViewController<SceneDocument> {
         self.sceneService = .init(document)
         super.init(document, viewControllers: [:])
         
+        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: SceneOptionsView { [weak self] in
+            self?.dismiss(animated: true)
+        }.environmentObject(sceneService)))
+        
+        let secondaryViewController = SceneViewController(sceneService)
+        
         editorViewControllers = [
-            .primary: UIViewController(),
-            .secondary: SceneViewController(sceneService),
+            .primary: primaryViewController,
+            .secondary: secondaryViewController,
             .compact: UIViewController()
         ]
     }

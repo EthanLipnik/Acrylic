@@ -24,8 +24,6 @@ class MeshViewController: UIViewController {
         view.layer.shadowRadius = 30
         view.layer.shadowOpacity = 0.4
         
-//        view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
     

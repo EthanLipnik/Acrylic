@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         if options.userActivities.first?.activityType == "editor" {
-            let config = UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+            let config = UISceneConfiguration(name: "Editor Scene Configuration", sessionRole: connectingSceneSession.role)
             config.delegateClass = EditorSceneDelegate.self
             return config
         } else {

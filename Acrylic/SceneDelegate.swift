@@ -164,53 +164,64 @@ extension SceneDelegate: NSToolbarDelegate {
 #endif
 
 extension UIWindow {
-    func openDocument(_ url: URL, destroysCurrentScene: Bool = true) {
-#if targetEnvironment(macCatalyst)
-        let activity = NSUserActivity(activityType: "editor")
-        activity.userInfo = ["fileUrl": url]
-        
-        UIApplication.shared.requestSceneSessionActivation(nil, userActivity: activity, options: nil) { (error) in
-            print(error)
+    func openDocument(_ url: URL, destroysCurrentScene: Bool = true, alwaysUseNewWindow: Bool = false) {
+        guard url.pathExtension != "icloud" else {
+            do {
+                try FileManager.default.startDownloadingUbiquitousItem(at: url)
+            } catch {
+                print(error)
+            }
+            return
         }
         
-        if let session = windowScene?.session, destroysCurrentScene {
-            UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+        let openInNewWindow = alwaysUseNewWindow || UIDevice.current.userInterfaceIdiom == .mac
+        
+        if openInNewWindow {
+            let activity = NSUserActivity(activityType: "editor")
+            activity.userInfo = ["filePath": url.path]
+            
+            UIApplication.shared.requestSceneSessionActivation(nil, userActivity: activity, options: nil) { (error) in
+                print(error)
+            }
+            
+            if let session = windowScene?.session, destroysCurrentScene {
+                UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
+                    print(error)
+                }
+            }
+        } else {
+            do {
+                let document = try Document.fromURL(url)
+                document.open { [weak self] success in
+                    if success {
+                        let editorViewController: UIViewController
+                        
+                        switch document {
+                        case .mesh(let meshDocument):
+                            editorViewController = MeshEditorViewController(meshDocument)
+                        case .scene(let sceneDocument):
+                            editorViewController = SceneEditorViewController(sceneDocument)
+                        }
+                        editorViewController.modalPresentationStyle = .fullScreen
+                        
+                        if var topController = self?.rootViewController {
+                            while let presentedViewController = topController.presentedViewController {
+                                topController = presentedViewController
+                            }
+                            
+                            topController.dismiss(animated: true) {
+                                self?.rootViewController?.present(editorViewController, animated: true)
+                            }
+                        }
+                        
+                        self?.windowScene?.title = document.fileUrl?.lastPathComponent
+                    } else {
+                        print("Failed to open")
+                    }
+                }
+            } catch {
                 print(error)
             }
         }
-#else
-        do {
-            let document = try Document.fromURL(url)
-            document.open { [weak self] success in
-                if success {
-                    let editorViewController: UIViewController
-                    
-                    switch document {
-                    case .mesh(let meshDocument):
-                        editorViewController = MeshEditorViewController(meshDocument)
-                    case .scene(let sceneDocument):
-                        editorViewController = SceneEditorViewController(sceneDocument)
-                    }
-                    editorViewController.modalPresentationStyle = .fullScreen
-                    
-                    if var topController = self?.rootViewController {
-                        while let presentedViewController = topController.presentedViewController {
-                            topController = presentedViewController
-                        }
-                        
-                        topController.dismiss(animated: true) {
-                            self?.rootViewController?.present(editorViewController, animated: true)
-                        }
-                    }
-                    
-                    self?.windowScene?.title = document.fileUrl?.lastPathComponent
-                } else {
-                    print("Failed to open")
-                }
-            }
-        } catch {
-            print(error)
-        }
-#endif
     }
 }

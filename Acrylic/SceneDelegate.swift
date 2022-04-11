@@ -33,8 +33,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             toolbar.allowsUserCustomization = false
             
             titleBar.toolbar = toolbar
-            
-            titleBar.separatorStyle = .line
         }
         
         windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)

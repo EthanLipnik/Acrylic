@@ -120,8 +120,6 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
             toolbar.allowsUserCustomization = false
             
             titleBar.toolbar = toolbar
-            
-            titleBar.separatorStyle = .none
         }
         
         windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)

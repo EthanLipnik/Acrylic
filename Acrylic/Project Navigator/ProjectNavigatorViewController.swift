@@ -211,9 +211,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         }
         
         applySnapshot { [weak self] in
-#if !targetEnvironment(macCatalyst)
             self?.view.window?.openDocument(url)
-#endif
         }
     }
     

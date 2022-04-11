@@ -135,7 +135,7 @@ class SceneDocument: UIDocument, ObservableObject {
     
     struct DepthOfFieldOptions: Codable, Hashable, Differentiable {
         var isEnabled: Bool = false
-        var focusDistance: Float = 6
+        var focusDistance: Float = 12
         var fStop: Float = 0.1
         var focalLength: Float = 16
     }

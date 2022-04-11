@@ -71,8 +71,10 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        if let userInfo = (connectionOptions.userActivities.first(where: { $0.userInfo != nil }) ?? session.stateRestorationActivity)?.userInfo,
+        if let userActivity = (connectionOptions.userActivities.first(where: { $0.userInfo != nil }) ?? session.stateRestorationActivity), let userInfo = userActivity.userInfo,
            let filePath = userInfo["filePath"] as? String {
+            scene.userActivity = userActivity
+            
             let documentUrl = URL(fileURLWithPath: filePath)
             do {
                 self.document = try Document.fromURL(documentUrl)
@@ -92,8 +94,6 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                             }
                             return
                         }
-                        
-                        self?.window?.makeKeyAndVisible()
                     } else {
                         print("Failed to open document")
                         UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
@@ -105,11 +105,12 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error)
             }
         } else {
-            print("No user info", connectionOptions.userActivities.compactMap({ $0.userInfo }), session.stateRestorationActivity?.userInfo, scene.userActivity?.userInfo, connectionOptions.userActivities.map({ $0.activityType }))
             UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
                 print(error)
             }
         }
+        
+        window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
         if let titleBar = windowScene.titlebar {

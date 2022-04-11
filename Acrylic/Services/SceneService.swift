@@ -98,7 +98,7 @@ class SceneService: ObservableObject {
         func setupCameras() {
             let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
                                               screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
-                                              depthOfFieldOptions: .init(isEnabled: true, focusDistance: 6, fStop: 0.1, focalLength: 16),
+                                              depthOfFieldOptions: .init(isEnabled: true, focusDistance: 12, fStop: 0.1, focalLength: 16),
                                               bloomOptions: .init(isEnabled: true, intensity: 1.5),
                                               filmGrainOptions: .init(isEnabled: true, scale: 1, intensity: 0.2),
                                               colorFringeOptions: .init(isEnabled: true, strength: 0.5, intensity: 0.5),
@@ -174,7 +174,6 @@ class SceneService: ObservableObject {
         cameraNode.camera?.wantsHDR = camera.useHDR
         cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
         cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
-//        cameraNode.camera?.motionBlurIntensity = 0.5
         cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
         
         cameraNode.camera?.grainIntensity = camera.filmGrainOptions.isEnabled ? CGFloat(camera.filmGrainOptions.intensity) : 0

@@ -43,6 +43,7 @@ struct SceneOptionsView: View {
     var scrollView: some View {
         ScrollView {
             VStack {
+                PresetView()
             }.padding()
         }
     }

@@ -34,6 +34,7 @@ class SceneService: ObservableObject {
         setupSceneView()
         
         sceneDocument.$objects
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.global(qos: .background))
             .sink { objects in
                 let changeSet = StagedChangeset(source: self.sceneDocument.objects,
                                                 target: objects)
@@ -99,7 +100,7 @@ class SceneService: ObservableObject {
             let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
                                               screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
                                               depthOfFieldOptions: .init(isEnabled: true, focusDistance: 12, fStop: 0.1, focalLength: 16),
-                                              bloomOptions: .init(isEnabled: true, intensity: 1.5),
+                                              bloomOptions: .init(isEnabled: true, intensity: 0.2),
                                               filmGrainOptions: .init(isEnabled: true, scale: 1, intensity: 0.2),
                                               colorFringeOptions: .init(isEnabled: true, strength: 0.5, intensity: 0.5),
                                               useHDR: true,
@@ -114,6 +115,7 @@ class SceneService: ObservableObject {
     }
     
     func updateSceneDifference<Model: Differentiable>(changeSet: StagedChangeset<[Model]>) {
+        print("Scene updated", changeSet.map({ $0.changeCount }))
         changeSet.forEach { change in
             let inserted = change.elementInserted.map({ change.data[$0.element] })
             inserted.forEach { insert in

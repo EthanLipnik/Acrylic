@@ -71,11 +71,8 @@ struct MeshOptionsView: View {
         ScrollView {
             VStack {
                 SelectionView(clearColorsAction: clearColors)
-                    .environmentObject(meshService)
                 DetailsView()
-                    .environmentObject(meshService)
                 ViewportView()
-                    .environmentObject(meshService)
             }
             .padding()
             .animation(.spring(), value: meshService.selectedPoint)

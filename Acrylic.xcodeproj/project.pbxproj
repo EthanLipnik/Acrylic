@@ -62,6 +62,7 @@
 		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
 		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
 		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
+		AA8252702803B9AD00A318DC /* SceneOptionsView+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */; };
 		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
 		AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785927EE6E08007C3AE4 /* BlurViews.swift */; };
 		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
@@ -191,6 +192,7 @@
 		AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorCompactView.swift; sourceTree = "<group>"; };
 		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
 		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
+		AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Preset.swift"; sourceTree = "<group>"; };
 		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
 		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
 				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
 				AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */,
+				AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
 				AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */,
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
+				AA8252702803B9AD00A318DC /* SceneOptionsView+Preset.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
 				AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */,
 				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,

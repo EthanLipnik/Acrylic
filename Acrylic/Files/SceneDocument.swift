@@ -16,7 +16,21 @@ extension UTType {
 }
 
 class SceneDocument: UIDocument, ObservableObject {
-    struct Object: Identifiable, Codable, Hashable, Differentiable {
+    class Object: Identifiable, Codable, Hashable, Differentiable {
+        static func == (lhs: SceneDocument.Object, rhs: SceneDocument.Object) -> Bool {
+            return lhs.id == rhs.id && lhs.shape == rhs.shape && lhs.material == rhs.material && lhs.position == rhs.position && lhs.rotation == rhs.rotation && lhs.eulerAngles == rhs.eulerAngles && lhs.scale == rhs.scale
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+            hasher.combine(shape)
+            hasher.combine(material)
+            hasher.combine(position)
+            hasher.combine(rotation)
+            hasher.combine(eulerAngles)
+            hasher.combine(scale)
+        }
+        
         enum Shape: Codable, Hashable, Differentiable {
             case plane
             case sphere(segmentCount: Int = 32)
@@ -25,17 +39,23 @@ class SceneDocument: UIDocument, ObservableObject {
             case custom(fileUrl: URL)
         }
         
-        var id: UUID = UUID()
+        var id: UUID
         var shape: Shape
         var material: Material
         
-        var position: Vector3 = .zero
-        var rotation: Vector4 = .zero
-        var eulerAngles: Vector3 = .zero
-        var scale: Vector3 = .init(x: 1, y: 1, z: 1)
+        var position: Vector3
+        var rotation: Vector4
+        var eulerAngles: Vector3
+        var scale: Vector3
         
-        var differenceIdentifier: UUID {
-            return id
+        init(id: UUID = UUID(), shape: SceneDocument.Object.Shape, material: SceneDocument.Material, position: SceneDocument.Vector3 = .zero, rotation: SceneDocument.Vector4 = .zero, eulerAngles: SceneDocument.Vector3 = .zero, scale: SceneDocument.Vector3 = .init(x: 1, y: 1, z: 1)) {
+            self.id = id
+            self.shape = shape
+            self.material = material
+            self.position = position
+            self.rotation = rotation
+            self.eulerAngles = eulerAngles
+            self.scale = scale
         }
     }
     
@@ -104,10 +124,47 @@ class SceneDocument: UIDocument, ObservableObject {
         static var zero: Self = .init(x: 0, y: 0, z: 0, w: 0)
     }
     
-    struct Material: Codable, Hashable, Differentiable {
-        var color: Color = .init(uiColor: UIColor.white)
-        var emmission: Float = 0
-        var roughness: Float = 1
+    class Material: Codable, Hashable, Differentiable {
+        static func == (lhs: SceneDocument.Material, rhs: SceneDocument.Material) -> Bool {
+            return lhs.color == rhs.color && lhs.emission == rhs.emission && lhs.roughness == rhs.roughness
+        }
+        
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(color)
+            hasher.combine(emission)
+            hasher.combine(roughness)
+        }
+        
+        var color: Color
+        var emission: Float
+        var roughness: Float
+        
+        init(color: SceneDocument.Color = .init(uiColor: .white), emission: Float = 0, roughness: Float = 1) {
+            self.color = color
+            self.emission = emission
+            self.roughness = roughness
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case color
+            case emission
+            case roughness
+        }
+        
+        required init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            color = (try? container.decode(Color.self, forKey: .color)) ?? .init(uiColor: .white)
+            emission = (try? container.decode(Float.self, forKey: .emission)) ?? 0
+            roughness = (try? container.decode(Float.self, forKey: .roughness)) ?? 0
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(color, forKey: .color)
+            try container.encode(emission, forKey: .emission)
+            try container.encode(roughness, forKey: .roughness)
+        }
     }
     
     struct Color: Codable, Hashable, Differentiable {

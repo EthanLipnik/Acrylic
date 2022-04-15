@@ -70,7 +70,7 @@ class SceneService: ObservableObject {
             for _ in 0..<1500 {
                 let randomScale = Float.random(in: 0.1..<1)
                 let sphere = SceneDocument.Object(shape: .sphere(),
-                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.3),
+                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
                                                   position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
                                                   scale: .init(x: randomScale, y: randomScale, z: randomScale))
                 objects.append(sphere)

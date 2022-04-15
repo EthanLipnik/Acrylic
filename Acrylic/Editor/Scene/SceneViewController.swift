@@ -38,8 +38,6 @@ class SceneViewController: UIViewController {
         view.layer.masksToBounds = true
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        view.contentScaleFactor = 0.9
-        
         return view
     }()
     

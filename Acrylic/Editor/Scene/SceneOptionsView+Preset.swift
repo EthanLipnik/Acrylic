@@ -19,6 +19,15 @@ extension SceneOptionsView {
         
         @State var objectCount: Int = 1500
         
+        var objectCountIntProxy: Binding<Double>{
+            Binding<Double>(get: {
+                //returns the score as a Double
+                return Double(objectCount)
+            }, set: {
+                objectCount = Int($0)
+            })
+        }
+        
         var body: some View {
             OptionsView.DetailView(title: "Options", systemImage: "filemenu.and.selection", withBackground: withBackground) {
                 HStack {
@@ -65,12 +74,14 @@ extension SceneOptionsView {
                         Image(systemName: "shuffle.circle")
                     }
                 }
-                Stepper("\(objectCount)") {
-                    objectCount += 1
-                } onDecrement: {
-                    objectCount -= 1
+                
+                Slider(value: objectCountIntProxy, in: 1...2000) {
+                    Text("\(objectCount)")
+                } minimumValueLabel: {
+                    Text("1")
+                } maximumValueLabel: {
+                    Text("2000")
                 }
-
             }
         }
         

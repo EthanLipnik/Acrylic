@@ -235,10 +235,44 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        guard let document = dataSource.itemIdentifier(for: indexPath) else { return nil }
+        guard let document = dataSource.itemIdentifier(for: indexPath), let fileUrl = document.fileUrl else { return nil }
+        
+        let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+        var fileUrls = selectedIndexPaths.compactMap({ dataSource.itemIdentifier(for: $0)?.fileUrl })
+        
+        if !fileUrls.contains(fileUrl) {
+            fileUrls.append(fileUrl)
+        }
+        
+        print("Selection", fileUrls)
+        
         return .init(identifier: nil, previewProvider: nil) { [weak self] menu in
             var children: [UIMenuElement] = [
                 UIMenu(title: "", options: .displayInline, children: [
+                    UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
+                        let alertController = UIAlertController(title: "Delete \(fileUrls.count > 1 ? "\(fileUrls.count) documents" : fileUrl.lastPathComponent)?", message: "You won't be able to undo this.", preferredStyle: .actionSheet)
+                        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                            for url in fileUrls {
+                                var finalUrl: NSURL?
+                                do {
+                                    try FileManager.default.trashItem(at: url, resultingItemURL: &finalUrl)
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                        }))
+                        
+                        let cell = collectionView.cellForItem(at: indexPath)
+                        alertController.popoverPresentationController?.sourceRect = cell?.bounds ?? CGRect(origin: point, size: .zero)
+                        alertController.popoverPresentationController?.sourceView = cell ?? collectionView
+                        
+                        self?.present(alertController, animated: true)
+                    })
+                ])
+            ]
+            
+            if fileUrls.count == 1 {
+                children.append(UIMenu(title: "", options: .displayInline, children: [
                     UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
                         document.open { _ in
                             switch document {
@@ -259,42 +293,17 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                             }
                         }
                     })
-                ]),
-                
-                UIMenu(title: "", options: .displayInline, children: [
-                    UIAction(title: "Delete", image: UIImage(systemName: "trash"), discoverabilityTitle: "Delete document", attributes: .destructive, handler: { action in
-                        let alertController = UIAlertController(title: "Delete \(document.fileUrl?.lastPathComponent ?? "document")?", message: "You won't be able to undo this.", preferredStyle: .actionSheet)
-                        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-                            if let url = document.fileUrl {
-                                var finalUrl: NSURL?
-                                do {
-                                    try FileManager.default.trashItem(at: url, resultingItemURL: &finalUrl)
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        }))
-                        
-                        let cell = collectionView.cellForItem(at: indexPath)
-                        alertController.popoverPresentationController?.sourceRect = cell?.bounds ?? CGRect(origin: point, size: .zero)
-                        alertController.popoverPresentationController?.sourceView = cell ?? collectionView
-                        
-                        self?.present(alertController, animated: true)
-                    })
-                ])
-            ]
+                ]))
+            }
             
-            if let fileUrl = document.fileUrl {
-                if document.fileUrl?.pathExtension != "icloud" {
-                    let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
-                    let fileUrls = selectedIndexPaths.compactMap({ self?.dataSource.itemIdentifier(for: $0)?.fileUrl }) + [fileUrl]
-                    
-                    if UIDevice.current.userInterfaceIdiom != .phone {
-                        children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
-                            fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false, alwaysUseNewWindow: true) })
-                        }), at: 0)
-                    }
-                    
+            if document.fileUrl?.pathExtension != "icloud" {
+                if UIDevice.current.userInterfaceIdiom != .phone {
+                    children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
+                        fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false, alwaysUseNewWindow: true) })
+                    }), at: 0)
+                }
+                
+                if fileUrls.count == 1 {
                     children.insert(UIAction(title: "Open", discoverabilityTitle: "Open document", handler: { action in
                         self?.view.window?.openDocument(fileUrl)
                     }), at: 0)
@@ -308,7 +317,9 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                             }
                         }), at: 2)
                     }
-                } else {
+                }
+            } else {
+                if fileUrls.count == 1 {
                     children.insert(UIAction(title: "Download", discoverabilityTitle: "Download document", handler: { action in
                         do {
                             try FileManager.default.startDownloadingUbiquitousItem(at: fileUrl)

@@ -21,6 +21,8 @@ class SceneViewController: UIViewController {
         view.layer.cornerRadius = 30
         view.layer.cornerCurve = .continuous
         
+        view.backgroundColor = UIColor.secondarySystemBackground
+        
         view.addSubview(sceneView)
         
         return view

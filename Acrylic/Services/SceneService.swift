@@ -34,11 +34,12 @@ class SceneService: ObservableObject {
         setupSceneView()
         
         sceneDocument.$objects
-            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.global(qos: .background))
-            .sink { objects in
-                let changeSet = StagedChangeset(source: self.sceneDocument.objects,
-                                                target: objects)
-                self.updateSceneDifference(changeSet: changeSet)
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink { [weak self] objects in
+//                let changeSet = StagedChangeset(source: self.sceneDocument.objects,
+//                                                target: objects)
+//                self.updateSceneDifference(changeSet: changeSet)
+                self?.setupSceneView()
             }
             .store(in: &cancellables)
         
@@ -63,8 +64,8 @@ class SceneService: ObservableObject {
     }
     
     func setupDebugScene() {
-        let hue = RandomColor.Hue.red
-        let colors = randomColors(count: 1500, hue: hue, luminosity: .bright)
+        sceneDocument.colorHue = .init(hue: .randomPalette(includesMonochrome: true))
+        let colors = randomColors(count: 1500, hue: sceneDocument.colorHue!.randomColorHue, luminosity: sceneDocument.colorHue!.randomColorLuminosity)
         func setupObjects() {
             var objects: [SceneDocument.Object] = []
             for _ in 0..<1500 {
@@ -82,6 +83,7 @@ class SceneService: ObservableObject {
         func setupSettings() {
             sceneDocument.antialiasing = .multisampling2X
             sceneDocument.screenSpaceReflectionsOptions = .init(isEnabled: true, sampleCount: 64, maxDistance: 128)
+            sceneDocument.backgroundColor = .init(uiColor: randomColor(hue: sceneDocument.colorHue!.randomColorHue, luminosity: .light))
         }
         
         func setupLights() {
@@ -159,6 +161,7 @@ class SceneService: ObservableObject {
     }
     
     func setupSceneView() {
+        print("SceneService", "Setting up scene view")
         
         scene.wantsScreenSpaceReflection = sceneDocument.screenSpaceReflectionsOptions.isEnabled
         scene.screenSpaceReflectionSampleCount = sceneDocument.screenSpaceReflectionsOptions.sampleCount
@@ -249,6 +252,29 @@ class SceneService: ObservableObject {
         node.name = object.id.uuidString
         
         scene.rootNode.addChildNode(node)
+    }
+    
+    func updateObjectCount(_ objectCount: Int) {
+        let difference = sceneDocument.objects.count - objectCount
+        let differenceAbs = abs(difference)
+        
+        let colors = randomColors(count: differenceAbs, hue: sceneDocument.colorHue!.randomColorHue, luminosity: sceneDocument.colorHue!.randomColorLuminosity)
+        
+        var objects = sceneDocument.objects
+        for _ in 0..<differenceAbs {
+            if difference < 0 {
+                let randomScale = Float.random(in: 0.1..<1)
+                let sphere = SceneDocument.Object(shape: .sphere(),
+                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
+                                                  position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
+                                                  scale: .init(x: randomScale, y: randomScale, z: randomScale))
+                objects.append(sphere)
+            } else {
+                objects.removeLast()
+            }
+        }
+        
+        sceneDocument.objects = objects
     }
     
     func render(resolution: CGSize = CGSize(width: 1024, height: 1024)) -> UIImage {

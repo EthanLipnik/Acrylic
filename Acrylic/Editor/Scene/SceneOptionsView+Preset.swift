@@ -17,14 +17,12 @@ extension SceneOptionsView {
         let presets = ["Spheres", "Pyamids", "Cubes"]
         @State var selectedPreset: String = "Spheres"
         
-        @State var objectCount: Int = 1500
-        
         var objectCountIntProxy: Binding<Double>{
             Binding<Double>(get: {
                 //returns the score as a Double
-                return Double(objectCount)
+                return Double(sceneService.sceneDocument.objects.count)
             }, set: {
-                objectCount = Int($0)
+                sceneService.updateObjectCount(Int($0))
             })
         }
         
@@ -62,7 +60,8 @@ extension SceneOptionsView {
                     
                     Button {
                         let hue = Hue.randomPalette(includesMonochrome: true)
-                        let colors = randomColors(count: objectCount, hue: hue, luminosity: .bright)
+                        sceneService.sceneDocument.colorHue = .init(hue: hue)
+                        let colors = randomColors(count: Int(objectCountIntProxy.wrappedValue), hue: hue, luminosity: .bright)
                         sceneService.sceneDocument.objects.forEach { object in
                             object.material.color = .init(uiColor: colors.randomElement() ?? .magenta)
                             object.position = .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10))
@@ -75,19 +74,22 @@ extension SceneOptionsView {
                     }
                 }
                 
-                Slider(value: objectCountIntProxy, in: 1...2000) {
-                    Text("\(objectCount)")
-                } minimumValueLabel: {
-                    Text("1")
-                } maximumValueLabel: {
-                    Text("2000")
+                OptionsView.DetailView(title: "Object Count", systemImage: "list.bullet.indent", withBackground: true) {
+                    Slider(value: objectCountIntProxy, in: 1...2000) {
+                        Text("\(objectCountIntProxy.wrappedValue)")
+                    } minimumValueLabel: {
+                        Text("1")
+                    } maximumValueLabel: {
+                        Text("2000")
+                    }
                 }
             }
         }
         
         private func GeneratePaletteButton(title: String, hue: Hue) -> some View {
             func setColors(_ luminosity: RandomColor.Luminosity) {
-                let colors = randomColors(count: objectCount, hue: hue, luminosity: luminosity)
+                sceneService.sceneDocument.colorHue = .init(hue: hue, luminosity: luminosity)
+                let colors = randomColors(count: Int(objectCountIntProxy.wrappedValue), hue: hue, luminosity: luminosity)
                 sceneService.sceneDocument.objects.forEach({ $0.material.color = .init(uiColor: colors.randomElement() ?? .magenta) })
                 sceneService.sceneDocument.backgroundColor = .init(uiColor: randomColor(hue: hue, luminosity: .light))
                 

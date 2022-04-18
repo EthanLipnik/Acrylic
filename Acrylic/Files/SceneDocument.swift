@@ -8,6 +8,7 @@
 import UIKit
 import UniformTypeIdentifiers
 import DifferenceKit
+import RandomColor
 
 extension UTType {
     static var acrylicScene: UTType {
@@ -237,6 +238,8 @@ class SceneDocument: UIDocument, ObservableObject {
     @Published var raytracingOptions: RaytracingOptions = .init()
     @Published var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions = .init()
     
+    @Published var colorHue: ColorHue?
+    
     var previewImage: Data? = nil
     
     struct SceneDescriptorModel: Codable {
@@ -251,6 +254,8 @@ class SceneDocument: UIDocument, ObservableObject {
         var raytracingOptions: RaytracingOptions
         var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions
         
+        var colorHue: ColorHue?
+        
         init(_ document: SceneDocument) {
             self.cameras = document.cameras
             
@@ -262,6 +267,8 @@ class SceneDocument: UIDocument, ObservableObject {
             
             self.raytracingOptions = document.raytracingOptions
             self.screenSpaceReflectionsOptions = document.screenSpaceReflectionsOptions
+            
+            self.colorHue = document.colorHue
         }
     }
     
@@ -285,6 +292,8 @@ class SceneDocument: UIDocument, ObservableObject {
         self.raytracingOptions = sceneDescriptor.raytracingOptions
         self.screenSpaceReflectionsOptions = sceneDescriptor.screenSpaceReflectionsOptions
         
+        self.colorHue = sceneDescriptor.colorHue
+        
         self.previewImage = topFileWrapper.fileWrappers?["PreviewImage"]?.regularFileContents
     }
     
@@ -302,5 +311,104 @@ class SceneDocument: UIDocument, ObservableObject {
             fileWrappers["PreviewImage"] = previewImageFile
         }
         return FileWrapper(directoryWithFileWrappers: fileWrappers)
+    }
+}
+
+struct ColorHue: Codable {
+    var hue: String
+    var luminosity: String
+    
+    var randomColorHue: RandomColor.Hue {
+        switch hue {
+        case "blue":
+            return .blue
+        case "orange":
+            return .orange
+        case "yellow":
+            return .yellow
+        case "green":
+            return .green
+        case "pink":
+            return .pink
+        case "purple":
+            return .purple
+        case "red":
+            return .red
+        case "monochrome":
+            return .monochrome
+        case "rainbow":
+            return .random
+        default:
+            return .monochrome
+        }
+    }
+    
+    var randomColorLuminosity: RandomColor.Luminosity {
+        switch luminosity {
+        case "bright":
+            return .bright
+        case "light":
+            return .light
+        case "dark":
+            return .dark
+        case "random":
+            return .random
+        default:
+            return .bright
+        }
+    }
+    
+    init(hue: RandomColor.Hue, luminosity: RandomColor.Luminosity = .bright) {
+        switch hue {
+        case .blue:
+            self.hue = "blue"
+        case .orange:
+            self.hue = "orange"
+        case .yellow:
+            self.hue = "yellow"
+        case .green:
+            self.hue = "green"
+        case .pink:
+            self.hue = "pink"
+        case .purple:
+            self.hue = "purple"
+        case .red:
+            self.hue = "red"
+        case .monochrome:
+            self.hue = "monochrome"
+        case .random:
+            self.hue = "random"
+        default:
+            self.hue = "monochrome"
+        }
+        
+        switch luminosity {
+        case .bright:
+            self.luminosity = "bright"
+        case .light:
+            self.luminosity = "light"
+        case .dark:
+            self.luminosity = "dark"
+        case .random:
+            self.luminosity = "random"
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case hue
+        case luminosity
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.hue = try container.decode(String.self, forKey: .hue)
+        self.luminosity = try container.decode(String.self, forKey: .luminosity)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(hue, forKey: .hue)
+        try container.encode(luminosity, forKey: .luminosity)
     }
 }

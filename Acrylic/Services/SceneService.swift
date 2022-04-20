@@ -10,9 +10,14 @@ import SceneKit
 import RandomColor
 import DifferenceKit
 
-class SceneService: ObservableObject {
+class SceneService: NSObject, ObservableObject {
     var sceneDocument: SceneDocument
     var scene: SCNScene = .init()
+    var sceneView: SCNView? = nil {
+        didSet {
+            sceneView?.defaultCameraController.delegate = self
+        }
+    }
     
     private var cancellables: Set<AnyCancellable> = []
 
@@ -25,6 +30,7 @@ class SceneService: ObservableObject {
     
     init(_ document: SceneDocument) {
         self.sceneDocument = document
+        super.init()
         
         if document.objects.isEmpty {
             setupDebugScene()
@@ -195,6 +201,8 @@ class SceneService: ObservableObject {
         cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
         cameraNode.camera?.averageGray = 0.2
         cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
+        cameraNode.eulerAngles = SCNVector3(x: camera.eulerAngles.x, y: camera.eulerAngles.y, z: camera.eulerAngles.z)
+        cameraNode.rotation = SCNVector4(x: camera.rotation.x, y: camera.rotation.y, z: camera.rotation.z, w: camera.rotation.w)
         scene.rootNode.addChildNode(cameraNode)
         
         sceneDocument.lights.forEach { light in
@@ -227,6 +235,8 @@ class SceneService: ObservableObject {
         sceneDocument.objects.forEach { object in
             addNode(object)
         }
+        
+        sceneView?.defaultCameraController.delegate = self
     }
     
     func addNode(_ object: SceneDocument.Object) {
@@ -286,5 +296,19 @@ class SceneService: ObservableObject {
         renderer.sceneTime = renderTime
         
         return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .multisampling4X)
+    }
+}
+
+extension SceneService: SCNCameraControllerDelegate {
+    func cameraInertiaDidEnd(for cameraController: SCNCameraController) {
+        guard let pointOfView = cameraController.pointOfView else { return }
+        sceneDocument.cameras[0].position = .init(x: pointOfView.position.x, y: pointOfView.position.y, z: pointOfView.position.z)
+        sceneDocument.cameras[0].eulerAngles = .init(x: pointOfView.eulerAngles.x, y: pointOfView.eulerAngles.y, z: pointOfView.eulerAngles.z)
+        sceneDocument.cameras[0].rotation = .init(x: pointOfView.rotation.x, y: pointOfView.rotation.y, z: pointOfView.rotation.z, w: pointOfView.rotation.w)
+        
+        saveDocument()
+    }
+    
+    func cameraInertiaWillStart(for cameraController: SCNCameraController) {
     }
 }

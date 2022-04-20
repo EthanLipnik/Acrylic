@@ -64,6 +64,14 @@ class SceneViewController: UIViewController {
         view.backgroundColor = UIColor.systemBackground
         
         view.addSubview(sceneContainerView)
+        
+        sceneService.sceneView = sceneView
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        sceneService.sceneView = nil
     }
     
     override func viewWillLayoutSubviews() {

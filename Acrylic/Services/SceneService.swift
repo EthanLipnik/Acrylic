@@ -106,7 +106,6 @@ class SceneService: NSObject, ObservableObject {
         }
     }
     
-    var camera = SCNCamera()
     func setupSceneView() {
         print("SceneService", "Setting up scene view")
         
@@ -122,17 +121,17 @@ class SceneService: NSObject, ObservableObject {
         if let camera = sceneDocument.cameras.first {
             let cameraNode = SCNNode()
             cameraNode.name = "Camera"
-            cameraNode.camera = self.camera
+            cameraNode.camera = SCNCamera()
             cameraNode.camera?.wantsExposureAdaptation = camera.useAutoExposure
             cameraNode.camera?.wantsHDR = camera.useHDR
             cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
             cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
             cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
-            cameraNode.camera?.minimumExposure = 0
+            cameraNode.camera?.minimumExposure = 0.5
             
             cameraNode.camera?.grainIntensity = camera.filmGrainOptions.isEnabled ? CGFloat(camera.filmGrainOptions.intensity) : 0
             cameraNode.camera?.grainScale = CGFloat(camera.filmGrainOptions.scale)
-            cameraNode.camera?.grainIsColored = true
+            cameraNode.camera?.grainIsColored = false
             
             cameraNode.camera?.focusDistance = CGFloat(camera.depthOfFieldOptions.focusDistance)
             cameraNode.camera?.fStop = CGFloat(camera.depthOfFieldOptions.fStop)
@@ -142,7 +141,6 @@ class SceneService: NSObject, ObservableObject {
             
             cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
             cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
-            cameraNode.camera?.averageGray = 0.2
             cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
             cameraNode.eulerAngles = SCNVector3(x: camera.eulerAngles.x, y: camera.eulerAngles.y, z: camera.eulerAngles.z)
             cameraNode.rotation = SCNVector4(x: camera.rotation.x, y: camera.rotation.y, z: camera.rotation.z, w: camera.rotation.w)
@@ -251,7 +249,7 @@ class SceneService: NSObject, ObservableObject {
         renderer.update(atTime: .zero)
         renderer.sceneTime = renderTime
         
-        return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .multisampling4X)
+        return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .none)
     }
     
     func setPreset(_ preset: String?, shape: String? = nil) {

@@ -32,7 +32,7 @@ class SceneViewController: UIViewController {
         
         view.scene = sceneService.scene
         view.allowsCameraControl = true
-        view.showsStatistics = true
+        view.showsStatistics = false
         
         view.layer.cornerRadius = 30
         view.layer.cornerCurve = .continuous

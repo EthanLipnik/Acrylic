@@ -22,9 +22,9 @@ extension SceneOptionsView {
         
         var objectCountIntProxy: Binding<Double>{
             Binding<Double>(get: {
-                //returns the score as a Double
                 return Double(sceneService.sceneDocument.objects.count)
             }, set: {
+                guard sceneService.sceneDocument.objects.count != Int($0) else { return }
                 sceneService.updateObjectCount(Int($0))
             })
         }
@@ -37,6 +37,7 @@ extension SceneOptionsView {
                             ForEach(presets, id: \.self) { Text($0) }
                         }
                         .labelsHidden()
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .onAppear {
                             selectedPreset = sceneService.sceneDocument.preset?.displayName ?? "Cluster"
                         }
@@ -84,15 +85,15 @@ extension SceneOptionsView {
                         }
                     }
                 }
-                OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent", withBackground: withBackground) {
+                OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent") {
                     Picker(selection: $selectedShape) {
                         ForEach(shapes, id: \.self) { Text($0) }
                     } label: {
-                        Image(systemName: "square.fill.on.circle.fill")
+                        Image(systemName: "square.on.circle")
                             .foregroundColor(.secondary)
                     }
                     .onAppear {
-                        selectedPreset = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
+                        selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
                     }
                     .onChange(of: selectedShape) { newValue in
                         sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())

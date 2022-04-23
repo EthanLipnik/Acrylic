@@ -26,15 +26,10 @@ class MeshEditorViewController: EditorViewController<MeshDocument> {
             }
         }
         
-        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: optionsView))
-        let compactViewController = UINavigationController(rootViewController: UIHostingController(rootView: MeshEditorCompactView { [weak self] in
-            self?.dismiss(animated: true)
-        }.environmentObject(meshService)))
-        
         editorViewControllers = [
-            .primary: primaryViewController,
+            .primary: UINavigationController(rootViewController: UIHostingController(rootView: optionsView)),
             .secondary: MeshViewController(meshService),
-            .compact: compactViewController
+            .compact: MeshCompactViewController(meshService)
         ]
     }
     

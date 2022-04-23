@@ -36,6 +36,29 @@ struct MeshOptionsView: View {
                     }
             } else {
                 VStack(spacing: 0) {
+                    HStack {
+                        if let closeAction = closeAction {
+                            Button {
+                                closeAction()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.title3.bold())
+                            }
+                        }
+                        
+                        Text(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        Button {
+                            renderImage = meshService.render()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.title3.bold())
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                    .frame(height: 60)
                     Divider()
                         .opacity(0.5)
                     scrollView

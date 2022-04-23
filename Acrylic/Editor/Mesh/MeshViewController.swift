@@ -112,8 +112,8 @@ class MeshViewController: UIViewController {
         
         if traitCollection.horizontalSizeClass == .compact {
             let meshSize = min(view.bounds.height, view.bounds.width) - 48
-            meshView.frame = CGRect(x: 24, y: 24, width: meshSize, height: meshSize)
-            meshView.center = view.center
+            meshView.frame = CGRect(x: 24, y: view.safeAreaInsets.top + 24, width: meshSize, height: meshSize)
+            meshView.center.x = view.center.x
         } else {
             let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.vertical * 2))
             meshView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)

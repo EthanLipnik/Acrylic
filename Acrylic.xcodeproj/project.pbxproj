@@ -58,7 +58,6 @@
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
 		AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FB827F494B40076F85C /* DifferenceKit */; };
 		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
-		AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
 		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
@@ -77,6 +76,7 @@
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
 		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
 		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
+		AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
@@ -192,7 +192,6 @@
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
-		AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorCompactView.swift; sourceTree = "<group>"; };
 		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
 		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
 		AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Preset.swift"; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
 		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSceneDelegate.swift; sourceTree = "<group>"; };
+		AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCompactViewController.swift; sourceTree = "<group>"; };
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 			children = (
 				AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */,
 				AA517542272483CE00C25576 /* MeshViewController.swift */,
-				AA6654F82728E9E6006A5237 /* MeshEditorCompactView.swift */,
+				AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */,
 				AA1A5C222725F957006932FE /* OptionsView */,
 			);
 			path = Mesh;
@@ -782,12 +782,12 @@
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
 				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
+				AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */,
 				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
 				AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */,
 				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
-				AA6654F92728E9E6006A5237 /* MeshEditorCompactView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
@@ -879,7 +879,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -907,7 +907,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -935,7 +935,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -965,7 +965,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -995,7 +995,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1023,7 +1023,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1170,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1208,7 +1208,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;

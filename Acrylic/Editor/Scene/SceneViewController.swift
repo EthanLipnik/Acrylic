@@ -79,8 +79,8 @@ class SceneViewController: UIViewController {
         
         if traitCollection.horizontalSizeClass == .compact {
             let meshSize = min(view.bounds.height, view.bounds.width) - 48
-            sceneContainerView.frame = CGRect(x: 24, y: 24, width: meshSize, height: meshSize)
-            sceneContainerView.center = view.center
+            sceneContainerView.frame = CGRect(x: 24, y: 24 + view.safeAreaInsets.top, width: meshSize, height: meshSize)
+            sceneContainerView.center.x = view.center.x
         } else {
             let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.vertical * 2))
             sceneContainerView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)

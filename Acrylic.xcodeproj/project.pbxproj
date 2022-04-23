@@ -77,6 +77,7 @@
 		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
 		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
 		AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */; };
+		AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
@@ -206,6 +207,7 @@
 		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSceneDelegate.swift; sourceTree = "<group>"; };
 		AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCompactViewController.swift; sourceTree = "<group>"; };
+		AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCompactViewController.swift; sourceTree = "<group>"; };
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 			children = (
 				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
 				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
+				AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */,
 				AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */,
 				AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */,
 				AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */,
@@ -790,6 +793,7 @@
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
+				AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */,
 				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
 				AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */,
 				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,

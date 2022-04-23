@@ -31,7 +31,7 @@ extension SceneOptionsView {
         
         var body: some View {
             Group {
-                OptionsView.DetailView(title: "Options", systemImage: "filemenu.and.selection", withBackground: withBackground) {
+                OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent", withBackground: withBackground) {
                     HStack {
                         Picker("", selection: $selectedPreset) {
                             ForEach(presets, id: \.self) { Text($0) }
@@ -84,27 +84,46 @@ extension SceneOptionsView {
                             Image(systemName: "shuffle.circle")
                         }
                     }
-                }
-                OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent") {
-                    Picker(selection: $selectedShape) {
-                        ForEach(shapes, id: \.self) { Text($0) }
-                    } label: {
-                        Image(systemName: "square.on.circle")
-                            .foregroundColor(.secondary)
-                    }
-                    .onAppear {
-                        selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
-                    }
-                    .onChange(of: selectedShape) { newValue in
-                        sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())
-                    }
                     
-                    Slider(value: objectCountIntProxy, in: 1...2000) {
-                        Text("\(objectCountIntProxy.wrappedValue)")
-                    } minimumValueLabel: {
-                        Text("1")
-                    } maximumValueLabel: {
-                        Text("2000")
+                    HStack {
+                        Text("Shape")
+                            .bold()
+                            .lineLimit(1)
+                            .frame(width: 120, alignment: .leading)
+                            .foregroundColor(.secondary)
+                        Picker(selection: $selectedShape) {
+                            ForEach(shapes, id: \.self) { Text($0) }
+                        } label: {
+                            Image(systemName: "square.on.circle")
+                                .foregroundColor(.secondary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .onAppear {
+                            selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
+                        }
+                        .onChange(of: selectedShape) { newValue in
+                            sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())
+                        }
+                    }
+                    HStack {
+                        Text("Object Count")
+                            .bold()
+                            .lineLimit(1)
+                            .frame(width: 120, alignment: .leading)
+                            .foregroundColor(.secondary)
+                        Slider(value: objectCountIntProxy, in: 1...2000) {
+                            Text("\(objectCountIntProxy.wrappedValue)")
+                                .bold()
+                                .foregroundColor(.secondary)
+                        } minimumValueLabel: {
+                            Text("1")
+                                .bold()
+                                .foregroundColor(Color(.tertiaryLabel))
+                        } maximumValueLabel: {
+                            Text("2000")
+                                .bold()
+                                .foregroundColor(Color(.tertiaryLabel))
+                        }
                     }
                 }
             }

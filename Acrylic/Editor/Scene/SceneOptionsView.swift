@@ -31,6 +31,27 @@ struct SceneOptionsView: View {
                     }
             } else {
                 VStack(spacing: 0) {
+                    HStack {
+                        Button {
+                            closeAction()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.title3.bold())
+                        }
+
+                        Text(sceneService.sceneDocument.fileURL.deletingPathExtension().lastPathComponent)
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        Button {
+//                            renderImage = sceneService.render()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.title3.bold())
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                    .frame(height: 60)
                     Divider()
                         .opacity(0.5)
                     scrollView

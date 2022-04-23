@@ -20,12 +20,10 @@ class SceneEditorViewController: EditorViewController<SceneDocument> {
             self?.dismiss(animated: true)
         }.environmentObject(sceneService)))
         
-        let secondaryViewController = SceneViewController(sceneService)
-        
         editorViewControllers = [
             .primary: primaryViewController,
-            .secondary: secondaryViewController,
-            .compact: UIViewController()
+            .secondary: SceneViewController(sceneService),
+            .compact: SceneCompactViewController(sceneService)
         ]
     }
     

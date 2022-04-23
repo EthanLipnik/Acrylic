@@ -35,9 +35,24 @@ class SceneDocument: UIDocument, ObservableObject {
         enum Shape: Codable, Hashable, Differentiable {
             case plane
             case sphere(segmentCount: Int = 32)
-            case cube(chamferEdges: Float = 0)
+            case cube(chamferEdges: Float = 0, segmentCount: Int = 4)
             case pyramid
             case custom(fileUrl: URL)
+            
+            var displayName: String {
+                switch self {
+                case .plane:
+                    return "Plane"
+                case .sphere:
+                    return "Sphere"
+                case .cube:
+                    return "Cube"
+                case .pyramid:
+                    return "Pyramid"
+                case .custom:
+                    return "Custom"
+                }
+            }
         }
         
         var id: UUID
@@ -227,6 +242,47 @@ class SceneDocument: UIDocument, ObservableObject {
         case multisampling16X
     }
     
+    enum Preset: Codable {
+        case cluster(shape: Object.Shape, positionMultiplier: Float = 10, objectCount: Int = 1000)
+        case wall(shape: Object.Shape, positionMultiplier: Float = 2, objectCount: Int = 1000)
+        
+        var displayName: String {
+            switch self {
+            case .cluster:
+                return "Cluster"
+            case .wall:
+                return "Wall"
+            }
+        }
+        
+        var shape: Object.Shape {
+            switch self {
+            case .cluster(let shape, _, _):
+                return shape
+            case .wall(let shape, _, _):
+                return shape
+            }
+        }
+        
+        var positionMultiplier: Float {
+            switch self {
+            case .cluster(_, let positionMultiplier, _):
+                return positionMultiplier
+            case .wall(_, let positionMultiplier, _):
+                return positionMultiplier
+            }
+        }
+        
+        var objectCount: Int {
+            switch self {
+            case .cluster(_, _, let objectCount):
+                return objectCount
+            case .wall(_, _, let objectCount):
+                return objectCount
+            }
+        }
+    }
+    
     @Published var cameras: [Camera] = [.init()]
     
     @Published var objects: [Object] = []
@@ -239,6 +295,7 @@ class SceneDocument: UIDocument, ObservableObject {
     @Published var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions = .init()
     
     @Published var colorHue: ColorHue?
+    @Published var preset: Preset?
     
     var previewImage: Data? = nil
     
@@ -255,6 +312,7 @@ class SceneDocument: UIDocument, ObservableObject {
         var screenSpaceReflectionsOptions: ScreenSpaceReflectionsOptions
         
         var colorHue: ColorHue?
+        var preset: Preset?
         
         init(_ document: SceneDocument) {
             self.cameras = document.cameras
@@ -269,6 +327,7 @@ class SceneDocument: UIDocument, ObservableObject {
             self.screenSpaceReflectionsOptions = document.screenSpaceReflectionsOptions
             
             self.colorHue = document.colorHue
+            self.preset = document.preset
         }
     }
     
@@ -293,6 +352,7 @@ class SceneDocument: UIDocument, ObservableObject {
         self.screenSpaceReflectionsOptions = sceneDescriptor.screenSpaceReflectionsOptions
         
         self.colorHue = sceneDescriptor.colorHue
+        self.preset = sceneDescriptor.preset
         
         self.previewImage = topFileWrapper.fileWrappers?["PreviewImage"]?.regularFileContents
     }

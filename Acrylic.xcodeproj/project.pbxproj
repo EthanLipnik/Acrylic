@@ -26,6 +26,7 @@
 		AA2B82E927FB2BF5003A0249 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82E827FB2BF5003A0249 /* MeshKit */; };
 		AA2B82EB27FB2C0C003A0249 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82EA27FB2C0C003A0249 /* MeshKit */; };
 		AA2B82EE27FB2C39003A0249 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82ED27FB2C39003A0249 /* Blackbird */; };
+		AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
 		AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42DDB927F1F16D003ECF74 /* QuickLook.framework */; };
 		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
@@ -81,6 +82,7 @@
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
 		AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */; };
+		AAFCBC5C2810CFB600F38844 /* SceneDocument+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,7 @@
 		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA2B82E727FB2BED003A0249 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AA2B82EC27FB2C30003A0249 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
+		AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Camera.swift"; sourceTree = "<group>"; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA42DDB927F1F16D003ECF74 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -208,6 +211,7 @@
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOptionsView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
+		AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDocument+Presets.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +442,7 @@
 				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
 				AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */,
 				AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */,
+				AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -455,7 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2B0C7127F103A000868869 /* MeshDocument.swift */,
-				AA4B287727F149CD000FFCAD /* SceneDocument.swift */,
+				AAFCBC5A2810CFAB00F38844 /* Scene */,
 				AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */,
 				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
 			);
@@ -481,6 +486,15 @@
 				AA85DD9C27F3422000ABEF12 /* SceneService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		AAFCBC5A2810CFAB00F38844 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				AA4B287727F149CD000FFCAD /* SceneDocument.swift */,
+				AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -759,6 +773,7 @@
 				AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */,
 				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
 				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
+				AAFCBC5C2810CFB600F38844 /* SceneDocument+Presets.swift in Sources */,
 				AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */,
 				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
 				AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */,
@@ -776,6 +791,7 @@
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
+				AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */,
 				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,
 				AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */,
 				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,

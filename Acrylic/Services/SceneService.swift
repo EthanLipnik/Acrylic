@@ -20,20 +20,13 @@ class SceneService: NSObject, ObservableObject {
     }
     
     private var cancellables: Set<AnyCancellable> = []
-
-    enum ShapePreset {
-        case spheres
-    }
-    enum Preset {
-        case random(ShapePreset)
-    }
     
     init(_ document: SceneDocument) {
         self.sceneDocument = document
         super.init()
         
         if document.objects.isEmpty {
-            setupDebugScene()
+            self.sceneDocument.setPreset(.cluster(shape: .cube(chamferEdges: 0.1, segmentCount: 4), positionMultiplier: 3, objectCount: 500))
             saveDocument()
         }
         
@@ -67,59 +60,6 @@ class SceneService: NSObject, ObservableObject {
                 print("🟢 Saved scene document")
             }
         }
-    }
-    
-    func setupDebugScene() {
-        sceneDocument.colorHue = .init(hue: .randomPalette(includesMonochrome: true))
-        let colors = randomColors(count: 1500, hue: sceneDocument.colorHue!.randomColorHue, luminosity: sceneDocument.colorHue!.randomColorLuminosity)
-        func setupObjects() {
-            var objects: [SceneDocument.Object] = []
-            for _ in 0..<1500 {
-                let randomScale = Float.random(in: 0.1..<1)
-                let sphere = SceneDocument.Object(shape: .sphere(),
-                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
-                                                  position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
-                                                  scale: .init(x: randomScale, y: randomScale, z: randomScale))
-                objects.append(sphere)
-            }
-            
-            sceneDocument.objects = objects
-        }
-        
-        func setupSettings() {
-            sceneDocument.antialiasing = .multisampling2X
-            sceneDocument.screenSpaceReflectionsOptions = .init(isEnabled: true, sampleCount: 64, maxDistance: 128)
-            sceneDocument.backgroundColor = .init(uiColor: randomColor(hue: sceneDocument.colorHue!.randomColorHue, luminosity: .light))
-        }
-        
-        func setupLights() {
-            let directionalLight = SceneDocument.Light(lightType: .directional,
-                                                       castsShadow: true,
-                                                       eulerAngles: SceneDocument.Vector3(x: 0, y: 45, z: 45))
-            
-            let ambientLight = SceneDocument.Light(lightType: .ambient,
-                                                   color: SceneDocument.Color.init(uiColor: UIColor(hue: 0, saturation: 0, brightness: 0.7, alpha: 1)),
-                                                   castsShadow: false)
-            
-            sceneDocument.lights = [directionalLight, ambientLight]
-        }
-        
-        func setupCameras() {
-            let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
-                                              screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
-                                              depthOfFieldOptions: .init(isEnabled: true, focusDistance: 12, fStop: 0.1, focalLength: 16),
-                                              bloomOptions: .init(isEnabled: true, intensity: 0.2),
-                                              filmGrainOptions: .init(isEnabled: true, scale: 1, intensity: 0.2),
-                                              colorFringeOptions: .init(isEnabled: true, strength: 0.5, intensity: 0.5),
-                                              useHDR: true,
-                                              useAutoExposure: true)
-            sceneDocument.cameras = [camera]
-        }
-        
-        setupObjects()
-        setupSettings()
-        setupLights()
-        setupCameras()
     }
     
     func updateSceneDifference<Model: Differentiable>(changeSet: StagedChangeset<[Model]>) {
@@ -166,6 +106,7 @@ class SceneService: NSObject, ObservableObject {
         }
     }
     
+    var camera = SCNCamera()
     func setupSceneView() {
         print("SceneService", "Setting up scene view")
         
@@ -173,37 +114,40 @@ class SceneService: NSObject, ObservableObject {
         scene.screenSpaceReflectionSampleCount = sceneDocument.screenSpaceReflectionsOptions.sampleCount
         scene.screenSpaceReflectionMaximumDistance = CGFloat(sceneDocument.screenSpaceReflectionsOptions.maxDistance)
         
-        scene.background.contents = sceneDocument.backgroundColor
+        scene.background.contents = sceneDocument.backgroundColor.uiColor
         
         // TODO: - Make this diffable
         scene.rootNode.childNodes.forEach({ $0.removeFromParentNode() })
         
-        let camera = sceneDocument.cameras.first!
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.camera?.wantsExposureAdaptation = camera.useAutoExposure
-        cameraNode.camera?.wantsHDR = camera.useHDR
-        cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
-        cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
-        cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
-        
-        cameraNode.camera?.grainIntensity = camera.filmGrainOptions.isEnabled ? CGFloat(camera.filmGrainOptions.intensity) : 0
-        cameraNode.camera?.grainScale = CGFloat(camera.filmGrainOptions.scale)
-        cameraNode.camera?.grainIsColored = true
-        
-        cameraNode.camera?.focusDistance = CGFloat(camera.depthOfFieldOptions.focusDistance)
-        cameraNode.camera?.fStop = CGFloat(camera.depthOfFieldOptions.fStop)
-        cameraNode.camera?.focalLength = CGFloat(camera.depthOfFieldOptions.focalLength)
-        cameraNode.camera?.fieldOfView = 50
-        cameraNode.camera?.zNear = 0
-        
-        cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
-        cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
-        cameraNode.camera?.averageGray = 0.2
-        cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
-        cameraNode.eulerAngles = SCNVector3(x: camera.eulerAngles.x, y: camera.eulerAngles.y, z: camera.eulerAngles.z)
-        cameraNode.rotation = SCNVector4(x: camera.rotation.x, y: camera.rotation.y, z: camera.rotation.z, w: camera.rotation.w)
-        scene.rootNode.addChildNode(cameraNode)
+        if let camera = sceneDocument.cameras.first {
+            let cameraNode = SCNNode()
+            cameraNode.name = "Camera"
+            cameraNode.camera = self.camera
+            cameraNode.camera?.wantsExposureAdaptation = camera.useAutoExposure
+            cameraNode.camera?.wantsHDR = camera.useHDR
+            cameraNode.camera?.wantsDepthOfField = camera.depthOfFieldOptions.isEnabled
+            cameraNode.camera?.screenSpaceAmbientOcclusionIntensity = camera.screenSpaceAmbientOcclusionOptions.isEnabled ? CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity) : 0
+            cameraNode.camera?.bloomIntensity = camera.bloomOptions.isEnabled ? CGFloat(camera.bloomOptions.intensity) : 0
+            cameraNode.camera?.minimumExposure = 0
+            
+            cameraNode.camera?.grainIntensity = camera.filmGrainOptions.isEnabled ? CGFloat(camera.filmGrainOptions.intensity) : 0
+            cameraNode.camera?.grainScale = CGFloat(camera.filmGrainOptions.scale)
+            cameraNode.camera?.grainIsColored = true
+            
+            cameraNode.camera?.focusDistance = CGFloat(camera.depthOfFieldOptions.focusDistance)
+            cameraNode.camera?.fStop = CGFloat(camera.depthOfFieldOptions.fStop)
+            cameraNode.camera?.focalLength = CGFloat(camera.depthOfFieldOptions.focalLength)
+            cameraNode.camera?.fieldOfView = 50
+            cameraNode.camera?.zNear = 0
+            
+            cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
+            cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
+            cameraNode.camera?.averageGray = 0.2
+            cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
+            cameraNode.eulerAngles = SCNVector3(x: camera.eulerAngles.x, y: camera.eulerAngles.y, z: camera.eulerAngles.z)
+            cameraNode.rotation = SCNVector4(x: camera.rotation.x, y: camera.rotation.y, z: camera.rotation.z, w: camera.rotation.w)
+            scene.rootNode.addChildNode(cameraNode)
+        }
         
         sceneDocument.lights.forEach { light in
             let lightNode = SCNNode()
@@ -246,7 +190,14 @@ class SceneService: NSObject, ObservableObject {
         case .sphere(let segmentCount):
             let sphere = SCNSphere(radius: CGFloat(object.scale.x + object.scale.y + object.scale.z) / 3)
             sphere.segmentCount = segmentCount
-            node = SCNNode(geometry:  sphere)
+            node = SCNNode(geometry: sphere)
+        case .cube(let chamferEdges, let segmentCount):
+            let box = SCNBox(width: CGFloat(object.scale.x), height: CGFloat(object.scale.y), length: CGFloat(object.scale.z), chamferRadius: CGFloat(chamferEdges))
+            box.chamferSegmentCount = segmentCount
+            node = SCNNode(geometry: box)
+        case .pyramid:
+            let pyamid = SCNPyramid(width: CGFloat(object.scale.x), height: CGFloat(object.scale.y), length: CGFloat(object.scale.z))
+            node = SCNNode(geometry: pyamid)
         default:
             // TODO: - Add more shape options
             node = SCNNode()
@@ -274,11 +225,16 @@ class SceneService: NSObject, ObservableObject {
         for _ in 0..<differenceAbs {
             if difference < 0 {
                 let randomScale = Float.random(in: 0.1..<1)
-                let sphere = SceneDocument.Object(shape: .sphere(),
-                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
-                                                  position: .init(x: Float.random(in: -10..<10), y: Float.random(in: -10..<10), z: Float.random(in: -10..<10)),
-                                                  scale: .init(x: randomScale, y: randomScale, z: randomScale))
-                objects.append(sphere)
+                switch sceneDocument.preset {
+                case .cluster(let shape, let positionMultiplier, _):
+                    let object = SceneDocument.Object(shape: shape,
+                                                      material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
+                                                      position: .init(x: Float.random(in: -positionMultiplier..<positionMultiplier), y: Float.random(in: -positionMultiplier..<positionMultiplier), z: Float.random(in: -positionMultiplier..<positionMultiplier)),
+                                                      scale: .init(x: randomScale, y: randomScale, z: randomScale))
+                    objects.append(object)
+                default:
+                    break
+                }
             } else {
                 objects.removeLast()
             }
@@ -296,6 +252,49 @@ class SceneService: NSObject, ObservableObject {
         renderer.sceneTime = renderTime
         
         return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .multisampling4X)
+    }
+    
+    func setPreset(_ preset: String?, shape: String? = nil) {
+        var currentShape = sceneDocument.preset?.shape ?? .sphere()
+        var currentPositionMultiplier = sceneDocument.preset?.positionMultiplier ?? 1
+        let currentObjectCount = sceneDocument.objects.count
+        
+        guard self.sceneDocument.preset?.displayName.lowercased() != preset || currentShape.displayName.lowercased() != (shape ?? currentShape.displayName) else { return }
+        
+        if let shape = shape {
+            switch shape {
+            case "sphere":
+                currentShape = .sphere()
+                currentPositionMultiplier = 10
+            case "cube":
+                currentShape = .cube(chamferEdges: 0.1, segmentCount: 4)
+                currentPositionMultiplier = 3
+            case "pyramid":
+                currentShape = .pyramid
+                currentPositionMultiplier = 6
+            default:
+                break
+            }
+        }
+        
+        switch preset {
+        case "cluster":
+            sceneDocument.setPreset(.cluster(shape: currentShape,
+                                             positionMultiplier: currentPositionMultiplier,
+                                             objectCount: currentObjectCount),
+                                    hue: sceneDocument.colorHue?.randomColorHue)
+        case "wall":
+            sceneDocument.setPreset(.wall(shape: currentShape,
+                                          positionMultiplier: currentPositionMultiplier,
+                                          objectCount: currentObjectCount),
+                                    hue: sceneDocument.colorHue?.randomColorHue)
+        default:
+            return
+        }
+        
+        print(currentShape, currentPositionMultiplier, currentObjectCount)
+        
+        setupSceneView()
     }
 }
 

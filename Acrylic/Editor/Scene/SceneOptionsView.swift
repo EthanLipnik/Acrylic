@@ -44,6 +44,7 @@ struct SceneOptionsView: View {
         ScrollView {
             VStack {
                 PresetView()
+                CameraView()
             }.padding()
         }
     }

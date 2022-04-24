@@ -220,13 +220,14 @@ class SceneService: NSObject, ObservableObject {
         let colors = randomColors(count: differenceAbs, hue: sceneDocument.colorHue!.randomColorHue, luminosity: sceneDocument.colorHue!.randomColorLuminosity)
         
         var objects = sceneDocument.objects
+        let roughness = objects.first?.material.roughness ?? 0.6
         for _ in 0..<differenceAbs {
             if difference < 0 {
                 let randomScale = Float.random(in: 0.1..<1)
                 switch sceneDocument.preset {
                 case .cluster(let shape, let positionMultiplier, _):
                     let object = SceneDocument.Object(shape: shape,
-                                                      material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
+                                                      material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: roughness),
                                                       position: .init(x: Float.random(in: -positionMultiplier..<positionMultiplier), y: Float.random(in: -positionMultiplier..<positionMultiplier), z: Float.random(in: -positionMultiplier..<positionMultiplier)),
                                                       scale: .init(x: randomScale, y: randomScale, z: randomScale))
                     objects.append(object)

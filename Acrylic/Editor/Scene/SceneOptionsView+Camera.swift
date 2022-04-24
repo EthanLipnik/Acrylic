@@ -86,8 +86,10 @@ extension SceneOptionsView {
                     depthOfFieldView
                     filmGrainView
                 } else {
-                    depthOfFieldView.view
-                    filmGrainView.view
+                    depthOfFieldView
+                        .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color(.separator).opacity(0.4)))
+                    filmGrainView
+                        .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color(.separator).opacity(0.4)))
                 }
             }
         }

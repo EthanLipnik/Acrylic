@@ -11,6 +11,7 @@ import UniformTypeIdentifiers
 
 struct MeshOptionsView: View {
     @EnvironmentObject var meshService: MeshService
+    @Environment(\.horizontalSizeClass) var horizontalClass
     
     var closeAction: (() -> Void)? = nil
     @State private var renderImage: UIImage? = nil
@@ -34,7 +35,7 @@ struct MeshOptionsView: View {
                         
                         exportButton
                     }
-            } else {
+            } else if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
                 VStack(spacing: 0) {
                     HStack {
                         if let closeAction = closeAction {
@@ -64,7 +65,14 @@ struct MeshOptionsView: View {
                     scrollView
                 }
                 .navigationBarHidden(true)
-            }
+            } else {
+               VStack(spacing: 0) {
+                   Divider()
+                       .opacity(0.5)
+                   scrollView
+               }
+               .navigationBarHidden(true)
+           }
         }.sheet(item: $renderImage) { renderImage in
             ExportView(renderImage: renderImage, meshService: meshService)
         }

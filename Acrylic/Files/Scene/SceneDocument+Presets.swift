@@ -53,10 +53,11 @@ extension SceneDocument {
         case .cluster(let shape, let positionMultiplier, let objectCount):
             let colors = randomColors(count: 1500, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
             var objects: [SceneDocument.Object] = []
+            let roughness = self.objects.first?.material.roughness ?? 0.6
             for _ in 0..<objectCount {
                 let randomScale = Float.random(in: 0.5..<1)
                 let sphere = SceneDocument.Object(shape: shape,
-                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: 0.6),
+                                                  material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: roughness),
                                                   position: .init(x: Float.random(in: -positionMultiplier..<positionMultiplier),
                                                                   y: Float.random(in: -positionMultiplier..<positionMultiplier),
                                                                   z: Float.random(in: -positionMultiplier..<positionMultiplier)),

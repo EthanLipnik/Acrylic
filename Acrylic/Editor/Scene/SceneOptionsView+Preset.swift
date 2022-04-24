@@ -20,7 +20,9 @@ extension SceneOptionsView {
         let shapes = ["Sphere", "Cube", "Pyramid"]
         @State var selectedShape: String = "Sphere"
         
-        var objectCountIntProxy: Binding<Double>{
+        @State private var roughness: Float = 0.3
+        
+        private var objectCountIntProxy: Binding<Double>{
             Binding<Double>(get: {
                 return Double(sceneService.sceneDocument.objects.count)
             }, set: {
@@ -94,9 +96,9 @@ extension SceneOptionsView {
                         Picker(selection: $selectedShape) {
                             ForEach(shapes, id: \.self) { Text($0) }
                         } label: {
-                            Image(systemName: "square.on.circle")
-                                .foregroundColor(.secondary)
+                            Text("")
                         }
+                        .labelsHidden()
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .onAppear {
                             selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
@@ -124,6 +126,23 @@ extension SceneOptionsView {
                                 .bold()
                                 .foregroundColor(Color(.tertiaryLabel))
                         }
+                    }
+                    
+                    HStack {
+                        Text("Rougness")
+                            .bold()
+                            .lineLimit(1)
+                            .frame(width: 120, alignment: .leading)
+                            .foregroundColor(.secondary)
+                        Slider(value: $roughness, in: 0...1)
+                            .onAppear {
+                                roughness = sceneService.sceneDocument.objects.first?.material.roughness ?? 0.3
+                            }
+                            .onChange(of: roughness) { newValue in
+                                sceneService.sceneDocument.objects.forEach({ $0.material.roughness = newValue })
+                                
+                                sceneService.scene.rootNode.childNodes.forEach({ $0.geometry?.firstMaterial?.roughness.contents = newValue })
+                            }
                     }
                 }
             }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SceneOptionsView: View {
     @EnvironmentObject var sceneService: SceneService
+    @Environment(\.horizontalSizeClass) var horizontalClass
     
     var closeAction: () -> Void
     
@@ -29,7 +30,7 @@ struct SceneOptionsView: View {
                         
                         exportButton
                     }
-            } else {
+            } else if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
                 VStack(spacing: 0) {
                     HStack {
                         Button {
@@ -52,6 +53,13 @@ struct SceneOptionsView: View {
                     }
                     .padding(.horizontal, 30)
                     .frame(height: 60)
+                    Divider()
+                        .opacity(0.5)
+                    scrollView
+                }
+                .navigationBarHidden(true)
+            } else {
+                VStack(spacing: 0) {
                     Divider()
                         .opacity(0.5)
                     scrollView

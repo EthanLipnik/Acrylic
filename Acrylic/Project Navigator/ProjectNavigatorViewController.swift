@@ -275,22 +275,24 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 children.append(UIMenu(title: "", options: .displayInline, children: [
                     UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
                         document.open { _ in
+                            let renderImage: UIImage
                             switch document {
                             case .mesh(let meshDocument):
                                 let meshService = MeshService(meshDocument)
-                                let renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
-                                
-                                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
-                                
-                #if targetEnvironment(macCatalyst)
-                                vc.preferredContentSize = CGSize(width: 1024, height: 512)
-                #else
-                                vc.modalPresentationStyle = .formSheet
-                #endif
-                                self?.present(vc, animated: true)
-                            default:
-                                break
+                                renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
+                            case .scene(let sceneDocument):
+                                let sceneService = SceneService(sceneDocument)
+                                renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
                             }
+                            
+                            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
+                            
+#if targetEnvironment(macCatalyst)
+                            vc.preferredContentSize = CGSize(width: 1024, height: 512)
+#else
+                            vc.modalPresentationStyle = .formSheet
+#endif
+                            self?.present(vc, animated: true)
                         }
                     })
                 ]))

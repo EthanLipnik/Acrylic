@@ -18,7 +18,6 @@ class MeshService: ObservableObject {
     @Published var isRenderingAsWireframe: Bool = false
     
     @Published var selectedPoint: Point? = nil
-    @Published var isExporting: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     

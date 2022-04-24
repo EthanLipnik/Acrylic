@@ -40,12 +40,10 @@ extension ExportView {
                     .keyboardShortcut(.cancelAction)
                     Spacer()
                     Button("Export") {
-                        switch exportService.export() {
-                        case .success(let document):
-                            imageDocument = document
-                            
+                        do {
+                            self.imageDocument = try exportService.export()
                             isExportingImage.toggle()
-                        case .failure(let error):
+                        } catch {
                             print(error)
                         }
                     }

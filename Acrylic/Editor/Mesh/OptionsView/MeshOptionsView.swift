@@ -52,7 +52,7 @@ struct MeshOptionsView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Button {
-                            renderImage = meshService.render()
+                            renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3.bold())
@@ -74,7 +74,7 @@ struct MeshOptionsView: View {
                .navigationBarHidden(true)
            }
         }.sheet(item: $renderImage) { renderImage in
-            ExportView(renderImage: renderImage, meshService: meshService)
+            ExportView(renderImage: renderImage)
         }
     }
     

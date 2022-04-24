@@ -19,7 +19,7 @@ class ExportViewController: UIViewController {
         
         blackbirdView.translatesAutoresizingMaskIntoConstraints = false
         
-        blackbirdView.image = exportService.filteredImage ?? exportService.baseImage
+        blackbirdView.image = exportService.previewImage ?? exportService.baseImage
         
         return blackbirdView
     }()
@@ -51,7 +51,7 @@ class ExportViewController: UIViewController {
             blackbirdView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
         
-        exportService.$filteredImage
+        exportService.$previewImage
             .sink { [weak self] image in
                 self?.blackbirdView.image = image ?? self?.exportService.baseImage
                 self?.blackbirdView.draw()

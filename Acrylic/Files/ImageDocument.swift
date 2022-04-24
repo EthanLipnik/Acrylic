@@ -17,7 +17,7 @@ struct ImageDocument: FileDocument, Identifiable {
     var imageData: Data
     var fileName: String
     
-    init(imageData: Data, fileName: String = "Mesh") {
+    init(imageData: Data, fileName: String = "Render") {
         self.imageData = imageData
         self.fileName = fileName
     }
@@ -29,7 +29,7 @@ struct ImageDocument: FileDocument, Identifiable {
         }
         
         self.imageData = data
-        self.fileName = "Mesh"
+        self.fileName = "Render"
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {

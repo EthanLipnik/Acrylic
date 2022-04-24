@@ -12,6 +12,7 @@ struct SceneOptionsView: View {
     @Environment(\.horizontalSizeClass) var horizontalClass
     
     var closeAction: () -> Void
+    @State private var renderImage: UIImage? = nil
     
     var body: some View {
         Group {
@@ -45,7 +46,7 @@ struct SceneOptionsView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Button {
-//                            renderImage = sceneService.render()
+                            renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3.bold())
@@ -66,6 +67,9 @@ struct SceneOptionsView: View {
                 }
                 .navigationBarHidden(true)
             }
+        }
+        .sheet(item: $renderImage) { renderImage in
+            ExportView(renderImage: renderImage)
         }
     }
     

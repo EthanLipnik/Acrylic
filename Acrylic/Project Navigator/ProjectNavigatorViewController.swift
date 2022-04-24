@@ -278,9 +278,9 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                             switch document {
                             case .mesh(let meshDocument):
                                 let meshService = MeshService(meshDocument)
-                                let renderImage = meshService.render()
+                                let renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
                                 
-                                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage, meshService: meshService))
+                                let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
                                 
                 #if targetEnvironment(macCatalyst)
                                 vc.preferredContentSize = CGSize(width: 1024, height: 512)

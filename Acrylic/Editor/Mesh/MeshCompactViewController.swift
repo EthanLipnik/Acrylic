@@ -28,7 +28,7 @@ class MeshCompactViewController: MeshViewController {
         return view
     }()
     
-    lazy var drawerHeightConstraint: NSLayoutConstraint = drawerView.heightAnchor.constraint(equalToConstant: 300)
+    lazy var drawerHeightConstraint: NSLayoutConstraint = drawerView.heightAnchor.constraint(equalToConstant: 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,10 +66,36 @@ class MeshCompactViewController: MeshViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        drawerView.layer.shadowPath = UIBezierPath(roundedRect: drawerView.bounds, cornerRadius: 30).cgPath
+        drawerHeightConstraint.constant = 300
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.3,
+                       options: [.curveEaseInOut,
+                                 .beginFromCurrentState,
+                                 .allowUserInteraction],
+                       animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        drawerHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.3,
+                       options: [.curveEaseInOut,
+                                 .beginFromCurrentState,
+                                 .allowUserInteraction],
+                       animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
     }
     
     @objc func done() {

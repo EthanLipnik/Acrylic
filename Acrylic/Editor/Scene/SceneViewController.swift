@@ -27,6 +27,7 @@ class SceneViewController: UIViewController {
         view.addSubview(previewImageView)
         
         view.hero.id = sceneService.sceneDocument.fileURL.path
+        view.hero.modifiers = [.spring(stiffness: 250, damping: 20)]
         
         return view
     }()

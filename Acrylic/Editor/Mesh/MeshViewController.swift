@@ -26,6 +26,7 @@ class MeshViewController: UIViewController {
         view.layer.shadowOpacity = 0.4
         
         view.hero.id = meshService.meshDocument?.fileURL.path
+        view.hero.modifiers = [.spring(stiffness: 250, damping: 20)]
         
         return view
     }()

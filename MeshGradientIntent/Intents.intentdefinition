@@ -186,7 +186,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>4VwOYo</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21E230</string>
+	<string>21E258</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>13E113</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -542,7 +542,7 @@
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<real>0.59999999999999998</real>
+						<real>0.5</real>
 						<key>INIntentParameterMetadataMaximumValue</key>
 						<real>1</real>
 						<key>INIntentParameterMetadataType</key>

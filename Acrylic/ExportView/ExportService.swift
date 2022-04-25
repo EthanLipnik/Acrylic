@@ -10,6 +10,7 @@ import UIKit
 import Blackbird
 import UniformTypeIdentifiers
 import CoreImage
+import SceneKit
 
 class ExportService: ObservableObject {
     @Published var blur: Float = 0 {
@@ -76,13 +77,15 @@ class ExportService: ObservableObject {
     }
     
     var renderImage: UIImage
+//    var scene: SCNScene
     
     lazy var baseImage: CIImage = {
         return CIImage(image: renderImage)!
     }()
     
-    init(renderImage: UIImage) {
+    init(renderImage: UIImage/*, scene: SCNScene*/) {
         self.renderImage = renderImage
+//        self.scene = scene
     }
     
     func applyFilters() {

@@ -258,9 +258,15 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                                     try FileManager.default.trashItem(at: url, resultingItemURL: &finalUrl)
                                 } catch {
                                     print(error)
+                                    do {
+                                        try FileManager.default.removeItem(at: url)
+                                    } catch {
+                                        print(error)
+                                    }
                                 }
                             }
                         }))
+                        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                         
                         let cell = collectionView.cellForItem(at: indexPath)
                         alertController.popoverPresentationController?.sourceRect = cell?.bounds ?? CGRect(origin: point, size: .zero)

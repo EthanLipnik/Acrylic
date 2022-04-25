@@ -46,7 +46,7 @@ struct SceneOptionsView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Button {
-                            renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
+                            renderImage = sceneService.render(resolution: CGSize(width: 4096, height: 4096))
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3.bold())

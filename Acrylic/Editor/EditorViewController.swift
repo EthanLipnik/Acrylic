@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Hero
 
 class EditorViewController<Document: UIDocument>: UISplitViewController {
 
@@ -37,6 +38,8 @@ class EditorViewController<Document: UIDocument>: UISplitViewController {
         primaryBackgroundStyle = .sidebar
         minimumPrimaryColumnWidth = 320
         maximumPrimaryColumnWidth = 320
+        
+        hero.isEnabled = UIDevice.current.userInterfaceIdiom != .mac
     }
     
     override func viewWillAppear(_ animated: Bool) {

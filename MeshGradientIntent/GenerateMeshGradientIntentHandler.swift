@@ -63,7 +63,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             meshService.height = intent.height?.intValue ?? 3
             meshService.generate(Palette: .hue(from: intent.colorPalette),
                                  luminosity: .luminosity(from: intent.luminosity),
-                                 positionMultiplier: intent.positionMultiplier?.floatValue ?? 0.6)
+                                 positionMultiplier: intent.positionMultiplier?.floatValue ?? 0.5)
             
 #if targetEnvironment(macCatalyst)
             let resolution = CGSize(width: 6144, height: 6144)

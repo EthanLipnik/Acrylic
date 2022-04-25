@@ -80,7 +80,7 @@ class MeshService: ObservableObject {
     func generate(Palette hues: RandomColor.Hue...,
                   luminosity: RandomColor.Luminosity = .bright,
                   shouldRandomizePointLocations: Bool = true,
-                  positionMultiplier: Float = 0.6) {
+                  positionMultiplier: Float = 0.5) {
         var colors = Self.generateColors(palette: hues,
                             luminosity: luminosity,
                             width: width,
@@ -103,7 +103,7 @@ class MeshService: ObservableObject {
                                width: Int = 3,
                                height: Int = 3,
                                shouldRandomizePointLocations: Bool = true,
-                               positionMultiplier: Float = 0.6) -> [MeshNode.Color] {
+                               positionMultiplier: Float = 0.5) -> [MeshNode.Color] {
         var colors: [MeshNode.Color] = []
         
         let newColors: [UIColor] = hues.flatMap({ randomColors(count: Int(ceil(Float(width * height) / Float(hues.count))), hue: $0, luminosity: luminosity) })
@@ -135,7 +135,7 @@ class MeshService: ObservableObject {
         return colors
     }
     
-    func randomizePositions(positionMultiplier: Float = 0.6) {
+    func randomizePositions(positionMultiplier: Float = 0.5) {
         for i in 0..<colors.count {
             let x = colors[i].point.x
             let y = colors[i].point.y

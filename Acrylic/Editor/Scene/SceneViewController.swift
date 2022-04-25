@@ -24,6 +24,9 @@ class SceneViewController: UIViewController {
         view.backgroundColor = UIColor.secondarySystemBackground
         
         view.addSubview(sceneView)
+        view.addSubview(previewImageView)
+        
+        view.hero.id = sceneService.sceneDocument.fileURL.path
         
         return view
     }()
@@ -41,6 +44,23 @@ class SceneViewController: UIViewController {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         return view
+    }()
+    
+    lazy var previewImageView: UIImageView = {
+        var image: UIImage?
+        if let data = sceneService.sceneDocument.previewImage {
+            image = UIImage(data: data)
+        }
+        
+        let imageView = UIImageView(image: image)
+        imageView.layer.cornerRadius = 30
+        imageView.layer.cornerCurve = .continuous
+        imageView.layer.masksToBounds = true
+        
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.frame = sceneView.bounds
+        
+        return imageView
     }()
     
     let sceneService: SceneService
@@ -72,6 +92,20 @@ class SceneViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         sceneService.sceneView = nil
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.previewImageView.isHidden = true
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        previewImageView.isHidden = false
     }
     
     override func viewWillLayoutSubviews() {

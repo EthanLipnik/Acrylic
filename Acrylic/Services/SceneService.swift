@@ -53,7 +53,7 @@ class SceneService: NSObject, ObservableObject {
     func saveDocument() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             if let fileUrl = self?.sceneDocument.fileURL {
-                let previewImage = self?.render(resolution: CGSize(width: 512, height: 512))
+                let previewImage = self?.render(resolution: CGSize(width: 512, height: 512), useAntialiasing: false)
                 self?.sceneDocument.previewImage = previewImage?.jpegData(compressionQuality: 0.5)
                 self?.sceneDocument.save(to: fileUrl, for: .forOverwriting)
                 
@@ -242,15 +242,24 @@ class SceneService: NSObject, ObservableObject {
         sceneDocument.objects = objects
     }
     
-    func render(resolution: CGSize = CGSize(width: 1024, height: 1024)) -> UIImage {
+    func render(resolution: CGSize = CGSize(width: 1024, height: 1024), useAntialiasing: Bool = true) -> UIImage {
         let renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice())
         renderer.scene = scene
+        renderer.pointOfView = sceneView?.pointOfView
+        
+        let aspectRatio = resolution.width / 1024
+        renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0) / aspectRatio)
         
         let renderTime = TimeInterval(1)
         renderer.update(atTime: .zero)
         renderer.sceneTime = renderTime
         
-        return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: .none)
+        var supportsAntialiasing: Bool = true
+#if targetEnvironment(simulator)
+        supportsAntialiasing = false
+#endif
+        
+        return renderer.snapshot(atTime: renderTime, with: resolution, antialiasingMode: (useAntialiasing && supportsAntialiasing) ? .multisampling4X : .none)
     }
     
     func setPreset(_ preset: String?, shape: String? = nil) {

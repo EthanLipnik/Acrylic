@@ -22,6 +22,8 @@ class ProjectCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelega
                 return
             }
             
+            imageView.hero.id = fileUrl.path
+            
             if let previewImage = UIImage(contentsOfFile: fileUrl.appendingPathComponent("PreviewImage").path) {
                 self.imageView.image = previewImage
             } else {

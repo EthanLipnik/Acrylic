@@ -71,7 +71,6 @@
 		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
 		AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3DB5627F3E856000C4516 /* SceneViewController.swift */; };
 		AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */ = {isa = PBXBuildFile; productRef = AAAFF31227FF95BB003D042D /* DirectoryWatcher */; };
-		AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8853627E95ACF00B43BC5 /* MeshKit */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
 		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
@@ -80,6 +79,8 @@
 		AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
+		AADA1BB62815FB19006F04CA /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AADA1BB52815FB19006F04CA /* MeshKit */; };
+		AADDB54A2816E41800F46F7E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = AADDB5492816E41800F46F7E /* Hero */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
 		AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */; };
@@ -156,8 +157,6 @@
 		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
 		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		AA2B82E727FB2BED003A0249 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
-		AA2B82EC27FB2C30003A0249 /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Camera.swift"; sourceTree = "<group>"; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +209,8 @@
 		AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCompactViewController.swift; sourceTree = "<group>"; };
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
+		AADA1BB32815FB0C006F04CA /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
+		AADA1BB42815FB13006F04CA /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOptionsView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
@@ -251,12 +252,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */,
+				AADA1BB62815FB19006F04CA /* MeshKit in Frameworks */,
+				AADDB54A2816E41800F46F7E /* Hero in Frameworks */,
 				AA4BBDF027F2A4A100B45FA6 /* FilesProvider in Frameworks */,
 				AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */,
 				AA2B82EE27FB2C39003A0249 /* Blackbird in Frameworks */,
 				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
 				AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */,
-				AAB8853727E95ACF00B43BC5 /* MeshKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,8 +455,8 @@
 		AAB8853427E95A3300B43BC5 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				AA2B82E727FB2BED003A0249 /* MeshKit */,
-				AA2B82EC27FB2C30003A0249 /* Blackbird */,
+				AADA1BB32815FB0C006F04CA /* MeshKit */,
+				AADA1BB42815FB13006F04CA /* Blackbird */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -581,12 +583,13 @@
 			);
 			name = Acrylic;
 			packageProductDependencies = (
-				AAB8853627E95ACF00B43BC5 /* MeshKit */,
 				AA71CA6D27ECAC0A00C4722D /* RandomColor */,
 				AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */,
 				AA633FB827F494B40076F85C /* DifferenceKit */,
 				AA2B82ED27FB2C39003A0249 /* Blackbird */,
 				AAAFF31227FF95BB003D042D /* DirectoryWatcher */,
+				AADA1BB52815FB19006F04CA /* MeshKit */,
+				AADDB5492816E41800F46F7E /* Hero */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -674,6 +677,7 @@
 				AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */,
 				AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */,
 				AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
+				AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -1439,6 +1443,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1489,9 +1501,14 @@
 			package = AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */;
 			productName = DirectoryWatcher;
 		};
-		AAB8853627E95ACF00B43BC5 /* MeshKit */ = {
+		AADA1BB52815FB19006F04CA /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;
+		};
+		AADDB5492816E41800F46F7E /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
 		};
 /* End XCSwiftPackageProductDependency section */
 

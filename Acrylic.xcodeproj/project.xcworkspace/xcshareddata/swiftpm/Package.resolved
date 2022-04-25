@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "Hero",
+        "repositoryURL": "https://github.com/HeroTransitions/Hero.git",
+        "state": {
+          "branch": "develop",
+          "revision": "dd260a30a4075cbe9527d3de590666db4ca59feb",
+          "version": null
+        }
+      },
+      {
         "package": "RandomColor",
         "repositoryURL": "https://github.com/EthanLipnik/RandomColorSwift.git",
         "state": {

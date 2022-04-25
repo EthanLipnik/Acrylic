@@ -148,6 +148,15 @@ extension MeshOptionsView {
                         self.node?.tangent.v = value
                     }
                     
+                    let tangentView = OptionsView.DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
+                        Slider(value: uTangent, in: 0.0...5.0) {
+                            Label("uTangent", systemImage: "trapezoid.and.line.horizontal.fill")
+                        }
+                        Slider(value: vTangent, in: 0.0...5.0) {
+                            Label("vTangent", systemImage: "trapezoid.and.line.vertical.fill")
+                        }
+                    }
+                    
                     VStack(spacing: 20) {
                         HStack {
                             Label("Point", systemImage: "circle.fill")
@@ -167,13 +176,11 @@ extension MeshOptionsView {
                         ColorPicker(selection: color, supportsOpacity: false) {
                             Label("Color", systemImage: "paintbrush.fill")
                         }
-                        OptionsView.DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
-                            Slider(value: uTangent, in: 0.0...5.0) {
-                                Label("uTangent", systemImage: "trapezoid.and.line.horizontal.fill")
-                            }
-                            Slider(value: vTangent, in: 0.0...5.0) {
-                                Label("vTangent", systemImage: "trapezoid.and.line.vertical.fill")
-                            }
+                        
+                        if UIDevice.current.userInterfaceIdiom == .mac {
+                            tangentView
+                        } else {
+                            tangentView.view
                         }
                     }
                 } else {

@@ -9,6 +9,7 @@ import UIKit
 import MeshKit
 import Combine
 import SwiftUI
+import Hero
 
 class MeshViewController: UIViewController {
     
@@ -24,7 +25,26 @@ class MeshViewController: UIViewController {
         view.layer.shadowRadius = 30
         view.layer.shadowOpacity = 0.4
         
+        view.hero.id = meshService.meshDocument?.fileURL.path
+        
         return view
+    }()
+    
+    lazy var previewImageView: UIImageView = {
+        var image: UIImage?
+        if let data = meshService.meshDocument?.previewImage {
+            image = UIImage(data: data)
+        }
+        
+        let imageView = UIImageView(image: image)
+        imageView.layer.cornerRadius = 30
+        imageView.layer.cornerCurve = .continuous
+        imageView.layer.masksToBounds = true
+        
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.frame = meshView.bounds
+        
+        return imageView
     }()
     
     lazy var grabbersView: GrabbersView = {
@@ -56,6 +76,7 @@ class MeshViewController: UIViewController {
         view.backgroundColor = UIColor.systemBackground
         
         view.addSubview(meshView)
+        meshView.addSubview(previewImageView)
         meshView.addSubview(grabbersView)
         
         NSLayoutConstraint.activate([
@@ -105,6 +126,14 @@ class MeshViewController: UIViewController {
         grabbersView.setPoints(meshService.colors,
                                width: meshService.width,
                                height: meshService.height)
+        
+        previewImageView.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        previewImageView.isHidden = false
     }
     
     override func viewWillLayoutSubviews() {

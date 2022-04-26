@@ -11,6 +11,7 @@ import Blackbird
 import UniformTypeIdentifiers
 import CoreImage
 import SceneKit
+import TelemetryClient
 
 class ExportService: ObservableObject {
     @Published var blur: Float = 0 {
@@ -113,7 +114,10 @@ class ExportService: ObservableObject {
             .resize(CGSize(width: self.resolution.width, height: self.resolution.height))?
             .cropped(to: CGRect(origin: baseImage.extent.origin, size: CGSize(width: self.resolution.width, height: self.resolution.height))) ?? baseImage
         
-        guard let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: ciImage.extent) else { throw CocoaError(.fileWriteUnknown) }
+        guard let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: ciImage.extent) else {
+            TelemetryManager.send("renderFailed", with: ["error": "failed to create cgImage from ciImage."])
+            throw CocoaError(.fileWriteUnknown)
+        }
         let image = UIImage(cgImage: cgImage)
         
         var data: Data? = nil
@@ -128,8 +132,10 @@ class ExportService: ObservableObject {
         }
         
         if let data = data {
+            TelemetryManager.send("renderExported", with: ["resolution": "\(resolution.width):\(resolution.height)"])
             return ImageDocument(imageData: data)
         } else {
+            TelemetryManager.send("renderFailed", with: ["error": "failed to get image data from render."])
             throw CocoaError(.fileReadUnknown)
         }
     }

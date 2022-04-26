@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import CoreImage
+import TelemetryClient
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -186,6 +187,8 @@ extension UIWindow {
                 print(error)
             }
             
+            TelemetryManager.send("documentOpened")
+            
             if let session = windowScene?.session, destroysCurrentScene {
                 UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
                     print(error)
@@ -217,6 +220,8 @@ extension UIWindow {
                         }
                         
                         self?.windowScene?.title = document.fileUrl?.lastPathComponent
+                        
+                        TelemetryManager.send("documentOpened")
                     } else {
                         print("Failed to open")
                     }

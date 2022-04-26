@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import UniformTypeIdentifiers
+import TelemetryClient
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         }
     }()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let configuration = TelemetryManagerConfiguration(
+            appID: "B278B666-F5F1-4014-882C-5403DA338EE5")
+        TelemetryManager.initialize(with: configuration)
         
         if !FileManager.default.fileExists(atPath: Self.documentsFolder.path) {
             do {
@@ -34,10 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-//        let sceneDocument = SceneDocument(fileURL: Self.documentsFolder.appendingPathComponent("Scene.ausf"))
-//        sceneDocument.save(to: Self.documentsFolder.appendingPathComponent("Scene.ausf"), for: .forCreating)
-        
         print(Self.documentsFolder.path)
+        
+        TelemetryManager.send("applicationDidFinishLaunching")
         
         return true
     }

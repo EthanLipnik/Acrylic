@@ -9,6 +9,7 @@ import UIKit
 import UniformTypeIdentifiers
 import SwiftUI
 import DirectoryWatcher
+import TelemetryClient
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate {
     
@@ -196,12 +197,15 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         }
         
         var document: UIDocument?
+        var typeName: String = ""
         
         switch type {
         case .acrylicMeshGradient:
             document = MeshDocument(fileURL: url)
+            typeName = "mesh"
         case .acrylicScene:
             document = SceneDocument(fileURL: url)
+            typeName = "scene"
         default:
             break
         }
@@ -213,6 +217,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         applySnapshot { [weak self] in
             self?.view.window?.openDocument(url)
         }
+        
+        TelemetryManager.send("documentCreated", with: ["type": typeName])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

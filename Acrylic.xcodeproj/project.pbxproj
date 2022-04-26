@@ -56,6 +56,7 @@
 		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
 		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
 		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
+		AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AA58CE862817702D007295E8 /* TelemetryClient */; };
 		AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FB827F494B40076F85C /* DifferenceKit */; };
 		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
@@ -252,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */,
+				AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */,
 				AADA1BB62815FB19006F04CA /* MeshKit in Frameworks */,
 				AADDB54A2816E41800F46F7E /* Hero in Frameworks */,
 				AA4BBDF027F2A4A100B45FA6 /* FilesProvider in Frameworks */,
@@ -590,6 +592,7 @@
 				AAAFF31227FF95BB003D042D /* DirectoryWatcher */,
 				AADA1BB52815FB19006F04CA /* MeshKit */,
 				AADDB5492816E41800F46F7E /* Hero */,
+				AA58CE862817702D007295E8 /* TelemetryClient */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -678,6 +681,7 @@
 				AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */,
 				AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
 				AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */,
+				AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -887,7 +891,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -915,7 +919,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -943,7 +947,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -973,7 +977,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1003,7 +1007,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1031,7 +1035,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1178,7 +1182,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1216,7 +1220,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1419,6 +1423,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftClient";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/DifferenceKit.git";
@@ -1475,6 +1487,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */;
 			productName = FilesProvider;
+		};
+		AA58CE862817702D007295E8 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
 		};
 		AA633FB827F494B40076F85C /* DifferenceKit */ = {
 			isa = XCSwiftPackageProductDependency;

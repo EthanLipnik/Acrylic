@@ -45,6 +45,15 @@
           "revision": "ab01c6eff99f40c5e23ffcb957eb3971f937f106",
           "version": "2.0.0"
         }
+      },
+      {
+        "package": "TelemetryClient",
+        "repositoryURL": "https://github.com/TelemetryDeck/SwiftClient",
+        "state": {
+          "branch": null,
+          "revision": "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
+          "version": "1.1.6"
+        }
       }
     ]
   },

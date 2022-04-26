@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import TelemetryClient
 
 #if targetEnvironment(macCatalyst)
 typealias EditorDelegate = EditorSceneDelegate
@@ -105,6 +106,7 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error)
             }
         } else {
+            TelemetryManager.send("documentOpened", with: ["success": "false"])
             UIApplication.shared.requestSceneSessionDestruction(session, options: nil) { error in
                 print(error)
             }

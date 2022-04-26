@@ -49,11 +49,12 @@ extension SceneDocument {
             cameras = [camera]
         }
         
+        let roughness = self.objects.first?.material.roughness ?? 0.6
+        
         switch preset {
         case .cluster(let shape, let positionMultiplier, let objectCount):
-            let colors = randomColors(count: 1500, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
+            let colors = randomColors(count: objectCount, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
             var objects: [SceneDocument.Object] = []
-            let roughness = self.objects.first?.material.roughness ?? 0.6
             for _ in 0..<objectCount {
                 let randomScale = Float.random(in: 0.5..<1)
                 let sphere = SceneDocument.Object(shape: shape,
@@ -66,8 +67,22 @@ extension SceneDocument {
             }
             
             self.objects = objects
-        case .wall(let shape, let positionMultiplier, let objectCount):
-            break
+        case .wall(let shape, _, let objectCount):
+            let colors = randomColors(count: objectCount, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
+            
+            var objects: [SceneDocument.Object] = []
+            for x in 0..<objectCount / 2 {
+                for y in 0..<objectCount / 2 {
+                    let cube = SceneDocument.Object(shape: shape,
+                                                    material: .init(color: .init(uiColor: colors.randomElement() ?? .magenta), roughness: roughness),
+                                                    position: .init(x: Float(x - (objectCount / 4)),
+                                                                    y: Float(y - (objectCount / 4)),
+                                                                    z: Float.random(in: -0.4..<0.4)))
+                    objects.append(cube)
+                }
+            }
+            
+            self.objects = objects
         }
         
         setupSettings()

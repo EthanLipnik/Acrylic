@@ -291,18 +291,20 @@ class SceneService: NSObject, ObservableObject {
                                              positionMultiplier: currentPositionMultiplier,
                                              objectCount: currentObjectCount),
                                     hue: sceneDocument.colorHue?.randomColorHue)
+            setupSceneView()
         case "wall":
             sceneDocument.setPreset(.wall(shape: currentShape,
                                           positionMultiplier: currentPositionMultiplier,
                                           objectCount: currentObjectCount),
                                     hue: sceneDocument.colorHue?.randomColorHue)
+            setupSceneView()
+            
+//            if x + 1 == currentObjectCount / 2 && y + 1 == currentObjectCount / 2 {
+//                sceneView?.defaultCameraController.translateInCameraSpaceBy(x: node.position.x, y: node.position.y, z: 0)
+//            }
         default:
             return
         }
-        
-        print(currentShape, currentPositionMultiplier, currentObjectCount)
-        
-        setupSceneView()
     }
 }
 

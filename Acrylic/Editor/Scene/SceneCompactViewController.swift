@@ -66,10 +66,12 @@ class SceneCompactViewController: SceneViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
+    lazy var normalDrawerHeight = min(view.bounds.height - sceneContainerView.bounds.height - sceneContainerView.frame.origin.y - 24, 300)
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        drawerHeightConstraint.constant = 300
+        drawerHeightConstraint.constant = normalDrawerHeight
         UIView.animate(withDuration: 0.4,
                        delay: 0,
                        usingSpringWithDamping: 0.7,
@@ -102,7 +104,7 @@ class SceneCompactViewController: SceneViewController {
         self.dismiss(animated: true)
     }
     
-    var beginDrawerConstant: CGFloat = 300
+    lazy var beginDrawerConstant: CGFloat = normalDrawerHeight
     @objc func dragDrawerGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = -gesture.translation(in: nil).y
         
@@ -113,7 +115,7 @@ class SceneCompactViewController: SceneViewController {
             drawerHeightConstraint.constant = translation + beginDrawerConstant
         case .ended, .failed, .cancelled:
             if translation < -20 {
-                drawerHeightConstraint.constant = 300
+                drawerHeightConstraint.constant = normalDrawerHeight
             } else if translation > 20 {
                 drawerHeightConstraint.constant = view.bounds.height - view.safeAreaInsets.top
             } else {

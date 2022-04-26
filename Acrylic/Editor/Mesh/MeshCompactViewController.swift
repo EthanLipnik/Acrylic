@@ -66,10 +66,12 @@ class MeshCompactViewController: MeshViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
+    lazy var normalDrawerHeight = min(view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24, 300)
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        drawerHeightConstraint.constant = 300
+        drawerHeightConstraint.constant = normalDrawerHeight
         UIView.animate(withDuration: 0.4,
                        delay: 0,
                        usingSpringWithDamping: 0.7,
@@ -102,7 +104,7 @@ class MeshCompactViewController: MeshViewController {
         self.dismiss(animated: true)
     }
     
-    var beginDrawerConstant: CGFloat = 300
+    lazy var beginDrawerConstant: CGFloat = normalDrawerHeight
     @objc func dragDrawerGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = -gesture.translation(in: nil).y
         
@@ -113,7 +115,7 @@ class MeshCompactViewController: MeshViewController {
             drawerHeightConstraint.constant = translation + beginDrawerConstant
         case .ended, .failed, .cancelled:
             if translation < -20 {
-                drawerHeightConstraint.constant = 300
+                drawerHeightConstraint.constant = normalDrawerHeight
             } else if translation > 20 {
                 drawerHeightConstraint.constant = view.bounds.height - view.safeAreaInsets.top
             } else {
@@ -133,5 +135,11 @@ class MeshCompactViewController: MeshViewController {
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        normalDrawerHeight = min(view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24, 300)
     }
 }

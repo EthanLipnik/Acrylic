@@ -64,6 +64,12 @@ class ExportViewController: UIViewController {
         
         blackbirdView.draw()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        view.window?.windowScene?.requestReview()
+    }
 }
 
 extension ExportViewController: UIDocumentPickerDelegate {

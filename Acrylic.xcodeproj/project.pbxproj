@@ -401,16 +401,9 @@
 				AA51753E272483CE00C25576 /* AppDelegate.swift */,
 				AA517540272483CE00C25576 /* SceneDelegate.swift */,
 				AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */,
-				AA65BD7A2818B833008D070B /* BetaInfoView.swift */,
-				AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */,
 				AAD7239227F0F3BC00198144 /* Services */,
 				AAD7239027F0F39200198144 /* Files */,
-				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
-				AAD7239127F0F39C00198144 /* Editor */,
-				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
-				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
-				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
-				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
+				AA65BD7E2818DCD9008D070B /* Views */,
 				AA51754A272483CF00C25576 /* Assets.xcassets */,
 				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
 				AA51754F272483CF00C25576 /* Info.plist */,
@@ -434,6 +427,20 @@
 				AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */,
 			);
 			path = AcrylicUITests;
+			sourceTree = "<group>";
+		};
+		AA65BD7E2818DCD9008D070B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA65BD7A2818B833008D070B /* BetaInfoView.swift */,
+				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
+				AAD7239127F0F39C00198144 /* Editor */,
+				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
+				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
+				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
+				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AA85DD9027F33EFF00ABEF12 /* Mesh */ = {
@@ -497,6 +504,7 @@
 			children = (
 				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
 				AA85DD9C27F3422000ABEF12 /* SceneService.swift */,
+				AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

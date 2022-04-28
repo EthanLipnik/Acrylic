@@ -12,36 +12,40 @@ extension OptionsView {
         let title: String
         let systemImage: String
         let withBackground: Bool
+        let forceMacStyle: Bool
         let content: Content
         
-        init(title: String, systemImage: String, withBackground: Bool = true, @ViewBuilder content: @escaping () -> Content) {
+        init(title: String, systemImage: String, withBackground: Bool = true, forceMacStyle: Bool = false, @ViewBuilder content: @escaping () -> Content) {
             self.title = title
             self.systemImage = systemImage
             self.content = content()
             self.withBackground = withBackground
+            self.forceMacStyle = forceMacStyle
         }
         
         var body: some View {
             let view = view
                 .padding()
             
-#if targetEnvironment(macCatalyst)
-            view
-                .background(withBackground ? ZStack {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(Color(.systemBackground))
-                        .opacity(0.2)
-                        .blendMode(.overlay)
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(lineWidth: 1)
-                        .fill(Color(.separator))
-                        .opacity(0.5)
-                }.compositingGroup() : nil)
-#else
-            view
-                .background(withBackground ? RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color(.tertiarySystemBackground)) : nil)
-#endif
+            Group {
+                if UIDevice.current.userInterfaceIdiom == .mac || forceMacStyle {
+                    view
+                        .background(withBackground ? ZStack {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(Color(.systemBackground))
+                                .opacity(0.2)
+                                .blendMode(.overlay)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .stroke(lineWidth: 1)
+                                .fill(Color(.separator))
+                                .opacity(0.5)
+                        }.compositingGroup() : nil)
+                } else {
+                    view
+                        .background(withBackground ? RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color(.tertiarySystemBackground)) : nil)
+                }
+            }
         }
         
         var view: some View {

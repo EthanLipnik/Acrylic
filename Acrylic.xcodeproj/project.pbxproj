@@ -18,6 +18,7 @@
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */; };
+		AA1FDE6C281A18AF00811D8C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */; };
 		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
 		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
 		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
@@ -156,6 +157,7 @@
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+ViewportView.swift"; sourceTree = "<group>"; };
+		AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
 				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
 				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
+				AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
+				AA1FDE6C281A18AF00811D8C /* OnboardingView.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */,
 				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,

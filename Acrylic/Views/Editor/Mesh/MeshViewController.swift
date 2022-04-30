@@ -269,7 +269,9 @@ class GrabbersView: UIView {
         let y = height - min(height, max(0, location.y / (bounds.height / height)))
         
         if let index = meshService.colors.firstIndex(where: { $0.point == grabberView.node.point }) {
-            meshService.colors[index].location = (Float(x), Float(y))
+            let maxX = Float(min(x, width - 0.2))
+            let maxY = Float(min(y, height - 0.2))
+            meshService.colors[index].location = (max(maxX, 0.2), max(maxY, 0.2))
         }
     }
     

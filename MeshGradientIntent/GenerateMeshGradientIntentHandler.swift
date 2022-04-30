@@ -10,6 +10,7 @@ import Intents
 import UniformTypeIdentifiers
 import UIKit
 import RandomColor
+import TelemetryClient
 
 class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHandling {
     func resolveWidth(for intent: GenerateMeshGradientIntent) async -> GenerateMeshGradientWidthResolutionResult {
@@ -57,6 +58,15 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
     }
     
     func handle(intent: GenerateMeshGradientIntent, completion: @escaping (GenerateMeshGradientIntentResponse) -> Void) {
+        
+        DispatchQueue.global(qos: .background).async {
+            let configuration = TelemetryManagerConfiguration(
+                appID: "B278B666-F5F1-4014-882C-5403DA338EE5")
+            TelemetryManager.initialize(with: configuration)
+            
+            TelemetryManager.send("meshGenerated")
+        }
+        
         DispatchQueue.global(qos: .userInitiated).async {
             let meshService = MeshService()
             meshService.width = intent.width?.intValue ?? 3

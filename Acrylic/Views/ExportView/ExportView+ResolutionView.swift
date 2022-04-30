@@ -12,67 +12,45 @@ extension ExportView {
     struct ResolutionView: View {
         @EnvironmentObject var exportService: ExportService
         
-        @State private var width: String = "4096"
-        @State private var height: String = "4096"
+        struct Resolution: Hashable, Identifiable {
+            var id: String {
+                return title
+            }
+            
+            var title: String
+            var size: Int
+        }
+        
+        let resolutions: [Resolution] = [
+            .init(title: "1k", size: 1024),
+            .init(title: "2k", size: 2048),
+            .init(title: "4k", size: 4096),
+            .init(title: "5k", size: 5120),
+            .init(title: "8k", size: 8192),
+            .init(title: "10k", size: 10240)
+        ]
+        @State private var selectedResolution: Resolution = .init(title: "1k", size: 1024)
         
         var body: some View {
             VStack {
-                Text("Resolution")
+                Text("Quality")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
-                HStack {
-                    Text("Width:")
+                Picker(selection: $selectedResolution) {
+                    ForEach(resolutions) {
+                        Text($0.title + " (\($0.size)x\($0.size))")
+                            .tag($0)
+                    }
+                } label: {
+                    Text("Resolution:")
                         .frame(width: 90, alignment: .leading)
-                    TextField("ex) 4096", text: $width)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 60)
-                    Text("px")
-                        .foregroundColor(.secondary)
-                    Spacer()
                 }
-                HStack {
-                    Text("Height:")
-                        .frame(width: 90, alignment: .leading)
-                    TextField("ex) 4096", text: $height)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 60)
-                    Text("px")
-                        .foregroundColor(.secondary)
-                    Spacer()
+                .onChange(of: selectedResolution) { newValue in
+                    exportService.resolution = (CGFloat(newValue.size), CGFloat(newValue.size))
                 }
-            }
-            .onChange(of: width, perform: { newValue in
-                exportService.resolution.width = CGFloat(Float(newValue) ?? 1)
-            })
-            .onChange(of: height, perform: { newValue in
-                exportService.resolution.height = CGFloat(Float(newValue) ?? 1)
-            })
-            .contextMenu {
-                Button("6k") {
-                    width = "6100"
-                    height = width
-                }
-                
-                Button("4k") {
-                    width = "4096"
-                    height = width
-                }
-                
-                Button("1080p") {
-                    width = "1920"
-                    height = width
-                }
-                
-                Button("720p") {
-                    width = "1280"
-                    height = width
-                }
-                Divider()
-                Button("480p") {
-                    width = "640"
-                    height = width
-                }
+#if !targetEnvironment(macCatalyst)
+                .pickerStyle(.segmented)
+#endif
             }
         }
     }

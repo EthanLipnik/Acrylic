@@ -155,22 +155,7 @@ class EditorSceneDelegate: UIResponder, UIWindowSceneDelegate {
                 topController = presentedViewController
             }
             
-            let renderImage: UIImage
-            if let meshService = (topController as? MeshEditorViewController)?.meshService {
-                renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
-            } else if let sceneService = (topController as? SceneEditorViewController)?.sceneService {
-                renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
-            } else {
-                renderImage = UIImage()
-            }
-            
-            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
-            
-#if targetEnvironment(macCatalyst)
-            vc.preferredContentSize = CGSize(width: 1024, height: 512)
-#else
-            vc.modalPresentationStyle = .formSheet
-#endif
+            guard let vc = SceneDelegate.createExportVC(topController) else { return }
             
             topController.present(vc, animated: true)
         }

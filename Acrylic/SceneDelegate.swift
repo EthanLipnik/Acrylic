@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 import CoreImage
 import TelemetryClient
+import SceneKit
+import MeshKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -77,25 +79,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 topController = presentedViewController
             }
             
-            let renderImage: UIImage
-            if let meshService = (topController as? MeshEditorViewController)?.meshService {
-                renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
-            } else if let sceneService = (topController as? SceneEditorViewController)?.sceneService {
-                renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
-            } else {
-                renderImage = UIImage()
-            }
-            
-            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
-            
-#if targetEnvironment(macCatalyst)
-            vc.preferredContentSize = CGSize(width: 1024, height: 512)
-#else
-            vc.modalPresentationStyle = .formSheet
-#endif
+            guard let vc = Self.createExportVC(topController) else { return }
             
             topController.present(vc, animated: true)
         }
+    }
+    
+    static func createExportVC(_ sender: UIViewController) -> UIViewController? {
+        let document: Document?
+        if let meshService = (sender as? MeshEditorViewController)?.meshService, let meshDocument = meshService.meshDocument {
+            document = .mesh(meshDocument)
+        } else if let sceneService = (sender as? SceneEditorViewController)?.sceneService {
+            document = .scene(sceneService.sceneDocument)
+        } else {
+            document = nil
+        }
+        
+        guard let document = document else { return nil }
+        
+        let vc = UIHostingController(rootView: ExportView(document: document))
+        
+#if targetEnvironment(macCatalyst)
+        vc.preferredContentSize = CGSize(width: 1024, height: 512)
+#else
+        vc.modalPresentationStyle = .formSheet
+#endif
+        
+        return vc
     }
 }
 

@@ -11,6 +11,8 @@ import SwiftUI
 import DirectoryWatcher
 import TelemetryClient
 import UIOnboarding
+import SceneKit
+import MeshKit
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate {
     
@@ -347,17 +349,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 children.append(UIMenu(title: "", options: .displayInline, children: [
                     UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
                         document.open { _ in
-                            let renderImage: UIImage
-                            switch document {
-                            case .mesh(let meshDocument):
-                                let meshService = MeshService(meshDocument)
-                                renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
-                            case .scene(let sceneDocument):
-                                let sceneService = SceneService(sceneDocument)
-                                renderImage = sceneService.render(resolution: CGSize(width: 8000, height: 8000))
-                            }
-                            
-                            let vc = UIHostingController(rootView: ExportView(renderImage: renderImage))
+                            let vc = UIHostingController(rootView: ExportView(document: document))
                             
 #if targetEnvironment(macCatalyst)
                             vc.preferredContentSize = CGSize(width: 1024, height: 512)

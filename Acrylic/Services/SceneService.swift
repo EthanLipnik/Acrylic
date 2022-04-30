@@ -245,10 +245,14 @@ class SceneService: NSObject, ObservableObject {
     func render(resolution: CGSize = CGSize(width: 1024, height: 1024), useAntialiasing: Bool = true) -> UIImage {
         let renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice())
         renderer.scene = scene
-        renderer.pointOfView = sceneView?.pointOfView
         
-        let aspectRatio = resolution.width / 1024
-        renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0) / aspectRatio)
+        if let pointOfView = sceneView?.pointOfView {
+            renderer.pointOfView = pointOfView
+            
+            let aspectRatio = resolution.width / 1024
+            let ambientOcclusion = CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0)
+            renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (ambientOcclusion / aspectRatio) + (aspectRatio != 1 ? 0.5 : 0)
+        }
         
         let renderTime = TimeInterval(1)
         renderer.update(atTime: .zero)

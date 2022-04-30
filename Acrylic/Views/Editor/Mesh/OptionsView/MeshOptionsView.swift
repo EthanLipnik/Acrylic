@@ -14,7 +14,7 @@ struct MeshOptionsView: View {
     @Environment(\.horizontalSizeClass) var horizontalClass
     
     var closeAction: (() -> Void)? = nil
-    @State private var renderImage: UIImage? = nil
+    @State private var isExporting: Bool = false
     
     var body: some View {
         Group {
@@ -52,7 +52,7 @@ struct MeshOptionsView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         
                         Button {
-                            renderImage = meshService.render(resolution: CGSize(width: 8000, height: 8000))
+                            isExporting.toggle()
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3.bold())
@@ -72,16 +72,23 @@ struct MeshOptionsView: View {
                    scrollView
                }
                .navigationBarHidden(true)
-           }
-        }.sheet(item: $renderImage) { renderImage in
-            ExportView(renderImage: renderImage)
+            }
+        }.sheet(isPresented: $isExporting) {
+            Group {
+                if let meshDocument = meshService.meshDocument {
+                    ExportView(document: .mesh(meshDocument))
+                } else {
+                    Text("No document")
+                        .padding()
+                }
+            }
         }
     }
     
     var exportButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {
-                renderImage = meshService.render()
+                isExporting.toggle()
             } label: {
                 Label("Export", systemImage: "square.and.arrow.up")
             }
@@ -122,5 +129,16 @@ struct OptionsView_Previews: PreviewProvider {
 extension UIImage: Identifiable {
     public var id: String {
         return self.description
+    }
+}
+
+extension MeshScene {
+    static func fromMeshService(_ meshService: MeshService) -> MeshScene {
+        let scene = MeshScene()
+        scene.create(meshService.colors,
+                     width: meshService.width,
+                     height: meshService.height,
+                     subdivisions: meshService.subdivsions)
+        return scene
     }
 }

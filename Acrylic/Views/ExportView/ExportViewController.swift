@@ -19,8 +19,6 @@ class ExportViewController: UIViewController {
         
         blackbirdView.translatesAutoresizingMaskIntoConstraints = false
         
-        blackbirdView.image = exportService.previewImage ?? exportService.baseImage
-        
         return blackbirdView
     }()
     

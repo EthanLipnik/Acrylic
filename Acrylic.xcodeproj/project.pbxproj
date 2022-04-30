@@ -78,6 +78,7 @@
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
 		AACD1BFE281DC53800C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFD281DC53800C76E87 /* MeshKit */; };
 		AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFF281DC53E00C76E87 /* MeshKit */; };
+		AACD1C02281DDFDC00C76E87 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C01281DDFDC00C76E87 /* TelemetryClient */; };
 		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
 		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
 		AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */; };
@@ -238,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */,
+				AACD1C02281DDFDC00C76E87 /* TelemetryClient in Frameworks */,
 				AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */,
 				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
 			);
@@ -549,6 +551,7 @@
 			packageProductDependencies = (
 				AA71CA6F27ECACA700C4722D /* RandomColor */,
 				AACD1BFF281DC53E00C76E87 /* MeshKit */,
+				AACD1C01281DDFDC00C76E87 /* TelemetryClient */,
 			);
 			productName = MeshGradientIntent;
 			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
@@ -1560,6 +1563,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
 			productName = MeshKit;
+		};
+		AACD1C01281DDFDC00C76E87 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
 		};
 		AADDB5492816E41800F46F7E /* Hero */ = {
 			isa = XCSwiftPackageProductDependency;

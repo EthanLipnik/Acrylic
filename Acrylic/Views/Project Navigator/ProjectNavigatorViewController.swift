@@ -32,7 +32,10 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                                 description: "Easily design great looking 3D scenes with presets."),
             UIOnboardingFeature(icon: UIImage(systemName: "square.stack.fill", compatibleWith: traitCollection)!,
                                 title: "Automation",
-                                description: "Use Siri Shortcuts to automate your mesh gradients.")
+                                description: "Use Siri Shortcuts to automate your mesh gradients."),
+            UIOnboardingFeature(icon: UIImage(systemName: "number", compatibleWith: traitCollection)!,
+                                title: "Share",
+                                description: "Show your great work using the #AcrylicApp hashtag.")
         ]
         
         let attributedString = NSMutableAttributedString(string: "Welcome to Acrylic")
@@ -234,7 +237,7 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #if targetEnvironment(macCatalyst)
             (view.window?.windowScene?.delegate as? SceneDelegate)?.removeToolbar()
 #endif
-            showOnboarding()
+            self.present(onboardingVC, animated: false)
         }
     }
     

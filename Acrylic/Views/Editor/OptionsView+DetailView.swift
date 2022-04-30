@@ -50,10 +50,17 @@ extension OptionsView {
         
         var view: some View {
             VStack {
-                Label(title, systemImage: systemImage)
-                    .font(.headline.bold())
-                    .foregroundColor(Color.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if #available(iOS 15.0, macCatalyst 15.0, *) {
+                    Label(title, systemImage: systemImage)
+                        .font(.headline.bold())
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                } else {
+                    Label(title, systemImage: systemImage)
+                        .font(.headline.bold())
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 Divider()
                 content
             }

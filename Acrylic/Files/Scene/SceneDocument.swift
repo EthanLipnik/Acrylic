@@ -333,11 +333,11 @@ class SceneDocument: UIDocument, ObservableObject {
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
         guard let topFileWrapper = contents as? FileWrapper,
-              let compressedSceneDescriptor = topFileWrapper.fileWrappers?["SceneDescriptor"]?.regularFileContents as? NSData else {
+              let compressedSceneDescriptor = topFileWrapper.fileWrappers?["SceneDescriptor"]?.regularFileContents else {
             return
         }
         
-        let decompressedSceneDescriptor = try compressedSceneDescriptor.decompressed(using: .zlib) as Data
+        let decompressedSceneDescriptor = try (compressedSceneDescriptor as NSData).decompressed(using: .zlib) as Data
         let sceneDescriptor = try JSONDecoder().decode(SceneDescriptorModel.self, from: decompressedSceneDescriptor)
         
         self.cameras = sceneDescriptor.cameras

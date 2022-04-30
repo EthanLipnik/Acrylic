@@ -10,6 +10,7 @@ import UniformTypeIdentifiers
 import SwiftUI
 import DirectoryWatcher
 import TelemetryClient
+import UIOnboarding
 
 class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate {
     
@@ -19,6 +20,39 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         view.viewController = self
         
         return view
+    }()
+    
+    lazy var onboardingVC: UIOnboardingViewController = {
+        let features: [UIOnboardingFeature] = [
+            UIOnboardingFeature(icon: UIImage(systemName: "square.fill", compatibleWith: traitCollection)!,
+                                title: "Mesh Gradients",
+                                description: "Create beautiful mesh gradients."),
+            UIOnboardingFeature(icon: UIImage(systemName: "cube.fill", compatibleWith: traitCollection)!,
+                                title: "Scenes",
+                                description: "Easily design great looking 3D scenes with presets."),
+            UIOnboardingFeature(icon: UIImage(systemName: "square.stack.fill", compatibleWith: traitCollection)!,
+                                title: "Automation",
+                                description: "Use Siri Shortcuts to automate your mesh gradients.")
+        ]
+        
+        let attributedString = NSMutableAttributedString(string: "Welcome to Acrylic")
+        attributedString.addAttribute(.foregroundColor, value: UIColor(patternImage: UIImage(named: "MeshLong")!), range: NSRange(location: 11, length: 7))
+        
+        let config = UIOnboardingViewConfiguration(appIcon: UIImage(named: "Icon")!,
+                                                   welcomeTitle: attributedString,
+                                                   features: features,
+                                                   textViewConfiguration: .init(icon: UIImage(systemName: "paintbrush.pointed.fill",
+                                                                                              compatibleWith: traitCollection)!,
+                                                                                text: "Developed and designed by Ethan Lipnik.",
+                                                                                linkTitle: "Learn more...",
+                                                                                link: "https://acrylicapp.io"),
+                                                   buttonConfiguration: .init(title: "Get Started",
+                                                                              backgroundColor: UIColor.systemTeal))
+        
+        let vc = UIOnboardingViewController(withConfiguration: config)
+        vc.delegate = self
+        
+        return vc
     }()
     
     var documents: (mesh: [Document], scene: [Document]) {
@@ -118,6 +152,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         
         applySnapshot()
         
+        let showOnboardingButton = UIBarButtonItem(image: UIImage(systemName: "info.circle", compatibleWith: traitCollection), style: .done, target: self, action: #selector(showOnboarding))
+        
         let newProjectButton = UIBarButtonItem(systemItem: .add)
         newProjectButton.menu = UIMenu(title: "New Project", image: UIImage(systemName: "add"), children: [
             UIAction(title: "Mesh Gradient", handler: { action in
@@ -139,7 +175,9 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 }
             })
         ])
+        
         navigationItem.rightBarButtonItem = newProjectButton
+        navigationItem.leftBarButtonItem = showOnboardingButton
         
         navigationItem.title = "Acrylic"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -157,6 +195,10 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             self.present(vc, animated: true)
         }
 #endif
+    }
+    
+    @objc func showOnboarding() {
+        self.present(onboardingVC, animated: true)
     }
     
     func applySnapshot(completion: @escaping () -> Void = {}) {
@@ -187,6 +229,13 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
         view.window?.windowScene?.title = nil
         
         let _ = directoryWatcher?.startWatching()
+        
+        if !UserDefaults.standard.bool(forKey: "didFinishOnboarding") {
+#if targetEnvironment(macCatalyst)
+            (view.window?.windowScene?.delegate as? SceneDelegate)?.removeToolbar()
+#endif
+            showOnboarding()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

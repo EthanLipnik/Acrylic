@@ -77,11 +77,11 @@ class MeshDocument: UIDocument {
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
         guard let topFileWrapper = contents as? FileWrapper,
-              let compressedMeshDescriptor = topFileWrapper.fileWrappers?["MeshDescriptor"]?.regularFileContents as? NSData else {
+              let compressedMeshDescriptor = topFileWrapper.fileWrappers?["MeshDescriptor"]?.regularFileContents else {
             return
         }
         
-        let decompressedMeshDescriptor = try compressedMeshDescriptor.decompressed(using: .zlib) as Data
+        let decompressedMeshDescriptor = try (compressedMeshDescriptor as NSData).decompressed(using: .zlib) as Data
         let meshDescriptor = try JSONDecoder().decode(MeshDescriptorModel.self, from: decompressedMeshDescriptor)
         
         self.colors = meshDescriptor.colors

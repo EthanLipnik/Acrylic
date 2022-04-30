@@ -18,17 +18,14 @@
 		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
 		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
 		AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */; };
-		AA1FDE6C281A18AF00811D8C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */; };
 		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
 		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
 		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
 		AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2B0C7327F10C2C00868869 /* CloudKit.framework */; };
 		AA2B0C7627F111C600868869 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AA2B82E927FB2BF5003A0249 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82E827FB2BF5003A0249 /* MeshKit */; };
-		AA2B82EB27FB2C0C003A0249 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82EA27FB2C0C003A0249 /* MeshKit */; };
-		AA2B82EE27FB2C39003A0249 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA2B82ED27FB2C39003A0249 /* Blackbird */; };
 		AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */; };
 		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
+		AA3F6BAB281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */; };
 		AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42DDB927F1F16D003ECF74 /* QuickLook.framework */; };
 		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
 		AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */; };
@@ -62,6 +59,7 @@
 		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
 		AA65BD7B2818B833008D070B /* BetaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65BD7A2818B833008D070B /* BetaInfoView.swift */; };
 		AA65BD7D2818D6F9008D070B /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */; };
+		AA687D30281DC3E500306FB8 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = AA687D2F281DC3E500306FB8 /* UIOnboarding */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
 		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
@@ -73,17 +71,19 @@
 		AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */; };
 		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
 		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
+		AA8FAD91281DC49E00BC795E /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA8FAD90281DC49E00BC795E /* Blackbird */; };
 		AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3DB5627F3E856000C4516 /* SceneViewController.swift */; };
 		AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */ = {isa = PBXBuildFile; productRef = AAAFF31227FF95BB003D042D /* DirectoryWatcher */; };
 		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
 		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
+		AACD1BFE281DC53800C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFD281DC53800C76E87 /* MeshKit */; };
+		AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFF281DC53E00C76E87 /* MeshKit */; };
 		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
 		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
 		AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */; };
 		AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
-		AADA1BB62815FB19006F04CA /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AADA1BB52815FB19006F04CA /* MeshKit */; };
 		AADDB54A2816E41800F46F7E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = AADDB5492816E41800F46F7E /* Hero */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
@@ -157,13 +157,13 @@
 		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
 		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
 		AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+ViewportView.swift"; sourceTree = "<group>"; };
-		AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
 		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Camera.swift"; sourceTree = "<group>"; };
 		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectNavigator+Onboarding.swift"; sourceTree = "<group>"; };
 		AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA42DDB927F1F16D003ECF74 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -216,8 +216,6 @@
 		AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCompactViewController.swift; sourceTree = "<group>"; };
 		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
-		AADA1BB32815FB0C006F04CA /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
-		AADA1BB42815FB13006F04CA /* Blackbird */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blackbird; sourceTree = "<group>"; };
 		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOptionsView.swift; sourceTree = "<group>"; };
 		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA2B82EB27FB2C0C003A0249 /* MeshKit in Frameworks */,
 				AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */,
 				AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */,
 				AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */,
@@ -240,7 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA2B82E927FB2BF5003A0249 /* MeshKit in Frameworks */,
+				AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */,
 				AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */,
 				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
 			);
@@ -258,13 +255,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8FAD91281DC49E00BC795E /* Blackbird in Frameworks */,
 				AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */,
+				AACD1BFE281DC53800C76E87 /* MeshKit in Frameworks */,
 				AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */,
-				AADA1BB62815FB19006F04CA /* MeshKit in Frameworks */,
+				AA687D30281DC3E500306FB8 /* UIOnboarding in Frameworks */,
 				AADDB54A2816E41800F46F7E /* Hero in Frameworks */,
 				AA4BBDF027F2A4A100B45FA6 /* FilesProvider in Frameworks */,
 				AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */,
-				AA2B82EE27FB2C39003A0249 /* Blackbird in Frameworks */,
 				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
 				AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */,
 			);
@@ -317,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */,
+				AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */,
 				AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */,
 				AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */,
 				AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */,
@@ -371,7 +370,6 @@
 		AA517532272483CE00C25576 = {
 			isa = PBXGroup;
 			children = (
-				AAB8853427E95A3300B43BC5 /* Packages */,
 				AA51753D272483CE00C25576 /* Acrylic */,
 				AA517557272483CF00C25576 /* AcrylicTests */,
 				AA517561272483CF00C25576 /* AcrylicUITests */,
@@ -441,7 +439,6 @@
 				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
 				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
 				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
-				AA1FDE6B281A18AF00811D8C /* OnboardingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -468,15 +465,6 @@
 				AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */,
 			);
 			path = Scene;
-			sourceTree = "<group>";
-		};
-		AAB8853427E95A3300B43BC5 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				AADA1BB32815FB0C006F04CA /* MeshKit */,
-				AADA1BB42815FB13006F04CA /* Blackbird */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		AAD7239027F0F39200198144 /* Files */ = {
@@ -540,7 +528,6 @@
 			packageProductDependencies = (
 				AA42DDD127F1F1F6003ECF74 /* RandomColor */,
 				AA633FBA27F495CC0076F85C /* DifferenceKit */,
-				AA2B82EA27FB2C0C003A0249 /* MeshKit */,
 			);
 			productName = QuickLookExtension;
 			productReference = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */;
@@ -561,7 +548,7 @@
 			name = MeshGradientIntent;
 			packageProductDependencies = (
 				AA71CA6F27ECACA700C4722D /* RandomColor */,
-				AA2B82E827FB2BF5003A0249 /* MeshKit */,
+				AACD1BFF281DC53E00C76E87 /* MeshKit */,
 			);
 			productName = MeshGradientIntent;
 			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
@@ -605,11 +592,12 @@
 				AA71CA6D27ECAC0A00C4722D /* RandomColor */,
 				AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */,
 				AA633FB827F494B40076F85C /* DifferenceKit */,
-				AA2B82ED27FB2C39003A0249 /* Blackbird */,
 				AAAFF31227FF95BB003D042D /* DirectoryWatcher */,
-				AADA1BB52815FB19006F04CA /* MeshKit */,
 				AADDB5492816E41800F46F7E /* Hero */,
 				AA58CE862817702D007295E8 /* TelemetryClient */,
+				AA687D2F281DC3E500306FB8 /* UIOnboarding */,
+				AA8FAD90281DC49E00BC795E /* Blackbird */,
+				AACD1BFD281DC53800C76E87 /* MeshKit */,
 			);
 			productName = Acrylic;
 			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
@@ -699,6 +687,9 @@
 				AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
 				AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */,
 				AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */,
+				AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */,
+				AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */,
 			);
 			productRefGroup = AA51753C272483CE00C25576 /* Products */;
 			projectDirPath = "";
@@ -819,7 +810,6 @@
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
-				AA1FDE6C281A18AF00811D8C /* OnboardingView.swift in Sources */,
 				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
 				AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */,
 				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
@@ -841,6 +831,7 @@
 				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
 				AA8252702803B9AD00A318DC /* SceneOptionsView+Preset.swift in Sources */,
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
+				AA3F6BAB281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift in Sources */,
 				AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */,
 				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,
 				AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */,
@@ -1459,12 +1450,28 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EthanLipnik/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
 		AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EthanLipnik/RandomColorSwift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 2.0.1;
+			};
+		};
+		AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CanisterEditor/Blackbird.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */ = {
@@ -1473,6 +1480,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EthanLipnik/MeshKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */ = {
@@ -1486,18 +1501,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AA2B82E827FB2BF5003A0249 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MeshKit;
-		};
-		AA2B82EA27FB2C0C003A0249 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MeshKit;
-		};
-		AA2B82ED27FB2C39003A0249 /* Blackbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Blackbird;
-		};
 		AA42DDD127F1F1F6003ECF74 /* RandomColor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
@@ -1523,6 +1526,11 @@
 			package = AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */;
 			productName = DifferenceKit;
 		};
+		AA687D2F281DC3E500306FB8 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
+		};
 		AA71CA6D27ECAC0A00C4722D /* RandomColor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
@@ -1533,13 +1541,24 @@
 			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
 			productName = RandomColor;
 		};
+		AA8FAD90281DC49E00BC795E /* Blackbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */;
+			productName = Blackbird;
+		};
 		AAAFF31227FF95BB003D042D /* DirectoryWatcher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */;
 			productName = DirectoryWatcher;
 		};
-		AADA1BB52815FB19006F04CA /* MeshKit */ = {
+		AACD1BFD281DC53800C76E87 /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
+			productName = MeshKit;
+		};
+		AACD1BFF281DC53E00C76E87 /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
 			productName = MeshKit;
 		};
 		AADDB5492816E41800F46F7E /* Hero */ = {

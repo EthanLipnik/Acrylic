@@ -27,17 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
 #if targetEnvironment(macCatalyst)
-        if let titleBar = windowScene.titlebar {
-            let toolbar = NSToolbar(identifier: "Toolbar")
-            toolbar.delegate = self
-            toolbar.displayMode = .iconOnly
-            toolbar.allowsUserCustomization = false
-            
-            titleBar.toolbar = toolbar
-        }
-        
-        windowScene.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)
+        addToolbar()
 #endif
+        
+        window?.windowScene?.sizeRestrictions?.minimumSize = CGSize(width: 720, height: 600)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -108,6 +101,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 #if targetEnvironment(macCatalyst)
 extension SceneDelegate: NSToolbarDelegate {
+    
+    func addToolbar() {
+        if let titleBar = window?.windowScene?.titlebar {
+            let toolbar = NSToolbar(identifier: "Toolbar")
+            toolbar.delegate = self
+            toolbar.displayMode = .iconOnly
+            toolbar.allowsUserCustomization = false
+            
+            titleBar.toolbar = toolbar
+            titleBar.titleVisibility = .visible
+        }
+    }
+    
+    func removeToolbar() {
+        window?.windowScene?.titlebar?.toolbar = nil
+        window?.windowScene?.titlebar?.titleVisibility = .hidden
+    }
+    
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [.init("newProject")]
     }

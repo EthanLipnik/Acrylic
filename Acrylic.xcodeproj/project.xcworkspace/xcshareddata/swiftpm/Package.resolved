@@ -1,61 +1,86 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "DifferenceKit",
-        "repositoryURL": "https://github.com/ra1028/DifferenceKit.git",
-        "state": {
-          "branch": null,
-          "revision": "62745d7780deef4a023a792a1f8f763ec7bf9705",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "DirectoryWatcher",
-        "repositoryURL": "https://github.com/GianniCarlo/DirectoryWatcher.git",
-        "state": {
-          "branch": null,
-          "revision": "76af69f1d19146b0c5d3e38747bb5eabe547143b",
-          "version": "2.7.3"
-        }
-      },
-      {
-        "package": "FilesProvider",
-        "repositoryURL": "https://github.com/amosavian/FileProvider.git",
-        "state": {
-          "branch": null,
-          "revision": "abf68a62541a4193c8d106367ddb3648e8ab693f",
-          "version": "0.26.0"
-        }
-      },
-      {
-        "package": "Hero",
-        "repositoryURL": "https://github.com/HeroTransitions/Hero.git",
-        "state": {
-          "branch": "develop",
-          "revision": "dd260a30a4075cbe9527d3de590666db4ca59feb",
-          "version": null
-        }
-      },
-      {
-        "package": "RandomColor",
-        "repositoryURL": "https://github.com/EthanLipnik/RandomColorSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "ab01c6eff99f40c5e23ffcb957eb3971f937f106",
-          "version": "2.0.0"
-        }
-      },
-      {
-        "package": "TelemetryClient",
-        "repositoryURL": "https://github.com/TelemetryDeck/SwiftClient",
-        "state": {
-          "branch": null,
-          "revision": "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
-          "version": "1.1.6"
-        }
+  "pins" : [
+    {
+      "identity" : "blackbird",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CanisterEditor/Blackbird.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "14ece340f47fed9d41959688ced0f29b7ee91290"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "differencekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ra1028/DifferenceKit.git",
+      "state" : {
+        "revision" : "62745d7780deef4a023a792a1f8f763ec7bf9705",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "directorywatcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GianniCarlo/DirectoryWatcher.git",
+      "state" : {
+        "revision" : "76af69f1d19146b0c5d3e38747bb5eabe547143b",
+        "version" : "2.7.3"
+      }
+    },
+    {
+      "identity" : "fileprovider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amosavian/FileProvider.git",
+      "state" : {
+        "revision" : "abf68a62541a4193c8d106367ddb3648e8ab693f",
+        "version" : "0.26.0"
+      }
+    },
+    {
+      "identity" : "hero",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HeroTransitions/Hero.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "dd260a30a4075cbe9527d3de590666db4ca59feb"
+      }
+    },
+    {
+      "identity" : "meshkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EthanLipnik/MeshKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7c360ffe36b6e7c3b926847d351752ea70172ebc"
+      }
+    },
+    {
+      "identity" : "randomcolorswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EthanLipnik/RandomColorSwift.git",
+      "state" : {
+        "revision" : "cb118928dfd40baaa31dc1bd87c97599bcf86d75",
+        "version" : "2.0.1"
+      }
+    },
+    {
+      "identity" : "swiftclient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TelemetryDeck/SwiftClient",
+      "state" : {
+        "revision" : "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
+        "version" : "1.1.6"
+      }
+    },
+    {
+      "identity" : "uionboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EthanLipnik/UIOnboarding.git",
+      "state" : {
+        "revision" : "96b9aed3b11c37aea588a9849d27211153b7fecf",
+        "version" : "1.1.4"
+      }
+    }
+  ],
+  "version" : 2
 }

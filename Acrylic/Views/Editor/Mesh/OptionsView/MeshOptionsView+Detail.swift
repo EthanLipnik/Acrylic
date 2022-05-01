@@ -120,13 +120,6 @@ extension MeshOptionsView {
                             .minimumScaleFactor(0.8)
                     }
                     .animation(.spring(), value: meshService.subdivsions)
-                    .contextMenu {
-                        Button("Reset") {
-                            withAnimation {
-                                meshService.subdivsions = 18
-                            }
-                        }
-                    }
                     
                     if UIDevice.current.userInterfaceIdiom == .mac {
                         scaleView

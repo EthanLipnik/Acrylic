@@ -21,8 +21,11 @@ class SceneService: NSObject, ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(_ document: SceneDocument) {
+    let shouldSave: Bool
+    
+    init(_ document: SceneDocument, shouldSave: Bool = true) {
         self.sceneDocument = document
+        self.shouldSave = shouldSave
         super.init()
         
         if document.objects.isEmpty {
@@ -35,29 +38,35 @@ class SceneService: NSObject, ObservableObject {
         sceneDocument.$objects
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink { [weak self] objects in
-//                let changeSet = StagedChangeset(source: self.sceneDocument.objects,
-//                                                target: objects)
-//                self.updateSceneDifference(changeSet: changeSet)
+                //                let changeSet = StagedChangeset(source: self.sceneDocument.objects,
+                //                                                target: objects)
+                //                self.updateSceneDifference(changeSet: changeSet)
                 self?.setupSceneView()
             }
             .store(in: &cancellables)
         
-        sceneDocument.objectWillChange
-            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.global(qos: .background))
-            .sink { [weak self] object in
-                self?.saveDocument()
-            }
-            .store(in: &cancellables)
+        if shouldSave {
+            sceneDocument.objectWillChange
+                .debounce(for: .milliseconds(500), scheduler: DispatchQueue.global(qos: .background))
+                .sink { [weak self] object in
+                    guard self?.shouldSave ?? false else { return }
+                    self?.saveDocument()
+                }
+                .store(in: &cancellables)
+        }
+        
+        print("SceneService", shouldSave)
     }
     
     func saveDocument() {
+        guard shouldSave else { return }
         DispatchQueue.global(qos: .background).async { [weak self] in
             if let fileUrl = self?.sceneDocument.fileURL {
                 let previewImage = self?.render(resolution: CGSize(width: 512, height: 512), useAntialiasing: false)
                 self?.sceneDocument.previewImage = previewImage?.jpegData(compressionQuality: 0.5)
                 self?.sceneDocument.save(to: fileUrl, for: .forOverwriting)
                 
-                print("🟢 Saved scene document")
+                print("SceneService", "🟢 Saved scene document")
             }
         }
     }
@@ -107,7 +116,7 @@ class SceneService: NSObject, ObservableObject {
     }
     
     func setupSceneView() {
-        print("SceneService", "Setting up scene view")
+        print("SceneService", "Setting up scene")
         
         scene.wantsScreenSpaceReflection = sceneDocument.screenSpaceReflectionsOptions.isEnabled
         scene.screenSpaceReflectionSampleCount = sceneDocument.screenSpaceReflectionsOptions.sampleCount
@@ -139,8 +148,8 @@ class SceneService: NSObject, ObservableObject {
             cameraNode.camera?.fieldOfView = 50
             cameraNode.camera?.zNear = 0
             
-            cameraNode.camera?.vignettingIntensity = 0.2
-            cameraNode.camera?.vignettingPower = 0.3
+            cameraNode.camera?.vignettingIntensity = 0.5
+            cameraNode.camera?.vignettingPower = 0.4
             
             cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
             cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
@@ -264,7 +273,11 @@ class SceneService: NSObject, ObservableObject {
             renderer.pointOfView?.camera?.grainScale = filmGrainScale * aspectRatio
         }
         
-        let renderTime = TimeInterval(3)
+        renderer.isTemporalAntialiasingEnabled = true
+        
+        renderer.isPlaying = true
+        
+        let renderTime = TimeInterval(1)
         renderer.update(atTime: renderTime)
         renderer.sceneTime = renderTime
         
@@ -329,7 +342,9 @@ extension SceneService: SCNCameraControllerDelegate {
         sceneDocument.cameras[0].eulerAngles = .init(x: pointOfView.eulerAngles.x, y: pointOfView.eulerAngles.y, z: pointOfView.eulerAngles.z)
         sceneDocument.cameras[0].rotation = .init(x: pointOfView.rotation.x, y: pointOfView.rotation.y, z: pointOfView.rotation.z, w: pointOfView.rotation.w)
         
-        saveDocument()
+        if shouldSave {
+            saveDocument()
+        }
     }
     
     func cameraInertiaWillStart(for cameraController: SCNCameraController) {

@@ -23,9 +23,11 @@ class MeshService: ObservableObject {
     
 #if !SIRI
     var meshDocument: MeshDocument? = nil
+    let shouldSave: Bool
     
-    init(_ document: MeshDocument? = nil) {
+    init(_ document: MeshDocument? = nil, shouldSave: Bool = true) {
         self.meshDocument = document
+        self.shouldSave = shouldSave
         
         if let document = document {
             self.colors = document.colors
@@ -33,18 +35,20 @@ class MeshService: ObservableObject {
             self.height = document.height
             self.subdivsions = document.subdivisions
             
-            objectWillChange
-                .debounce(for: .seconds(1), scheduler: DispatchQueue.global(qos: .background))
-                .sink { [weak self] object in
-                    guard let self = self else { return }
-                    self.meshDocument?.colors = self.colors
-                    self.meshDocument?.subdivisions = self.subdivsions
-                    self.meshDocument?.width = self.width
-                    self.meshDocument?.height = self.height
-                    
-                    self.saveDocument()
-                }
-                .store(in: &cancellables)
+            if shouldSave {
+                objectWillChange
+                    .debounce(for: .seconds(1), scheduler: DispatchQueue.global(qos: .background))
+                    .sink { [weak self] object in
+                        guard let self = self else { return }
+                        self.meshDocument?.colors = self.colors
+                        self.meshDocument?.subdivisions = self.subdivsions
+                        self.meshDocument?.width = self.width
+                        self.meshDocument?.height = self.height
+                        
+                        self.saveDocument()
+                    }
+                    .store(in: &cancellables)
+            }
         }
     }
     

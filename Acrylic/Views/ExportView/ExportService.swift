@@ -19,25 +19,25 @@ class ExportService: ObservableObject {
     }
     @Published var resolution: (width: CGFloat, height: CGFloat) = (1024, 1024) {
         didSet {
-            isProcessing = true
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self = self else { return }
-                self.baseImage = CIImage(image: self.render()) ?? self.baseImage
-                self.scaledImage = self.baseImage?.resize(CGSize(width: 512, height: 512))
-                self.applyFilters()
-                
-                DispatchQueue.main.async {
-                    self.isProcessing = false
-                }
-            }
+            reset()
         }
     }
     @Published var format: Format = .png
     @Published var compressionQuality: CGFloat = 1
     @Published var isProcessing: Bool = false
     
+    @Published var subdivisions: Int = 18 {
+        didSet {
+            reset()
+        }
+    }
+    
+    @Published var ambientOcclusionIntensity: Float = 0
+    
     @Published var previewImage: CIImage? = nil
     var scaledImage: CIImage? = nil
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     enum Format: String, Hashable {
         case png = "PNG"
@@ -90,6 +90,13 @@ class ExportService: ObservableObject {
     init(document: Document) {
         self.document = document
         
+        switch document {
+        case .mesh(let meshDocument):
+            self.subdivisions = meshDocument.subdivisions
+        case .scene(let sceneDocument):
+            self.ambientOcclusionIntensity = sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0
+        }
+        
         self.isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let render = self?.render() else { return }
@@ -99,6 +106,27 @@ class ExportService: ObservableObject {
             
             DispatchQueue.main.async {
                 self?.isProcessing = false
+            }
+        }
+        
+        $ambientOcclusionIntensity
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink { [weak self] objects in
+                self?.reset()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func reset() {
+        isProcessing = true
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            self.baseImage = CIImage(image: self.render()) ?? self.baseImage
+            self.scaledImage = self.baseImage?.resize(CGSize(width: 512, height: 512))
+            self.applyFilters()
+            
+            DispatchQueue.main.async {
+                self.isProcessing = false
             }
         }
     }
@@ -179,10 +207,12 @@ class ExportService: ObservableObject {
     func render() -> UIImage {
         switch document {
         case .mesh(let meshDocument):
-            let meshService = MeshService(meshDocument)
+            let meshService = MeshService(meshDocument, shouldSave: false)
+            meshService.subdivsions = subdivisions
             return meshService.render(resolution: CGSize(width: resolution.width, height: resolution.height))
         case .scene(let sceneDocument):
-            let sceneService = SceneService(sceneDocument)
+            let sceneService = SceneService(sceneDocument, shouldSave: false)
+            sceneService.sceneDocument.cameras[0].screenSpaceAmbientOcclusionOptions.intensity = ambientOcclusionIntensity
             return sceneService.render(resolution: CGSize(width: resolution.width, height: resolution.height), useAntialiasing: true)
         }
     }

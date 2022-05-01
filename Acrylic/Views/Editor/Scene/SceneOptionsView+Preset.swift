@@ -35,37 +35,30 @@ extension SceneOptionsView {
             Group {
                 OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent", withBackground: withBackground) {
                     HStack {
-//                        Picker("", selection: $selectedPreset) {
-//                            ForEach(presets, id: \.self) { Text($0) }
-//                        }
-//                        .labelsHidden()
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .onAppear {
-//                            selectedPreset = sceneService.sceneDocument.preset?.displayName ?? "Cluster"
-//                        }
-//                        .onChange(of: selectedPreset) { newValue in
-//                            sceneService.setPreset(newValue.lowercased())
-//                        }
+                        //                        Picker("", selection: $selectedPreset) {
+                        //                            ForEach(presets, id: \.self) { Text($0) }
+                        //                        }
+                        //                        .labelsHidden()
+                        //                        .frame(maxWidth: .infinity, alignment: .leading)
+                        //                        .onAppear {
+                        //                            selectedPreset = sceneService.sceneDocument.preset?.displayName ?? "Cluster"
+                        //                        }
+                        //                        .onChange(of: selectedPreset) { newValue in
+                        //                            sceneService.setPreset(newValue.lowercased())
+                        //                        }
                         
-                        HStack {
-                            Text("Shape")
-                                .bold()
-                                .lineLimit(1)
-                                .frame(width: 120, alignment: .leading)
-                                .foregroundColor(.secondary)
-                            Picker(selection: $selectedShape) {
-                                ForEach(shapes, id: \.self) { Text($0) }
-                            } label: {
-                                Text("")
-                            }
-                            .labelsHidden()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .onAppear {
-                                selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
-                            }
-                            .onChange(of: selectedShape) { newValue in
-                                sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())
-                            }
+                        Picker(selection: $selectedShape) {
+                            ForEach(shapes, id: \.self) { Text($0) }
+                        } label: {
+                            Text("")
+                        }
+                        .labelsHidden()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onAppear {
+                            selectedShape = sceneService.sceneDocument.preset?.shape.displayName ?? "Sphere"
+                        }
+                        .onChange(of: selectedShape) { newValue in
+                            sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())
                         }
                         
                         Menu {

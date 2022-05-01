@@ -59,6 +59,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
     
     func handle(intent: GenerateMeshGradientIntent, completion: @escaping (GenerateMeshGradientIntentResponse) -> Void) {
         
+#if SIRI
         DispatchQueue.global(qos: .background).async {
             let configuration = TelemetryManagerConfiguration(
                 appID: "B278B666-F5F1-4014-882C-5403DA338EE5")
@@ -66,6 +67,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             
             TelemetryManager.send("meshGenerated")
         }
+#endif
         
         DispatchQueue.global(qos: .userInitiated).async {
             let meshService = MeshService()
@@ -96,6 +98,7 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
 
 extension RandomColor.Hue {
     static func hue(from palette: ColorPalette) -> RandomColor.Hue {
+        fatalError("\(palette)")
         switch palette {
         case .blue:
             return .blue

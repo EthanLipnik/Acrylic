@@ -21,7 +21,7 @@ class MeshService: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
     
-#if !SIRI
+#if !SIRI && !WIDGET
     var meshDocument: MeshDocument? = nil
     let shouldSave: Bool
     

@@ -53,6 +53,7 @@
 	</dict>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>ConfigurationIntent</string>
 		<string>GenerateMeshGradientIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

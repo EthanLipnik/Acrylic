@@ -16,6 +16,10 @@ extension ExportView {
         @State private var isExportingImage: Bool = false
         @State private var imageDocument: ImageDocument? = nil
         
+#if !targetEnvironment(macCatalyst)
+        @State private var fileUrl: URL? = nil
+#endif
+        
         var body: some View {
             VStack {
                 GroupBox {
@@ -45,6 +49,17 @@ extension ExportView {
                             case .success(let imageDocument):
                                 DispatchQueue.main.async {
                                     self.imageDocument = imageDocument
+                                    
+#if !targetEnvironment(macCatalyst)
+                                    do {
+                                        let fileUrl = FileManager.default.temporaryDirectory.appendingPathComponent("image." + exportService.format.fileExtension)
+                                        try imageDocument.imageData.write(to: fileUrl)
+                                        self.fileUrl = fileUrl
+                                    } catch {
+                                        print(error)
+                                    }
+#endif
+                                    
                                     self.isExportingImage.toggle()
                                 }
                             case .failure(let error):
@@ -67,7 +82,7 @@ extension ExportView {
                     }
 #else
                     .sheet(item: $imageDocument) { document in
-                        ShareSheet(activityItems: [UIImage(data: document.imageData)!])
+                        ShareSheet(activityItems: [fileUrl ?? UIImage(data: document.imageData) as Any])
                             .onDisappear {
                                 presentationMode.wrappedValue.dismiss()
                             }

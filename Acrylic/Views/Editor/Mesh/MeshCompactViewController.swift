@@ -20,8 +20,8 @@ class MeshCompactViewController: MeshViewController {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         view.layer.shadowOffset = CGSize(width: 0, height: -4)
-        view.layer.shadowRadius = 30
-        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 15
+        view.layer.shadowOpacity = 0.1
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -66,7 +66,7 @@ class MeshCompactViewController: MeshViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
-    lazy var normalDrawerHeight = min(view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24, 300)
+    lazy var normalDrawerHeight: CGFloat = .zero
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -82,6 +82,8 @@ class MeshCompactViewController: MeshViewController {
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })
+        
+        print(normalDrawerHeight)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,6 +142,6 @@ class MeshCompactViewController: MeshViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        normalDrawerHeight = min(view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24, 300)
+        normalDrawerHeight = view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24
     }
 }

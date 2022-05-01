@@ -18,24 +18,7 @@ struct MeshOptionsView: View {
     
     var body: some View {
         Group {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                scrollView
-                    .background(Color(.secondarySystemBackground).ignoresSafeArea())
-                    .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            if let closeAction = closeAction {
-                                Button {
-                                    closeAction()
-                                } label: {
-                                    Label("Done", systemImage: "xmark.circle.fill")
-                                }
-                            }
-                        }
-                        
-                        exportButton
-                    }
-            } else if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
+            if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
                 VStack(spacing: 0) {
                     HStack {
                         if let closeAction = closeAction {
@@ -65,6 +48,23 @@ struct MeshOptionsView: View {
                     scrollView
                 }
                 .navigationBarHidden(true)
+            } else if UIDevice.current.userInterfaceIdiom != .mac {
+                scrollView
+                    .background(Color(.secondarySystemBackground).ignoresSafeArea())
+                    .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            if let closeAction = closeAction {
+                                Button {
+                                    closeAction()
+                                } label: {
+                                    Label("Done", systemImage: "xmark.circle.fill")
+                                }
+                            }
+                        }
+                        
+                        exportButton
+                    }
             } else {
                VStack(spacing: 0) {
                    Divider()

@@ -16,22 +16,7 @@ struct SceneOptionsView: View {
     
     var body: some View {
         Group {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                scrollView
-                    .background(Color(.secondarySystemBackground).ignoresSafeArea())
-                    .navigationTitle(sceneService.sceneDocument.fileURL.deletingPathExtension().lastPathComponent)
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            Button {
-                                closeAction()
-                            } label: {
-                                Label("Done", systemImage: "xmark.circle.fill")
-                            }
-                        }
-                        
-                        exportButton
-                    }
-            } else if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
+            if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
                 VStack(spacing: 0) {
                     HStack {
                         Button {
@@ -59,6 +44,21 @@ struct SceneOptionsView: View {
                     scrollView
                 }
                 .navigationBarHidden(true)
+            } else if UIDevice.current.userInterfaceIdiom != .mac {
+                scrollView
+                    .background(Color(.secondarySystemBackground).ignoresSafeArea())
+                    .navigationTitle(sceneService.sceneDocument.fileURL.deletingPathExtension().lastPathComponent)
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Button {
+                                closeAction()
+                            } label: {
+                                Label("Done", systemImage: "xmark.circle.fill")
+                            }
+                        }
+                        
+                        exportButton
+                    }
             } else {
                 VStack(spacing: 0) {
                     Divider()

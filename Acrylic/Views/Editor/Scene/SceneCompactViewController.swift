@@ -66,7 +66,7 @@ class SceneCompactViewController: SceneViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
-    lazy var normalDrawerHeight = min(view.bounds.height - sceneContainerView.bounds.height - sceneContainerView.frame.origin.y - 24, 300)
+    lazy var normalDrawerHeight: CGFloat = .zero
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -135,5 +135,11 @@ class SceneCompactViewController: SceneViewController {
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        normalDrawerHeight = view.bounds.height - sceneContainerView.bounds.height - sceneContainerView.frame.origin.y - 24
     }
 }

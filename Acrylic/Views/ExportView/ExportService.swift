@@ -6,11 +6,9 @@
 //
 
 import Combine
-import UIKit
-import Blackbird
+import UIKit.UIImage
 import UniformTypeIdentifiers
 import CoreImage
-import SceneKit
 import TelemetryClient
 
 class ExportService: ObservableObject {
@@ -124,49 +122,56 @@ class ExportService: ObservableObject {
     }
     
     func export(completion: @escaping (Result<ImageDocument, Error>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            let render = self.render()
-            let renderImage = CIImage(image: render) ?? .init()
-            guard let ciImage = renderImage
-                .clampedToExtent()
-                .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
-                .cropped(to: renderImage.extent) ?? self.baseImage,
-                  let cgImage = Blackbird.shared.context.createCGImage(ciImage, from: ciImage.extent)
-            else {
-                TelemetryManager.send("renderFailed", with: ["error": "failed to create cgImage from ciImage."])
-                completion(.failure(CocoaError(.fileWriteUnknown)))
-                return
-            }
+        DispatchQueue.main.async {  [weak self] in
+            self?.isProcessing = true
             
-            let image = UIImage(cgImage: cgImage)
-            
-            var data: Data? = nil
-            
-            switch self.format {
-            case .png:
-                data = image.pngData()
-            case .jpeg:
-                data = image.jpegData(compressionQuality: self.compressionQuality)
-            case .heic:
-                do {
-                    data = try image.heicData(compressionQuality: self.compressionQuality)
-                } catch {
-                    completion(.failure(error))
+            DispatchQueue.global(qos: .userInitiated).async {
+                guard let self = self else { return }
+                let render = self.render()
+                let renderImage = CIImage(image: render) ?? .init()
+                
+                let context = CIContext(options: nil)
+                
+                guard let ciImage = renderImage
+                    .clampedToExtent()
+                    .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
+                    .cropped(to: renderImage.extent) ?? self.baseImage,
+                      let cgImage = context.createCGImage(ciImage, from: ciImage.extent)
+                else {
+                    TelemetryManager.send("renderFailed", with: ["error": "failed to create cgImage from ciImage."])
+                    completion(.failure(CocoaError(.fileWriteUnknown)))
                     return
                 }
-            }
-            
-            if let data = data {
-                TelemetryManager.send("renderExported")
-                completion(.success(ImageDocument(imageData: data)))
-            } else {
-                TelemetryManager.send("renderFailed", with: ["error": "failed to get image data from render."])
-                completion(.failure(CocoaError(.fileReadUnknown)))
-            }
-            
-            DispatchQueue.main.async {
-                self.isProcessing = false
+                
+                let image = UIImage(cgImage: cgImage)
+                
+                var data: Data? = nil
+                
+                switch self.format {
+                case .png:
+                    data = image.pngData()
+                case .jpeg:
+                    data = image.jpegData(compressionQuality: self.compressionQuality)
+                case .heic:
+                    do {
+                        data = try image.heicData(compressionQuality: self.compressionQuality)
+                    } catch {
+                        completion(.failure(error))
+                        return
+                    }
+                }
+                
+                if let data = data {
+                    TelemetryManager.send("renderExported")
+                    completion(.success(ImageDocument(imageData: data)))
+                } else {
+                    TelemetryManager.send("renderFailed", with: ["error": "failed to get image data from render."])
+                    completion(.failure(CocoaError(.fileReadUnknown)))
+                }
+                
+                DispatchQueue.main.async {
+                    self.isProcessing = false
+                }
             }
         }
     }

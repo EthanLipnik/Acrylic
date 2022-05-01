@@ -45,12 +45,10 @@ extension ExportView {
                     Text("Resolution:")
                         .frame(width: 90, alignment: .leading)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .onChange(of: selectedResolution) { newValue in
                     exportService.resolution = (CGFloat(newValue.size), CGFloat(newValue.size))
                 }
-#if !targetEnvironment(macCatalyst)
-                .pickerStyle(.segmented)
-#endif
             }
         }
     }

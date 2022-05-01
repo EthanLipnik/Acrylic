@@ -53,6 +53,7 @@ extension ExportView {
                         }
                     }
                     .keyboardShortcut(.defaultAction)
+                    .disabled(exportService.isProcessing)
 #if targetEnvironment(macCatalyst)
                     .fileExporter(isPresented: $isExportingImage, document: imageDocument, contentType: exportService.format.type) { result in
                         switch result {

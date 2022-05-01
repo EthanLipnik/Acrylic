@@ -98,7 +98,6 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
 
 extension RandomColor.Hue {
     static func hue(from palette: ColorPalette) -> RandomColor.Hue {
-        fatalError("\(palette)")
         switch palette {
         case .blue:
             return .blue

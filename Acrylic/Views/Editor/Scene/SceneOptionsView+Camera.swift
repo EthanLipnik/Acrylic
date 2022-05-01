@@ -70,7 +70,7 @@ extension SceneOptionsView {
                         .bold()
                         .frame(width: 70, alignment: .leading)
                         .foregroundColor(.secondary)
-                    Slider(value: $filmGrainScale, in: 0...2)
+                    Slider(value: $filmGrainScale, in: 0.01...2)
                         .onAppear {
                             filmGrainScale = sceneService.sceneDocument.cameras.first?.filmGrainOptions.scale ?? 1
                         }

@@ -26,7 +26,7 @@ struct ExportView: View {
                         ProgressView().progressViewStyle(.circular)
                     } : nil
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .shadow(radius: 15, y: 8)
                 .environmentObject(exportService)
             ExportOptionsView()

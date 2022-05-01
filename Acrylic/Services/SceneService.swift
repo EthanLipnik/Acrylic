@@ -248,11 +248,16 @@ class SceneService: NSObject, ObservableObject {
         
         if let pointOfView = sceneView?.pointOfView {
             renderer.pointOfView = pointOfView
-            
-            let aspectRatio = resolution.width / 1024
-            let ambientOcclusion = CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0)
-            renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (ambientOcclusion / aspectRatio) + (aspectRatio != 1 ? 0.5 : 0)
+        } else {
+            renderer.pointOfView = scene.rootNode.childNode(withName: "Camera", recursively: false)
         }
+        
+        let aspectRatio = resolution.width / 1024
+        let ambientOcclusion = CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0)
+        renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (ambientOcclusion / aspectRatio) + (aspectRatio != 1 ? 0.5 : 0)
+        
+        let filmGrainScale = CGFloat(sceneDocument.cameras.first?.filmGrainOptions.scale ?? 0)
+        renderer.pointOfView?.camera?.grainScale = filmGrainScale * aspectRatio
         
         let renderTime = TimeInterval(1)
         renderer.update(atTime: .zero)

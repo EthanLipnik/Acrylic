@@ -1,5 +1,5 @@
 //
-//  ExportView+ExportOptionsView.swift
+//  ExportView+OptionsView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 3/25/22.

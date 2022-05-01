@@ -70,16 +70,6 @@ class ExportViewController: UIViewController {
     }
 }
 
-extension ExportViewController: UIDocumentPickerDelegate {
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        
-    }
-    
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        self.dismiss(animated: true)
-    }
-}
-
 struct ExportViewControllerView: UIViewControllerRepresentable {
     @EnvironmentObject var exportService: ExportService
     

@@ -38,7 +38,9 @@ extension ExportView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Picker(selection: $selectedResolution) {
                     ForEach(resolutions) {
-                        Text($0.title + " (\($0.size)x\($0.size))")
+                        Text($0.title
+                             + " (\($0.size)x\($0.size))"
+                             + (($0.size > 2048 && UIDevice.current.userInterfaceIdiom != .mac) ? " [Experimental]" : ""))
                             .tag($0)
                     }
                 } label: {

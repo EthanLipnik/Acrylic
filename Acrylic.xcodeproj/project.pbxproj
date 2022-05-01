@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */; };
-		AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */; };
+		AA03D92327EEA65C00BAE4C4 /* ExportView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */; };
 		AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */; };
 		AA03D92727EEA87C00BAE4C4 /* ExportView+QualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */; };
 		AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */; };
@@ -148,7 +148,7 @@
 
 /* Begin PBXFileReference section */
 		AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+Format.swift"; sourceTree = "<group>"; };
-		AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ExportOptionsView.swift"; sourceTree = "<group>"; };
+		AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+OptionsView.swift"; sourceTree = "<group>"; };
 		AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ImageEffectsView.swift"; sourceTree = "<group>"; };
 		AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+QualityView.swift"; sourceTree = "<group>"; };
 		AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ResolutionView.swift"; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 				AA0AD66227EEB671009F822D /* ExportService.swift */,
 				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
 				AAEC94F727EF58E100F8BD37 /* ExportView.swift */,
-				AA03D92227EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift */,
+				AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */,
 				AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */,
 				AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */,
 				AA03D92627EEA87C00BAE4C4 /* ExportView+QualityView.swift */,
@@ -802,7 +802,7 @@
 				AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */,
 				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
 				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
-				AA03D92327EEA65C00BAE4C4 /* ExportView+ExportOptionsView.swift in Sources */,
+				AA03D92327EEA65C00BAE4C4 /* ExportView+OptionsView.swift in Sources */,
 				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
 				AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */,
 				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
@@ -905,7 +905,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -933,7 +933,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -961,7 +961,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -991,7 +991,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1021,7 +1021,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1049,7 +1049,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1196,7 +1196,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1234,7 +1234,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;

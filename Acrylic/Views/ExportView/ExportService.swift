@@ -17,13 +17,13 @@ class ExportService: ObservableObject {
             applyFilters()
         }
     }
-    @Published var resolution: (width: CGFloat, height: CGFloat) = (4096, 4096) {
+    @Published var resolution: (width: CGFloat, height: CGFloat) = (1024, 1024) {
         didSet {
             isProcessing = true
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 guard let self = self else { return }
                 self.baseImage = CIImage(image: self.render()) ?? self.baseImage
-                self.scaledImage = self.baseImage?.resize(CGSize(width: 720, height: 720))
+                self.scaledImage = self.baseImage?.resize(CGSize(width: 512, height: 512))
                 self.applyFilters()
                 
                 DispatchQueue.main.async {
@@ -94,7 +94,7 @@ class ExportService: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let render = self?.render() else { return }
             self?.baseImage = CIImage(image: render)
-            self?.scaledImage = self?.baseImage?.resize(CGSize(width: 720, height: 720))
+            self?.scaledImage = self?.baseImage?.resize(CGSize(width: 512, height: 512))
             self?.applyFilters()
             
             DispatchQueue.main.async {

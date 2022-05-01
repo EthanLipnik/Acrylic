@@ -14,7 +14,7 @@ extension ExportView {
         
         var body: some View {
             VStack {
-                Text("Image Effects")
+                Text("Effects")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {

@@ -24,7 +24,14 @@ class SceneViewController: UIViewController {
         view.backgroundColor = UIColor.secondarySystemBackground
         
         view.addSubview(sceneView)
+        view.addSubview(previewLabel)
         view.addSubview(previewImageView)
+        
+        previewLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            previewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            previewLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
+        ])
         
         view.hero.id = sceneService.sceneDocument.fileURL.path
         view.hero.modifiers = [.spring(stiffness: 250, damping: 20)]
@@ -64,6 +71,35 @@ class SceneViewController: UIViewController {
         return imageView
     }()
     
+    lazy var previewLabel: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .regular)
+        let view = UIVisualEffectView(effect: blur)
+        
+        let vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: blur))
+        vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.contentView.addSubview(vibrancyView)
+        
+        let label = UILabel()
+        label.text = "Live Preview"
+        label.font = UIFont.preferredFont(forTextStyle: .headline, compatibleWith: traitCollection)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        vibrancyView.contentView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: vibrancyView.contentView.topAnchor, constant: 4),
+            label.bottomAnchor.constraint(equalTo: vibrancyView.contentView.bottomAnchor, constant: -4),
+            label.leadingAnchor.constraint(equalTo: vibrancyView.contentView.leadingAnchor, constant: 4),
+            label.trailingAnchor.constraint(equalTo: vibrancyView.contentView.trailingAnchor, constant: -4)
+        ])
+        
+        view.layer.cornerRadius = 4
+        view.layer.cornerCurve = .continuous
+        view.layer.masksToBounds = true
+        
+        return view
+    }()
+    
     let sceneService: SceneService
     
     init(_ sceneService: SceneService) {
@@ -87,6 +123,9 @@ class SceneViewController: UIViewController {
         view.addSubview(sceneContainerView)
         
         sceneService.sceneView = sceneView
+        
+        let contextMenu = UIContextMenuInteraction(delegate: self)
+        sceneContainerView.addInteraction(contextMenu)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -98,7 +137,9 @@ class SceneViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.previewImageView.alpha = 0
+        } completion: { [weak self] _ in
             self?.previewImageView.isHidden = true
         }
     }
@@ -106,7 +147,10 @@ class SceneViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        previewImageView.isHidden = false
+        self.previewImageView.isHidden = false
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.previewImageView.alpha = 1
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -120,6 +164,18 @@ class SceneViewController: UIViewController {
             let meshSize = min(view.bounds.height, view.bounds.width) - (40 + (view.safeAreaInsets.vertical * 2))
             sceneContainerView.frame = CGRect(x: 20, y: 20, width: meshSize, height: meshSize)
             sceneContainerView.center = CGPoint(x: view.center.x, y: view.center.y + (view.safeAreaInsets.top / 2) - (view.safeAreaInsets.bottom / 2))
+        }
+    }
+}
+
+extension SceneViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return .init(identifier: nil, previewProvider: nil) { _ in
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [
+                UIAction(title: "Copy Snapshot", image: UIImage(systemName: "doc.on.doc"), discoverabilityTitle: "Copy Snapshot", handler: { [weak self] _ in
+                    UIPasteboard.general.image = self?.sceneView.snapshot()
+                })
+            ])
         }
     }
 }

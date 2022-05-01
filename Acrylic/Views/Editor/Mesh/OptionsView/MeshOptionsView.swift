@@ -19,7 +19,8 @@ struct MeshOptionsView: View {
     var body: some View {
         Group {
             if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
-                VStack(spacing: 0) {
+                ZStack(alignment: .top) {
+                    scrollView
                     HStack {
                         if let closeAction = closeAction {
                             Button {
@@ -30,7 +31,7 @@ struct MeshOptionsView: View {
                             }
                         }
                         
-                        Text(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
+                        Text(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh")
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .center)
                         
@@ -43,15 +44,14 @@ struct MeshOptionsView: View {
                     }
                     .padding(.horizontal, 30)
                     .frame(height: 60)
-                    Divider()
-                        .opacity(0.5)
-                    scrollView
+                    .background(VisualEffectBlur(blurStyle: .regular))
+                    .overlay(Divider().opacity(0.5), alignment: .bottom)
                 }
                 .navigationBarHidden(true)
             } else if UIDevice.current.userInterfaceIdiom != .mac {
                 scrollView
                     .background(Color(.secondarySystemBackground).ignoresSafeArea())
-                    .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh Gradient")
+                    .navigationTitle(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh")
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
                             if let closeAction = closeAction {
@@ -113,6 +113,7 @@ struct MeshOptionsView: View {
                 ViewportView()
             }
             .padding()
+            .padding(.top, horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
             .animation(.spring(), value: meshService.selectedPoint)
         }
     }

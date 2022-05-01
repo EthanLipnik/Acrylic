@@ -139,6 +139,9 @@ class SceneService: NSObject, ObservableObject {
             cameraNode.camera?.fieldOfView = 50
             cameraNode.camera?.zNear = 0
             
+            cameraNode.camera?.vignettingIntensity = 0.2
+            cameraNode.camera?.vignettingPower = 0.3
+            
             cameraNode.camera?.colorFringeStrength = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.strength) : 0
             cameraNode.camera?.colorFringeIntensity = camera.colorFringeOptions.isEnabled ? CGFloat(camera.colorFringeOptions.intensity) : 0
             cameraNode.position = SCNVector3(camera.position.x, camera.position.y, camera.position.z)
@@ -252,15 +255,17 @@ class SceneService: NSObject, ObservableObject {
             renderer.pointOfView = scene.rootNode.childNode(withName: "Camera", recursively: false)
         }
         
-        let aspectRatio = resolution.width / 1024
-        let ambientOcclusion = CGFloat(sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0)
-        renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (ambientOcclusion / aspectRatio) + (aspectRatio != 1 ? 0.5 : 0)
+        if let camera = sceneDocument.cameras.first {
+            let aspectRatio = resolution.width / 1024
+            let ambientOcclusion = CGFloat(camera.screenSpaceAmbientOcclusionOptions.intensity)
+            renderer.pointOfView?.camera?.screenSpaceAmbientOcclusionIntensity = (ambientOcclusion / aspectRatio) + (aspectRatio != 1 ? 0.5 : 0)
+            
+            let filmGrainScale = CGFloat(camera.filmGrainOptions.scale)
+            renderer.pointOfView?.camera?.grainScale = filmGrainScale * aspectRatio
+        }
         
-        let filmGrainScale = CGFloat(sceneDocument.cameras.first?.filmGrainOptions.scale ?? 0)
-        renderer.pointOfView?.camera?.grainScale = filmGrainScale * aspectRatio
-        
-        let renderTime = TimeInterval(1)
-        renderer.update(atTime: .zero)
+        let renderTime = TimeInterval(3)
+        renderer.update(atTime: renderTime)
         renderer.sceneTime = renderTime
         
         var supportsAntialiasing: Bool = true

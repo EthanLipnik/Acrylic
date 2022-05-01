@@ -28,7 +28,7 @@ extension ExportView {
             .init(title: "5k", size: 5120),
             .init(title: "8k", size: 8192),
             .init(title: "10k", size: 10240)
-        ]
+        ].filter({ UIDevice.current.userInterfaceIdiom == .mac || $0.size <= 4096 })
         @State private var selectedResolution: Resolution = .init(title: "1k", size: 1024)
         
         var body: some View {

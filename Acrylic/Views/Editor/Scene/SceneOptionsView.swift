@@ -17,7 +17,8 @@ struct SceneOptionsView: View {
     var body: some View {
         Group {
             if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
-                VStack(spacing: 0) {
+                ZStack(alignment: .top) {
+                    scrollView
                     HStack {
                         Button {
                             closeAction()
@@ -39,9 +40,8 @@ struct SceneOptionsView: View {
                     }
                     .padding(.horizontal, 30)
                     .frame(height: 60)
-                    Divider()
-                        .opacity(0.5)
-                    scrollView
+                    .background(VisualEffectBlur(blurStyle: .regular))
+                    .overlay(Divider().opacity(0.5), alignment: .bottom)
                 }
                 .navigationBarHidden(true)
             } else if UIDevice.current.userInterfaceIdiom != .mac {
@@ -78,7 +78,9 @@ struct SceneOptionsView: View {
             VStack {
                 PresetView()
                 CameraView()
-            }.padding()
+            }
+            .padding()
+            .padding(.top, horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
         }
     }
     

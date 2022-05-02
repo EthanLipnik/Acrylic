@@ -18,9 +18,9 @@ class MeshEditorViewController: EditorViewController<MeshDocument> {
         
         var optionsView: some View {
             if view.window?.windowScene?.delegate is EditorSceneDelegate {
-                return MeshOptionsView(closeAction: nil).environmentObject(meshService)
+                return MeshOptionsView(isCompact: false, closeAction: nil).environmentObject(meshService)
             } else {
-                return MeshOptionsView { [weak self] in
+                return MeshOptionsView(isCompact: false) { [weak self] in
                     self?.dismiss(animated: true)
                 }.environmentObject(meshService)
             }

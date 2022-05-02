@@ -67,7 +67,6 @@
 		AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AA58CE862817702D007295E8 /* TelemetryClient */; };
 		AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FB827F494B40076F85C /* DifferenceKit */; };
 		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
-		AA65BD7B2818B833008D070B /* BetaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65BD7A2818B833008D070B /* BetaInfoView.swift */; };
 		AA65BD7D2818D6F9008D070B /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */; };
 		AA687D30281DC3E500306FB8 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = AA687D2F281DC3E500306FB8 /* UIOnboarding */; };
 		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
@@ -254,7 +253,6 @@
 		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
 		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
-		AA65BD7A2818B833008D070B /* BetaInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaInfoView.swift; sourceTree = "<group>"; };
 		AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
 		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
@@ -573,7 +571,6 @@
 		AA65BD7E2818DCD9008D070B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA65BD7A2818B833008D070B /* BetaInfoView.swift */,
 				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
 				AAD7239127F0F39C00198144 /* Editor */,
 				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
@@ -1116,7 +1113,6 @@
 				AA65BD7D2818D6F9008D070B /* AppStoreReviewManager.swift in Sources */,
 				AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */,
 				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
-				AA65BD7B2818B833008D070B /* BetaInfoView.swift in Sources */,
 				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
 				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
 				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,

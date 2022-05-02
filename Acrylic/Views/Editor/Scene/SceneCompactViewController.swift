@@ -44,7 +44,7 @@ class SceneCompactViewController: SceneViewController {
         
         
         let optionsView: some View = {
-            SceneOptionsView { [weak self] in
+            SceneOptionsView(isCompact: true) { [weak self] in
                 self?.dismiss(animated: true)
             }
             .environmentObject(sceneService)

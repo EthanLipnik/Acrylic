@@ -16,7 +16,7 @@ class SceneEditorViewController: EditorViewController<SceneDocument> {
         self.sceneService = .init(document)
         super.init(document, viewControllers: [:])
         
-        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: SceneOptionsView { [weak self] in
+        let primaryViewController = UINavigationController(rootViewController: UIHostingController(rootView: SceneOptionsView(isCompact: false) { [weak self] in
             self?.dismiss(animated: true)
         }.environmentObject(sceneService)))
         

@@ -44,7 +44,7 @@ class MeshCompactViewController: MeshViewController {
         
         
         let optionsView: some View = {
-            MeshOptionsView { [weak self] in
+            MeshOptionsView(isCompact: true) { [weak self] in
                 self?.dismiss(animated: true)
             }
             .environmentObject(meshService)

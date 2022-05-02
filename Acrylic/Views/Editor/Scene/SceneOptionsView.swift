@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SceneOptionsView: View {
     @EnvironmentObject var sceneService: SceneService
-    @Environment(\.horizontalSizeClass) var horizontalClass
     
+    let isCompact: Bool
     var closeAction: () -> Void
     @State private var isExporting: Bool = false
     
     var body: some View {
         Group {
-            if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
+            if isCompact && UIDevice.current.userInterfaceIdiom != .mac {
                 ZStack(alignment: .top) {
                     scrollView
                     HStack {
@@ -80,7 +80,7 @@ struct SceneOptionsView: View {
                 CameraView()
             }
             .padding()
-            .padding(.top, horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
+            .padding(.top, isCompact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
         }
     }
     
@@ -96,6 +96,6 @@ struct SceneOptionsView: View {
 
 struct SceneOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        SceneOptionsView() {}
+        SceneOptionsView(isCompact: false) {}
     }
 }

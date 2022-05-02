@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return cloudFolder
         } else {
             isCloudFolder = false
-            return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
     }()
     

@@ -11,14 +11,14 @@ import UniformTypeIdentifiers
 
 struct MeshOptionsView: View {
     @EnvironmentObject var meshService: MeshService
-    @Environment(\.horizontalSizeClass) var horizontalClass
     
+    let isCompact: Bool
     var closeAction: (() -> Void)? = nil
     @State private var isExporting: Bool = false
     
     var body: some View {
         Group {
-            if horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac {
+            if isCompact && UIDevice.current.userInterfaceIdiom != .mac {
                 ZStack(alignment: .top) {
                     scrollView
                     HStack {
@@ -113,7 +113,7 @@ struct MeshOptionsView: View {
                 ViewportView()
             }
             .padding()
-            .padding(.top, horizontalClass == .compact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
+            .padding(.top, isCompact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
             .animation(.spring(), value: meshService.selectedPoint)
         }
     }
@@ -121,7 +121,7 @@ struct MeshOptionsView: View {
 
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        MeshOptionsView { // Close action
+        MeshOptionsView(isCompact: false) { // Close action
             
         }
     }

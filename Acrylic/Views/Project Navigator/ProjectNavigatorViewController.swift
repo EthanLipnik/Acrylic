@@ -192,14 +192,6 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
 #endif
         
         let _ = directoryWatcher?.startWatching()
-        
-#if !DEBUG
-        if !UserDefaults.standard.bool(forKey: "shouldNotShowBetaInfo") {
-            let vc = UIHostingController(rootView: BetaInfoView())
-            vc.modalPresentationStyle = .formSheet
-            self.present(vc, animated: true)
-        }
-#endif
     }
     
     @objc func showOnboarding() {

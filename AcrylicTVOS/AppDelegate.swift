@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TelemetryClient
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        let configuration = TelemetryManagerConfiguration(
+            appID: "B278B666-F5F1-4014-882C-5403DA338EE5")
+        TelemetryManager.initialize(with: configuration)
         return true
     }
 

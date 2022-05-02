@@ -107,6 +107,7 @@
 		AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */; };
 		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
 		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
+		AAD93FE4281F72A600A17C59 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AAD93FE3281F72A600A17C59 /* TelemetryClient */; };
 		AADDB54A2816E41800F46F7E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = AADDB5492816E41800F46F7E /* Hero */; };
 		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
 		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
@@ -291,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA028F62281F60F1006A892C /* MeshKit in Frameworks */,
+				AAD93FE4281F72A600A17C59 /* TelemetryClient in Frameworks */,
 				AA028F64281F60F7006A892C /* RandomColor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,6 +679,7 @@
 			packageProductDependencies = (
 				AA028F61281F60F1006A892C /* MeshKit */,
 				AA028F63281F60F7006A892C /* RandomColor */,
+				AAD93FE3281F72A600A17C59 /* TelemetryClient */,
 			);
 			productName = AcrylicTVOS;
 			productReference = AA028F33281F60D9006A892C /* AcrylicTVOS.app */;
@@ -1252,10 +1255,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
@@ -1263,14 +1267,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 15.4;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Debug;
 		};
@@ -1280,10 +1284,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
@@ -1291,14 +1296,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 15.4;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Release;
 		};
@@ -1389,7 +1394,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -1417,7 +1422,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -1445,7 +1450,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1475,7 +1480,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1505,7 +1510,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1533,7 +1538,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1680,7 +1685,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1718,7 +1723,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1851,7 +1856,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
@@ -1882,7 +1887,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
@@ -2172,6 +2177,11 @@
 			productName = RandomColor;
 		};
 		AACD1C27281F27B100C76E87 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
+		AAD93FE3281F72A600A17C59 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
 			productName = TelemetryClient;

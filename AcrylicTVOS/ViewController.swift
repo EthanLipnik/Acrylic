@@ -33,11 +33,38 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    lazy var instructionsButton: UIButton = {
+        let button = UIButton(type: .detailDisclosure)
+        
+        button.addTarget(self, action: #selector(showInstructions), for: .primaryActionTriggered)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.isHidden = true
+        
+        return button
+    }()
+    
+    lazy var timerButton: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.setImage(UIImage(systemName: "timer", compatibleWith: traitCollection), for: .normal)
+        
+        button.addTarget(self, action: #selector(showTimer), for: .primaryActionTriggered)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.isHidden = true
+        
+        return button
+    }()
+    
     lazy var meshService: MeshService = {
         let meshService = MeshService()
         meshService.width = 5
         meshService.height = 5
+#if targetEnvironment(simulator)
         meshService.subdivsions = 32
+#else
+        meshService.subdivsions = 8
+#endif
         meshService.generate(Palette: .randomPalette(includesMonochrome: false),
                              luminosity: .bright,
                              positionMultiplier: 0.6)
@@ -45,10 +72,18 @@ class ViewController: UIViewController {
         return meshService
     }()
     
-    lazy var timer: Timer = {
-        return Timer.scheduledTimer(timeInterval: 300,
+    lazy var gradientTimer: Timer? = {
+        return Timer.scheduledTimer(timeInterval: 30,
                                     target: self,
                                     selector: #selector(newGradient),
+                                    userInfo: nil,
+                                    repeats: true)
+    }()
+    
+    lazy var hideUITimer: Timer? = {
+        return Timer.scheduledTimer(timeInterval: 5,
+                                    target: self,
+                                    selector: #selector(toggleUI),
                                     userInfo: nil,
                                     repeats: true)
     }()
@@ -57,6 +92,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(meshView)
+        view.addSubview(instructionsButton)
+        view.addSubview(timerButton)
+        
+        NSLayoutConstraint.activate([
+            instructionsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+            instructionsButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            
+            timerButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+            timerButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+        ])
         
         meshView.create(self.meshService.colors,
                         width: self.meshService.width,
@@ -65,10 +110,15 @@ class ViewController: UIViewController {
         
         createDisplayLink()
         
-        timer.fire()
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(newGradient))
         view.addGestureRecognizer(tapGesture)
+        
+        let menuGesture = UITapGestureRecognizer(target: self, action: #selector(toggleUI))
+        menuGesture.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+        view.addGestureRecognizer(menuGesture)
+        
+        toggleUI()
+        gradientTimer?.fire()
     }
     
     override func viewWillLayoutSubviews() {
@@ -101,16 +151,18 @@ class ViewController: UIViewController {
         guard !isGeneratingNewGradient else { return }
         isGeneratingNewGradient = true
         
-        timer.invalidate()
+        let timerInterval = gradientTimer?.timeInterval ?? 30
+        gradientTimer?.invalidate()
+        gradientTimer = nil
         
         snapshotView.alpha = 0
         snapshotView.isHidden = false
         
         snapshotView.image = meshView.snapshot()
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.2,
                        delay: 0,
-                       options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction]) { [weak self] in
+                       options: [.curveEaseInOut]) { [weak self] in
             self?.snapshotView.alpha = 1
         } completion: { [weak self] _ in
             self?.meshService.generate(Palette: .randomPalette(includesMonochrome: false),
@@ -119,15 +171,113 @@ class ViewController: UIViewController {
             
             UIView.animate(withDuration: 1,
                            delay: 0,
-                           options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction]) { [weak self] in
+                           options: [.curveEaseInOut]) { [weak self] in
                 self?.snapshotView.alpha = 0
             } completion: { [weak self] _ in
                 self?.snapshotView.isHidden = true
                 
-                self?.timer.fire()
+                if let self = self {
+                    self.gradientTimer = Timer(timeInterval: timerInterval, target: self, selector: #selector(self.newGradient), userInfo: nil, repeats: true)
+                    
+                    if let gradientTimer = self.gradientTimer {
+                        RunLoop.main.add(gradientTimer, forMode: .default)
+                    }
+                }
+                
                 self?.isGeneratingNewGradient = false
             }
         }
+    }
+    
+    @objc func toggleUI() {
+        hideUITimer?.invalidate()
+        hideUITimer = nil
+        
+        if instructionsButton.isHidden || timerButton.isHidden {
+            instructionsButton.alpha = 0
+            instructionsButton.isHidden = false
+            
+            timerButton.alpha = 0
+            timerButton.isHidden = false
+            
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction]) { [weak self] in
+                self?.instructionsButton.alpha = 1
+                self?.timerButton.alpha = 1
+            } completion: { [weak self] _ in
+                guard let self = self else { return }
+                self.hideUITimer = Timer.scheduledTimer(timeInterval: 5,
+                                                        target: self,
+                                                        selector: #selector(self.toggleUI),
+                                                        userInfo: nil,
+                                                        repeats: true)
+            }
+        } else {
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction]) { [weak self] in
+                self?.instructionsButton.alpha = 0
+                self?.timerButton.alpha = 0
+            } completion: { [weak self] _ in
+                self?.instructionsButton.isHidden = true
+                self?.timerButton.isHidden = true
+            }
+        }
+    }
+    
+    @objc func showInstructions() {
+        let message = """
+        • Click the touchpad to generate a new mesh.
+        • Press the Menu button to show UI.
+        • You can download the iOS and macOS app for more features.
+        """
+        let alertView = UIAlertController(title: "Instructions", message: message, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .default))
+        
+        self.present(alertView, animated: true)
+    }
+    
+    @objc func showTimer() {
+        func updateTimer(_ duration: TimeInterval) {
+            gradientTimer?.invalidate()
+            gradientTimer = nil
+            
+            gradientTimer = Timer(timeInterval: duration, target: self, selector: #selector(newGradient), userInfo: nil, repeats: true)
+            gradientTimer?.fire()
+            
+            if let gradientTimer = gradientTimer {
+                RunLoop.main.add(gradientTimer, forMode: .default)
+            }
+        }
+        
+        let alertView = UIAlertController(title: "Timer Duration", message: nil, preferredStyle: .alert)
+        
+#if DEBUG
+        alertView.addAction(UIAlertAction(title: "[DEBUG] 2s", style: .destructive) { _ in
+            updateTimer(2)
+        })
+#endif
+        
+        alertView.addAction(UIAlertAction(title: "30s", style: .default) { _ in
+            updateTimer(30)
+        })
+        
+        alertView.addAction(UIAlertAction(title: "1m", style: .default) { _ in
+            updateTimer(60)
+        })
+        
+        alertView.addAction(UIAlertAction(title: "3m", style: .default) { _ in
+            updateTimer(180)
+        })
+        
+        alertView.addAction(UIAlertAction(title: "5m", style: .default) { _ in
+            updateTimer(300)
+        })
+        
+        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alertView, animated: true)
     }
     
     struct Point: Hashable {
@@ -158,11 +308,15 @@ class ViewController: UIViewController {
     }()
     
     @objc func step(displaylink: CADisplayLink) {
-        let framerate: Float
+        var framerate: Float
         if #available(tvOS 15.0, *) {
             framerate = displaylink.preferredFrameRateRange.preferred ?? displaylink.preferredFrameRateRange.maximum
         } else {
             framerate = Float(displaylink.preferredFramesPerSecond)
+        }
+        
+        if framerate == 0 {
+            framerate = 60
         }
         
         for i in 0..<meshService.colors.count {
@@ -185,8 +339,8 @@ class ViewController: UIViewController {
                     directions[Point(x: point.x, y: point.y)] = newDirection
                 }
                 
-                meshService.colors[i].location.x += directionX() / framerate / 5
-                meshService.colors[i].location.y += directionY() / framerate / 5
+                meshService.colors[i].location.x += directionX() / framerate / 10
+                meshService.colors[i].location.y += directionY() / framerate / 10
             }
         }
         

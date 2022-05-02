@@ -52,7 +52,7 @@ extension ExportView {
             Group {
                 HStack {
                     Text("Subdivisions:")
-                        .frame(width: 90, alignment: .leading)
+                        .frame(width: 100, alignment: .leading)
                     Slider(value: subdivisionsIntProxy, in: 4...128, step: 1) {
                         Text("Subdivisions")
                     }.labelsHidden()

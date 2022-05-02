@@ -26,11 +26,7 @@ class ExportService: ObservableObject {
     @Published var compressionQuality: CGFloat = 1
     @Published var isProcessing: Bool = false
     
-    @Published var subdivisions: Int = 18 {
-        didSet {
-            reset()
-        }
-    }
+    @Published var subdivisions: Int = 18
     
     @Published var ambientOcclusionIntensity: Float = 0
     
@@ -111,7 +107,14 @@ class ExportService: ObservableObject {
         
         $ambientOcclusionIntensity
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
-            .sink { [weak self] objects in
+            .sink { [weak self] _ in
+                self?.reset()
+            }
+            .store(in: &cancellables)
+        
+        $subdivisions
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
                 self?.reset()
             }
             .store(in: &cancellables)

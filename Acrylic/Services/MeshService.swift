@@ -170,7 +170,7 @@ extension Hue {
     static func randomPalette(includesMonochrome: Bool = false) -> Hue {
         var hues = allCases
         
-        if includesMonochrome {
+        if !includesMonochrome {
             hues.removeLast()
         }
         

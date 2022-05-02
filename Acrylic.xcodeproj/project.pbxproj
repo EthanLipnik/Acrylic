@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA028F36281F60D9006A892C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F35281F60D9006A892C /* AppDelegate.swift */; };
+		AA028F38281F60D9006A892C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F37281F60D9006A892C /* ViewController.swift */; };
+		AA028F3B281F60D9006A892C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA028F39281F60D9006A892C /* Main.storyboard */; };
+		AA028F3D281F60D9006A892C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA028F3C281F60D9006A892C /* Assets.xcassets */; };
+		AA028F40281F60D9006A892C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */; };
+		AA028F4A281F60DA006A892C /* AcrylicTVOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */; };
+		AA028F54281F60DA006A892C /* AcrylicTVOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */; };
+		AA028F56281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */; };
+		AA028F62281F60F1006A892C /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA028F61281F60F1006A892C /* MeshKit */; };
+		AA028F64281F60F7006A892C /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA028F63281F60F7006A892C /* RandomColor */; };
+		AA028F65281F622A006A892C /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
 		AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */; };
 		AA03D92327EEA65C00BAE4C4 /* ExportView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */; };
 		AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */; };
@@ -104,6 +115,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA028F46281F60DA006A892C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA517533272483CE00C25576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA028F32281F60D9006A892C;
+			remoteInfo = AcrylicTVOS;
+		};
+		AA028F50281F60DA006A892C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA517533272483CE00C25576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA028F32281F60D9006A892C;
+			remoteInfo = AcrylicTVOS;
+		};
 		AA42DDC427F1F16D003ECF74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA517533272483CE00C25576 /* Project object */;
@@ -166,6 +191,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA028F33281F60D9006A892C /* AcrylicTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcrylicTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA028F35281F60D9006A892C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA028F37281F60D9006A892C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA028F3A281F60D9006A892C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AA028F3C281F60D9006A892C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA028F3F281F60D9006A892C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSTests.swift; sourceTree = "<group>"; };
+		AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicTVOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSUITests.swift; sourceTree = "<group>"; };
+		AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AA028F60281F60E2006A892C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+Format.swift"; sourceTree = "<group>"; };
 		AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+OptionsView.swift"; sourceTree = "<group>"; };
 		AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ImageEffectsView.swift"; sourceTree = "<group>"; };
@@ -249,6 +286,29 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA028F30281F60D9006A892C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA028F62281F60F1006A892C /* MeshKit in Frameworks */,
+				AA028F64281F60F7006A892C /* RandomColor in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F42281F60DA006A892C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F4C281F60DA006A892C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA42DDB527F1F16D003ECF74 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +384,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA028F34281F60D9006A892C /* AcrylicTVOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA028F60281F60E2006A892C /* Info.plist */,
+				AA028F35281F60D9006A892C /* AppDelegate.swift */,
+				AA028F37281F60D9006A892C /* ViewController.swift */,
+				AA028F39281F60D9006A892C /* Main.storyboard */,
+				AA028F3C281F60D9006A892C /* Assets.xcassets */,
+				AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */,
+			);
+			path = AcrylicTVOS;
+			sourceTree = "<group>";
+		};
+		AA028F48281F60DA006A892C /* AcrylicTVOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */,
+			);
+			path = AcrylicTVOSTests;
+			sourceTree = "<group>";
+		};
+		AA028F52281F60DA006A892C /* AcrylicTVOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */,
+				AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */,
+			);
+			path = AcrylicTVOSUITests;
+			sourceTree = "<group>";
+		};
 		AA03D91F27EEA1B000BAE4C4 /* ExportView */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +508,9 @@
 				AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */,
 				AA4BBDDF27F2962C00B45FA6 /* ThumbnailExtension */,
 				AACD1C0F281F239D00C76E87 /* AcrylicWidget */,
+				AA028F34281F60D9006A892C /* AcrylicTVOS */,
+				AA028F48281F60DA006A892C /* AcrylicTVOSTests */,
+				AA028F52281F60DA006A892C /* AcrylicTVOSUITests */,
 				AA51753C272483CE00C25576 /* Products */,
 				AA35D982272498D3000BB333 /* Frameworks */,
 			);
@@ -433,6 +526,9 @@
 				AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */,
 				AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */,
 				AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */,
+				AA028F33281F60D9006A892C /* AcrylicTVOS.app */,
+				AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */,
+				AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -565,6 +661,63 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA028F32281F60D9006A892C /* AcrylicTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA028F5D281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOS" */;
+			buildPhases = (
+				AA028F2F281F60D9006A892C /* Sources */,
+				AA028F30281F60D9006A892C /* Frameworks */,
+				AA028F31281F60D9006A892C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcrylicTVOS;
+			packageProductDependencies = (
+				AA028F61281F60F1006A892C /* MeshKit */,
+				AA028F63281F60F7006A892C /* RandomColor */,
+			);
+			productName = AcrylicTVOS;
+			productReference = AA028F33281F60D9006A892C /* AcrylicTVOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA028F44281F60DA006A892C /* AcrylicTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA028F5E281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSTests" */;
+			buildPhases = (
+				AA028F41281F60DA006A892C /* Sources */,
+				AA028F42281F60DA006A892C /* Frameworks */,
+				AA028F43281F60DA006A892C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA028F47281F60DA006A892C /* PBXTargetDependency */,
+			);
+			name = AcrylicTVOSTests;
+			productName = AcrylicTVOSTests;
+			productReference = AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA028F4E281F60DA006A892C /* AcrylicTVOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA028F5F281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSUITests" */;
+			buildPhases = (
+				AA028F4B281F60DA006A892C /* Sources */,
+				AA028F4C281F60DA006A892C /* Frameworks */,
+				AA028F4D281F60DA006A892C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA028F51281F60DA006A892C /* PBXTargetDependency */,
+			);
+			name = AcrylicTVOSUITests;
+			productName = AcrylicTVOSUITests;
+			productReference = AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AA42DDB727F1F16D003ECF74 /* QuickLookExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */;
@@ -726,6 +879,17 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					AA028F32281F60D9006A892C = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					AA028F44281F60DA006A892C = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = AA028F32281F60D9006A892C;
+					};
+					AA028F4E281F60DA006A892C = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = AA028F32281F60D9006A892C;
+					};
 					AA42DDB727F1F16D003ECF74 = {
 						CreatedOnToolsVersion = 13.3;
 					};
@@ -782,11 +946,38 @@
 				AA42DDB727F1F16D003ECF74 /* QuickLookExtension */,
 				AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */,
 				AACD1C09281F239D00C76E87 /* AcrylicWidgetExtension */,
+				AA028F32281F60D9006A892C /* AcrylicTVOS */,
+				AA028F44281F60DA006A892C /* AcrylicTVOSTests */,
+				AA028F4E281F60DA006A892C /* AcrylicTVOSUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA028F31281F60D9006A892C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA028F40281F60D9006A892C /* LaunchScreen.storyboard in Resources */,
+				AA028F3D281F60D9006A892C /* Assets.xcassets in Resources */,
+				AA028F3B281F60D9006A892C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F43281F60DA006A892C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F4D281F60DA006A892C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA42DDB627F1F16D003ECF74 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -842,6 +1033,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA028F2F281F60D9006A892C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA028F38281F60D9006A892C /* ViewController.swift in Sources */,
+				AA028F36281F60D9006A892C /* AppDelegate.swift in Sources */,
+				AA028F65281F622A006A892C /* MeshService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F41281F60DA006A892C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA028F4A281F60DA006A892C /* AcrylicTVOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA028F4B281F60DA006A892C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA028F56281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift in Sources */,
+				AA028F54281F60DA006A892C /* AcrylicTVOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA42DDB427F1F16D003ECF74 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -958,6 +1176,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA028F47281F60DA006A892C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA028F32281F60D9006A892C /* AcrylicTVOS */;
+			targetProxy = AA028F46281F60DA006A892C /* PBXContainerItemProxy */;
+		};
+		AA028F51281F60DA006A892C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA028F32281F60D9006A892C /* AcrylicTVOS */;
+			targetProxy = AA028F50281F60DA006A892C /* PBXContainerItemProxy */;
+		};
 		AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA42DDB727F1F16D003ECF74 /* QuickLookExtension */;
@@ -991,6 +1219,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		AA028F39281F60D9006A892C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA028F3A281F60D9006A892C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA028F3F281F60D9006A892C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		AA51754C272483CF00C25576 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1002,12 +1246,150 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA028F57281F60DA006A892C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Debug;
+		};
+		AA028F58281F60DA006A892C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Release;
+		};
+		AA028F59281F60DA006A892C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AcrylicTVOS.app/AcrylicTVOS";
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Debug;
+		};
+		AA028F5A281F60DA006A892C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AcrylicTVOS.app/AcrylicTVOS";
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Release;
+		};
+		AA028F5B281F60DA006A892C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = AcrylicTVOS;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Debug;
+		};
+		AA028F5C281F60DA006A892C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = AcrylicTVOS;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Release;
+		};
 		AA42DDC927F1F16D003ECF74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -1035,7 +1417,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickLookExtension/Info.plist;
@@ -1063,7 +1445,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1093,7 +1475,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
@@ -1123,7 +1505,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1151,7 +1533,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
@@ -1298,7 +1680,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1336,7 +1718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1469,7 +1851,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
@@ -1500,7 +1882,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
@@ -1527,6 +1909,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA028F5D281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA028F57281F60DA006A892C /* Debug */,
+				AA028F58281F60DA006A892C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA028F5E281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA028F59281F60DA006A892C /* Debug */,
+				AA028F5A281F60DA006A892C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA028F5F281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA028F5B281F60DA006A892C /* Debug */,
+				AA028F5C281F60DA006A892C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1677,6 +2086,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA028F61281F60F1006A892C /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
+			productName = MeshKit;
+		};
+		AA028F63281F60F7006A892C /* RandomColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
+			productName = RandomColor;
+		};
 		AA42DDD127F1F1F6003ECF74 /* RandomColor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;

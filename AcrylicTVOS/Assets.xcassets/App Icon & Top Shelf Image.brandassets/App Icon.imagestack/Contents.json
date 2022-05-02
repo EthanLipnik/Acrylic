@@ -1,0 +1,20 @@
+{
+  "layers" : [
+    {
+      "filename" : "Brush.imagestacklayer"
+    },
+    {
+      "filename" : "image 1.imagestacklayer"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "canvasSize" : {
+      "width" : 400,
+      "height" : 240
+    }
+  }
+}

@@ -86,7 +86,11 @@ class ViewController: UIViewController {
     func createDisplayLink() {
         let displaylink = CADisplayLink(target: self,
                                         selector: #selector(step))
-        displaylink.preferredFrameRateRange = CAFrameRateRange(minimum: 30, maximum: 120, preferred: 60)
+        if #available(tvOS 15.0, *) {
+            displaylink.preferredFrameRateRange = CAFrameRateRange(minimum: 30, maximum: 120, preferred: 60)
+        } else {
+            displaylink.preferredFramesPerSecond = 60
+        }
         
         displaylink.add(to: .main,
                         forMode: .default)
@@ -154,7 +158,12 @@ class ViewController: UIViewController {
     }()
     
     @objc func step(displaylink: CADisplayLink) {
-        let framerate = displaylink.preferredFrameRateRange.preferred ?? displaylink.preferredFrameRateRange.maximum
+        let framerate: Float
+        if #available(tvOS 15.0, *) {
+            framerate = displaylink.preferredFrameRateRange.preferred ?? displaylink.preferredFrameRateRange.maximum
+        } else {
+            framerate = Float(displaylink.preferredFramesPerSecond)
+        }
         
         for i in 0..<meshService.colors.count {
             let color = meshService.colors[i]

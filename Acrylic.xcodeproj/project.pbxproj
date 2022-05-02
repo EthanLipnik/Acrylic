@@ -82,8 +82,6 @@
 		AACD1C0E281F239D00C76E87 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD1C0D281F239D00C76E87 /* SwiftUI.framework */; };
 		AACD1C11281F239D00C76E87 /* AcrylicWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */; };
 		AACD1C14281F239E00C76E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AACD1C13281F239E00C76E87 /* Assets.xcassets */; };
-		AACD1C16281F239E00C76E87 /* AcrylicWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACD1C12281F239D00C76E87 /* AcrylicWidget.intentdefinition */; };
-		AACD1C17281F239E00C76E87 /* AcrylicWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACD1C12281F239D00C76E87 /* AcrylicWidget.intentdefinition */; };
 		AACD1C1A281F239E00C76E87 /* AcrylicWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AACD1C20281F23A400C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C1F281F23A400C76E87 /* MeshKit */; };
 		AACD1C21281F23AE00C76E87 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
@@ -236,7 +234,6 @@
 		AACD1C0B281F239D00C76E87 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		AACD1C0D281F239D00C76E87 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicWidget.swift; sourceTree = "<group>"; };
-		AACD1C12281F239D00C76E87 /* AcrylicWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AcrylicWidget.intentdefinition; sourceTree = "<group>"; };
 		AACD1C13281F239E00C76E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AACD1C15281F239E00C76E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AACD1C1B281F239E00C76E87 /* AcrylicWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AcrylicWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -517,7 +514,6 @@
 			isa = PBXGroup;
 			children = (
 				AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */,
-				AACD1C12281F239D00C76E87 /* AcrylicWidget.intentdefinition */,
 				AACD1C13281F239E00C76E87 /* Assets.xcassets */,
 				AACD1C15281F239E00C76E87 /* Info.plist */,
 			);
@@ -926,7 +922,6 @@
 				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
 				AA3F6BAB281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift in Sources */,
 				AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */,
-				AACD1C17281F239E00C76E87 /* AcrylicWidget.intentdefinition in Sources */,
 				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -953,7 +948,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACD1C26281F27A300C76E87 /* GenerateMeshGradientIntentHandler.swift in Sources */,
-				AACD1C16281F239E00C76E87 /* AcrylicWidget.intentdefinition in Sources */,
 				AACD1C22281F23B800C76E87 /* UIImage+Additions.swift in Sources */,
 				AACD1C11281F239D00C76E87 /* AcrylicWidget.swift in Sources */,
 				AACD1C25281F274A00C76E87 /* Intents.intentdefinition in Sources */,
@@ -1479,7 +1473,7 @@
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AcrylicWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1510,7 +1504,7 @@
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AcrylicWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AcrylicWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

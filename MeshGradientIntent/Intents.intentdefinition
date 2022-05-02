@@ -186,11 +186,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>4VwOYo</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21E258</string>
+	<string>21F5063e</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13E113</string>
+	<string>13E500a</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.3</string>
+	<string>13.3.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -198,6 +198,8 @@
 			<string>create</string>
 			<key>INIntentConfigurable</key>
 			<true/>
+			<key>INIntentDefaultImageName</key>
+			<string>Mesh</string>
 			<key>INIntentDescription</key>
 			<string>Create mesh gradients</string>
 			<key>INIntentDescriptionID</key>
@@ -254,7 +256,7 @@
 						<key>INIntentParameterMetadataDefaultValue</key>
 						<integer>3</integer>
 						<key>INIntentParameterMetadataMaximumValue</key>
-						<integer>8</integer>
+						<integer>5</integer>
 						<key>INIntentParameterMetadataMinimumValue</key>
 						<integer>3</integer>
 						<key>INIntentParameterMetadataType</key>
@@ -335,7 +337,7 @@
 						<key>INIntentParameterMetadataDefaultValue</key>
 						<integer>3</integer>
 						<key>INIntentParameterMetadataMaximumValue</key>
-						<integer>8</integer>
+						<integer>5</integer>
 						<key>INIntentParameterMetadataMinimumValue</key>
 						<integer>3</integer>
 						<key>INIntentParameterMetadataType</key>
@@ -542,9 +544,9 @@
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<real>0.5</real>
+						<real>0.40000000000000002</real>
 						<key>INIntentParameterMetadataMaximumValue</key>
-						<real>1</real>
+						<real>0.80000000000000004</real>
 						<key>INIntentParameterMetadataType</key>
 						<string>Slider</string>
 					</dict>

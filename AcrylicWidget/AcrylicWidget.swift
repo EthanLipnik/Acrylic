@@ -13,19 +13,14 @@ import TelemetryClient
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> MeshEntry {
-        let config = GenerateMeshGradientIntent()
-        config.colorPalette = .blue
-        let mesh = Self.generateRandomMesh(configuration: config)
         return MeshEntry(date: Date(),
-                  mesh: mesh,
-                  imageData: mesh.render(resolution: CGSize(width: 512, height: 512)).pngData(),
-                  configuration: config)
+                         imageData: UIImage(named: "Mesh")?.jpegData(compressionQuality: 0.8),
+                  configuration: GenerateMeshGradientIntent())
     }
     
     func getSnapshot(for configuration: GenerateMeshGradientIntent, in context: Context, completion: @escaping (MeshEntry) -> ()) {
         let mesh = Self.generateRandomMesh(configuration: configuration)
         let entry = MeshEntry(date: Date(),
-                  mesh: mesh,
                   imageData: mesh.render(resolution: CGSize(width: 512, height: 512)).pngData(),
                   configuration: configuration)
         completion(entry)
@@ -41,23 +36,29 @@ struct Provider: IntentTimelineProvider {
             TelemetryManager.send("meshGenerated")
         }
         
-        var entries: [MeshEntry] = []
-
-        // Generate a timeline consisting of five entries a 30 minutes apart, starting from the current date.
-        let currentDate = Date()
-        for minuteOffset in 0..<30 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+        DispatchQueue.global(qos: .background).async {
+            // Generate a timeline consisting of three entries an hour apart, starting from the current date.
+            let currentDate = Date()
+            let dates: [Date] = (0..<3).compactMap({ Calendar.current.date(byAdding: .hour, value: $0, to: currentDate) })
+            let entries: [MeshEntry] = dates.map { date in
+                let mesh = Self.generateRandomMesh(configuration: configuration)
+                let render = mesh.render(resolution: CGSize(width: 512, height: 512))
+                let imageData: Data?
+                
+                if let jpeg = render.jpegData(compressionQuality: 0.8) {
+                    imageData = jpeg
+                } else {
+                    imageData = render.pngData()
+                }
+                
+                return MeshEntry(date: date,
+                                 imageData: imageData,
+                                 configuration: configuration)
+            }
             
-            let mesh = Self.generateRandomMesh(configuration: configuration)
-            let entry = MeshEntry(date: entryDate,
-                      mesh: mesh,
-                      imageData: mesh.render(resolution: CGSize(width: 512, height: 512)).pngData(),
-                      configuration: configuration)
-            entries.append(entry)
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
     
     static func generateRandomMesh(configuration: GenerateMeshGradientIntent = .init()) -> MeshService {
@@ -74,7 +75,6 @@ struct Provider: IntentTimelineProvider {
 
 struct MeshEntry: TimelineEntry {
     let date: Date
-    let mesh: MeshService
     let imageData: Data?
     let configuration: GenerateMeshGradientIntent
 }
@@ -84,7 +84,8 @@ struct AcrylicWidgetEntryView : View {
     
     var body: some View {
         Group {
-            if let imageData = entry.imageData, let uiImage = UIImage(data: imageData) {
+            if let imageData = entry.imageData,
+                let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFill()
@@ -96,19 +97,34 @@ struct AcrylicWidgetEntryView : View {
                     .padding()
             }
         }
+        .background(Image("Mesh").resizable().scaledToFill())
     }
 }
 
 @main
 struct AcrylicWidget: Widget {
     let kind: String = "AcrylicWidget"
-
+    
+    private let supportedFamilies:[WidgetFamily] = {
+        if #available(iOSApplicationExtension 15.0, *) {
+            return [.systemSmall,
+                    .systemMedium,
+                    .systemLarge,
+                    .systemExtraLarge]
+        } else {
+            return [.systemSmall,
+                    .systemMedium,
+                    .systemLarge]
+        }
+    }()
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: GenerateMeshGradientIntent.self, provider: Provider()) { entry in
             AcrylicWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Mesh Gradient")
         .description("Generate a random mesh gradient from a widget.")
+        .supportedFamilies(supportedFamilies)
     }
 }
 
@@ -118,7 +134,6 @@ struct AcrylicWidget_Previews: PreviewProvider {
         config.colorPalette = .random
         let mesh = Provider.generateRandomMesh(configuration: config)
         let entry = MeshEntry(date: Date(),
-                              mesh: mesh,
                               imageData: mesh.render(resolution: CGSize(width: 512, height: 512)).pngData(),
                               configuration: config)
         

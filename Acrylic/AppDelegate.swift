@@ -9,9 +9,10 @@ import UIKit
 import CoreData
 import UniformTypeIdentifiers
 import TelemetryClient
+import MessageUI
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControllerDelegate {
 
     static var isCloudFolder: Bool = true
     static var documentsFolder: URL = {
@@ -149,8 +150,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func showHelp(_ sender: Any?) {
-        let url = URL(string: "https://github.com/EthanLipnik/Acrylic/issues/new")!
-        UIApplication.shared.open(url)
+        let projectNavigatorScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0.delegate as? SceneDelegate })
+            .first(where: { $0.window?.isKeyWindow ?? false })?
+            .window
+        
+        let editorScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0.delegate as? EditorDelegate })
+            .first(where: { $0.window?.isKeyWindow ?? false })?
+            .window
+        
+        if var topController = (projectNavigatorScene ?? editorScene)?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            if MFMailComposeViewController.canSendMail() {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setToRecipients(["hi@ethanlipnik.com"])
+                mail.setSubject("Acrylic Support")
+                mail.setMessageBody("<p><strong>OS Version:</strong> macOS \(UIDevice.current.systemVersion)</p><p><strong>App Version:</strong> \(Bundle.main.appVersionLong)</p><p><strong>Build Number:</strong> \(Bundle.main.appBuild)</p>", isHTML: true)
+                
+                topController.present(mail, animated: true)
+            } else {
+                let alertController = UIAlertController(title: "Can't send mail", message: "No mail app found. Please email hi@ethanlipnik.com.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                topController.present(alertController, animated: true)
+            }
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 #endif
+}
+
+extension Bundle {
+    public var appName: String { getInfo("CFBundleName")  }
+    public var displayName: String {getInfo("CFBundleDisplayName")}
+    public var language: String {getInfo("CFBundleDevelopmentRegion")}
+    public var identifier: String {getInfo("CFBundleIdentifier")}
+    public var copyright: String {getInfo("NSHumanReadableCopyright").replacingOccurrences(of: "\\\\n", with: "\n") }
+    
+    public var appBuild: String { getInfo("CFBundleVersion") }
+    public var appVersionLong: String { getInfo("CFBundleShortVersionString") }
+    
+    fileprivate func getInfo(_ str: String) -> String { infoDictionary?[str] as? String ?? "⚠️" }
 }

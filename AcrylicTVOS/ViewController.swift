@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         let meshService = MeshService()
         meshService.width = 5
         meshService.height = 5
-#if targetEnvironment(simulator)
+#if !targetEnvironment(simulator)
         meshService.subdivsions = 32
 #else
         meshService.subdivsions = 8

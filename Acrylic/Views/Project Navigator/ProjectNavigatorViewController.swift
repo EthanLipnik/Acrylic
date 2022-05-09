@@ -337,24 +337,24 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
                 ])
             ]
             
-            if fileUrls.count == 1 {
-                children.append(UIMenu(title: "", options: .displayInline, children: [
-                    UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
-                        document.open { _ in
-                            let vc = UIHostingController(rootView: ExportView(document: document))
-                            
-#if targetEnvironment(macCatalyst)
-                            vc.preferredContentSize = CGSize(width: 1024, height: 512)
-#else
-                            vc.modalPresentationStyle = .formSheet
-#endif
-                            self?.present(vc, animated: true)
-                        }
-                    })
-                ]))
-            }
-            
             if document.fileUrl?.pathExtension != "icloud" {
+                if fileUrls.count == 1 {
+                    children.append(UIMenu(title: "", options: .displayInline, children: [
+                        UIAction(title: "Export", image: UIImage(systemName: "square.and.arrow.up"), discoverabilityTitle: "Export document", handler: { _ in
+                            document.open { _ in
+                                let vc = UIHostingController(rootView: ExportView(document: document))
+                                
+    #if targetEnvironment(macCatalyst)
+                                vc.preferredContentSize = CGSize(width: 1024, height: 512)
+    #else
+                                vc.modalPresentationStyle = .formSheet
+    #endif
+                                self?.present(vc, animated: true)
+                            }
+                        })
+                    ]))
+                }
+                
                 if UIDevice.current.userInterfaceIdiom != .phone {
                     children.insert(UIAction(title: "Open in New Window" + (fileUrls.count > 1 ? " (\(fileUrls.count))" : ""), discoverabilityTitle: "Open document(s) in new window", handler: { action in
                         fileUrls.forEach({ self?.view.window?.openDocument($0, destroysCurrentScene: false, alwaysUseNewWindow: true) })

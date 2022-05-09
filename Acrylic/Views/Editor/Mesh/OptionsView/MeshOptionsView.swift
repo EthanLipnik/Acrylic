@@ -26,24 +26,26 @@ struct MeshOptionsView: View {
                             Button {
                                 closeAction()
                             } label: {
-                                Image(systemName: "xmark")
-                                    .font(.title3.bold())
+                                Text("Close")
+                                    .font(.body)
+                                    .frame(height: 60)
                             }
                         }
                         
                         Text(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh")
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .frame(height: 60)
                         
                         Button {
                             isExporting.toggle()
                         } label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .font(.title3.bold())
+                            Text("Export")
+                                .font(.headline)
+                                .frame(height: 60)
                         }
                     }
                     .padding(.horizontal, 30)
-                    .frame(height: 60)
                     .background(VisualEffectBlur(blurStyle: .regular))
                     .overlay(Divider().opacity(0.5), alignment: .bottom)
                 }
@@ -73,7 +75,8 @@ struct MeshOptionsView: View {
                }
                .navigationBarHidden(true)
             }
-        }.sheet(isPresented: $isExporting) {
+        }
+        .sheet(isPresented: $isExporting) {
             Group {
                 if let meshDocument = meshService.meshDocument {
                     ExportView(document: .mesh(meshDocument))

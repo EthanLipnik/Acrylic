@@ -150,7 +150,9 @@ class MeshViewController: UIViewController {
             meshView.center = CGPoint(x: view.center.x, y: view.center.y + (view.safeAreaInsets.top / 2) - (view.safeAreaInsets.bottom / 2))
         }
         
-        grabbersView.setPoints(meshService.colors, width: meshService.width, height: meshService.height, withAnimation: false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.grabbersView.setPoints(self.meshService.colors, width: self.meshService.width, height: self.meshService.height, withAnimation: true)
+        }
     }
 }
 

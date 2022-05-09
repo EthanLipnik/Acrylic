@@ -24,7 +24,7 @@ extension ExportView {
                     }
                 } label: {
                     Text("Format:")
-                        .frame(width: 90, alignment: .leading)
+                        .frame(width: 110, alignment: .leading)
                 }
 #if !targetEnvironment(macCatalyst)
                 .pickerStyle(.segmented)
@@ -33,7 +33,7 @@ extension ExportView {
                 if exportService.format.hasCompression {
                     HStack {
                         Text("Quality:")
-                            .frame(width: 90, alignment: .leading)
+                            .frame(width: 110, alignment: .leading)
                         Slider(value: $exportService.compressionQuality, in: 0...1) {
                             Text("")
                         }.labelsHidden()

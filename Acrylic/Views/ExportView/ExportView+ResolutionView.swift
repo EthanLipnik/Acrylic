@@ -45,7 +45,7 @@ extension ExportView {
                     }
                 } label: {
                     Text("Resolution:")
-                        .frame(width: 90, alignment: .leading)
+                        .frame(width: 110, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .onChange(of: selectedResolution) { newValue in

@@ -19,7 +19,7 @@ extension ExportView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
                     Text("Blur:")
-                        .frame(width: 90, alignment: .leading)
+                        .frame(width: 110, alignment: .leading)
                     Slider(value: $exportService.blur, in: 0...100) {
                         Text("")
                     }.labelsHidden()
@@ -52,7 +52,7 @@ extension ExportView {
             Group {
                 HStack {
                     Text("Subdivisions:")
-                        .frame(width: 100, alignment: .leading)
+                        .frame(width: 110, alignment: .leading)
                     Slider(value: subdivisionsIntProxy, in: 4...128, step: 1) {
                         Text("Subdivisions")
                     }.labelsHidden()

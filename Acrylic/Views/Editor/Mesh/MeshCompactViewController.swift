@@ -87,8 +87,6 @@ class MeshCompactViewController: MeshViewController {
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })
-        
-        print(normalDrawerHeight)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -148,5 +146,17 @@ class MeshCompactViewController: MeshViewController {
         super.viewWillLayoutSubviews()
         
         normalDrawerHeight = view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24
+        
+        drawerHeightConstraint.constant = normalDrawerHeight
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.3,
+                       options: [.curveEaseInOut,
+                                 .beginFromCurrentState,
+                                 .allowUserInteraction],
+                       animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
     }
 }

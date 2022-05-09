@@ -45,9 +45,14 @@ class MeshCompactViewController: MeshViewController {
         
         let optionsView: some View = {
             MeshOptionsView(isCompact: true) { [weak self] in
-                self?.dismiss(animated: true)
-            }
-            .environmentObject(meshService)
+                if self?.presentingViewController == nil {
+                    if let session = self?.view.window?.windowScene?.session {
+                        UIApplication.shared.requestSceneSessionDestruction(session, options: nil)
+                    }
+                } else {
+                    self?.dismiss(animated: true)
+                }
+            }.environmentObject(meshService)
         }()
         
         let optionsVC = UIHostingController(rootView: optionsView)

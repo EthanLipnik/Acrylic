@@ -16,15 +16,15 @@ class MeshEditorViewController: EditorViewController<MeshDocument> {
         self.meshService = .init(document)
         super.init(document, viewControllers: [:])
         
-        var optionsView: some View {
-            if view.window?.windowScene?.delegate is EditorSceneDelegate {
-                return MeshOptionsView(isCompact: false, closeAction: nil).environmentObject(meshService)
+        let optionsView = MeshOptionsView(isCompact: false) { [weak self] in
+            if self?.presentingViewController == nil {
+                if let session = self?.view.window?.windowScene?.session {
+                    UIApplication.shared.requestSceneSessionDestruction(session, options: nil)
+                }
             } else {
-                return MeshOptionsView(isCompact: false) { [weak self] in
-                    self?.dismiss(animated: true)
-                }.environmentObject(meshService)
+                self?.dismiss(animated: true)
             }
-        }
+        }.environmentObject(meshService)
         
         editorViewControllers = [
             .primary: UINavigationController(rootViewController: UIHostingController(rootView: optionsView)),

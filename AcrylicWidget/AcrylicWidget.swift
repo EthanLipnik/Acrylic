@@ -42,21 +42,33 @@ struct Provider: IntentTimelineProvider {
             // Generate a timeline consisting of three entries an hour apart, starting from the current date.
             let currentDate = Date()
             let dates: [Date] = (0..<3).compactMap({ Calendar.current.date(byAdding: .hour, value: $0, to: currentDate) })
-            let entries: [MeshEntry] = dates.map { date in
-                let mesh = Self.generateRandomMesh(configuration: configuration)
-                let render = mesh.render(resolution: CGSize(width: 256, height: 256))
-                let imageData: Data?
+            var meshService: MeshService? = MeshService()
+            let entries: [MeshEntry] = dates.compactMap { date in
+                meshService?.width = configuration.width?.intValue ?? 3
+                meshService?.height = configuration.height?.intValue ?? 3
                 
-                if let jpeg = render.jpegData(compressionQuality: 0.8) {
-                    imageData = jpeg
+                meshService?.generate(Palette: .hue(from: configuration.colorPalette),
+                                      luminosity: .luminosity(from: configuration.luminosity),
+                                      positionMultiplier: configuration.positionMultiplier?.floatValue ?? 0.5)
+                
+                if let render = meshService?.render(resolution: CGSize(width: 256, height: 256)) {
+                    let imageData: Data?
+                    
+                    if let jpeg = render.jpegData(compressionQuality: 0.8) {
+                        imageData = jpeg
+                    } else {
+                        imageData = render.pngData()
+                    }
+                    
+                    return MeshEntry(date: date,
+                                     imageData: imageData,
+                                     configuration: configuration)
                 } else {
-                    imageData = render.pngData()
+                    return nil
                 }
-                
-                return MeshEntry(date: date,
-                                 imageData: imageData,
-                                 configuration: configuration)
             }
+            
+            meshService = nil
             
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)

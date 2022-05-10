@@ -331,7 +331,7 @@
 			<integer>19</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
-				<key>width,height,colorPalette,luminosity,positionMultiplier,aspectRatio</key>
+				<key>width,height,colorPalette,luminosity,positionMultiplier</key>
 				<dict>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
@@ -731,70 +731,6 @@
 							<string>i3Vzfz</string>
 						</dict>
 					</array>
-				</dict>
-				<dict>
-					<key>INIntentParameterConfigurable</key>
-					<true/>
-					<key>INIntentParameterCustomDisambiguation</key>
-					<true/>
-					<key>INIntentParameterDisplayName</key>
-					<string>Aspect Ratio</string>
-					<key>INIntentParameterDisplayNameID</key>
-					<string>UmWzZN</string>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>6</integer>
-					<key>INIntentParameterEnumType</key>
-					<string>AspectRatio</string>
-					<key>INIntentParameterEnumTypeNamespace</key>
-					<string>4VwOYo</string>
-					<key>INIntentParameterMetadata</key>
-					<dict>
-						<key>INIntentParameterMetadataDefaultValue</key>
-						<string>square</string>
-					</dict>
-					<key>INIntentParameterName</key>
-					<string>aspectRatio</string>
-					<key>INIntentParameterPromptDialogs</key>
-					<array>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Configuration</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Primary</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${aspectRatio}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>s2Lg3p</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${aspectRatio}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>9nnmxv</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
-						</dict>
-					</array>
-					<key>INIntentParameterSupportsResolution</key>
-					<true/>
-					<key>INIntentParameterTag</key>
-					<integer>19</integer>
-					<key>INIntentParameterType</key>
-					<string>Integer</string>
 				</dict>
 			</array>
 			<key>INIntentResponse</key>

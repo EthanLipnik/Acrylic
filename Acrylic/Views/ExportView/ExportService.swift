@@ -97,7 +97,7 @@ class ExportService: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let render = self?.render() else { return }
             self?.baseImage = CIImage(image: render)
-            self?.scaledImage = self?.baseImage?.resize(CGSize(width: 512, height: 512))
+            self?.scaledImage = self?.baseImage?.scale(CGSize(width: 512, height: 512))
             self?.applyFilters()
             
             DispatchQueue.main.async {
@@ -125,7 +125,7 @@ class ExportService: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             self.baseImage = CIImage(image: self.render()) ?? self.baseImage
-            self.scaledImage = self.baseImage?.resize(CGSize(width: 512, height: 512))
+            self.scaledImage = self.baseImage?.resize(CGSize(width: (self.resolution.width / 1024) * 512, height: (self.resolution.height / 1024) * 512))
             self.applyFilters()
             
             DispatchQueue.main.async {
@@ -166,7 +166,8 @@ class ExportService: ObservableObject {
                 guard let ciImage = renderImage
                     .clampedToExtent()
                     .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
-                    .cropped(to: renderImage.extent) ?? self.baseImage,
+                    .cropped(to: renderImage.extent)
+                    .resize(CGSize(width: self.resolution.width, height: self.resolution.height)) ?? self.baseImage,
                       let cgImage = context.createCGImage(ciImage, from: ciImage.extent)
                 else {
                     TelemetryManager.send("renderFailed", with: ["error": "failed to create cgImage from ciImage."])
@@ -212,22 +213,34 @@ class ExportService: ObservableObject {
         case .mesh(let meshDocument):
             let meshService = MeshService(meshDocument, shouldSave: false)
             meshService.subdivsions = subdivisions
-            return meshService.render(resolution: CGSize(width: resolution.width, height: resolution.height))
+            return meshService.render(resolution: CGSize(width: resolution.width, height: resolution.width))
         case .scene(let sceneDocument):
             let sceneService = SceneService(sceneDocument, shouldSave: false)
             sceneService.sceneDocument.cameras[0].screenSpaceAmbientOcclusionOptions.intensity = ambientOcclusionIntensity
-            return sceneService.render(resolution: CGSize(width: resolution.width, height: resolution.height), useAntialiasing: true)
+            return sceneService.render(resolution: CGSize(width: resolution.width, height: resolution.width), useAntialiasing: true)
         }
     }
 }
 
 extension CIImage {
-    func resize(_ size: CGSize) -> CIImage? {
+    func scale(_ size: CGSize) -> CIImage? {
         let scale = Double(size.width) / Double(self.extent.size.width)
         let filter = CIFilter(name: "CILanczosScaleTransform")
         filter?.setValue(self, forKey: kCIInputImageKey)
         filter?.setValue(NSNumber(value: scale), forKey: kCIInputScaleKey)
         filter?.setValue(1.0, forKey:kCIInputAspectRatioKey)
         return filter?.value(forKey: kCIOutputImageKey) as? CIImage
+    }
+    
+    func resize(_ size: CGSize) -> CIImage? {
+        let resizeFilter = CIFilter(name:"CILanczosScaleTransform")
+
+        let scale = size.height / self.extent.height
+        let aspectRatio = size.width / (self.extent.width * scale)
+
+        resizeFilter?.setValue(self, forKey: kCIInputImageKey)
+        resizeFilter?.setValue(scale, forKey: kCIInputScaleKey)
+        resizeFilter?.setValue(aspectRatio, forKey: kCIInputAspectRatioKey)
+        return resizeFilter?.outputImage
     }
 }

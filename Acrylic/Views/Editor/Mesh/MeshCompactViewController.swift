@@ -29,10 +29,10 @@ class MeshCompactViewController: MeshViewController {
     }()
     
     lazy var drawerHeightConstraint: NSLayoutConstraint = drawerView.heightAnchor.constraint(equalToConstant: 0)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(drawerView)
         
         NSLayoutConstraint.activate([
@@ -71,6 +71,7 @@ class MeshCompactViewController: MeshViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
+    lazy var didAppear: Bool = false
     lazy var normalDrawerHeight: CGFloat = .zero
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +87,9 @@ class MeshCompactViewController: MeshViewController {
                                  .allowUserInteraction],
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
-        })
+        }) { [weak self] _ in
+            self?.didAppear = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -147,16 +150,18 @@ class MeshCompactViewController: MeshViewController {
         
         normalDrawerHeight = view.bounds.height - meshView.bounds.height - meshView.frame.origin.y - 24
         
-        drawerHeightConstraint.constant = normalDrawerHeight
-        UIView.animate(withDuration: 0.4,
-                       delay: 0,
-                       usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 0.3,
-                       options: [.curveEaseInOut,
-                                 .beginFromCurrentState,
-                                 .allowUserInteraction],
-                       animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        })
+        if didAppear {
+            drawerHeightConstraint.constant = normalDrawerHeight
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.3,
+                           options: [.curveEaseInOut,
+                                     .beginFromCurrentState,
+                                     .allowUserInteraction],
+                           animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            })
+        }
     }
 }

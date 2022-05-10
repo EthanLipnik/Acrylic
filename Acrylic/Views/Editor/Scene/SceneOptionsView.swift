@@ -87,6 +87,7 @@ struct SceneOptionsView: View {
     var exportButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {
+                isExporting.toggle()
             } label: {
                 Label("Export", systemImage: "square.and.arrow.up")
             }

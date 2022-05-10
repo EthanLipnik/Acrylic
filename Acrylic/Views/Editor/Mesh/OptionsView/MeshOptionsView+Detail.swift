@@ -97,7 +97,7 @@ extension MeshOptionsView {
                 }
                 HStack {
                     Stepper(value: heightIntProxy, in: 3.0...8.0) {
-                        Label("Vertical", systemImage: "arrow.up.arrow.down")
+                        Label("Height", systemImage: "arrow.up.arrow.down")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     Text("\(meshService.height)")
@@ -106,7 +106,10 @@ extension MeshOptionsView {
                 }
             }
             
-            return OptionsView.DetailView(title: "Detail", systemImage: "sparkles", withBackground: withBackground) {
+            return OptionsView.DetailView(title: "Detail",
+                                          systemImage: "sparkles",
+                                          withBackground: withBackground,
+                                          info: "Subdivsions – Adjust the detail of the points.\nWidth – Adjust the amount of points horizontally.\nHeight – Adjust the amount of points vertically.") {
                 VStack(spacing: 20) {
                     HStack {
                         Stepper(value: subdivsionsIntProxy, in: 4.0...48.0, step: 2.0) {

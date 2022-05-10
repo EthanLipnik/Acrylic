@@ -212,6 +212,8 @@ class ProjectNavigatorViewController: UIViewController, UICollectionViewDelegate
             snapshot.appendItems(documents.scene, toSection: .scene)
         }
         
+        navigatorView.createProjectLabel.isHidden = !(documents.mesh.isEmpty && documents.scene.isEmpty)
+        
         dataSource.apply(snapshot, animatingDifferences: true, completion: completion)
     }
     

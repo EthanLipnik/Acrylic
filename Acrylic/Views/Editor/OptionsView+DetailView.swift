@@ -13,14 +13,20 @@ extension OptionsView {
         let systemImage: String
         let withBackground: Bool
         let forceMacStyle: Bool
+        let info: String?
         let content: Content
         
-        init(title: String, systemImage: String, withBackground: Bool = true, forceMacStyle: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+        @State private var isShowingInfo: Bool
+        
+        init(title: String, systemImage: String, withBackground: Bool = true, forceMacStyle: Bool = false, info: String? = nil, @ViewBuilder content: @escaping () -> Content) {
             self.title = title
             self.systemImage = systemImage
             self.content = content()
             self.withBackground = withBackground
             self.forceMacStyle = forceMacStyle
+            self.info = info
+            
+            self._isShowingInfo = .init(initialValue: false)
         }
         
         var body: some View {
@@ -46,20 +52,32 @@ extension OptionsView {
                             .fill(Color(.tertiarySystemBackground)) : nil)
                 }
             }
+            .alert(isPresented: $isShowingInfo) {
+                Alert(title: Text(title + " Info"), message: Text(info ?? ""), dismissButton: .cancel(Text("Ok")))
+            }
         }
         
         var view: some View {
             VStack {
-                if #available(iOS 15.0, macCatalyst 15.0, *) {
-                    Label(title, systemImage: systemImage)
-                        .font(.headline.bold())
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } else {
-                    Label(title, systemImage: systemImage)
-                        .font(.headline.bold())
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                HStack {
+                    if #available(iOS 15.0, macCatalyst 15.0, *) {
+                        Label(title, systemImage: systemImage)
+                            .font(.headline.bold())
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        Label(title, systemImage: systemImage)
+                            .font(.headline.bold())
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    if info != nil {
+                        Button {
+                            isShowingInfo.toggle()
+                        } label: {
+                            Image(systemName: "info.circle")
+                        }
+                    }
                 }
                 Divider()
                 content

@@ -19,7 +19,9 @@ extension MeshOptionsView {
         
         
         var body: some View {
-            OptionsView.DetailView(title: "Selection", systemImage: "circle", withBackground: withBackground) {
+            OptionsView.DetailView(title: "Selection",
+                                   systemImage: "circle",
+                                   withBackground: withBackground) {
                 VStack(spacing: 20) {
                     let value = Binding<MeshNode.Color?>(get: { () -> MeshNode.Color? in
                         if let selectedPoint = meshService.selectedPoint {
@@ -148,7 +150,14 @@ extension MeshOptionsView {
                         self.node?.tangent.v = value
                     }
                     
-                    let tangentView = OptionsView.DetailView(title: "Tangent", systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
+                    let tangentView = OptionsView.DetailView(title: "Tangent",
+                                                             systemImage: "point.topleft.down.curvedto.point.bottomright.up") {
+                        Text("Adjust the shape of the point")
+                            .font(.caption.bold())
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .multilineTextAlignment(.center)
+                        
                         Slider(value: uTangent, in: 0.0...5.0) {
                             Label("uTangent", systemImage: "trapezoid.and.line.horizontal.fill")
                         }
@@ -184,7 +193,11 @@ extension MeshOptionsView {
                         }
                     }
                 } else {
-                    EmptyView()
+                    Text("Tap one of the circles on the mesh to adjust it. Drag it to move it around.")
+                        .font(.caption.bold())
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .multilineTextAlignment(.center)
                 }
             }
         }

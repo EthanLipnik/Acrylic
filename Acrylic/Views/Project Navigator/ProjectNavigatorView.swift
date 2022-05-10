@@ -62,6 +62,23 @@ class ProjectNavigatorView: UIView {
         return collectionView
     }()
     
+    lazy var createProjectLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "Your project navigator is empty. Tap the plus in the top right corner to create a new project."
+        label.font = UIFont.preferredFont(forTextStyle: .title1, compatibleWith: traitCollection)
+        label.textColor = UIColor.secondaryLabel
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        
+        label.isHidden = true
+        label.isUserInteractionEnabled = false
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     init() {
         super.init(frame: .zero)
         commonInit()
@@ -79,5 +96,12 @@ class ProjectNavigatorView: UIView {
     
     private func commonInit() {
         addSubview(collectionView)
+        addSubview(createProjectLabel)
+        
+        NSLayoutConstraint.activate([
+            createProjectLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            createProjectLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            createProjectLabel.widthAnchor.constraint(equalTo: readableContentGuide.widthAnchor)
+        ])
     }
 }

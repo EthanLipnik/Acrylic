@@ -92,7 +92,12 @@ extension ExportView {
                                                 CGFloat(newValue.size) * selectedAspectRatio.multiplier)
                 }
                 
-                aspectRatioPicker
+                switch exportService.document {
+                case .mesh:
+                    aspectRatioPicker
+                default:
+                    EmptyView()
+                }
             }
         }
         

@@ -66,6 +66,7 @@ class SceneCompactViewController: SceneViewController {
         drawerView.addGestureRecognizer(dragGesture)
     }
     
+    lazy var didAppear: Bool = false
     lazy var normalDrawerHeight: CGFloat = .zero
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,7 +82,9 @@ class SceneCompactViewController: SceneViewController {
                                  .allowUserInteraction],
                        animations: { [weak self] in
             self?.view.layoutIfNeeded()
-        })
+        }) { [weak self] _ in
+            self?.didAppear = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -141,5 +144,19 @@ class SceneCompactViewController: SceneViewController {
         super.viewWillLayoutSubviews()
         
         normalDrawerHeight = view.bounds.height - sceneContainerView.bounds.height - sceneContainerView.frame.origin.y - 24
+        
+        if didAppear {
+            drawerHeightConstraint.constant = normalDrawerHeight
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.3,
+                           options: [.curveEaseInOut,
+                                     .beginFromCurrentState,
+                                     .allowUserInteraction],
+                           animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            })
+        }
     }
 }

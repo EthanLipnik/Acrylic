@@ -15,6 +15,7 @@ struct MeshOptionsView: View {
     let isCompact: Bool
     var closeAction: (() -> Void)? = nil
     @State private var isExporting: Bool = false
+    @State private var isClearingColors: Bool = false
     
     var body: some View {
         Group {
@@ -111,7 +112,15 @@ struct MeshOptionsView: View {
     var scrollView: some View {
         ScrollView {
             VStack {
-                SelectionView(clearColorsAction: clearColors)
+                SelectionView {
+                    isClearingColors.toggle()
+                }
+                .alert(isPresented: $isClearingColors, content: {
+                    Alert(title: Text("Are you sure?"),
+                          message: Text("You cannot undo this action."),
+                          primaryButton: Alert.Button.destructive(Text("Clear colors"), action: clearColors),
+                          secondaryButton: Alert.Button.cancel())
+                })
                 DetailsView()
                 ViewportView()
             }

@@ -180,13 +180,134 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>INEnumDisplayName</key>
+			<string>Aspect Ratio</string>
+			<key>INEnumDisplayNameID</key>
+			<string>zmhC4P</string>
+			<key>INEnumGeneratesHeader</key>
+			<true/>
+			<key>INEnumName</key>
+			<string>AspectRatio</string>
+			<key>INEnumType</key>
+			<string>Regular</string>
+			<key>INEnumValues</key>
+			<array>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>unknown</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>kBTKCy</string>
+					<key>INEnumValueName</key>
+					<string>unknown</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Square</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Wo8iJd</string>
+					<key>INEnumValueIndex</key>
+					<integer>1</integer>
+					<key>INEnumValueName</key>
+					<string>square</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Square</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>nZfzgt</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Horizontal 16:9</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>kkONfR</string>
+					<key>INEnumValueIndex</key>
+					<integer>2</integer>
+					<key>INEnumValueName</key>
+					<string>a</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Horizontal 16 by 9</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>TGOxtT</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Vertical 16:9</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>4A66zw</string>
+					<key>INEnumValueIndex</key>
+					<integer>3</integer>
+					<key>INEnumValueName</key>
+					<string>b</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Vertical 16 by 9</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>uIqTCi</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Horizontal 2:1</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>fuwEfp</string>
+					<key>INEnumValueIndex</key>
+					<integer>4</integer>
+					<key>INEnumValueName</key>
+					<string>c</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Horizontal 2 by 1</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>WzVpMI</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Vertical 2:1</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>187jf2</string>
+					<key>INEnumValueIndex</key>
+					<integer>5</integer>
+					<key>INEnumValueName</key>
+					<string>d</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Vertical 2 by 1</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>AIRPah</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Horizontal 4:3</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>mdDRYh</string>
+					<key>INEnumValueIndex</key>
+					<integer>6</integer>
+					<key>INEnumValueName</key>
+					<string>e</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Horizontal 4 by 3</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>K4FlhL</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Vertical 4:3</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>lsFY0C</string>
+					<key>INEnumValueIndex</key>
+					<integer>7</integer>
+					<key>INEnumValueName</key>
+					<string>f</string>
+					<key>INEnumValuePronunciationHint</key>
+					<string>Vertical 4 by 3</string>
+					<key>INEnumValuePronunciationHintID</key>
+					<string>QM2hsk</string>
+				</dict>
+			</array>
+		</dict>
 	</array>
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
 	<string>4VwOYo</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21F5063e</string>
+	<string>21F5071b</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>13E500a</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -207,10 +328,10 @@
 			<key>INIntentEligibleForWidgets</key>
 			<true/>
 			<key>INIntentLastParameterTag</key>
-			<integer>17</integer>
+			<integer>19</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
-				<key>width,height,colorPalette,luminosity,positionMultiplier</key>
+				<key>width,height,colorPalette,luminosity,positionMultiplier,aspectRatio</key>
 				<dict>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
@@ -610,6 +731,70 @@
 							<string>i3Vzfz</string>
 						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>Aspect Ratio</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>UmWzZN</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>6</integer>
+					<key>INIntentParameterEnumType</key>
+					<string>AspectRatio</string>
+					<key>INIntentParameterEnumTypeNamespace</key>
+					<string>4VwOYo</string>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataDefaultValue</key>
+						<string>square</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>aspectRatio</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${aspectRatio}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>s2Lg3p</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${aspectRatio}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>9nnmxv</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
+					</array>
+					<key>INIntentParameterSupportsResolution</key>
+					<true/>
+					<key>INIntentParameterTag</key>
+					<integer>19</integer>
+					<key>INIntentParameterType</key>
+					<string>Integer</string>
 				</dict>
 			</array>
 			<key>INIntentResponse</key>

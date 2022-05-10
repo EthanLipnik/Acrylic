@@ -15,15 +15,17 @@ struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> MeshEntry {
         return MeshEntry(date: Date(),
                          imageData: UIImage(named: "Mesh")?.jpegData(compressionQuality: 0.8),
-                  configuration: GenerateMeshGradientIntent())
+                         configuration: GenerateMeshGradientIntent())
     }
     
     func getSnapshot(for configuration: GenerateMeshGradientIntent, in context: Context, completion: @escaping (MeshEntry) -> ()) {
-        let mesh = Self.generateRandomMesh(configuration: configuration)
-        let entry = MeshEntry(date: Date(),
-                  imageData: mesh.render(resolution: CGSize(width: 512, height: 512)).pngData(),
-                  configuration: configuration)
-        completion(entry)
+        DispatchQueue.global(qos: .background).async {
+            let mesh = Self.generateRandomMesh(configuration: configuration)
+            let entry = MeshEntry(date: Date(),
+                                  imageData: mesh.render(resolution: CGSize(width: 256, height: 256)).pngData(),
+                                  configuration: configuration)
+            completion(entry)
+        }
     }
 
     func getTimeline(for configuration: GenerateMeshGradientIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
@@ -42,7 +44,7 @@ struct Provider: IntentTimelineProvider {
             let dates: [Date] = (0..<3).compactMap({ Calendar.current.date(byAdding: .hour, value: $0, to: currentDate) })
             let entries: [MeshEntry] = dates.map { date in
                 let mesh = Self.generateRandomMesh(configuration: configuration)
-                let render = mesh.render(resolution: CGSize(width: 512, height: 512))
+                let render = mesh.render(resolution: CGSize(width: 256, height: 256))
                 let imageData: Data?
                 
                 if let jpeg = render.jpegData(compressionQuality: 0.8) {

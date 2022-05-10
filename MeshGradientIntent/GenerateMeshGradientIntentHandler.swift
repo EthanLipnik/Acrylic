@@ -53,6 +53,10 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
         }
     }
     
+    func resolveAspectRatio(for intent: GenerateMeshGradientIntent) async -> AspectRatioResolutionResult {
+        return .success(with: intent.aspectRatio)
+    }
+    
     func confirm(intent: GenerateMeshGradientIntent) async -> GenerateMeshGradientIntentResponse {
         return .init(code: .ready, userActivity: nil)
     }
@@ -87,10 +91,43 @@ class GenerateMeshGradientIntentHandler: NSObject, GenerateMeshGradientIntentHan
             
             let render = meshService.render(resolution: resolution)
             
-            DispatchQueue.main.async {
-                let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
-                response.gradient = INFile(data: render.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
-                completion(response)
+            func returnImage(image: UIImage) {
+                DispatchQueue.main.async {
+                    let response = GenerateMeshGradientIntentResponse(code: .success, userActivity: nil)
+                    response.gradient = INFile(data: image.pngData()!, filename: "gradient.png", typeIdentifier: UTType.png.identifier)
+                    completion(response)
+                }
+            }
+            
+            if intent.aspectRatio != .square {
+                let aspectRatio: CGFloat = {
+                    switch intent.aspectRatio {
+                    case .square:
+                        return 1
+                    case .a:
+                        return 9/16
+                    case .b:
+                        return 16/9
+                    case .c:
+                        return 1/2
+                    case .d:
+                        return 2/1
+                    case .e:
+                        return 3/4
+                    case .f:
+                        return 4/3
+                    default:
+                        return 1
+                    }
+                }()
+                if let ciImage = CIImage(image: render)?.resize(CGSize(width: resolution.width,
+                                                                       height: resolution.height * aspectRatio)),
+                   let cgImage = CIContext().createCGImage(ciImage, from: ciImage.extent) {
+                    
+                    returnImage(image: UIImage(cgImage: cgImage))
+                }
+            } else {
+                returnImage(image: render)
             }
         }
     }
@@ -154,5 +191,19 @@ extension ColorPalette {
                 .random
             ]
         }
+    }
+}
+
+extension CIImage {
+    func resize(_ size: CGSize) -> CIImage? {
+        let resizeFilter = CIFilter(name:"CILanczosScaleTransform")
+
+        let scale = size.height / self.extent.height
+        let aspectRatio = size.width / (self.extent.width * scale)
+
+        resizeFilter?.setValue(self, forKey: kCIInputImageKey)
+        resizeFilter?.setValue(scale, forKey: kCIInputScaleKey)
+        resizeFilter?.setValue(aspectRatio, forKey: kCIInputAspectRatioKey)
+        return resizeFilter?.outputImage
     }
 }

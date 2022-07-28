@@ -7,915 +7,133 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA028F36281F60D9006A892C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F35281F60D9006A892C /* AppDelegate.swift */; };
-		AA028F38281F60D9006A892C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F37281F60D9006A892C /* ViewController.swift */; };
-		AA028F3B281F60D9006A892C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA028F39281F60D9006A892C /* Main.storyboard */; };
-		AA028F3D281F60D9006A892C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA028F3C281F60D9006A892C /* Assets.xcassets */; };
-		AA028F40281F60D9006A892C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */; };
-		AA028F4A281F60DA006A892C /* AcrylicTVOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */; };
-		AA028F54281F60DA006A892C /* AcrylicTVOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */; };
-		AA028F56281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */; };
-		AA028F62281F60F1006A892C /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA028F61281F60F1006A892C /* MeshKit */; };
-		AA028F64281F60F7006A892C /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA028F63281F60F7006A892C /* RandomColor */; };
-		AA028F65281F622A006A892C /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */; };
-		AA03D92327EEA65C00BAE4C4 /* ExportView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */; };
-		AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */; };
-		AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */; };
-		AA0AD66327EEB671009F822D /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AD66227EEB671009F822D /* ExportService.swift */; };
-		AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */; };
-		AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */; };
-		AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */; };
-		AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */; };
-		AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */; };
-		AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */; };
-		AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B0C7127F103A000868869 /* MeshDocument.swift */; };
-		AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2B0C7327F10C2C00868869 /* CloudKit.framework */; };
-		AA2B0C7627F111C600868869 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */; };
-		AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34BF4D27262ACA0066A50E /* ShareSheet.swift */; };
-		AA3F6BAB281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */; };
-		AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42DDB927F1F16D003ECF74 /* QuickLook.framework */; };
-		AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */; };
-		AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */; };
-		AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA42DDD127F1F1F6003ECF74 /* RandomColor */; };
-		AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45EBB527263E3A00593894 /* Intents.framework */; };
-		AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBB827263E3A00593894 /* IntentHandler.swift */; };
-		AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
-		AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
-		AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
-		AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
-		AA4BBDDE27F2962C00B45FA6 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */; };
-		AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */; };
-		AA4BBDE527F2962C00B45FA6 /* ThumbnailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA4BBDEA27F2991D00B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA4BBDEC27F2992500B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA4BBDED27F2992500B45FA6 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AA4BBDF027F2A4A100B45FA6 /* FilesProvider in Frameworks */ = {isa = PBXBuildFile; productRef = AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */; };
-		AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51753E272483CE00C25576 /* AppDelegate.swift */; };
-		AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517540272483CE00C25576 /* SceneDelegate.swift */; };
-		AA517543272483CE00C25576 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517542272483CE00C25576 /* MeshViewController.swift */; };
-		AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA517547272483CE00C25576 /* Acrylic.xcdatamodeld */; };
-		AA51754B272483CF00C25576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA51754A272483CF00C25576 /* Assets.xcassets */; };
-		AA51754E272483CF00C25576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA51754C272483CF00C25576 /* LaunchScreen.storyboard */; };
-		AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517558272483CF00C25576 /* AcrylicTests.swift */; };
-		AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517562272483CF00C25576 /* AcrylicUITests.swift */; };
-		AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */; };
-		AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AA58CE862817702D007295E8 /* TelemetryClient */; };
-		AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FB827F494B40076F85C /* DifferenceKit */; };
-		AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA633FBA27F495CC0076F85C /* DifferenceKit */; };
-		AA65BD7D2818D6F9008D070B /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */; };
-		AA687D30281DC3E500306FB8 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = AA687D2F281DC3E500306FB8 /* UIOnboarding */; };
-		AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */; };
-		AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6D27ECAC0A00C4722D /* RandomColor */; };
-		AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AA71CA6F27ECACA700C4722D /* RandomColor */; };
-		AA8252702803B9AD00A318DC /* SceneOptionsView+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */; };
-		AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */; };
-		AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA82785927EE6E08007C3AE4 /* BlurViews.swift */; };
-		AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */; };
-		AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */; };
-		AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9827F3415C00ABEF12 /* OptionsView.swift */; };
-		AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85DD9C27F3422000ABEF12 /* SceneService.swift */; };
-		AA8FAD91281DC49E00BC795E /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = AA8FAD90281DC49E00BC795E /* Blackbird */; };
-		AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3DB5627F3E856000C4516 /* SceneViewController.swift */; };
-		AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */ = {isa = PBXBuildFile; productRef = AAAFF31227FF95BB003D042D /* DirectoryWatcher */; };
-		AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853827E95BD700B43BC5 /* ImageDocument.swift */; };
-		AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */; };
-		AACD1BFE281DC53800C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFD281DC53800C76E87 /* MeshKit */; };
-		AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1BFF281DC53E00C76E87 /* MeshKit */; };
-		AACD1C02281DDFDC00C76E87 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C01281DDFDC00C76E87 /* TelemetryClient */; };
-		AACD1C0C281F239D00C76E87 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD1C0B281F239D00C76E87 /* WidgetKit.framework */; };
-		AACD1C0E281F239D00C76E87 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD1C0D281F239D00C76E87 /* SwiftUI.framework */; };
-		AACD1C11281F239D00C76E87 /* AcrylicWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */; };
-		AACD1C14281F239E00C76E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AACD1C13281F239E00C76E87 /* Assets.xcassets */; };
-		AACD1C1A281F239E00C76E87 /* AcrylicWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AACD1C20281F23A400C76E87 /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C1F281F23A400C76E87 /* MeshKit */; };
-		AACD1C21281F23AE00C76E87 /* MeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6894E42724FA4E00A2FE51 /* MeshService.swift */; };
-		AACD1C22281F23B800C76E87 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */; };
-		AACD1C24281F241D00C76E87 /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C23281F241D00C76E87 /* RandomColor */; };
-		AACD1C25281F274A00C76E87 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC327263E7800593894 /* Intents.intentdefinition */; };
-		AACD1C26281F27A300C76E87 /* GenerateMeshGradientIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */; };
-		AACD1C28281F27B100C76E87 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AACD1C27281F27B100C76E87 /* TelemetryClient */; };
-		AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */; };
-		AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B287727F149CD000FFCAD /* SceneDocument.swift */; };
-		AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */; };
-		AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */; };
-		AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */; };
-		AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */; };
-		AAD93FE4281F72A600A17C59 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = AAD93FE3281F72A600A17C59 /* TelemetryClient */; };
-		AADDB54A2816E41800F46F7E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = AADDB5492816E41800F46F7E /* Hero */; };
-		AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC94F727EF58E100F8BD37 /* ExportView.swift */; };
-		AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */; };
-		AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */; };
-		AAFCBC5C2810CFB600F38844 /* SceneDocument+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */; };
+		AA18BDAF28931AE800CBED96 /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */; };
+		AA18BDB028931AE800CBED96 /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */; };
+		AA18BDB128931AE800CBED96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BDA028931AE700CBED96 /* ContentView.swift */; };
+		AA18BDB228931AE800CBED96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BDA028931AE700CBED96 /* ContentView.swift */; };
+		AA18BDB328931AE800CBED96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA18BDA128931AE800CBED96 /* Assets.xcassets */; };
+		AA18BDB428931AE800CBED96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA18BDA128931AE800CBED96 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		AA028F46281F60DA006A892C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA028F32281F60D9006A892C;
-			remoteInfo = AcrylicTVOS;
-		};
-		AA028F50281F60DA006A892C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA028F32281F60D9006A892C;
-			remoteInfo = AcrylicTVOS;
-		};
-		AA42DDC427F1F16D003ECF74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA42DDB727F1F16D003ECF74;
-			remoteInfo = QuickLookExtension;
-		};
-		AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA45EBB327263E3A00593894;
-			remoteInfo = MeshGradientIntent;
-		};
-		AA4BBDE327F2962C00B45FA6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA4BBDDB27F2962C00B45FA6;
-			remoteInfo = ThumbnailExtension;
-		};
-		AA517555272483CF00C25576 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA51753A272483CE00C25576;
-			remoteInfo = Acrylic;
-		};
-		AA51755F272483CF00C25576 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA51753A272483CE00C25576;
-			remoteInfo = Acrylic;
-		};
-		AACD1C18281F239E00C76E87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA517533272483CE00C25576 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AACD1C09281F239D00C76E87;
-			remoteInfo = AcrylicWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		AA45EBC227263E3A00593894 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				AACD1C1A281F239E00C76E87 /* AcrylicWidgetExtension.appex in Embed App Extensions */,
-				AA45EBBD27263E3A00593894 /* MeshGradientIntent.appex in Embed App Extensions */,
-				AA4BBDE527F2962C00B45FA6 /* ThumbnailExtension.appex in Embed App Extensions */,
-				AA42DDC627F1F16D003ECF74 /* QuickLookExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		AA028F33281F60D9006A892C /* AcrylicTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcrylicTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA028F35281F60D9006A892C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA028F37281F60D9006A892C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AA028F3A281F60D9006A892C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AA028F3C281F60D9006A892C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA028F3F281F60D9006A892C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSTests.swift; sourceTree = "<group>"; };
-		AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicTVOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSUITests.swift; sourceTree = "<group>"; };
-		AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTVOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AA028F60281F60E2006A892C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+Format.swift"; sourceTree = "<group>"; };
-		AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+OptionsView.swift"; sourceTree = "<group>"; };
-		AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ImageEffectsView.swift"; sourceTree = "<group>"; };
-		AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportView+ResolutionView.swift"; sourceTree = "<group>"; };
-		AA0AD66227EEB671009F822D /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
-		AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
-		AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Selection.swift"; sourceTree = "<group>"; };
-		AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+DetailView.swift"; sourceTree = "<group>"; };
-		AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+Detail.swift"; sourceTree = "<group>"; };
-		AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshOptionsView+ViewportView.swift"; sourceTree = "<group>"; };
-		AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
-		AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		AA2B0C7127F103A000868869 /* MeshDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshDocument.swift; sourceTree = "<group>"; };
-		AA2B0C7327F10C2C00868869 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Camera.swift"; sourceTree = "<group>"; };
-		AA34BF4D27262ACA0066A50E /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectNavigator+Onboarding.swift"; sourceTree = "<group>"; };
-		AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickLookExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA42DDB927F1F16D003ECF74 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
-		AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
-		AA42DDC327F1F16D003ECF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookExtension.entitlements; sourceTree = "<group>"; };
-		AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MeshGradientIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA45EBB527263E3A00593894 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
-		AA45EBB827263E3A00593894 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
-		AA45EBBA27263E3A00593894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA45EBBE27263E3A00593894 /* MeshGradientIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeshGradientIntent.entitlements; sourceTree = "<group>"; };
-		AA45EBC327263E7800593894 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
-		AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMeshGradientIntentHandler.swift; sourceTree = "<group>"; };
-		AA4B287727F149CD000FFCAD /* SceneDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDocument.swift; sourceTree = "<group>"; };
-		AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ThumbnailExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = SDKROOT; };
-		AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
-		AA4BBDE227F2962C00B45FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA4BBDE627F2962D00B45FA6 /* ThumbnailExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThumbnailExtension.entitlements; sourceTree = "<group>"; };
-		AA51753B272483CE00C25576 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA51753E272483CE00C25576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA517540272483CE00C25576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA517542272483CE00C25576 /* MeshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshViewController.swift; sourceTree = "<group>"; };
-		AA517548272483CE00C25576 /* Acrylic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Acrylic.xcdatamodel; sourceTree = "<group>"; };
-		AA51754A272483CF00C25576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA51754D272483CF00C25576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AA51754F272483CF00C25576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA517554272483CF00C25576 /* AcrylicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA517558272483CF00C25576 /* AcrylicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicTests.swift; sourceTree = "<group>"; };
-		AA51755E272483CF00C25576 /* AcrylicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcrylicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA517562272483CF00C25576 /* AcrylicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITests.swift; sourceTree = "<group>"; };
-		AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AA517571272483DD00C25576 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
-		AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
-		AA6894E42724FA4E00A2FE51 /* MeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshService.swift; sourceTree = "<group>"; };
-		AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshOptionsView.swift; sourceTree = "<group>"; };
-		AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOptionsView+Preset.swift"; sourceTree = "<group>"; };
-		AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
-		AA82785927EE6E08007C3AE4 /* BlurViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurViews.swift; sourceTree = "<group>"; };
-		AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorViewController.swift; sourceTree = "<group>"; };
-		AA85DD9827F3415C00ABEF12 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
-		AA85DD9C27F3422000ABEF12 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
-		AAA3DB5627F3E856000C4516 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
-		AAB8853827E95BD700B43BC5 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
-		AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
-		AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AcrylicWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AACD1C0B281F239D00C76E87 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		AACD1C0D281F239D00C76E87 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicWidget.swift; sourceTree = "<group>"; };
-		AACD1C13281F239E00C76E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AACD1C15281F239E00C76E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AACD1C1B281F239E00C76E87 /* AcrylicWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AcrylicWidgetExtension.entitlements; sourceTree = "<group>"; };
-		AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSceneDelegate.swift; sourceTree = "<group>"; };
-		AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCompactViewController.swift; sourceTree = "<group>"; };
-		AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCompactViewController.swift; sourceTree = "<group>"; };
-		AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
-		AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
-		AAEC94F727EF58E100F8BD37 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
-		AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOptionsView.swift; sourceTree = "<group>"; };
-		AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshEditorViewController.swift; sourceTree = "<group>"; };
-		AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDocument+Presets.swift"; sourceTree = "<group>"; };
+		AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
+		AA18BDA028931AE700CBED96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA18BDA128931AE800CBED96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA18BDA628931AE800CBED96 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA18BDAC28931AE800CBED96 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA18BDAE28931AE800CBED96 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA028F30281F60D9006A892C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA028F62281F60F1006A892C /* MeshKit in Frameworks */,
-				AAD93FE4281F72A600A17C59 /* TelemetryClient in Frameworks */,
-				AA028F64281F60F7006A892C /* RandomColor in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA028F42281F60DA006A892C /* Frameworks */ = {
+		AA18BDA328931AE800CBED96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA028F4C281F60DA006A892C /* Frameworks */ = {
+		AA18BDA928931AE800CBED96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA42DDB527F1F16D003ECF74 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA633FBB27F495CC0076F85C /* DifferenceKit in Frameworks */,
-				AA42DDD227F1F1F6003ECF74 /* RandomColor in Frameworks */,
-				AA42DDBA27F1F16D003ECF74 /* QuickLook.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA45EBB127263E3A00593894 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AACD1C00281DC53E00C76E87 /* MeshKit in Frameworks */,
-				AACD1C02281DDFDC00C76E87 /* TelemetryClient in Frameworks */,
-				AA71CA7027ECACA700C4722D /* RandomColor in Frameworks */,
-				AA45EBB627263E3A00593894 /* Intents.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA4BBDD927F2962C00B45FA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA4BBDDE27F2962C00B45FA6 /* QuickLookThumbnailing.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517538272483CE00C25576 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA8FAD91281DC49E00BC795E /* Blackbird in Frameworks */,
-				AA633FB927F494B40076F85C /* DifferenceKit in Frameworks */,
-				AACD1BFE281DC53800C76E87 /* MeshKit in Frameworks */,
-				AA58CE872817702D007295E8 /* TelemetryClient in Frameworks */,
-				AA687D30281DC3E500306FB8 /* UIOnboarding in Frameworks */,
-				AADDB54A2816E41800F46F7E /* Hero in Frameworks */,
-				AA4BBDF027F2A4A100B45FA6 /* FilesProvider in Frameworks */,
-				AA2B0C7427F10C2C00868869 /* CloudKit.framework in Frameworks */,
-				AA71CA6E27ECAC0A00C4722D /* RandomColor in Frameworks */,
-				AAAFF31327FF95BB003D042D /* DirectoryWatcher in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517551272483CF00C25576 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA51755B272483CF00C25576 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AACD1C07281F239D00C76E87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AACD1C28281F27B100C76E87 /* TelemetryClient in Frameworks */,
-				AACD1C20281F23A400C76E87 /* MeshKit in Frameworks */,
-				AACD1C0E281F239D00C76E87 /* SwiftUI.framework in Frameworks */,
-				AACD1C0C281F239D00C76E87 /* WidgetKit.framework in Frameworks */,
-				AACD1C24281F241D00C76E87 /* RandomColor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA028F34281F60D9006A892C /* AcrylicTVOS */ = {
+		AA18BD9928931AE700CBED96 = {
 			isa = PBXGroup;
 			children = (
-				AA028F60281F60E2006A892C /* Info.plist */,
-				AA028F35281F60D9006A892C /* AppDelegate.swift */,
-				AA028F37281F60D9006A892C /* ViewController.swift */,
-				AA028F39281F60D9006A892C /* Main.storyboard */,
-				AA028F3C281F60D9006A892C /* Assets.xcassets */,
-				AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */,
-			);
-			path = AcrylicTVOS;
-			sourceTree = "<group>";
-		};
-		AA028F48281F60DA006A892C /* AcrylicTVOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				AA028F49281F60DA006A892C /* AcrylicTVOSTests.swift */,
-			);
-			path = AcrylicTVOSTests;
-			sourceTree = "<group>";
-		};
-		AA028F52281F60DA006A892C /* AcrylicTVOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AA028F53281F60DA006A892C /* AcrylicTVOSUITests.swift */,
-				AA028F55281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift */,
-			);
-			path = AcrylicTVOSUITests;
-			sourceTree = "<group>";
-		};
-		AA03D91F27EEA1B000BAE4C4 /* ExportView */ = {
-			isa = PBXGroup;
-			children = (
-				AA0AD66227EEB671009F822D /* ExportService.swift */,
-				AAB8853A27E95ECB00B43BC5 /* ExportViewController.swift */,
-				AAEC94F727EF58E100F8BD37 /* ExportView.swift */,
-				AA03D92227EEA65C00BAE4C4 /* ExportView+OptionsView.swift */,
-				AA03D92027EEA1C700BAE4C4 /* ExportView+Format.swift */,
-				AA03D92427EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift */,
-				AA03D92827EEA95700BAE4C4 /* ExportView+ResolutionView.swift */,
-			);
-			path = ExportView;
-			sourceTree = "<group>";
-		};
-		AA1A5C222725F957006932FE /* OptionsView */ = {
-			isa = PBXGroup;
-			children = (
-				AA6894E62725016E00A2FE51 /* MeshOptionsView.swift */,
-				AA1A5C232725F973006932FE /* MeshOptionsView+Selection.swift */,
-				AA1A5C272725F9BE006932FE /* MeshOptionsView+Detail.swift */,
-				AA1A5C292725FA46006932FE /* MeshOptionsView+ViewportView.swift */,
-			);
-			path = OptionsView;
-			sourceTree = "<group>";
-		};
-		AA2B0C6A27F0FB9600868869 /* Project Navigator */ = {
-			isa = PBXGroup;
-			children = (
-				AAD7239327F0F3E100198144 /* ProjectNavigatorViewController.swift */,
-				AA3F6BAA281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift */,
-				AAD7239527F0F3F800198144 /* ProjectNavigatorView.swift */,
-				AA2B0C6B27F0FBA600868869 /* ProjectCollectionViewCell.swift */,
-				AA2B0C6F27F1009400868869 /* ProjectHeaderCollectionReusableView.swift */,
-			);
-			path = "Project Navigator";
-			sourceTree = "<group>";
-		};
-		AA35D982272498D3000BB333 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AA2B0C7327F10C2C00868869 /* CloudKit.framework */,
-				AA45EBB527263E3A00593894 /* Intents.framework */,
-				AA42DDB927F1F16D003ECF74 /* QuickLook.framework */,
-				AA4BBDDD27F2962C00B45FA6 /* QuickLookThumbnailing.framework */,
-				AACD1C0B281F239D00C76E87 /* WidgetKit.framework */,
-				AACD1C0D281F239D00C76E87 /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */ = {
-			isa = PBXGroup;
-			children = (
-				AA42DDC727F1F16D003ECF74 /* QuickLookExtension.entitlements */,
-				AA42DDBC27F1F16D003ECF74 /* PreviewViewController.swift */,
-				AA42DDBE27F1F16D003ECF74 /* PreviewProvider.swift */,
-				AA42DDC327F1F16D003ECF74 /* Info.plist */,
-			);
-			path = QuickLookExtension;
-			sourceTree = "<group>";
-		};
-		AA45EBB727263E3A00593894 /* MeshGradientIntent */ = {
-			isa = PBXGroup;
-			children = (
-				AA45EBBE27263E3A00593894 /* MeshGradientIntent.entitlements */,
-				AA45EBB827263E3A00593894 /* IntentHandler.swift */,
-				AA45EBC52726406F00593894 /* GenerateMeshGradientIntentHandler.swift */,
-				AA45EBBA27263E3A00593894 /* Info.plist */,
-				AA45EBC327263E7800593894 /* Intents.intentdefinition */,
-			);
-			path = MeshGradientIntent;
-			sourceTree = "<group>";
-		};
-		AA4BBDDF27F2962C00B45FA6 /* ThumbnailExtension */ = {
-			isa = PBXGroup;
-			children = (
-				AA4BBDE627F2962D00B45FA6 /* ThumbnailExtension.entitlements */,
-				AA4BBDE027F2962C00B45FA6 /* ThumbnailProvider.swift */,
-				AA4BBDE227F2962C00B45FA6 /* Info.plist */,
-			);
-			path = ThumbnailExtension;
-			sourceTree = "<group>";
-		};
-		AA517532272483CE00C25576 = {
-			isa = PBXGroup;
-			children = (
-				AACD1C1B281F239E00C76E87 /* AcrylicWidgetExtension.entitlements */,
-				AA51753D272483CE00C25576 /* Acrylic */,
-				AA517557272483CF00C25576 /* AcrylicTests */,
-				AA517561272483CF00C25576 /* AcrylicUITests */,
-				AA45EBB727263E3A00593894 /* MeshGradientIntent */,
-				AA42DDBB27F1F16D003ECF74 /* QuickLookExtension */,
-				AA4BBDDF27F2962C00B45FA6 /* ThumbnailExtension */,
-				AACD1C0F281F239D00C76E87 /* AcrylicWidget */,
-				AA028F34281F60D9006A892C /* AcrylicTVOS */,
-				AA028F48281F60DA006A892C /* AcrylicTVOSTests */,
-				AA028F52281F60DA006A892C /* AcrylicTVOSUITests */,
-				AA51753C272483CE00C25576 /* Products */,
-				AA35D982272498D3000BB333 /* Frameworks */,
+				AA18BD9E28931AE700CBED96 /* Shared */,
+				AA18BDAD28931AE800CBED96 /* macOS */,
+				AA18BDA728931AE800CBED96 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AA51753C272483CE00C25576 /* Products */ = {
+		AA18BD9E28931AE700CBED96 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				AA51753B272483CE00C25576 /* Acrylic.app */,
-				AA517554272483CF00C25576 /* AcrylicTests.xctest */,
-				AA51755E272483CF00C25576 /* AcrylicUITests.xctest */,
-				AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */,
-				AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */,
-				AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */,
-				AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */,
-				AA028F33281F60D9006A892C /* AcrylicTVOS.app */,
-				AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */,
-				AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */,
+				AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */,
+				AA18BDA028931AE700CBED96 /* ContentView.swift */,
+				AA18BDA128931AE800CBED96 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AA18BDA728931AE800CBED96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA18BDA628931AE800CBED96 /* Acrylic.app */,
+				AA18BDAC28931AE800CBED96 /* Acrylic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA51753D272483CE00C25576 /* Acrylic */ = {
+		AA18BDAD28931AE800CBED96 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				AA517571272483DD00C25576 /* Acrylic.entitlements */,
-				AA51753E272483CE00C25576 /* AppDelegate.swift */,
-				AA517540272483CE00C25576 /* SceneDelegate.swift */,
-				AACE760A27FA76C000C47E3B /* EditorSceneDelegate.swift */,
-				AAD7239227F0F3BC00198144 /* Services */,
-				AAD7239027F0F39200198144 /* Files */,
-				AA65BD7E2818DCD9008D070B /* Views */,
-				AA51754A272483CF00C25576 /* Assets.xcassets */,
-				AA51754C272483CF00C25576 /* LaunchScreen.storyboard */,
-				AA51754F272483CF00C25576 /* Info.plist */,
-				AA517547272483CE00C25576 /* Acrylic.xcdatamodeld */,
+				AA18BDAE28931AE800CBED96 /* macOS.entitlements */,
 			);
-			path = Acrylic;
-			sourceTree = "<group>";
-		};
-		AA517557272483CF00C25576 /* AcrylicTests */ = {
-			isa = PBXGroup;
-			children = (
-				AA517558272483CF00C25576 /* AcrylicTests.swift */,
-			);
-			path = AcrylicTests;
-			sourceTree = "<group>";
-		};
-		AA517561272483CF00C25576 /* AcrylicUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AA517562272483CF00C25576 /* AcrylicUITests.swift */,
-				AA517564272483CF00C25576 /* AcrylicUITestsLaunchTests.swift */,
-			);
-			path = AcrylicUITests;
-			sourceTree = "<group>";
-		};
-		AA65BD7E2818DCD9008D070B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA2B0C6A27F0FB9600868869 /* Project Navigator */,
-				AAD7239127F0F39C00198144 /* Editor */,
-				AA03D91F27EEA1B000BAE4C4 /* ExportView */,
-				AA82785727EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift */,
-				AA34BF4D27262ACA0066A50E /* ShareSheet.swift */,
-				AA82785927EE6E08007C3AE4 /* BlurViews.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AA85DD9027F33EFF00ABEF12 /* Mesh */ = {
-			isa = PBXGroup;
-			children = (
-				AAF561782724D83600C7CED4 /* MeshEditorViewController.swift */,
-				AA517542272483CE00C25576 /* MeshViewController.swift */,
-				AAD4A6D62814A271000C6489 /* MeshCompactViewController.swift */,
-				AA1A5C222725F957006932FE /* OptionsView */,
-			);
-			path = Mesh;
-			sourceTree = "<group>";
-		};
-		AA85DD9127F33F0400ABEF12 /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-				AA85DD9427F3410300ABEF12 /* SceneEditorViewController.swift */,
-				AAA3DB5627F3E856000C4516 /* SceneViewController.swift */,
-				AAD4A6D82814ACAC000C6489 /* SceneCompactViewController.swift */,
-				AAECDABD280386B700CE4F61 /* SceneOptionsView.swift */,
-				AA82526F2803B9AD00A318DC /* SceneOptionsView+Preset.swift */,
-				AA2D9ECD28139DD800F7557B /* SceneOptionsView+Camera.swift */,
-			);
-			path = Scene;
-			sourceTree = "<group>";
-		};
-		AACD1C0F281F239D00C76E87 /* AcrylicWidget */ = {
-			isa = PBXGroup;
-			children = (
-				AACD1C10281F239D00C76E87 /* AcrylicWidget.swift */,
-				AACD1C13281F239E00C76E87 /* Assets.xcassets */,
-				AACD1C15281F239E00C76E87 /* Info.plist */,
-			);
-			path = AcrylicWidget;
-			sourceTree = "<group>";
-		};
-		AAD7239027F0F39200198144 /* Files */ = {
-			isa = PBXGroup;
-			children = (
-				AA2B0C7127F103A000868869 /* MeshDocument.swift */,
-				AAFCBC5A2810CFAB00F38844 /* Scene */,
-				AA16D65027EBFB0F008C7761 /* UIImage+Additions.swift */,
-				AAB8853827E95BD700B43BC5 /* ImageDocument.swift */,
-			);
-			path = Files;
-			sourceTree = "<group>";
-		};
-		AAD7239127F0F39C00198144 /* Editor */ = {
-			isa = PBXGroup;
-			children = (
-				AA85DD9227F33F2300ABEF12 /* EditorViewController.swift */,
-				AA85DD9827F3415C00ABEF12 /* OptionsView.swift */,
-				AA1A5C252725F99E006932FE /* OptionsView+DetailView.swift */,
-				AA85DD9027F33EFF00ABEF12 /* Mesh */,
-				AA85DD9127F33F0400ABEF12 /* Scene */,
-			);
-			path = Editor;
-			sourceTree = "<group>";
-		};
-		AAD7239227F0F3BC00198144 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				AA6894E42724FA4E00A2FE51 /* MeshService.swift */,
-				AA85DD9C27F3422000ABEF12 /* SceneService.swift */,
-				AA65BD7C2818D6F9008D070B /* AppStoreReviewManager.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		AAFCBC5A2810CFAB00F38844 /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-				AA4B287727F149CD000FFCAD /* SceneDocument.swift */,
-				AAFCBC5B2810CFB600F38844 /* SceneDocument+Presets.swift */,
-			);
-			path = Scene;
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA028F32281F60D9006A892C /* AcrylicTVOS */ = {
+		AA18BDA528931AE800CBED96 /* Acrylic (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA028F5D281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOS" */;
+			buildConfigurationList = AA18BDB728931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (iOS)" */;
 			buildPhases = (
-				AA028F2F281F60D9006A892C /* Sources */,
-				AA028F30281F60D9006A892C /* Frameworks */,
-				AA028F31281F60D9006A892C /* Resources */,
+				AA18BDA228931AE800CBED96 /* Sources */,
+				AA18BDA328931AE800CBED96 /* Frameworks */,
+				AA18BDA428931AE800CBED96 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AcrylicTVOS;
-			packageProductDependencies = (
-				AA028F61281F60F1006A892C /* MeshKit */,
-				AA028F63281F60F7006A892C /* RandomColor */,
-				AAD93FE3281F72A600A17C59 /* TelemetryClient */,
-			);
-			productName = AcrylicTVOS;
-			productReference = AA028F33281F60D9006A892C /* AcrylicTVOS.app */;
+			name = "Acrylic (iOS)";
+			productName = "Acrylic (iOS)";
+			productReference = AA18BDA628931AE800CBED96 /* Acrylic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA028F44281F60DA006A892C /* AcrylicTVOSTests */ = {
+		AA18BDAB28931AE800CBED96 /* Acrylic (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA028F5E281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSTests" */;
+			buildConfigurationList = AA18BDBA28931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (macOS)" */;
 			buildPhases = (
-				AA028F41281F60DA006A892C /* Sources */,
-				AA028F42281F60DA006A892C /* Frameworks */,
-				AA028F43281F60DA006A892C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA028F47281F60DA006A892C /* PBXTargetDependency */,
-			);
-			name = AcrylicTVOSTests;
-			productName = AcrylicTVOSTests;
-			productReference = AA028F45281F60DA006A892C /* AcrylicTVOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		AA028F4E281F60DA006A892C /* AcrylicTVOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA028F5F281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSUITests" */;
-			buildPhases = (
-				AA028F4B281F60DA006A892C /* Sources */,
-				AA028F4C281F60DA006A892C /* Frameworks */,
-				AA028F4D281F60DA006A892C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA028F51281F60DA006A892C /* PBXTargetDependency */,
-			);
-			name = AcrylicTVOSUITests;
-			productName = AcrylicTVOSUITests;
-			productReference = AA028F4F281F60DA006A892C /* AcrylicTVOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		AA42DDB727F1F16D003ECF74 /* QuickLookExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */;
-			buildPhases = (
-				AA42DDB427F1F16D003ECF74 /* Sources */,
-				AA42DDB527F1F16D003ECF74 /* Frameworks */,
-				AA42DDB627F1F16D003ECF74 /* Resources */,
+				AA18BDA828931AE800CBED96 /* Sources */,
+				AA18BDA928931AE800CBED96 /* Frameworks */,
+				AA18BDAA28931AE800CBED96 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = QuickLookExtension;
-			packageProductDependencies = (
-				AA42DDD127F1F1F6003ECF74 /* RandomColor */,
-				AA633FBA27F495CC0076F85C /* DifferenceKit */,
-			);
-			productName = QuickLookExtension;
-			productReference = AA42DDB827F1F16D003ECF74 /* QuickLookExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		AA45EBB327263E3A00593894 /* MeshGradientIntent */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */;
-			buildPhases = (
-				AA45EBB027263E3A00593894 /* Sources */,
-				AA45EBB127263E3A00593894 /* Frameworks */,
-				AA45EBB227263E3A00593894 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MeshGradientIntent;
-			packageProductDependencies = (
-				AA71CA6F27ECACA700C4722D /* RandomColor */,
-				AACD1BFF281DC53E00C76E87 /* MeshKit */,
-				AACD1C01281DDFDC00C76E87 /* TelemetryClient */,
-			);
-			productName = MeshGradientIntent;
-			productReference = AA45EBB427263E3A00593894 /* MeshGradientIntent.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA4BBDE727F2962D00B45FA6 /* Build configuration list for PBXNativeTarget "ThumbnailExtension" */;
-			buildPhases = (
-				AA4BBDD827F2962C00B45FA6 /* Sources */,
-				AA4BBDD927F2962C00B45FA6 /* Frameworks */,
-				AA4BBDDA27F2962C00B45FA6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ThumbnailExtension;
-			productName = ThumbnailExtension;
-			productReference = AA4BBDDC27F2962C00B45FA6 /* ThumbnailExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		AA51753A272483CE00C25576 /* Acrylic */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA517568272483CF00C25576 /* Build configuration list for PBXNativeTarget "Acrylic" */;
-			buildPhases = (
-				AA517537272483CE00C25576 /* Sources */,
-				AA517538272483CE00C25576 /* Frameworks */,
-				AA517539272483CE00C25576 /* Resources */,
-				AA45EBC227263E3A00593894 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA45EBBC27263E3A00593894 /* PBXTargetDependency */,
-				AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */,
-				AA4BBDE427F2962C00B45FA6 /* PBXTargetDependency */,
-				AACD1C19281F239E00C76E87 /* PBXTargetDependency */,
-			);
-			name = Acrylic;
-			packageProductDependencies = (
-				AA71CA6D27ECAC0A00C4722D /* RandomColor */,
-				AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */,
-				AA633FB827F494B40076F85C /* DifferenceKit */,
-				AAAFF31227FF95BB003D042D /* DirectoryWatcher */,
-				AADDB5492816E41800F46F7E /* Hero */,
-				AA58CE862817702D007295E8 /* TelemetryClient */,
-				AA687D2F281DC3E500306FB8 /* UIOnboarding */,
-				AA8FAD90281DC49E00BC795E /* Blackbird */,
-				AACD1BFD281DC53800C76E87 /* MeshKit */,
-			);
-			productName = Acrylic;
-			productReference = AA51753B272483CE00C25576 /* Acrylic.app */;
+			name = "Acrylic (macOS)";
+			productName = "Acrylic (macOS)";
+			productReference = AA18BDAC28931AE800CBED96 /* Acrylic.app */;
 			productType = "com.apple.product-type.application";
-		};
-		AA517553272483CF00C25576 /* AcrylicTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA51756B272483CF00C25576 /* Build configuration list for PBXNativeTarget "AcrylicTests" */;
-			buildPhases = (
-				AA517550272483CF00C25576 /* Sources */,
-				AA517551272483CF00C25576 /* Frameworks */,
-				AA517552272483CF00C25576 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA517556272483CF00C25576 /* PBXTargetDependency */,
-			);
-			name = AcrylicTests;
-			productName = AcrylicTests;
-			productReference = AA517554272483CF00C25576 /* AcrylicTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		AA51755D272483CF00C25576 /* AcrylicUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA51756E272483CF00C25576 /* Build configuration list for PBXNativeTarget "AcrylicUITests" */;
-			buildPhases = (
-				AA51755A272483CF00C25576 /* Sources */,
-				AA51755B272483CF00C25576 /* Frameworks */,
-				AA51755C272483CF00C25576 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA517560272483CF00C25576 /* PBXTargetDependency */,
-			);
-			name = AcrylicUITests;
-			productName = AcrylicUITests;
-			productReference = AA51755E272483CF00C25576 /* AcrylicUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		AACD1C09281F239D00C76E87 /* AcrylicWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AACD1C1C281F239E00C76E87 /* Build configuration list for PBXNativeTarget "AcrylicWidgetExtension" */;
-			buildPhases = (
-				AACD1C06281F239D00C76E87 /* Sources */,
-				AACD1C07281F239D00C76E87 /* Frameworks */,
-				AACD1C08281F239D00C76E87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AcrylicWidgetExtension;
-			packageProductDependencies = (
-				AACD1C1F281F23A400C76E87 /* MeshKit */,
-				AACD1C23281F241D00C76E87 /* RandomColor */,
-				AACD1C27281F27B100C76E87 /* TelemetryClient */,
-			);
-			productName = AcrylicWidgetExtension;
-			productReference = AACD1C0A281F239D00C76E87 /* AcrylicWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AA517533272483CE00C25576 /* Project object */ = {
+		AA18BD9A28931AE700CBED96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1310;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					AA028F32281F60D9006A892C = {
-						CreatedOnToolsVersion = 13.3.1;
+					AA18BDA528931AE800CBED96 = {
+						CreatedOnToolsVersion = 13.4.1;
 					};
-					AA028F44281F60DA006A892C = {
-						CreatedOnToolsVersion = 13.3.1;
-						TestTargetID = AA028F32281F60D9006A892C;
-					};
-					AA028F4E281F60DA006A892C = {
-						CreatedOnToolsVersion = 13.3.1;
-						TestTargetID = AA028F32281F60D9006A892C;
-					};
-					AA42DDB727F1F16D003ECF74 = {
-						CreatedOnToolsVersion = 13.3;
-					};
-					AA45EBB327263E3A00593894 = {
-						CreatedOnToolsVersion = 13.1;
-					};
-					AA4BBDDB27F2962C00B45FA6 = {
-						CreatedOnToolsVersion = 13.3;
-					};
-					AA51753A272483CE00C25576 = {
-						CreatedOnToolsVersion = 13.1;
-					};
-					AA517553272483CF00C25576 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = AA51753A272483CE00C25576;
-					};
-					AA51755D272483CF00C25576 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = AA51753A272483CE00C25576;
-					};
-					AACD1C09281F239D00C76E87 = {
-						CreatedOnToolsVersion = 13.3.1;
+					AA18BDAB28931AE800CBED96 = {
+						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
-			buildConfigurationList = AA517536272483CE00C25576 /* Build configuration list for PBXProject "Acrylic" */;
+			buildConfigurationList = AA18BD9D28931AE700CBED96 /* Build configuration list for PBXProject "Acrylic" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -923,648 +141,65 @@
 				en,
 				Base,
 			);
-			mainGroup = AA517532272483CE00C25576;
-			packageReferences = (
-				AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */,
-				AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */,
-				AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */,
-				AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
-				AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */,
-				AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */,
-				AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */,
-				AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */,
-				AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */,
-			);
-			productRefGroup = AA51753C272483CE00C25576 /* Products */;
+			mainGroup = AA18BD9928931AE700CBED96;
+			productRefGroup = AA18BDA728931AE800CBED96 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA51753A272483CE00C25576 /* Acrylic */,
-				AA517553272483CF00C25576 /* AcrylicTests */,
-				AA51755D272483CF00C25576 /* AcrylicUITests */,
-				AA45EBB327263E3A00593894 /* MeshGradientIntent */,
-				AA42DDB727F1F16D003ECF74 /* QuickLookExtension */,
-				AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */,
-				AACD1C09281F239D00C76E87 /* AcrylicWidgetExtension */,
-				AA028F32281F60D9006A892C /* AcrylicTVOS */,
-				AA028F44281F60DA006A892C /* AcrylicTVOSTests */,
-				AA028F4E281F60DA006A892C /* AcrylicTVOSUITests */,
+				AA18BDA528931AE800CBED96 /* Acrylic (iOS) */,
+				AA18BDAB28931AE800CBED96 /* Acrylic (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AA028F31281F60D9006A892C /* Resources */ = {
+		AA18BDA428931AE800CBED96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA028F40281F60D9006A892C /* LaunchScreen.storyboard in Resources */,
-				AA028F3D281F60D9006A892C /* Assets.xcassets in Resources */,
-				AA028F3B281F60D9006A892C /* Main.storyboard in Resources */,
+				AA18BDB328931AE800CBED96 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA028F43281F60DA006A892C /* Resources */ = {
+		AA18BDAA28931AE800CBED96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA028F4D281F60DA006A892C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA42DDB627F1F16D003ECF74 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA45EBB227263E3A00593894 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA4BBDDA27F2962C00B45FA6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517539272483CE00C25576 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA51754E272483CF00C25576 /* LaunchScreen.storyboard in Resources */,
-				AA51754B272483CF00C25576 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517552272483CF00C25576 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA51755C272483CF00C25576 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AACD1C08281F239D00C76E87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AACD1C14281F239E00C76E87 /* Assets.xcassets in Resources */,
+				AA18BDB428931AE800CBED96 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AA028F2F281F60D9006A892C /* Sources */ = {
+		AA18BDA228931AE800CBED96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA028F38281F60D9006A892C /* ViewController.swift in Sources */,
-				AA028F36281F60D9006A892C /* AppDelegate.swift in Sources */,
-				AA028F65281F622A006A892C /* MeshService.swift in Sources */,
+				AA18BDB128931AE800CBED96 /* ContentView.swift in Sources */,
+				AA18BDAF28931AE800CBED96 /* AcrylicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA028F41281F60DA006A892C /* Sources */ = {
+		AA18BDA828931AE800CBED96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA028F4A281F60DA006A892C /* AcrylicTVOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA028F4B281F60DA006A892C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA028F56281F60DA006A892C /* AcrylicTVOSUITestsLaunchTests.swift in Sources */,
-				AA028F54281F60DA006A892C /* AcrylicTVOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA42DDB427F1F16D003ECF74 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA42DDBD27F1F16D003ECF74 /* PreviewViewController.swift in Sources */,
-				AA4BBDED27F2992500B45FA6 /* UIImage+Additions.swift in Sources */,
-				AA42DDBF27F1F16D003ECF74 /* PreviewProvider.swift in Sources */,
-				AAD406C027F26A3100B2ADC0 /* SceneDocument.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA45EBB027263E3A00593894 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA45EBC62726406F00593894 /* GenerateMeshGradientIntentHandler.swift in Sources */,
-				AA45EBC427263E7800593894 /* Intents.intentdefinition in Sources */,
-				AA2B0C7627F111C600868869 /* MeshService.swift in Sources */,
-				AA45EBB927263E3A00593894 /* IntentHandler.swift in Sources */,
-				AA4BBDEA27F2991D00B45FA6 /* UIImage+Additions.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA4BBDD827F2962C00B45FA6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA4BBDE127F2962C00B45FA6 /* ThumbnailProvider.swift in Sources */,
-				AA4BBDEC27F2992500B45FA6 /* UIImage+Additions.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517537272483CE00C25576 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAF561792724D83600C7CED4 /* MeshEditorViewController.swift in Sources */,
-				AA82785A27EE6E08007C3AE4 /* BlurViews.swift in Sources */,
-				AA34BF4E27262ACA0066A50E /* ShareSheet.swift in Sources */,
-				AAFCBC5C2810CFB600F38844 /* SceneDocument+Presets.swift in Sources */,
-				AA85DD9927F3415C00ABEF12 /* OptionsView.swift in Sources */,
-				AA2B0C7227F103A000868869 /* MeshDocument.swift in Sources */,
-				AAECDABE280386B700CE4F61 /* SceneOptionsView.swift in Sources */,
-				AA85DD9327F33F2300ABEF12 /* EditorViewController.swift in Sources */,
-				AAD7239427F0F3E100198144 /* ProjectNavigatorViewController.swift in Sources */,
-				AA45EBCA27264A5B00593894 /* Intents.intentdefinition in Sources */,
-				AA03D92327EEA65C00BAE4C4 /* ExportView+OptionsView.swift in Sources */,
-				AA1A5C2A2725FA46006932FE /* MeshOptionsView+ViewportView.swift in Sources */,
-				AAD4A6D72814A271000C6489 /* MeshCompactViewController.swift in Sources */,
-				AA1A5C242725F973006932FE /* MeshOptionsView+Selection.swift in Sources */,
-				AA65BD7D2818D6F9008D070B /* AppStoreReviewManager.swift in Sources */,
-				AAA3DB5727F3E856000C4516 /* SceneViewController.swift in Sources */,
-				AA517543272483CE00C25576 /* MeshViewController.swift in Sources */,
-				AAD7239627F0F3F800198144 /* ProjectNavigatorView.swift in Sources */,
-				AAEC94F827EF58E100F8BD37 /* ExportView.swift in Sources */,
-				AA16D65127EBFB0F008C7761 /* UIImage+Additions.swift in Sources */,
-				AA51753F272483CE00C25576 /* AppDelegate.swift in Sources */,
-				AAD4A6D92814ACAC000C6489 /* SceneCompactViewController.swift in Sources */,
-				AA85DD9527F3410300ABEF12 /* SceneEditorViewController.swift in Sources */,
-				AA2D9ECE28139DD800F7557B /* SceneOptionsView+Camera.swift in Sources */,
-				AAB8853927E95BD700B43BC5 /* ImageDocument.swift in Sources */,
-				AA6894E72725016E00A2FE51 /* MeshOptionsView.swift in Sources */,
-				AA517541272483CE00C25576 /* SceneDelegate.swift in Sources */,
-				AACE760B27FA76C000C47E3B /* EditorSceneDelegate.swift in Sources */,
-				AAB8853B27E95ECB00B43BC5 /* ExportViewController.swift in Sources */,
-				AA0AD66327EEB671009F822D /* ExportService.swift in Sources */,
-				AA1A5C282725F9BE006932FE /* MeshOptionsView+Detail.swift in Sources */,
-				AA03D92527EEA75E00BAE4C4 /* ExportView+ImageEffectsView.swift in Sources */,
-				AA2B0C6C27F0FBA600868869 /* ProjectCollectionViewCell.swift in Sources */,
-				AA03D92927EEA95700BAE4C4 /* ExportView+ResolutionView.swift in Sources */,
-				AA517549272483CE00C25576 /* Acrylic.xcdatamodeld in Sources */,
-				AA1A5C262725F99E006932FE /* OptionsView+DetailView.swift in Sources */,
-				AA6894E52724FA4E00A2FE51 /* MeshService.swift in Sources */,
-				AA4B287827F149CD000FFCAD /* SceneDocument.swift in Sources */,
-				AA82785827EE6E00007C3AE4 /* VisualEffectBlur-iOS.swift in Sources */,
-				AA8252702803B9AD00A318DC /* SceneOptionsView+Preset.swift in Sources */,
-				AA03D92127EEA1C700BAE4C4 /* ExportView+Format.swift in Sources */,
-				AA3F6BAB281DBBF000334CD9 /* ProjectNavigator+Onboarding.swift in Sources */,
-				AA85DD9D27F3422000ABEF12 /* SceneService.swift in Sources */,
-				AA2B0C7027F1009400868869 /* ProjectHeaderCollectionReusableView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA517550272483CF00C25576 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA517559272483CF00C25576 /* AcrylicTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA51755A272483CF00C25576 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA517565272483CF00C25576 /* AcrylicUITestsLaunchTests.swift in Sources */,
-				AA517563272483CF00C25576 /* AcrylicUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AACD1C06281F239D00C76E87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AACD1C26281F27A300C76E87 /* GenerateMeshGradientIntentHandler.swift in Sources */,
-				AACD1C22281F23B800C76E87 /* UIImage+Additions.swift in Sources */,
-				AACD1C11281F239D00C76E87 /* AcrylicWidget.swift in Sources */,
-				AACD1C25281F274A00C76E87 /* Intents.intentdefinition in Sources */,
-				AACD1C21281F23AE00C76E87 /* MeshService.swift in Sources */,
+				AA18BDB228931AE800CBED96 /* ContentView.swift in Sources */,
+				AA18BDB028931AE800CBED96 /* AcrylicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		AA028F47281F60DA006A892C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA028F32281F60D9006A892C /* AcrylicTVOS */;
-			targetProxy = AA028F46281F60DA006A892C /* PBXContainerItemProxy */;
-		};
-		AA028F51281F60DA006A892C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA028F32281F60D9006A892C /* AcrylicTVOS */;
-			targetProxy = AA028F50281F60DA006A892C /* PBXContainerItemProxy */;
-		};
-		AA42DDC527F1F16D003ECF74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA42DDB727F1F16D003ECF74 /* QuickLookExtension */;
-			targetProxy = AA42DDC427F1F16D003ECF74 /* PBXContainerItemProxy */;
-		};
-		AA45EBBC27263E3A00593894 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA45EBB327263E3A00593894 /* MeshGradientIntent */;
-			targetProxy = AA45EBBB27263E3A00593894 /* PBXContainerItemProxy */;
-		};
-		AA4BBDE427F2962C00B45FA6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA4BBDDB27F2962C00B45FA6 /* ThumbnailExtension */;
-			targetProxy = AA4BBDE327F2962C00B45FA6 /* PBXContainerItemProxy */;
-		};
-		AA517556272483CF00C25576 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA51753A272483CE00C25576 /* Acrylic */;
-			targetProxy = AA517555272483CF00C25576 /* PBXContainerItemProxy */;
-		};
-		AA517560272483CF00C25576 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA51753A272483CE00C25576 /* Acrylic */;
-			targetProxy = AA51755F272483CF00C25576 /* PBXContainerItemProxy */;
-		};
-		AACD1C19281F239E00C76E87 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AACD1C09281F239D00C76E87 /* AcrylicWidgetExtension */;
-			targetProxy = AACD1C18281F239E00C76E87 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		AA028F39281F60D9006A892C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA028F3A281F60D9006A892C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AA028F3E281F60D9006A892C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA028F3F281F60D9006A892C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AA51754C272483CF00C25576 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA51754D272483CF00C25576 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		AA028F57281F60DA006A892C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.0;
-			};
-			name = Debug;
-		};
-		AA028F58281F60DA006A892C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AcrylicTVOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 14.0;
-			};
-			name = Release;
-		};
-		AA028F59281F60DA006A892C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AcrylicTVOS.app/AcrylicTVOS";
-				TVOS_DEPLOYMENT_TARGET = 15.4;
-			};
-			name = Debug;
-		};
-		AA028F5A281F60DA006A892C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AcrylicTVOS.app/AcrylicTVOS";
-				TVOS_DEPLOYMENT_TARGET = 15.4;
-			};
-			name = Release;
-		};
-		AA028F5B281F60DA006A892C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = AcrylicTVOS;
-				TVOS_DEPLOYMENT_TARGET = 15.4;
-			};
-			name = Debug;
-		};
-		AA028F5C281F60DA006A892C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTVOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = AcrylicTVOS;
-				TVOS_DEPLOYMENT_TARGET = 15.4;
-			};
-			name = Release;
-		};
-		AA42DDC927F1F16D003ECF74 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickLookExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.QuickLookExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AA42DDCA27F1F16D003ECF74 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = QuickLookExtension/QuickLookExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickLookExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = QuickLookExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.QuickLookExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AA45EBC027263E3A00593894 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MeshGradientIntent;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.MeshGradientIntent;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SIRI";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AA45EBC127263E3A00593894 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = MeshGradientIntent/MeshGradientIntent.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MeshGradientIntent/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MeshGradientIntent;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.MeshGradientIntent;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SIRI;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AA4BBDE827F2962D00B45FA6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ThumbnailExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.ThumbnailExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AA4BBDE927F2962D00B45FA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ThumbnailExtension/ThumbnailExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ThumbnailExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ThumbnailExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.ThumbnailExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AA517566272483CF00C25576 /* Debug */ = {
+		AA18BDB528931AE800CBED96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1608,24 +243,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		AA517567272483CF00C25576 /* Release */ = {
+		AA18BDB628931AE800CBED96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1663,544 +295,161 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AA18BDB828931AE800CBED96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_NAME = Acrylic;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA18BDB928931AE800CBED96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_NAME = Acrylic;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		AA517569272483CF00C25576 /* Debug */ = {
+		AA18BDBB28931AE800CBED96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
-				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Acrylic/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save exports to device";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_NAME = Acrylic;
+				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
-		AA51756A272483CF00C25576 /* Release */ = {
+		AA18BDBC28931AE800CBED96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Acrylic/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save exports to device";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
-			};
-			name = Release;
-		};
-		AA51756C272483CF00C25576 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6QG723P8Z;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Acrylic.app/Acrylic";
-			};
-			name = Debug;
-		};
-		AA51756D272483CF00C25576 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Acrylic.app/Acrylic";
-			};
-			name = Release;
-		};
-		AA51756F272483CF00C25576 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Acrylic;
-			};
-			name = Debug;
-		};
-		AA517570272483CF00C25576 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.AcrylicUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Acrylic;
-			};
-			name = Release;
-		};
-		AACD1C1D281F239E00C76E87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AcrylicWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.AcrylicWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_NAME = Acrylic;
+				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AACD1C1E281F239E00C76E87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = AcrylicWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AcrylicWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Acrylic;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.AcrylicWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA028F5D281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOS" */ = {
+		AA18BD9D28931AE700CBED96 /* Build configuration list for PBXProject "Acrylic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA028F57281F60DA006A892C /* Debug */,
-				AA028F58281F60DA006A892C /* Release */,
+				AA18BDB528931AE800CBED96 /* Debug */,
+				AA18BDB628931AE800CBED96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA028F5E281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSTests" */ = {
+		AA18BDB728931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA028F59281F60DA006A892C /* Debug */,
-				AA028F5A281F60DA006A892C /* Release */,
+				AA18BDB828931AE800CBED96 /* Debug */,
+				AA18BDB928931AE800CBED96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA028F5F281F60DA006A892C /* Build configuration list for PBXNativeTarget "AcrylicTVOSUITests" */ = {
+		AA18BDBA28931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA028F5B281F60DA006A892C /* Debug */,
-				AA028F5C281F60DA006A892C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA42DDC827F1F16D003ECF74 /* Build configuration list for PBXNativeTarget "QuickLookExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA42DDC927F1F16D003ECF74 /* Debug */,
-				AA42DDCA27F1F16D003ECF74 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA45EBBF27263E3A00593894 /* Build configuration list for PBXNativeTarget "MeshGradientIntent" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA45EBC027263E3A00593894 /* Debug */,
-				AA45EBC127263E3A00593894 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA4BBDE727F2962D00B45FA6 /* Build configuration list for PBXNativeTarget "ThumbnailExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA4BBDE827F2962D00B45FA6 /* Debug */,
-				AA4BBDE927F2962D00B45FA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA517536272483CE00C25576 /* Build configuration list for PBXProject "Acrylic" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA517566272483CF00C25576 /* Debug */,
-				AA517567272483CF00C25576 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA517568272483CF00C25576 /* Build configuration list for PBXNativeTarget "Acrylic" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA517569272483CF00C25576 /* Debug */,
-				AA51756A272483CF00C25576 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA51756B272483CF00C25576 /* Build configuration list for PBXNativeTarget "AcrylicTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA51756C272483CF00C25576 /* Debug */,
-				AA51756D272483CF00C25576 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA51756E272483CF00C25576 /* Build configuration list for PBXNativeTarget "AcrylicUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA51756F272483CF00C25576 /* Debug */,
-				AA517570272483CF00C25576 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AACD1C1C281F239E00C76E87 /* Build configuration list for PBXNativeTarget "AcrylicWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AACD1C1D281F239E00C76E87 /* Debug */,
-				AACD1C1E281F239E00C76E87 /* Release */,
+				AA18BDBB28931AE800CBED96 /* Debug */,
+				AA18BDBC28931AE800CBED96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amosavian/FileProvider.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
-			};
-		};
-		AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TelemetryDeck/SwiftClient";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ra1028/DifferenceKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EthanLipnik/UIOnboarding.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.4;
-			};
-		};
-		AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EthanLipnik/RandomColorSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
-			};
-		};
-		AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CanisterEditor/Blackbird.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/GianniCarlo/DirectoryWatcher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EthanLipnik/MeshKit.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AA028F61281F60F1006A892C /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
-			productName = MeshKit;
-		};
-		AA028F63281F60F7006A892C /* RandomColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
-			productName = RandomColor;
-		};
-		AA42DDD127F1F1F6003ECF74 /* RandomColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
-			productName = RandomColor;
-		};
-		AA4BBDEF27F2A4A100B45FA6 /* FilesProvider */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA4BBDEE27F2A4A100B45FA6 /* XCRemoteSwiftPackageReference "FileProvider" */;
-			productName = FilesProvider;
-		};
-		AA58CE862817702D007295E8 /* TelemetryClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
-			productName = TelemetryClient;
-		};
-		AA633FB827F494B40076F85C /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		AA633FBA27F495CC0076F85C /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA633FB727F494B40076F85C /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		AA687D2F281DC3E500306FB8 /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA687D2E281DC3E500306FB8 /* XCRemoteSwiftPackageReference "UIOnboarding" */;
-			productName = UIOnboarding;
-		};
-		AA71CA6D27ECAC0A00C4722D /* RandomColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
-			productName = RandomColor;
-		};
-		AA71CA6F27ECACA700C4722D /* RandomColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
-			productName = RandomColor;
-		};
-		AA8FAD90281DC49E00BC795E /* Blackbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA8FAD8F281DC49E00BC795E /* XCRemoteSwiftPackageReference "Blackbird" */;
-			productName = Blackbird;
-		};
-		AAAFF31227FF95BB003D042D /* DirectoryWatcher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AAAFF31127FF95BB003D042D /* XCRemoteSwiftPackageReference "DirectoryWatcher" */;
-			productName = DirectoryWatcher;
-		};
-		AACD1BFD281DC53800C76E87 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
-			productName = MeshKit;
-		};
-		AACD1BFF281DC53E00C76E87 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
-			productName = MeshKit;
-		};
-		AACD1C01281DDFDC00C76E87 /* TelemetryClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
-			productName = TelemetryClient;
-		};
-		AACD1C1F281F23A400C76E87 /* MeshKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AACD1BFC281DC53800C76E87 /* XCRemoteSwiftPackageReference "MeshKit" */;
-			productName = MeshKit;
-		};
-		AACD1C23281F241D00C76E87 /* RandomColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA71CA6C27ECAC0A00C4722D /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
-			productName = RandomColor;
-		};
-		AACD1C27281F27B100C76E87 /* TelemetryClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
-			productName = TelemetryClient;
-		};
-		AAD93FE3281F72A600A17C59 /* TelemetryClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA58CE852817702D007295E8 /* XCRemoteSwiftPackageReference "SwiftClient" */;
-			productName = TelemetryClient;
-		};
-		AADDB5492816E41800F46F7E /* Hero */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AADDB5482816E41800F46F7E /* XCRemoteSwiftPackageReference "Hero" */;
-			productName = Hero;
-		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		AA517547272483CE00C25576 /* Acrylic.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AA517548272483CE00C25576 /* Acrylic.xcdatamodel */,
-			);
-			currentVersion = AA517548272483CE00C25576 /* Acrylic.xcdatamodel */;
-			path = Acrylic.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = AA517533272483CE00C25576 /* Project object */;
+	rootObject = AA18BD9A28931AE700CBED96 /* Project object */;
 }

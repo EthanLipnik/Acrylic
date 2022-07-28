@@ -11,12 +11,12 @@ import UniformTypeIdentifiers
 
 struct MeshOptionsView: View {
     @EnvironmentObject var meshService: MeshService
-    
+
     let isCompact: Bool
-    var closeAction: (() -> Void)? = nil
+    var closeAction: (() -> Void)?
     @State private var isExporting: Bool = false
     @State private var isClearingColors: Bool = false
-    
+
     var body: some View {
         Group {
             if isCompact && UIDevice.current.userInterfaceIdiom != .mac {
@@ -32,12 +32,12 @@ struct MeshOptionsView: View {
                                     .frame(height: 60)
                             }
                         }
-                        
+
                         Text(meshService.meshDocument?.fileURL.deletingPathExtension().lastPathComponent ?? "Mesh")
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .frame(height: 60)
-                        
+
                         Button {
                             isExporting.toggle()
                         } label: {
@@ -65,7 +65,7 @@ struct MeshOptionsView: View {
                                 }
                             }
                         }
-                        
+
                         exportButton
                     }
             } else {
@@ -88,7 +88,7 @@ struct MeshOptionsView: View {
             }
         }
     }
-    
+
     var exportButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {
@@ -98,17 +98,17 @@ struct MeshOptionsView: View {
             }
         }
     }
-    
+
     func clearColors() {
         for i in 0..<meshService.colors.count {
             meshService.colors[i].color = UIColor.white
         }
     }
-    
+
     func randomizeColors() {
         meshService.generate(Palette: .randomPalette())
     }
-    
+
     var scrollView: some View {
         ScrollView {
             VStack {
@@ -134,7 +134,7 @@ struct MeshOptionsView: View {
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
         MeshOptionsView(isCompact: false) { // Close action
-            
+
         }
     }
 }

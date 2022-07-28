@@ -11,18 +11,18 @@ import RandomColor
 extension SceneOptionsView {
     struct PresetView: View {
         @EnvironmentObject var sceneService: SceneService
-        
+
         var withBackground: Bool = true
-        
+
         let presets = ["Cluster", "Wall"]
         @State var selectedPreset: String = "Cluster"
-        
+
         let shapes = ["Sphere", "Cube", "Pyramid"]
         @State var selectedShape: String = "Sphere"
-        
+
         @State private var roughness: Float = 0.3
-        
-        private var objectCountIntProxy: Binding<Double>{
+
+        private var objectCountIntProxy: Binding<Double> {
             Binding<Double>(get: {
                 return Double(sceneService.sceneDocument.objects.count)
             }, set: {
@@ -30,7 +30,7 @@ extension SceneOptionsView {
                 sceneService.updateObjectCount(Int($0))
             })
         }
-        
+
         var body: some View {
             Group {
                 OptionsView.DetailView(title: "Scene", systemImage: "cube.transparent", withBackground: withBackground) {
@@ -46,7 +46,7 @@ extension SceneOptionsView {
                         //                        .onChange(of: selectedPreset) { newValue in
                         //                            sceneService.setPreset(newValue.lowercased())
                         //                        }
-                        
+
                         Picker(selection: $selectedShape) {
                             ForEach(shapes, id: \.self) { Text($0) }
                         } label: {
@@ -60,7 +60,7 @@ extension SceneOptionsView {
                         .onChange(of: selectedShape) { newValue in
                             sceneService.setPreset(sceneService.sceneDocument.preset?.displayName.lowercased(), shape: newValue.lowercased())
                         }
-                        
+
                         Menu {
                             GeneratePaletteButton(title: "Blue", hue: .blue)
                             GeneratePaletteButton(title: "Green", hue: .green)
@@ -78,7 +78,7 @@ extension SceneOptionsView {
 #if targetEnvironment(macCatalyst)
                         .foregroundColor(.secondary)
 #endif
-                        
+
                         Button {
                             switch sceneService.sceneDocument.preset {
                             case .cluster( _, let positionMultiplier, _):
@@ -92,7 +92,7 @@ extension SceneOptionsView {
                         } label: {
                             Image(systemName: "circle.grid.cross")
                         }
-                        
+
                         Button {
                             sceneService.sceneDocument.setPreset(sceneService.sceneDocument.preset)
                             sceneService.setupSceneView()
@@ -120,7 +120,7 @@ extension SceneOptionsView {
                                 .foregroundColor(Color(.tertiaryLabel))
                         }
                     }
-                    
+
                     HStack {
                         Text("Rougness")
                             .bold()
@@ -133,37 +133,37 @@ extension SceneOptionsView {
                             }
                             .onChange(of: roughness) { newValue in
                                 sceneService.sceneDocument.objects.forEach({ $0.material.roughness = newValue })
-                                
+
                                 sceneService.scene.rootNode.childNodes.forEach({ $0.geometry?.firstMaterial?.roughness.contents = newValue })
                             }
                     }
                 }
             }
         }
-        
+
         private func GeneratePaletteButton(title: String, hue: Hue) -> some View {
             func setColors(_ luminosity: RandomColor.Luminosity) {
                 sceneService.sceneDocument.colorHue = .init(hue: hue, luminosity: luminosity)
                 let colors = randomColors(count: Int(objectCountIntProxy.wrappedValue), hue: hue, luminosity: luminosity)
                 sceneService.sceneDocument.objects.forEach({ $0.material.color = .init(uiColor: colors.randomElement() ?? .magenta) })
                 sceneService.sceneDocument.backgroundColor = .init(uiColor: randomColor(hue: hue, luminosity: .light))
-                
+
                 sceneService.setupSceneView()
             }
-            
+
             return Menu(title) {
                 Button("Default") {
                     setColors(.bright)
                 }.keyboardShortcut(.defaultAction)
-                
+
                 Button("Light") {
                     setColors(.light)
                 }
-                
+
                 Button("Dark") {
                     setColors(.dark)
                 }
-                
+
                 Button("Random") {
                     setColors(.random)
                 }

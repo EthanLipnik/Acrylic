@@ -67,7 +67,7 @@ extension VisualEffectBlur.Representable {
             hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             hostingController.view.backgroundColor = nil
             blurView.contentView.addSubview(vibrancyView)
-            
+
             blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             vibrancyView.contentView.addSubview(hostingController.view)
             vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

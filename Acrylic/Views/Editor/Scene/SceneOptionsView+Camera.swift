@@ -10,16 +10,16 @@ import SwiftUI
 extension SceneOptionsView {
     struct CameraView: View {
         @EnvironmentObject var sceneService: SceneService
-        
+
         var withBackground: Bool = true
-        
+
         @State private var focusDistance: CGFloat = 0
         @State private var fStop: CGFloat = 0.1
         @State private var focalLength: CGFloat = 0
-        
+
         @State private var filmGrainIntensity: Float = 0
         @State private var filmGrainScale: Float = 0
-        
+
         var body: some View {
             let depthOfFieldView = OptionsView.DetailView(title: "Depth of Field", systemImage: "line.3.crossed.swirl.circle.fill") {
                 HStack {
@@ -34,7 +34,7 @@ extension SceneOptionsView {
                             sceneService.sceneView?.pointOfView?.camera?.focusDistance = newValue
                         }
                 }
-                
+
                 HStack {
                     Image(systemName: "line.3.crossed.swirl.circle")
                         .foregroundColor(.secondary)
@@ -48,7 +48,7 @@ extension SceneOptionsView {
                         }
                 }
             }
-            
+
             let filmGrainView = OptionsView.DetailView(title: "Film Grain", systemImage: "circle.hexagongrid.circle") {
                 HStack {
                     Text("Intensity")
@@ -64,7 +64,7 @@ extension SceneOptionsView {
                             sceneService.sceneView?.pointOfView?.camera?.grainIntensity = CGFloat(newValue)
                         }
                 }
-                
+
                 HStack {
                     Text("Scale")
                         .bold()
@@ -80,7 +80,7 @@ extension SceneOptionsView {
                         }
                 }
             }
-            
+
             return OptionsView.DetailView(title: "Camera", systemImage: "camera.metering.center.weighted", withBackground: withBackground) {
                 if UIDevice.current.userInterfaceIdiom == .mac {
                     depthOfFieldView

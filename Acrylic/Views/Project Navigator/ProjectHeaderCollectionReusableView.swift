@@ -9,37 +9,37 @@ import UIKit
 
 class ProjectHeaderCollectionReusableView: UICollectionReusableView {
     static let reuseIdentifer = String(describing: ProjectHeaderCollectionReusableView.self)
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        
+
         label.font = UIFont.preferredFont(forTextStyle: .headline, compatibleWith: traitCollection).bold()
         label.textAlignment = .left
         label.textColor = UIColor.secondaryLabel
-        
+
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return label
     }()
-    
+
     init() {
         super.init(frame: .zero)
         commonInit()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
-    
+
     private func commonInit() {
         addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -52,7 +52,7 @@ class ProjectHeaderCollectionReusableView: UICollectionReusableView {
 extension UIFont {
     func withTraits(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         let descriptor = fontDescriptor.withSymbolicTraits(traits)
-        return UIFont(descriptor: descriptor!, size: 0) //size 0 means keep the size as it is
+        return UIFont(descriptor: descriptor!, size: 0) // size 0 means keep the size as it is
     }
 
     func bold() -> UIFont {

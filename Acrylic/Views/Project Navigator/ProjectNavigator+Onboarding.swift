@@ -15,7 +15,7 @@ extension ProjectNavigatorViewController: UIOnboardingViewControllerDelegate {
             (self?.view.window?.windowScene?.delegate as? SceneDelegate)?.addToolbar()
 #endif
         }
-        
+
         UserDefaults.standard.set(true, forKey: "didFinishOnboarding")
     }
 }

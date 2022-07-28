@@ -35,7 +35,7 @@ extension UIImage {
     case cgImageMissing
     case couldNotFinalize
   }
-  
+
   func heicData(compressionQuality: CGFloat) throws -> Data {
     let data = NSMutableData()
     guard let imageDestination =
@@ -45,20 +45,20 @@ extension UIImage {
       else {
         throw HEICError.heicNotSupported
     }
-    
+
     guard let cgImage = self.cgImage else {
       throw HEICError.cgImageMissing
     }
-    
+
     let options: NSDictionary = [
       kCGImageDestinationLossyCompressionQuality: compressionQuality
     ]
-    
+
     CGImageDestinationAddImage(imageDestination, cgImage, options)
     guard CGImageDestinationFinalize(imageDestination) else {
       throw HEICError.couldNotFinalize
     }
-    
+
     return data as Data
   }
 }

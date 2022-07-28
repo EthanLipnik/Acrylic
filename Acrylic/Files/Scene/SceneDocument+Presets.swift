@@ -9,34 +9,34 @@ import UIKit
 import RandomColor
 
 extension SceneDocument {
-    
+
     func setPreset(_ preset: Preset?, hue: RandomColor.Hue? = nil) {
         self.preset = preset
         guard let preset = preset else {
             return
         }
-        
+
         self.colorHue = .init(hue: hue ?? .randomPalette(includesMonochrome: true))
         guard let colorHue = colorHue else { return }
-        
+
         func setupSettings() {
             antialiasing = .multisampling2X
             screenSpaceReflectionsOptions = .init(isEnabled: true, sampleCount: 64, maxDistance: 128)
             backgroundColor = .init(uiColor: randomColor(hue: colorHue.randomColorHue, luminosity: .light))
         }
-        
+
         func setupLights() {
             let directionalLight = SceneDocument.Light(lightType: .directional,
                                                        castsShadow: true,
                                                        eulerAngles: SceneDocument.Vector3(x: 0, y: 45, z: 45))
-            
+
             let ambientLight = SceneDocument.Light(lightType: .ambient,
                                                    color: SceneDocument.Color.init(uiColor: UIColor(hue: 0, saturation: 0, brightness: 0.7, alpha: 1)),
                                                    castsShadow: false)
-            
+
             lights = [directionalLight, ambientLight]
         }
-        
+
         func setupCameras() {
             let camera = SceneDocument.Camera(position: SceneDocument.Vector3(x: 0, y: 0, z: 12),
                                               screenSpaceAmbientOcclusionOptions: .init(isEnabled: true, intensity: 1.8),
@@ -48,9 +48,9 @@ extension SceneDocument {
                                               useAutoExposure: true)
             cameras = [camera]
         }
-        
+
         let roughness = self.objects.first?.material.roughness ?? 0.6
-        
+
         switch preset {
         case .cluster(let shape, let positionMultiplier, let objectCount):
             let colors = randomColors(count: objectCount, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
@@ -65,11 +65,11 @@ extension SceneDocument {
                                                   scale: .init(x: randomScale, y: randomScale, z: randomScale))
                 objects.append(sphere)
             }
-            
+
             self.objects = objects
         case .wall(let shape, _, let objectCount):
             let colors = randomColors(count: objectCount, hue: colorHue.randomColorHue, luminosity: colorHue.randomColorLuminosity)
-            
+
             var objects: [SceneDocument.Object] = []
             for x in 0..<objectCount / 2 {
                 for y in 0..<objectCount / 2 {
@@ -81,10 +81,10 @@ extension SceneDocument {
                     objects.append(cube)
                 }
             }
-            
+
             self.objects = objects
         }
-        
+
         setupSettings()
         setupLights()
         setupCameras()

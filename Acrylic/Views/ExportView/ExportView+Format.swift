@@ -11,7 +11,7 @@ import SwiftUI
 extension ExportView {
     struct FormatView: View {
         @EnvironmentObject var exportService: ExportService
-        
+
         var body: some View {
             VStack {
                 Text("File")
@@ -29,7 +29,7 @@ extension ExportView {
 #if !targetEnvironment(macCatalyst)
                 .pickerStyle(.segmented)
 #endif
-                
+
                 if exportService.format.hasCompression {
                     HStack {
                         Text("Quality:")

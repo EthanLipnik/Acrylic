@@ -15,9 +15,9 @@ extension OptionsView {
         let forceMacStyle: Bool
         let info: String?
         let content: Content
-        
+
         @State private var isShowingInfo: Bool
-        
+
         init(title: String, systemImage: String, withBackground: Bool = true, forceMacStyle: Bool = false, info: String? = nil, @ViewBuilder content: @escaping () -> Content) {
             self.title = title
             self.systemImage = systemImage
@@ -25,14 +25,14 @@ extension OptionsView {
             self.withBackground = withBackground
             self.forceMacStyle = forceMacStyle
             self.info = info
-            
+
             self._isShowingInfo = .init(initialValue: false)
         }
-        
+
         var body: some View {
             let view = view
                 .padding()
-            
+
             Group {
                 if UIDevice.current.userInterfaceIdiom == .mac || forceMacStyle {
                     view
@@ -56,7 +56,7 @@ extension OptionsView {
                 Alert(title: Text(title + " Info"), message: Text(info ?? ""), dismissButton: .cancel(Text("Ok")))
             }
         }
-        
+
         var view: some View {
             VStack {
                 HStack {
@@ -89,39 +89,39 @@ extension OptionsView {
 struct ColorPickerView: UIViewControllerRepresentable {
     let color: UIColor
     let selectColor: (UIColor) -> Void
-    
+
     func makeUIViewController(context: Context) -> UIColorPickerViewController {
         let vc = UIColorPickerViewController()
-        
+
         vc.selectedColor = color
         vc.supportsAlpha = false
         vc.delegate = context.coordinator
-        
+
         return vc
     }
-    
+
     func updateUIViewController(_ uiViewController: UIColorPickerViewController, context: Context) {
-        
+
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self, selectColor: selectColor)
     }
-    
+
     class Coordinator: NSObject, UIColorPickerViewControllerDelegate {
         var parent: ColorPickerView
         let selectColor: (UIColor) -> Void
-        
+
         init(_ parent: ColorPickerView, selectColor: @escaping (UIColor) -> Void) {
             self.parent = parent
             self.selectColor = selectColor
         }
-        
+
         func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         }
-        
+
         func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
-            
+
             selectColor(color)
         }
     }

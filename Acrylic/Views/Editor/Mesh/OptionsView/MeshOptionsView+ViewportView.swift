@@ -10,9 +10,9 @@ import SwiftUI
 extension MeshOptionsView {
     struct ViewportView: View {
         @EnvironmentObject var meshService: MeshService
-        
+
         var withBackground: Bool = true
-        
+
         var body: some View {
             OptionsView.DetailView(title: "Viewport",
                                    systemImage: "viewfinder",

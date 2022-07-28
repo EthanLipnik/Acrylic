@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SceneOptionsView: View {
     @EnvironmentObject var sceneService: SceneService
-    
+
     let isCompact: Bool
     var closeAction: () -> Void
     @State private var isExporting: Bool = false
-    
+
     var body: some View {
         Group {
             if isCompact && UIDevice.current.userInterfaceIdiom != .mac {
@@ -32,7 +32,7 @@ struct SceneOptionsView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .frame(height: 60)
-                        
+
                         Button {
                             isExporting.toggle()
                         } label: {
@@ -58,7 +58,7 @@ struct SceneOptionsView: View {
                                 Label("Done", systemImage: "xmark.circle.fill")
                             }
                         }
-                        
+
                         exportButton
                     }
             } else {
@@ -74,7 +74,7 @@ struct SceneOptionsView: View {
             ExportView(document: Document.scene(sceneService.sceneDocument))
         }
     }
-    
+
     var scrollView: some View {
         ScrollView {
             VStack {
@@ -85,7 +85,7 @@ struct SceneOptionsView: View {
             .padding(.top, isCompact && UIDevice.current.userInterfaceIdiom != .mac ? 60 : 0)
         }
     }
-    
+
     var exportButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {

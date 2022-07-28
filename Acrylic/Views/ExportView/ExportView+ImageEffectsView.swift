@@ -11,7 +11,7 @@ import SwiftUI
 extension ExportView {
     struct ImageEffectsView: View {
         @EnvironmentObject var exportService: ExportService
-        
+
         var body: some View {
             VStack {
                 Text("Effects")
@@ -24,7 +24,7 @@ extension ExportView {
                         Text("")
                     }.labelsHidden()
                 }
-                
+
                 switch exportService.document {
                 case .mesh:
                     MeshEffectsView()
@@ -34,20 +34,20 @@ extension ExportView {
             }
         }
     }
-    
+
     struct MeshEffectsView: View {
         @EnvironmentObject var exportService: ExportService
-        
-        var subdivisionsIntProxy: Binding<Double>{
+
+        var subdivisionsIntProxy: Binding<Double> {
             Binding<Double>(get: {
-                //returns the score as a Double
+                // returns the score as a Double
                 return Double(exportService.subdivisions)
             }, set: {
-                //rounds the double to an Int
+                // rounds the double to an Int
                 exportService.subdivisions = Int($0)
             })
         }
-        
+
         var body: some View {
             Group {
                 HStack {

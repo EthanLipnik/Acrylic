@@ -10,11 +10,11 @@ import SceneKit
 
 struct ExportView: View {
     @StateObject var exportService: ExportService
-    
+
     init(document: Document) {
         self._exportService = .init(wrappedValue: ExportService(document: document))
     }
-    
+
     var body: some View {
         Stack(spacing: 20) {
             ExportViewControllerView()
@@ -36,7 +36,7 @@ struct ExportView: View {
         .animation(.spring(), value: exportService.resolution.height)
         .padding()
     }
-    
+
 #if targetEnvironment(macCatalyst)
     typealias Stack = HStack
 #else

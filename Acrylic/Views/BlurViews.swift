@@ -12,12 +12,12 @@ struct BlurView: View {
         case circle
         case roundedRectangle(cornerRadius: CGFloat = 10)
     }
-    
+
     enum Effect {
         case ultraThin
         case thin
         case regular
-        
+
         @available(iOS 15, macOS 12, *)
         var material: Material {
             switch self {
@@ -29,7 +29,7 @@ struct BlurView: View {
                 return .regular
             }
         }
-        
+
         var blurEffect: UIBlurEffect.Style {
             switch self {
             case .ultraThin:
@@ -41,10 +41,10 @@ struct BlurView: View {
             }
         }
     }
-    
+
     var style: Style = .roundedRectangle()
     var effect: Effect = .regular
-    
+
     var body: some View {
         Group {
             if #available(iOS 15, macOS 12, *) {

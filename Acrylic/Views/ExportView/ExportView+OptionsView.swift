@@ -12,14 +12,14 @@ extension ExportView {
     struct ExportOptionsView: View {
         @EnvironmentObject var exportService: ExportService
         @Environment(\.presentationMode) var presentationMode
-        
+
         @State private var isExportingImage: Bool = false
-        @State private var imageDocument: ImageDocument? = nil
-        
+        @State private var imageDocument: ImageDocument?
+
 #if !targetEnvironment(macCatalyst)
-        @State private var fileUrl: URL? = nil
+        @State private var fileUrl: URL?
 #endif
-        
+
         var body: some View {
             VStack {
                 GroupBox {
@@ -49,7 +49,7 @@ extension ExportView {
                             case .success(let imageDocument):
                                 DispatchQueue.main.async {
                                     self.imageDocument = imageDocument
-                                    
+
 #if !targetEnvironment(macCatalyst)
                                     do {
                                         let fileUrl = FileManager.default.temporaryDirectory.appendingPathComponent("image." + exportService.format.fileExtension)
@@ -59,7 +59,7 @@ extension ExportView {
                                         print(error)
                                     }
 #endif
-                                    
+
                                     self.isExportingImage.toggle()
                                 }
                             case .failure(let error):
@@ -74,7 +74,7 @@ extension ExportView {
                         switch result {
                         case .success(let url):
                             print(url.path)
-                            
+
                             presentationMode.wrappedValue.dismiss()
                         case .failure(let error):
                             print(error)

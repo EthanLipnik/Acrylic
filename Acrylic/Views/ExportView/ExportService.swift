@@ -25,21 +25,21 @@ class ExportService: ObservableObject {
     @Published var format: Format = .png
     @Published var compressionQuality: CGFloat = 1
     @Published var isProcessing: Bool = false
-    
+
     @Published var subdivisions: Int = 18
-    
+
     @Published var ambientOcclusionIntensity: Float = 0
-    
-    @Published var previewImage: CIImage? = nil
-    var scaledImage: CIImage? = nil
-    
+
+    @Published var previewImage: CIImage?
+    var scaledImage: CIImage?
+
     private var cancellables: Set<AnyCancellable> = []
-    
+
     enum Format: String, Hashable {
         case png = "PNG"
         case jpeg = "JPEG"
         case heic = "HEIC"
-        
+
         var hasCompression: Bool {
             switch self {
             case .png:
@@ -48,7 +48,7 @@ class ExportService: ObservableObject {
                 return true
             }
         }
-        
+
         var fileExtension: String {
             switch self {
             case .png:
@@ -59,7 +59,7 @@ class ExportService: ObservableObject {
                 return "heic"
             }
         }
-        
+
         var type: UTType {
             switch self {
             case .png:
@@ -70,7 +70,7 @@ class ExportService: ObservableObject {
                 return .heic
             }
         }
-        
+
         static let allCases: [Self] = {
             return [
                 .png,
@@ -79,39 +79,39 @@ class ExportService: ObservableObject {
             ]
         }()
     }
-    
+
     var document: Document
-    var baseImage: CIImage? = nil
-    
+    var baseImage: CIImage?
+
     init(document: Document) {
         self.document = document
-        
+
         switch document {
         case .mesh(let meshDocument):
             self.subdivisions = meshDocument.subdivisions
         case .scene(let sceneDocument):
             self.ambientOcclusionIntensity = sceneDocument.cameras.first?.screenSpaceAmbientOcclusionOptions.intensity ?? 0
         }
-        
+
         self.isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let render = self?.render() else { return }
             self?.baseImage = CIImage(image: render)
             self?.scaledImage = self?.baseImage?.scale(CGSize(width: 512, height: 512))
             self?.applyFilters()
-            
+
             DispatchQueue.main.async {
                 self?.isProcessing = false
             }
         }
-        
+
         $ambientOcclusionIntensity
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.reset()
             }
             .store(in: &cancellables)
-        
+
         $subdivisions
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -119,7 +119,7 @@ class ExportService: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func reset() {
         isProcessing = true
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -127,42 +127,42 @@ class ExportService: ObservableObject {
             self.baseImage = CIImage(image: self.render()) ?? self.baseImage
             self.scaledImage = self.baseImage?.resize(CGSize(width: (self.resolution.width / 1024) * 512, height: (self.resolution.height / 1024) * 512))
             self.applyFilters()
-            
+
             DispatchQueue.main.async {
                 self.isProcessing = false
             }
         }
     }
-    
+
     func applyFilters() {
         DispatchQueue.main.async { [weak self] in
             DispatchQueue.global(qos: .userInitiated).async {
                 guard let self = self,
                       let image = self.scaledImage ?? self.baseImage else { return }
-                
+
                 let filteredImage = image
                     .clampedToExtent()
                     .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
                     .cropped(to: image.extent)
-                
+
                 DispatchQueue.main.async {
                     self.previewImage = filteredImage
                 }
             }
         }
     }
-    
+
     func export(completion: @escaping (Result<ImageDocument, Error>) -> Void) {
         DispatchQueue.main.async {  [weak self] in
             self?.isProcessing = true
-            
+
             DispatchQueue.global(qos: .userInitiated).async {
                 guard let self = self else { return }
                 let render = self.render()
                 let renderImage = CIImage(image: render) ?? .init()
-                
+
                 let context = CIContext(options: nil)
-                
+
                 guard let ciImage = renderImage
                     .clampedToExtent()
                     .applyingFilter(.gaussian, radius: NSNumber(value: self.blur))?
@@ -174,11 +174,11 @@ class ExportService: ObservableObject {
                     completion(.failure(CocoaError(.fileWriteUnknown)))
                     return
                 }
-                
+
                 let image = UIImage(cgImage: cgImage)
-                
-                var data: Data? = nil
-                
+
+                var data: Data?
+
                 switch self.format {
                 case .png:
                     data = image.pngData()
@@ -192,7 +192,7 @@ class ExportService: ObservableObject {
                         return
                     }
                 }
-                
+
                 if let data = data {
                     TelemetryManager.send("renderExported")
                     completion(.success(ImageDocument(imageData: data)))
@@ -200,14 +200,14 @@ class ExportService: ObservableObject {
                     TelemetryManager.send("renderFailed", with: ["error": "failed to get image data from render."])
                     completion(.failure(CocoaError(.fileReadUnknown)))
                 }
-                
+
                 DispatchQueue.main.async {
                     self.isProcessing = false
                 }
             }
         }
     }
-    
+
     func render() -> UIImage {
         switch document {
         case .mesh(let meshDocument):
@@ -228,12 +228,12 @@ extension CIImage {
         let filter = CIFilter(name: "CILanczosScaleTransform")
         filter?.setValue(self, forKey: kCIInputImageKey)
         filter?.setValue(NSNumber(value: scale), forKey: kCIInputScaleKey)
-        filter?.setValue(1.0, forKey:kCIInputAspectRatioKey)
+        filter?.setValue(1.0, forKey: kCIInputAspectRatioKey)
         return filter?.value(forKey: kCIOutputImageKey) as? CIImage
     }
-    
+
     func resize(_ size: CGSize) -> CIImage? {
-        let resizeFilter = CIFilter(name:"CILanczosScaleTransform")
+        let resizeFilter = CIFilter(name: "CILanczosScaleTransform")
 
         let scale = size.height / self.extent.height
         let aspectRatio = size.width / (self.extent.width * scale)

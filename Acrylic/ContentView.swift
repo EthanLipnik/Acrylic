@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var subdivisions: Float = Float(MeshDefaults.subdivisions)
 
     init() {
-        let colors = MeshKit.generate(palette: .blue, .red, .purple)
+        let colors = MeshKit.generate(palette: .randomPalette())
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
     }
@@ -38,7 +38,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem(id: "randomize", placement: .navigation, showsByDefault: true) {
                 Button {
-                    colors = MeshKit.generate(palette: .random)
+                    colors = MeshKit.generate(palette: .randomPalette())
                     meshRandomizer = .withMeshColors(colors)
                 } label: {
                     Label("Randomize", systemImage: "arrow.triangle.2.circlepath")
@@ -66,7 +66,18 @@ struct ContentView: View {
         }
         .ignoresSafeArea()
 #if os(iOS)
-        .statusBarHidden()
+        .overlay(alignment: .top) {
+            GeometryReader { proxy in
+                VStack(spacing: 0) {
+                    Rectangle()
+                        .fill(Material.bar)
+                        .frame(maxWidth: .infinity)
+                    Divider()
+                }
+                .frame(width: proxy.size.width, height: proxy.safeAreaInsets.top)
+                .offset(y: -proxy.safeAreaInsets.top)
+            }
+        }
 #endif
     }
 
@@ -76,18 +87,24 @@ struct ContentView: View {
 
         var body: some View {
             VStack {
-                GroupBox("Details") {
+                HStack {
+                    Label("Grain", systemImage: "circle.grid.3x3.fill")
+                        .frame(width: 150, alignment: .leading)
                     Slider(value: $grainAlpha, in: 0...0.25) {
-                        Label("Grain", systemImage: "circle.grid.3x3.fill")
-                    }
+                        Text("Grain")
+                    }.labelsHidden()
+                }
+                HStack {
+                    Label("Subdivisions", systemImage: "cube.fill")
+                        .frame(width: 150, alignment: .leading)
                     Slider(value: $subdivisions, in: 2...32, step: 1.0) {
-                        Label("Subdivisions", systemImage: "cube.fill")
-                    }
+                        Text("Subdivisions")
+                    }.labelsHidden()
                 }
             }
             .padding()
             .background {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(Material.regular)
                     .shadow(radius: 16, y: 8)
             }

@@ -12,8 +12,17 @@ struct AcrylicApp: App {
     var body: some Scene {
 #if !os(tvOS)
         WindowGroup {
+#if os(iOS)
+            NavigationView {
+                ContentView()
+                    .navigationTitle("Acrylic")
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationViewStyle(.stack)
+#else
             ContentView()
-                .frame(minWidth: 640, minHeight: 480)
+            .frame(minWidth: 640, minHeight: 480)
+#endif
         }
 #if os(macOS)
         .windowToolbarStyle(.unifiedCompact)
@@ -61,7 +70,9 @@ struct AcrylicApp: App {
             ScreenSaverView()
                 .frame(minWidth: 640, minHeight: 480)
         }
+#if os(macOS)
         .windowStyle(.hiddenTitleBar)
+#endif
 #else
         WindowGroup {
             ScreenSaverView()

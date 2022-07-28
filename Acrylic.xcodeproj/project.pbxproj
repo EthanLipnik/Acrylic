@@ -3,203 +3,184 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA18BDAF28931AE800CBED96 /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */; };
-		AA18BDB028931AE800CBED96 /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */; };
-		AA18BDB128931AE800CBED96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BDA028931AE700CBED96 /* ContentView.swift */; };
-		AA18BDB228931AE800CBED96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA18BDA028931AE700CBED96 /* ContentView.swift */; };
-		AA18BDB328931AE800CBED96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA18BDA128931AE800CBED96 /* Assets.xcassets */; };
-		AA18BDB428931AE800CBED96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA18BDA128931AE800CBED96 /* Assets.xcassets */; };
+		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
+		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
+		AA749C6828931EFB002CD39A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* ContentView.swift */; };
+		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
+		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
+		AA749C7828931F68002CD39A /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA749C7728931F68002CD39A /* MeshKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
-		AA18BDA028931AE700CBED96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AA18BDA128931AE800CBED96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA18BDA628931AE800CBED96 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA18BDAC28931AE800CBED96 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA18BDAE28931AE800CBED96 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
+		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
+		AA749C6728931EFB002CD39A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA749C6928931EFC002CD39A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
+		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AA749C7528931F63002CD39A /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA18BDA328931AE800CBED96 /* Frameworks */ = {
+		AA749C5F28931EFB002CD39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA18BDA928931AE800CBED96 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				AA749C7828931F68002CD39A /* MeshKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA18BD9928931AE700CBED96 = {
+		AA749C5928931EFB002CD39A = {
 			isa = PBXGroup;
 			children = (
-				AA18BD9E28931AE700CBED96 /* Shared */,
-				AA18BDAD28931AE800CBED96 /* macOS */,
-				AA18BDA728931AE800CBED96 /* Products */,
+				AA749C7428931F63002CD39A /* Packages */,
+				AA749C6428931EFB002CD39A /* Acrylic */,
+				AA749C6328931EFB002CD39A /* Products */,
+				AA749C7628931F68002CD39A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		AA18BD9E28931AE700CBED96 /* Shared */ = {
+		AA749C6328931EFB002CD39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA18BD9F28931AE700CBED96 /* AcrylicApp.swift */,
-				AA18BDA028931AE700CBED96 /* ContentView.swift */,
-				AA18BDA128931AE800CBED96 /* Assets.xcassets */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		AA18BDA728931AE800CBED96 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AA18BDA628931AE800CBED96 /* Acrylic.app */,
-				AA18BDAC28931AE800CBED96 /* Acrylic.app */,
+				AA749C6228931EFB002CD39A /* Acrylic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA18BDAD28931AE800CBED96 /* macOS */ = {
+		AA749C6428931EFB002CD39A /* Acrylic */ = {
 			isa = PBXGroup;
 			children = (
-				AA18BDAE28931AE800CBED96 /* macOS.entitlements */,
+				AA749C6528931EFB002CD39A /* AcrylicApp.swift */,
+				AA749C6728931EFB002CD39A /* ContentView.swift */,
+				AA0EA86128933069003CEB51 /* ScreenSaverView.swift */,
+				AA749C6928931EFC002CD39A /* Assets.xcassets */,
+				AA749C6B28931EFC002CD39A /* Acrylic.entitlements */,
+				AA749C6C28931EFC002CD39A /* Preview Content */,
 			);
-			path = macOS;
+			path = Acrylic;
+			sourceTree = "<group>";
+		};
+		AA749C6C28931EFC002CD39A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AA749C7428931F63002CD39A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				AA749C7528931F63002CD39A /* MeshKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		AA749C7628931F68002CD39A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA18BDA528931AE800CBED96 /* Acrylic (iOS) */ = {
+		AA749C6128931EFB002CD39A /* Acrylic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA18BDB728931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (iOS)" */;
+			buildConfigurationList = AA749C7128931EFC002CD39A /* Build configuration list for PBXNativeTarget "Acrylic" */;
 			buildPhases = (
-				AA18BDA228931AE800CBED96 /* Sources */,
-				AA18BDA328931AE800CBED96 /* Frameworks */,
-				AA18BDA428931AE800CBED96 /* Resources */,
+				AA749C5E28931EFB002CD39A /* Sources */,
+				AA749C5F28931EFB002CD39A /* Frameworks */,
+				AA749C6028931EFB002CD39A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Acrylic (iOS)";
-			productName = "Acrylic (iOS)";
-			productReference = AA18BDA628931AE800CBED96 /* Acrylic.app */;
-			productType = "com.apple.product-type.application";
-		};
-		AA18BDAB28931AE800CBED96 /* Acrylic (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA18BDBA28931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (macOS)" */;
-			buildPhases = (
-				AA18BDA828931AE800CBED96 /* Sources */,
-				AA18BDA928931AE800CBED96 /* Frameworks */,
-				AA18BDAA28931AE800CBED96 /* Resources */,
+			name = Acrylic;
+			packageProductDependencies = (
+				AA749C7728931F68002CD39A /* MeshKit */,
 			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Acrylic (macOS)";
-			productName = "Acrylic (macOS)";
-			productReference = AA18BDAC28931AE800CBED96 /* Acrylic.app */;
+			productName = Acrylic;
+			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AA18BD9A28931AE700CBED96 /* Project object */ = {
+		AA749C5A28931EFB002CD39A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					AA18BDA528931AE800CBED96 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					AA18BDAB28931AE800CBED96 = {
-						CreatedOnToolsVersion = 13.4.1;
+					AA749C6128931EFB002CD39A = {
+						CreatedOnToolsVersion = 14.0;
 					};
 				};
 			};
-			buildConfigurationList = AA18BD9D28931AE700CBED96 /* Build configuration list for PBXProject "Acrylic" */;
-			compatibilityVersion = "Xcode 13.0";
+			buildConfigurationList = AA749C5D28931EFB002CD39A /* Build configuration list for PBXProject "Acrylic" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = AA18BD9928931AE700CBED96;
-			productRefGroup = AA18BDA728931AE800CBED96 /* Products */;
+			mainGroup = AA749C5928931EFB002CD39A;
+			productRefGroup = AA749C6328931EFB002CD39A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA18BDA528931AE800CBED96 /* Acrylic (iOS) */,
-				AA18BDAB28931AE800CBED96 /* Acrylic (macOS) */,
+				AA749C6128931EFB002CD39A /* Acrylic */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AA18BDA428931AE800CBED96 /* Resources */ = {
+		AA749C6028931EFB002CD39A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA18BDB328931AE800CBED96 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA18BDAA28931AE800CBED96 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA18BDB428931AE800CBED96 /* Assets.xcassets in Resources */,
+				AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */,
+				AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AA18BDA228931AE800CBED96 /* Sources */ = {
+		AA749C5E28931EFB002CD39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA18BDB128931AE800CBED96 /* ContentView.swift in Sources */,
-				AA18BDAF28931AE800CBED96 /* AcrylicApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA18BDA828931AE800CBED96 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA18BDB228931AE800CBED96 /* ContentView.swift in Sources */,
-				AA18BDB028931AE800CBED96 /* AcrylicApp.swift in Sources */,
+				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
+				AA749C6828931EFB002CD39A /* ContentView.swift in Sources */,
+				AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AA18BDB528931AE800CBED96 /* Debug */ = {
+		AA749C6F28931EFC002CD39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -251,13 +232,13 @@
 			};
 			name = Debug;
 		};
-		AA18BDB628931AE800CBED96 /* Release */ = {
+		AA749C7028931EFC002CD39A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -302,154 +283,113 @@
 			};
 			name = Release;
 		};
-		AA18BDB828931AE800CBED96 /* Debug */ = {
+		AA749C7228931EFC002CD39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
-				PRODUCT_NAME = Acrylic;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AA18BDB928931AE800CBED96 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B6QG723P8Z;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
-				PRODUCT_NAME = Acrylic;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		AA18BDBB28931AE800CBED96 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
-				PRODUCT_NAME = Acrylic;
-				SDKROOT = macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
 		};
-		AA18BDBC28931AE800CBED96 /* Release */ = {
+		AA749C7328931EFC002CD39A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
-				PRODUCT_NAME = Acrylic;
-				SDKROOT = macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA18BD9D28931AE700CBED96 /* Build configuration list for PBXProject "Acrylic" */ = {
+		AA749C5D28931EFB002CD39A /* Build configuration list for PBXProject "Acrylic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA18BDB528931AE800CBED96 /* Debug */,
-				AA18BDB628931AE800CBED96 /* Release */,
+				AA749C6F28931EFC002CD39A /* Debug */,
+				AA749C7028931EFC002CD39A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA18BDB728931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (iOS)" */ = {
+		AA749C7128931EFC002CD39A /* Build configuration list for PBXNativeTarget "Acrylic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA18BDB828931AE800CBED96 /* Debug */,
-				AA18BDB928931AE800CBED96 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA18BDBA28931AE800CBED96 /* Build configuration list for PBXNativeTarget "Acrylic (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA18BDBB28931AE800CBED96 /* Debug */,
-				AA18BDBC28931AE800CBED96 /* Release */,
+				AA749C7228931EFC002CD39A /* Debug */,
+				AA749C7328931EFC002CD39A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA749C7728931F68002CD39A /* MeshKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MeshKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = AA18BD9A28931AE700CBED96 /* Project object */;
+	rootObject = AA749C5A28931EFB002CD39A /* Project object */;
 }

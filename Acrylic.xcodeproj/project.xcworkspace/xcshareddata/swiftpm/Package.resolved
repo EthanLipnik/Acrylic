@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EthanLipnik/MeshGradient.git",
       "state" : {
-        "revision" : "5a0b1e35ae81c232ba9ea1c61c2164f622c80c31",
-        "version" : "1.0.3"
+        "revision" : "2780ba9270908ed3368caaef3c0460f25a37213a",
+        "version" : "1.0.4"
       }
     },
     {

@@ -30,6 +30,14 @@ struct ScreenSaverView: View {
             colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true))
             meshRandomizer = .withMeshColors(colors)
         }
+        .overlay {
+            Button("New Color") {
+                colors = MeshKit.generate(palette: .randomPalette())
+                meshRandomizer = .withMeshColors(colors)
+            }
+            .keyboardShortcut(.space, modifiers: [])
+            .hidden()
+        }
     }
 }
 

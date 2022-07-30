@@ -25,7 +25,7 @@ struct ContentView: View {
     @State private var currentYOffset: CGFloat = 0
     
     init() {
-        let size = MeshSize(width: 5, height: 5)
+        let size = MeshSize.default
         let colors = MeshKit.generate(palette: .randomPalette(), size: size)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
@@ -205,7 +205,7 @@ struct ContentView: View {
                                 let width = location.x / (proxy.size.width / 2)
                                 let height = location.y / (proxy.size.height / 2)
                                 point.location.x = Float(width) + point.startLocation.x
-                                point.location.y = Float(height) - 1 + point.startLocation.y
+                                point.location.y = -Float(height) + point.startLocation.y
                                 offset = CGSize(width: location.x, height: location.y)
                                 
                                 didMove(CGSize(width: width, height: 1 - height))

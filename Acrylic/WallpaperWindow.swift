@@ -12,7 +12,7 @@ import MeshKit
 import AppKit
 import SwiftUI
 
-class AppWindow: NSWindow {
+class WallpaperWindow: NSWindow {
     private var colors: MeshGrid? = nil
     
     init() {
@@ -25,7 +25,7 @@ class AppWindow: NSWindow {
         collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
         ignoresMouseEvents = true
         
-        let screenSaverView = ScreenSaverView(changeInterval: 10, luminosity: .dark) { [weak self] grid in
+        let screenSaverView = ScreenSaverView(changeInterval: 60, luminosity: .light) { [weak self] grid in
             self?.colors = grid
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in

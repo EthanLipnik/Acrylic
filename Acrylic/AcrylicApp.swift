@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct AcrylicApp: App {
+    @Environment(\.openURL) var openUrl
+    
+    @State var isUsingWallpaper: Bool = false
+    @State var wallpaperWindow: WallpaperWindow? = nil
+    
     var body: some Scene {
 #if !os(tvOS)
         WindowGroup {
@@ -21,7 +26,13 @@ struct AcrylicApp: App {
             .navigationViewStyle(.stack)
 #else
             ContentView()
-                .frame(minWidth: 640, minHeight: 480)
+                .frame(minWidth: 400, minHeight: 400)
+                .onAppear {
+                    NSApp.setActivationPolicy(.regular)
+                }
+                .onDisappear {
+                    NSApp.setActivationPolicy(.accessory)
+                }
 #endif
         }
 #if os(macOS)
@@ -81,6 +92,10 @@ struct AcrylicApp: App {
         
 #if os(macOS)
         menuBarExtra()
+        
+        Settings {
+            Text("Hey")
+        }
 #endif
     }
     
@@ -88,11 +103,25 @@ struct AcrylicApp: App {
     func menuBarExtra() -> some Scene {
         if #available(macOS 13.0, *) {
             return MenuBarExtra {
-                Button("Start Animating Wallpaper...") {
-                    let window = AppWindow()
+                Button("Create Mesh Gradient...") {
+                    if let url = URL(string: "acrylic://") {
+                        openUrl(url)
+                    }
+                }
+                
+                Divider()
+                
+                Button("Toggle Animating Wallpaper...") {
+                    wallpaperWindow?.close()
+                    guard !isUsingWallpaper else { isUsingWallpaper = false; return }
+                    
+                    let window = WallpaperWindow()
                     window.makeKeyAndOrderFront(nil)
                     let windowController = NSWindowController(window: window)
                     windowController.showWindow(nil)
+                    
+                    self.wallpaperWindow = window
+                    isUsingWallpaper  = true
                 }
                 
                 Button("Quit Acrylic") {

@@ -53,7 +53,9 @@ struct ContentView: View {
                      subdivisions: Int(subdivisions))
             }
         }
-        .background(Color(colors.elements.first?.color ?? defaultBackgroundColor), ignoresSafeAreaEdges: .all)
+#if os(macOS)
+        .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
+#endif
         .edgesIgnoringSafeArea([.bottom, .horizontal])
         .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
@@ -80,7 +82,7 @@ struct ContentView: View {
             
             ToolbarItem(id: "animate") {
                 Toggle(isOn: $shouldAnimate) {
-                    Label("Animate", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
+                    Label("Animate", systemImage: "square.stack.3d.forward.dottedline")
                 }
             }
             
@@ -92,7 +94,7 @@ struct ContentView: View {
                 }
             }
         }
-        .overlay {
+        .overlay(
             ZStack {
                 GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation in
                     currentXOffset = translation.width
@@ -109,25 +111,10 @@ struct ContentView: View {
                 .hidden()
             }
             .edgesIgnoringSafeArea([.bottom, .horizontal])
-        }
+        )
         .onTapGesture {
             selectedPoint = nil
         }
-#if os(iOS)
-        .overlay(alignment: .top) {
-            GeometryReader { proxy in
-                VStack(spacing: 0) {
-                    Rectangle()
-                        .fill(Material.bar)
-                        .frame(maxWidth: .infinity)
-                    Divider()
-                }
-                .frame(width: proxy.size.width, height: proxy.safeAreaInsets.top)
-                .offset(y: -proxy.safeAreaInsets.top)
-            }
-            .edgesIgnoringSafeArea(.horizontal)
-        }
-#endif
     }
     
     struct OptionsView: View {

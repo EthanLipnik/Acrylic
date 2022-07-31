@@ -11,8 +11,10 @@ import SwiftUI
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
     
+#if os(macOS)
     @State var isUsingWallpaper: Bool = false
     @State var wallpaperWindow: WallpaperWindow? = nil
+#endif
     
     var body: some Scene {
 #if !os(tvOS)
@@ -26,12 +28,14 @@ struct AcrylicApp: App {
             .navigationViewStyle(.stack)
 #else
             ContentView()
-                .frame(minWidth: 400, minHeight: 400)
+                .frame(minWidth: 400, idealWidth: 400)
                 .onAppear {
                     NSApp.setActivationPolicy(.regular)
                 }
                 .onDisappear {
-                    NSApp.setActivationPolicy(.accessory)
+                    if NSApp.windows.count <= 3 {
+                        NSApp.setActivationPolicy(.accessory)
+                    }
                 }
 #endif
         }
@@ -42,27 +46,6 @@ struct AcrylicApp: App {
             ToolbarCommands()
             
             CommandGroup(after: .newItem) {
-                Divider()
-                Menu("Randomize...") {
-                    Button("Blue") {
-                        
-                    }
-                    .keyboardShortcut(nil)
-                    
-                    Button("Red") {
-                        
-                    }
-                    .keyboardShortcut(nil)
-                    
-                    Button("Rainbow") {
-                        
-                    }
-                    .keyboardShortcut(nil)
-                } primaryAction: {
-                    
-                }
-                .keyboardShortcut("r")
-                
                 Button("Info...") {
                     
                 }
@@ -95,6 +78,7 @@ struct AcrylicApp: App {
         
         Settings {
             Text("Hey")
+                .frame(width: 300, height: 200)
         }
 #endif
     }
@@ -109,9 +93,7 @@ struct AcrylicApp: App {
                     }
                 }
                 
-                Divider()
-                
-                Button("Toggle Animating Wallpaper...") {
+                Button("Toggle Animating Wallpaper") {
                     wallpaperWindow?.close()
                     guard !isUsingWallpaper else { isUsingWallpaper = false; return }
                     
@@ -124,9 +106,28 @@ struct AcrylicApp: App {
                     isUsingWallpaper  = true
                 }
                 
+                Divider()
+                
+                if #available(macOS 13.0, *) {
+                    Button("Settings...") {
+                        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                    }
+                } else {
+                    Button("Preferences...") {
+                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    }
+                }
+                
+                Button("About Acrylic") {
+                    NSApp.sendAction(Selector(("showAboutWindow:")), to: nil, from: nil)
+                }
+                
+                Divider()
+                    
                 Button("Quit Acrylic") {
                     NSApplication.shared.terminate(self)
                 }
+                .keyboardShortcut("q")
             } label: {
                 Label("Acrylic", systemImage: "paintbrush.fill")
             }

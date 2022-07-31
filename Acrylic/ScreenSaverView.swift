@@ -41,13 +41,13 @@ struct ScreenSaverView: View {
             newPalette()
         }
 #if !os(tvOS)
-        .overlay {
+        .overlay(
             Button("New Color") {
                 newPalette()
             }
             .keyboardShortcut(.space, modifiers: [])
             .hidden()
-        }
+        )
 #endif
 //#if os(macOS)
 //        .onHover { isHovering in

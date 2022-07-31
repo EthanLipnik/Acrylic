@@ -27,17 +27,31 @@ struct ScreenSaverView: View {
              subdivisions: 36)
         .ignoresSafeArea()
         .onReceive(timer) { _ in
-            colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true))
-            meshRandomizer = .withMeshColors(colors)
+            newPalette()
         }
+#if !os(tvOS)
         .overlay {
             Button("New Color") {
-                colors = MeshKit.generate(palette: .randomPalette())
-                meshRandomizer = .withMeshColors(colors)
+                newPalette()
             }
             .keyboardShortcut(.space, modifiers: [])
             .hidden()
         }
+#endif
+//#if os(macOS)
+//        .onHover { isHovering in
+//            if isHovering {
+//                NSCursor.hide()
+//            } else {
+//                NSCursor.unhide()
+//            }
+//        }
+//#endif
+    }
+
+    func newPalette() {
+        colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true))
+        meshRandomizer = .withMeshColors(colors)
     }
 }
 

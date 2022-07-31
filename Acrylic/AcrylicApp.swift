@@ -21,7 +21,7 @@ struct AcrylicApp: App {
             .navigationViewStyle(.stack)
 #else
             ContentView()
-            .frame(minWidth: 640, minHeight: 480)
+                .frame(minWidth: 640, minHeight: 480)
 #endif
         }
 #if os(macOS)
@@ -29,43 +29,43 @@ struct AcrylicApp: App {
 #endif
         .commands {
             ToolbarCommands()
-
+            
             CommandGroup(after: .newItem) {
                 Divider()
                 Menu("Randomize...") {
                     Button("Blue") {
-
+                        
                     }
                     .keyboardShortcut(nil)
-
+                    
                     Button("Red") {
-
+                        
                     }
                     .keyboardShortcut(nil)
-
+                    
                     Button("Rainbow") {
-
+                        
                     }
                     .keyboardShortcut(nil)
                 } primaryAction: {
-
+                    
                 }
                 .keyboardShortcut("r")
-
+                
                 Button("Info...") {
-
+                    
                 }
                 .keyboardShortcut("i")
-
+                
                 Divider()
-
+                
                 Button("Export...") {
-
+                    
                 }
                 .keyboardShortcut("e")
             }
         }
-
+        
         WindowGroup("Screen Saver") {
             ScreenSaverView()
                 .frame(minWidth: 640, minHeight: 480)
@@ -78,5 +78,33 @@ struct AcrylicApp: App {
             ScreenSaverView()
         }
 #endif
+        
+#if os(macOS)
+        menuBarExtra()
+#endif
     }
+    
+#if os(macOS)
+    func menuBarExtra() -> some Scene {
+        if #available(macOS 13.0, *) {
+            return MenuBarExtra {
+                //                ContentView()
+                //                    .aspectRatio(contentMode: .fill)
+                Button("Wallpaper") {
+                    let window = AppWindow()
+                    window.makeKeyAndOrderFront(nil)
+                    let windowController = NSWindowController(window: window)
+                    windowController.showWindow(nil)
+                }
+            } label: {
+                Label("Acrylic", systemImage: "paintbrush.fill")
+            }
+            //            .menuBarExtraStyle(.window)
+        } else {
+            return WindowGroup {
+                
+            }
+        }
+    }
+#endif
 }

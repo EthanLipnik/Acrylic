@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
+		AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* ContentView.swift */; };
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
+		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperWindow.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/WallpaperWindow.swift"; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
 		AA749C6728931EFB002CD39A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				AA749C6528931EFB002CD39A /* AcrylicApp.swift */,
 				AA749C6728931EFB002CD39A /* ContentView.swift */,
 				AA0EA86128933069003CEB51 /* ScreenSaverView.swift */,
+				AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */,
 				AA749C6928931EFC002CD39A /* Assets.xcassets */,
 				AA749C6B28931EFC002CD39A /* Acrylic.entitlements */,
 				AA749C6C28931EFC002CD39A /* Preview Content */,
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
 				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
 				AA749C6828931EFB002CD39A /* ContentView.swift in Sources */,
 				AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */,
@@ -207,6 +211,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -265,6 +270,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -289,8 +295,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -329,8 +338,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
 				ENABLE_HARDENED_RUNTIME = YES;

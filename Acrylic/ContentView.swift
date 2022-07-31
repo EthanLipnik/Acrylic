@@ -23,9 +23,17 @@ struct ContentView: View {
     
     @State private var currentXOffset: CGFloat = 0
     @State private var currentYOffset: CGFloat = 0
+
+    private let defaultBackgroundColor: SystemColor = {
+#if canImport(UIKit)
+        return UIColor.systemBackground
+#elseif canImport(AppKit)
+        return NSColor.windowBackgroundColor
+#endif
+    }()
     
     init() {
-        let size = MeshSize.default
+        let size = MeshSize(width: 5, height: 5)
         let colors = MeshKit.generate(palette: .randomPalette(), size: size)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
@@ -45,6 +53,9 @@ struct ContentView: View {
                      subdivisions: Int(subdivisions))
             }
         }
+        .background(Color(colors.elements.first?.color ?? defaultBackgroundColor), ignoresSafeAreaEdges: .all)
+        .edgesIgnoringSafeArea([.bottom, .horizontal])
+        .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
             ToolbarItem(id: "randomize", placement: .navigation, showsByDefault: true) {
                 Button {
@@ -77,11 +88,10 @@ struct ContentView: View {
                 Button {
                     
                 } label: {
-                    Label("Save", systemImage: "square.and.arrow.down")
+                    Label("Save", systemImage: "square.and.arrow.up")
                 }
             }
         }
-        .ignoresSafeArea()
         .overlay {
             ZStack {
                 GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation in
@@ -98,6 +108,7 @@ struct ContentView: View {
                 }
                 .hidden()
             }
+            .edgesIgnoringSafeArea([.bottom, .horizontal])
         }
         .onTapGesture {
             selectedPoint = nil
@@ -114,6 +125,7 @@ struct ContentView: View {
                 .frame(width: proxy.size.width, height: proxy.safeAreaInsets.top)
                 .offset(y: -proxy.safeAreaInsets.top)
             }
+            .edgesIgnoringSafeArea(.horizontal)
         }
 #endif
     }
@@ -159,7 +171,7 @@ struct ContentView: View {
                                 Spacer()
                                 let offset = (grid.height - 1)
                                 let isEdge = grid.isEdge(x: x, y: y)
-                                PointView(point: grid[x, offset - y], selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation in
+                                PointView(point: grid[x, offset - y], grid: $grid, selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation in
                                     didMovePoint(x, offset - y, translation)
                                 }
                                 Spacer()
@@ -174,6 +186,7 @@ struct ContentView: View {
         
         struct PointView: View {
             @State var point: MeshColor
+            @Binding var grid: MeshGrid
             @Binding var selectedPoint: MeshColor?
             let proxy: GeometryProxy
             let isEdge: Bool
@@ -202,11 +215,21 @@ struct ContentView: View {
                                 guard !isEdge else { return }
                                 
                                 let location = value.location
-                                let width = location.x / (proxy.size.width / 2)
-                                let height = location.y / (proxy.size.height / 2)
+                                var width = location.x / (proxy.size.width / 2)
+                                var height = location.y / (proxy.size.height / 2)
+
+                                width = min(0.3, max(-0.3, width))
+                                height = min(0.3, max(-0.3, height))
+
                                 point.location.x = Float(width) + point.startLocation.x
                                 point.location.y = -Float(height) + point.startLocation.y
-                                offset = CGSize(width: location.x, height: location.y)
+
+                                let offsetWidth = -proxy.size.width / CGFloat(grid.width)
+                                let offsetX = min(abs(offsetWidth) - 45, max(offsetWidth + 45, location.x))
+
+                                let offsetHeight = -proxy.size.height / CGFloat(grid.height)
+                                let offsetY = min(abs(offsetHeight) - 45, max(offsetHeight + 45, location.y))
+                                offset = CGSize(width: offsetX, height: offsetY)
                                 
                                 didMove(CGSize(width: width, height: 1 - height))
                             })

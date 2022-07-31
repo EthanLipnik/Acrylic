@@ -88,18 +88,19 @@ struct AcrylicApp: App {
     func menuBarExtra() -> some Scene {
         if #available(macOS 13.0, *) {
             return MenuBarExtra {
-                //                ContentView()
-                //                    .aspectRatio(contentMode: .fill)
-                Button("Wallpaper") {
+                Button("Start Animating Wallpaper...") {
                     let window = AppWindow()
                     window.makeKeyAndOrderFront(nil)
                     let windowController = NSWindowController(window: window)
                     windowController.showWindow(nil)
                 }
+                
+                Button("Quit Acrylic") {
+                    NSApplication.shared.terminate(self)
+                }
             } label: {
                 Label("Acrylic", systemImage: "paintbrush.fill")
             }
-            //            .menuBarExtraStyle(.window)
         } else {
             return WindowGroup {
                 

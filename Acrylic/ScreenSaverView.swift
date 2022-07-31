@@ -7,17 +7,28 @@
 
 import SwiftUI
 import MeshKit
+import Combine
+import RandomColor
 
 struct ScreenSaverView: View {
     @State private var meshRandomizer: MeshRandomizer
     @State private var colors: MeshGrid
+    
+    var luminosity: Luminosity
+    var gridDidChange: ((_ colors: MeshGrid) -> Void)?
 
-    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    let timer: Publishers.Autoconnect<Timer.TimerPublisher>
 
-    init() {
-        let colors = MeshKit.generate(palette: .blue)
+    init(changeInterval: Double = 10, luminosity: Luminosity = .bright, gridDidChange: ((_ colors: MeshGrid) -> Void)? = nil) {
+        let colors = MeshKit.generate(palette: .blue, luminosity: luminosity)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
+        
+        self.luminosity = luminosity
+        self.gridDidChange = gridDidChange
+        gridDidChange?(colors)
+        
+        self.timer = Timer.publish(every: changeInterval, on: .main, in: .common).autoconnect()
     }
 
     var body: some View {
@@ -50,8 +61,10 @@ struct ScreenSaverView: View {
     }
 
     func newPalette() {
-        colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true))
+        colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true), luminosity: luminosity)
         meshRandomizer = .withMeshColors(colors)
+        
+        gridDidChange?(colors)
     }
 }
 

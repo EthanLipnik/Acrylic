@@ -10,6 +10,8 @@
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
 		AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */; };
 		AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */; };
+		AA455E3A289826030010938A /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* MacSettingsView.swift */; };
+		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* ContentView.swift */; };
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
@@ -19,9 +21,11 @@
 
 /* Begin PBXFileReference section */
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
-		AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSAppDelegate.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/NSAppDelegate.swift"; sourceTree = "<group>"; };
-		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperWindow.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/WallpaperWindow.swift"; sourceTree = "<group>"; };
+		AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
+		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindow.swift; sourceTree = "<group>"; };
+		AA455E39289826030010938A /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MacSettingsView.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/MacSettingsView.swift"; sourceTree = "<group>"; };
 		AA4BCF5528970A4B00D94F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
 		AA749C6728931EFB002CD39A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				AA0EA86128933069003CEB51 /* ScreenSaverView.swift */,
 				AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */,
 				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
+				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
+				AA455E39289826030010938A /* MacSettingsView.swift */,
 				AA749C6928931EFC002CD39A /* Assets.xcassets */,
 				AA749C6B28931EFC002CD39A /* Acrylic.entitlements */,
 				AA749C6C28931EFC002CD39A /* Preview Content */,
@@ -174,6 +180,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
+				AA455E3A289826030010938A /* MacSettingsView.swift in Sources */,
+				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
 				AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */,
 				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
 				AA749C6828931EFB002CD39A /* ContentView.swift in Sources */,
@@ -327,7 +335,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
@@ -372,7 +380,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.FauxFox.Acrylic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";

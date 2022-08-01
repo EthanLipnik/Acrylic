@@ -25,7 +25,17 @@ class WallpaperWindow: NSWindow {
         collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
         ignoresMouseEvents = true
         
-        let screenSaverView = ScreenSaverView(changeInterval: 60, luminosity: .light) { [weak self] grid in
+        let luminosity: Luminosity = {
+            switch contentView?.effectiveAppearance.name ?? .aqua {
+            case .aqua:
+                return .light
+            case .darkAqua:
+                return .dark
+            default:
+                return .light
+            }
+        }()
+        let screenSaverView = ScreenSaverView(changeInterval: 5, luminosity: luminosity) { [weak self] grid in
             self?.colors = grid
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
@@ -53,7 +63,7 @@ class WallpaperWindow: NSWindow {
         do {
             let image = NSImage(color: color, size: NSSize(width: 10, height: 10))
             guard let imageData = image.pngData else { return }
-            let url = FileManager.default.temporaryDirectory.appendingPathComponent("background \(Date()).png")
+            let url = FileManager.default.temporaryDirectory.appendingPathComponent("background \(Date())")
             if FileManager.default.fileExists(atPath: url.path) {
                 try? FileManager.default.removeItem(at: url)
             }
@@ -91,7 +101,7 @@ extension NSImage {
     
     var pngData: Data? {
         guard let tiffRepresentation = tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return nil }
-        return bitmapImage.representation(using: .png, properties: [:])
+        return bitmapImage.representation(using: .tiff, properties: [:])
     }
     
     func pngWrite(to url: URL, options: Data.WritingOptions = .atomic) -> Bool {

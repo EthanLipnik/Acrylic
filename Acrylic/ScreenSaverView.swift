@@ -20,7 +20,7 @@ struct ScreenSaverView: View {
     let timer: Publishers.Autoconnect<Timer.TimerPublisher>
 
     init(changeInterval: Double = 10, luminosity: Luminosity = .bright, gridDidChange: ((_ colors: MeshGrid) -> Void)? = nil) {
-        let colors = MeshKit.generate(palette: .blue, luminosity: luminosity)
+        let colors = MeshKit.generate(palette: .randomPalette(), luminosity: luminosity)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
         

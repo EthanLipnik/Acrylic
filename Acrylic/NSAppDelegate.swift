@@ -11,5 +11,10 @@ import Foundation
 import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    var statusBar: StatusBarController?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        statusBar = StatusBarController()
+    }
 }
 #endif

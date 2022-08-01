@@ -12,8 +12,7 @@ struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
     
 #if os(macOS)
-    @State var isUsingWallpaper: Bool = false
-    @State var wallpaperWindow: WallpaperWindow? = nil
+    @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
 #endif
     
     var body: some Scene {
@@ -28,7 +27,7 @@ struct AcrylicApp: App {
             .navigationViewStyle(.stack)
 #else
             ContentView()
-                .frame(minWidth: 400, idealWidth: 400)
+                .frame(minWidth: 400, minHeight: 400)
                 .onAppear {
                     NSApp.setActivationPolicy(.regular)
                 }
@@ -74,68 +73,10 @@ struct AcrylicApp: App {
 #endif
         
 #if os(macOS)
-        menuBarExtra()
-        
         Settings {
-            Text("Hey")
-                .frame(width: 300, height: 200)
+            SettingsView()
+                .frame(width: 500, height: 350)
         }
 #endif
     }
-    
-#if os(macOS)
-    func menuBarExtra() -> some Scene {
-        if #available(macOS 13.0, *) {
-            return MenuBarExtra {
-                Button("Create Mesh Gradient...") {
-                    if let url = URL(string: "acrylic://") {
-                        openUrl(url)
-                    }
-                }
-                
-                Button("Toggle Animating Wallpaper") {
-                    wallpaperWindow?.close()
-                    guard !isUsingWallpaper else { isUsingWallpaper = false; return }
-                    
-                    let window = WallpaperWindow()
-                    window.makeKeyAndOrderFront(nil)
-                    let windowController = NSWindowController(window: window)
-                    windowController.showWindow(nil)
-                    
-                    self.wallpaperWindow = window
-                    isUsingWallpaper  = true
-                }
-                
-                Divider()
-                
-                if #available(macOS 13.0, *) {
-                    Button("Settings...") {
-                        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-                    }
-                } else {
-                    Button("Preferences...") {
-                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                    }
-                }
-                
-                Button("About Acrylic") {
-                    NSApp.sendAction(Selector(("showAboutWindow:")), to: nil, from: nil)
-                }
-                
-                Divider()
-                    
-                Button("Quit Acrylic") {
-                    NSApplication.shared.terminate(self)
-                }
-                .keyboardShortcut("q")
-            } label: {
-                Label("Acrylic", systemImage: "paintbrush.fill")
-            }
-        } else {
-            return WindowGroup {
-                
-            }
-        }
-    }
-#endif
 }

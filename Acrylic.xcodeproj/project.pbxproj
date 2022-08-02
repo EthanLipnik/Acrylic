@@ -52,8 +52,8 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
-		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimationSpeed.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/AnimationSpeed.swift"; sourceTree = "<group>"; };
-		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperColorScheme.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/WallpaperColorScheme.swift"; sourceTree = "<group>"; };
+		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimationSpeed.swift; path = "AnimationSpeed.swift"; sourceTree = "<group>"; };
+		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperColorScheme.swift; path = "WallpaperColorScheme.swift"; sourceTree = "<group>"; };
 		AADED2712898DCC80023EB97 /* AcrylicLaunchApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcrylicLaunchApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADED2732898DCC80023EB97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADED2752898DCC90023EB97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };

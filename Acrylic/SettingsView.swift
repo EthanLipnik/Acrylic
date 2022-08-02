@@ -74,9 +74,23 @@ struct SettingsView: View {
     @AppStorage("wallpaperGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
 
     var body: some View {
-        Form {
+        Group {
+            if #available(iOS 14.0, macOS 13.0, *) {
+                Form {
+                    content
+                }.groupedForm()
+            } else {
+                ScrollView {
+                    content
+                }
+            }
+        }
+    }
+
+    var content: some View {
+        Group {
 #if os(macOS)
-            Section {
+            SectionView {
                 Toggle("Launch Acrylic on system startup", isOn: $launchAtStartup)
                     .onChange(of: launchAtStartup) { newValue in
                         SMLoginItemSetEnabled("com.ethanlipnik.Acrylic.LaunchApplication" as CFString, newValue)
@@ -89,15 +103,14 @@ struct SettingsView: View {
                         .foregroundColor(.accentColor)
                 }
             }
-            
+
             dynamicWallpaperSettings
 #endif
         }
-        .groupedForm()
     }
     
     var dynamicWallpaperSettings: some View {
-        Section {
+        SectionView {
             Toggle("Automatically start on launch", isOn: $startWallpaperOnLaunch)
             
             Picker(selection: $wallpaperSubdivisions) {
@@ -128,7 +141,7 @@ struct SettingsView: View {
                 Text("Grain")
             }
             
-            Section {
+            SectionView {
                 Toggle("Color Match Menu Bar", isOn: $colorMatchingMenuBar)
                 
                 Picker(selection: $wallpaperColorScheme) {
@@ -166,7 +179,7 @@ struct SettingsView: View {
                         Toggle("All Palettes", isOn: $selectedHues.map(\.isOn))
                     }
                 } else {
-                    VStack {
+                    VStack(alignment: .leading) {
                         ForEach(selectedHues.indices, id: \.self) { index in
                             Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
                         }
@@ -188,6 +201,59 @@ struct SettingsView: View {
             Text("Fluid Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery. This will override your current desktop picture.")
                 .font(.callout)
                 .foregroundColor(.secondary)
+        }
+    }
+
+    struct SectionView<Content: View, Header: View>: View {
+        let contentView: Content
+        let headerView: Header
+        let footerView: AnyView?
+
+        init(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header) {
+            self.contentView = content()
+            self.headerView = header()
+            self.footerView = nil
+        }
+
+        init<Footer: View>(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
+            self.contentView = content()
+            self.headerView = header()
+            self.footerView = AnyView(footer())
+        }
+
+        var body: some View {
+            Group {
+                if #available(iOS 16.0, macOS 13.0, *) {
+                    if let footerView {
+                        Section {
+                            contentView
+                        } header: {
+                            headerView
+                        } footer: {
+                            footerView
+                        }
+                    } else {
+                        Section {
+                            contentView
+                        } header: {
+                            headerView
+                        }
+
+                    }
+                } else {
+                    GroupBox {
+                        contentView
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                        if let footerView {
+                            footerView
+                        }
+                    } label: {
+                        headerView
+                    }
+                    .padding()
+                }
+            }
         }
     }
 }

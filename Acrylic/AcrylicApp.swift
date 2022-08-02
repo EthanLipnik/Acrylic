@@ -13,16 +13,6 @@ struct AcrylicApp: App {
     
 #if os(macOS)
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
-    
-    init() {
-        let launcherAppId = "com.ethanlipnik.Acrylic.LaunchApplication"
-        let runningApps = NSWorkspace.shared.runningApplications
-        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
-        
-        if isRunning {
-            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
-        }
-    }
 #endif
     
     var body: some Scene {

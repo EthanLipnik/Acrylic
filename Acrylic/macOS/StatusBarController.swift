@@ -27,7 +27,7 @@ final class StatusBarController {
             statusBarButton.image?.isTemplate = true
         }
         
-        if UserDefaults.standard.bool(forKey: "shouldStartWallpaperOnLaunch") {
+        if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
             toggleAnimatingWallpaper()
         }
     }

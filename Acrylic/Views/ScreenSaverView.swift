@@ -14,12 +14,13 @@ struct ScreenSaverView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var meshRandomizer: MeshRandomizer?
     @State private var colors: MeshGrid?
-    @State private var timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
-    @AppStorage("wallpaperPaletteChangeInterval") private var wallpaperPaletteChangeInterval: Double = 300
-    @AppStorage("wallpaperAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
-    @AppStorage("wallpaperSubdivisions") private var wallpaperSubdivisions: Int = 36
-    @AppStorage("wallpaperColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-    @AppStorage("wallpaperGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+    @State private var timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @AppStorage("FWPaletteChangeInterval") private var wallpaperPaletteChangeInterval: Double = 60
+    @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
+    @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
+    @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
+    @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+    @AppStorage("FWFramerate") private var fwFramerate: Int = 60
     
     typealias GridCallback = ((_ colors: MeshGrid) -> Void)?
     
@@ -40,11 +41,11 @@ struct ScreenSaverView: View {
     var animationSpeedRange: ClosedRange<Double> {
         switch animationSpeed {
         case .slow:
-            return 4 ... 8
+            return 8 ... 16
         case .normal:
-            return 2 ... 4
+            return 4 ... 8
         case .fast:
-            return 1 ... 2
+            return 2 ... 4
         }
     }
     var allowedPalettes: [Hue] {
@@ -66,7 +67,8 @@ struct ScreenSaverView: View {
             if let colors,
                let meshRandomizer {
                 Mesh(colors: colors,
-                     animatorConfiguration: .init(animationSpeedRange: animationSpeedRange,
+                     animatorConfiguration: .init(framesPerSecond: fwFramerate,
+                                                  animationSpeedRange: animationSpeedRange,
                                                   meshRandomizer: meshRandomizer),
                      grainAlpha: Float(wallpaperGrainAlpha),
                      subdivisions: wallpaperSubdivisions)

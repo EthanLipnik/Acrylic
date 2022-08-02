@@ -61,17 +61,35 @@ struct SettingsView: View {
         }
     }
     
+    enum Framerate: Int, Hashable, CaseIterable {
+        case low = 30
+        case normal = 60
+        case high = 120
+        
+        var displayTitle: String {
+            switch self {
+            case .low:
+                return "30 FPS"
+            case .normal:
+                return "60 FPS"
+            case .high:
+                return "120 FPS"
+            }
+        }
+    }
+    
     @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
     
     @State private var isShowingPalettes: Bool = false
     @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
-    @AppStorage("shouldStartWallpaperOnLaunch") private var startWallpaperOnLaunch: Bool = false
-    @AppStorage("wallpaperSubdivisions") private var wallpaperSubdivisions: Int = 36
-    @AppStorage("wallpaperAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
-    @AppStorage("wallpaperPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.fiveMin.rawValue
-    @AppStorage("shouldColorMatchWallpaperMenuBar") private var colorMatchingMenuBar: Bool = true
-    @AppStorage("wallpaperColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-    @AppStorage("wallpaperGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+    @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
+    @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
+    @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
+    @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
+    @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true
+    @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
+    @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+    @AppStorage("FWFramerate") private var fwFramerate: Int = 30
 
     var body: some View {
         Group {
@@ -114,6 +132,8 @@ struct SettingsView: View {
             Toggle("Automatically start on launch", isOn: $startWallpaperOnLaunch)
             
             Picker(selection: $wallpaperSubdivisions) {
+                Text("2")
+                    .tag(2)
                 Text("8")
                     .tag(8)
                 Text("18")
@@ -127,6 +147,10 @@ struct SettingsView: View {
             }
             .pickerStyle(.menu)
             
+            Slider(value: $wallpaperGrainAlpha, in: 0.01...0.25) {
+                Text("Grain")
+            }
+            
             Picker(selection: $animationSpeed) {
                 ForEach(AnimationSpeed.allCases, id: \.rawValue) {
                     Text($0.rawValue)
@@ -137,9 +161,20 @@ struct SettingsView: View {
             }
             .pickerStyle(.menu)
             
-            Slider(value: $wallpaperGrainAlpha, in: 0.01...0.25) {
-                Text("Grain")
+            Picker(selection: $fwFramerate) {
+                Text("30 FPS")
+                    .tag(30)
+                Text("60 FPS")
+                    .tag(60)
+                Text("120 FPS")
+                    .tag(120)
+                Text("240 FPS")
+                    .tag(240)
+            } label: {
+                Text("Framerate")
+                Text("Higher framerates can effect the animation speed")
             }
+            .pickerStyle(.menu)
             
             SectionView {
                 Toggle("Color Match Menu Bar", isOn: $colorMatchingMenuBar)
@@ -161,11 +196,16 @@ struct SettingsView: View {
                             .tag($0.rawValue)
                     }
                 } label: {
-                    VStack(alignment: .leading) {
+                    if #available(iOS 16.0, macOS 13.0, *) {
                         Text("Transition Interval")
                         Text("How often the palette changes")
-                            .font(.callout)
-                            .foregroundColor(.secondary)
+                    } else {
+                        VStack(alignment: .leading) {
+                            Text("Transition Interval")
+                            Text("How often the palette changes")
+                                .font(.callout)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
                 .pickerStyle(.menu)
@@ -176,7 +216,7 @@ struct SettingsView: View {
                             Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
                         }
                     } label: {
-                        Toggle("All Palettes", isOn: $selectedHues.map(\.isOn))
+                        Toggle("All Palettes", sources: $selectedHues, isOn: \.isOn)
                     }
                 } else {
                     VStack(alignment: .leading) {

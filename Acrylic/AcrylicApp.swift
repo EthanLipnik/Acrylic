@@ -57,6 +57,16 @@ struct AcrylicApp: App {
                 }
                 .keyboardShortcut("e")
             }
+            
+#if os(macOS)
+            CommandGroup(replacing: .appInfo) {
+                Button(action: {
+                    appDelegate.showAboutPanel()
+                }) {
+                    Text("About Acrylic")
+                }
+            }
+#endif
         }
         
         WindowGroup("Screen Saver") {

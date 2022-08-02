@@ -14,6 +14,8 @@ final class StatusBarController {
     
     private var isUsingWallpaper: Bool = false
     private var wallpaperWindow: WallpaperWindow? = nil
+    
+    weak var appDelegate: AppDelegate?
 
     init() {
         statusBar = NSStatusBar.system
@@ -100,6 +102,7 @@ final class StatusBarController {
     
     @objc
     func openAbout() {
+        appDelegate?.showAboutPanel()
     }
     
     @objc

@@ -14,13 +14,13 @@ struct ScreenSaverView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var meshRandomizer: MeshRandomizer?
     @State private var colors: MeshGrid?
-    @State private var timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @State private var timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
     @AppStorage("FWPaletteChangeInterval") private var wallpaperPaletteChangeInterval: Double = 60
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
     @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
-    @AppStorage("FWFramerate") private var fwFramerate: Int = 60
+    @AppStorage("FWFramerate") private var fwFramerate: Int = 30
     
     typealias GridCallback = ((_ colors: MeshGrid) -> Void)?
     

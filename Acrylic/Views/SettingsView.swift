@@ -83,7 +83,7 @@ struct SettingsView: View {
     @State private var isShowingPalettes: Bool = false
     @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
     @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
-    @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
+    @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 8
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
     @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
     @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true

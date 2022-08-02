@@ -47,7 +47,7 @@ class WallpaperWindow: NSWindow {
     func updateBackgroundImage() {
         var color: NSColor?
         
-        if (UserDefaults.standard.object(forKey: "shouldColorMatchWallpaperMenuBar") as? Bool) ?? true {
+        if (UserDefaults.standard.object(forKey: "shouldColorMatchFWMenuBar") as? Bool) ?? true {
             if let colors = self.colors {
                color = colors.elements.first?.color
             }

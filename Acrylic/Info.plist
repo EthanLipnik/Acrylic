@@ -13,5 +13,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSUIElement</key>
+	<true/>
 </dict>
 </plist>

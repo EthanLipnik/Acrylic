@@ -8,78 +8,79 @@
 #if !os(tvOS)
 import SwiftUI
 import RandomColor
+import MeshKit
+
+#if canImport(ServiceManagement)
+import ServiceManagement
+#endif
 
 struct SettingsView: View {
     struct HueToggle: Hashable {
-        init(title: String, hue: Hue) {
-            self.title = title
+        init(_ hue: Hue) {
             self.hue = hue
             self.isOn = {
-                let id = "isWallpaperPalette-\(title)Disabled"
+                let id = "isWallpaperPalette-\(hue.displayTitle)Disabled"
                 return !UserDefaults.standard.bool(forKey: id)
             }()
         }
         
-        var title: String
         var hue: Hue
         var isOn: Bool {
             didSet {
-                UserDefaults.standard.set(!isOn, forKey: "isWallpaperPalette-\(title)Disabled")
+                UserDefaults.standard.set(!isOn, forKey: "isWallpaperPalette-\(hue.displayTitle)Disabled")
             }
         }
     }
     
-    enum AnimationSpeed: String, Hashable, CaseIterable {
-        case slow = "Slow"
-        case normal = "Normal"
-        case fast = "Fast"
-    }
-    
-    enum PaletteChangeInterval: String, Hashable, CaseIterable {
-        case fiveSec = "5 seconds"
-        case thirtySec = "30 seconds"
-        case oneMin = "1 minute"
-        case fiveMin = "5 minutes"
-        case twentyMin = "20 minutes"
-        case thirtyMin = "30 minutes"
-        case oneHour = "1 hour"
-    }
-    
-    @State private var selectedHues: [HueToggle] = Hue.allCases.compactMap { hue in
-        switch hue {
-        case .blue:
-            return HueToggle(title: "Blue", hue: .blue)
-        case .orange:
-            return HueToggle(title: "Orange", hue: .orange)
-        case .yellow:
-            return HueToggle(title: "Yellow", hue: .yellow)
-        case .green:
-            return HueToggle(title: "Green", hue: .green)
-        case .pink:
-            return HueToggle(title: "Pink", hue: .pink)
-        case .purple:
-            return HueToggle(title: "Purple", hue: .purple)
-        case .red:
-            return HueToggle(title: "Red", hue: .red)
-        case .monochrome:
-            return HueToggle(title: "Monochrome", hue: .monochrome)
-        default:
-            return nil
+    enum PaletteChangeInterval: Double, Hashable, CaseIterable {
+        case fiveSec = 5
+        case thirtySec = 30
+        case oneMin = 60
+        case fiveMin = 300
+        case twentyMin = 1200
+        case thirtyMin = 1800
+        case oneHour = 3600
+        
+        var displayTitle: String {
+            switch self {
+            case .fiveSec:
+                return "5 seconds"
+            case .thirtySec:
+                return "30 seconds"
+            case .oneMin:
+                return "1 minute"
+            case .fiveMin:
+                return "5 minutes"
+            case .twentyMin:
+                return "20 minutes"
+            case .thirtyMin:
+                return "30 minutes"
+            case .oneHour:
+                return "1 hour"
+            }
         }
     }
     
-    @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
+    @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
+    
     @State private var isShowingPalettes: Bool = false
+    @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
     @AppStorage("shouldStartWallpaperOnLaunch") private var startWallpaperOnLaunch: Bool = false
     @AppStorage("wallpaperSubdivisions") private var wallpaperSubdivisions: Int = 36
     @AppStorage("wallpaperAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
-    @AppStorage("wallpaperPaletteChangeInterval") private var paletteChangeInterval: PaletteChangeInterval = .fiveMin
+    @AppStorage("wallpaperPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.fiveMin.rawValue
+    @AppStorage("shouldColorMatchWallpaperMenuBar") private var colorMatchingMenuBar: Bool = true
+    @AppStorage("wallpaperColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
+    @AppStorage("wallpaperGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
 
     var body: some View {
         Form {
 #if os(macOS)
             Section {
                 Toggle("Launch Acrylic on system startup", isOn: $launchAtStartup)
+                    .onChange(of: launchAtStartup) { newValue in
+                        SMLoginItemSetEnabled("com.ethanlipnik.Acrylic.LaunchApplication" as CFString, newValue)
+                    }
             } header: {
                 Label {
                     Text("Startup")
@@ -123,21 +124,43 @@ struct SettingsView: View {
             }
             .pickerStyle(.menu)
             
+            Slider(value: $wallpaperGrainAlpha, in: 0.01...0.25) {
+                Text("Grain")
+            }
+            
             Section {
-                Picker(selection: $paletteChangeInterval) {
-                    ForEach(PaletteChangeInterval.allCases, id: \.rawValue) {
-                        Text($0.rawValue)
-                            .tag($0)
+                Toggle("Color Match Menu Bar", isOn: $colorMatchingMenuBar)
+                
+                Picker(selection: $wallpaperColorScheme) {
+                    ForEach(WallpaperColorScheme.allCases, id: \.self) { colorScheme in
+                        Text(colorScheme.rawValue.capitalized)
+                            .tag(colorScheme)
                     }
                 } label: {
-                    Text("Palette Change Interval")
+                    Text("Color Scheme")
+                }
+                .pickerStyle(.menu)
+
+                
+                Picker(selection: $paletteChangeInterval) {
+                    ForEach(PaletteChangeInterval.allCases, id: \.rawValue) {
+                        Text($0.displayTitle)
+                            .tag($0.rawValue)
+                    }
+                } label: {
+                    VStack(alignment: .leading) {
+                        Text("Transition Interval")
+                        Text("How often the palette changes")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 .pickerStyle(.menu)
                 
                 if #available(iOS 16.0, macOS 13.0, *) {
                     DisclosureGroup(isExpanded: $isShowingPalettes) {
                         ForEach(selectedHues.indices, id: \.self) { index in
-                            Toggle(selectedHues[index].title, isOn: $selectedHues[index].isOn)
+                            Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
                         }
                     } label: {
                         Toggle("All Palettes", isOn: $selectedHues.map(\.isOn))
@@ -145,7 +168,7 @@ struct SettingsView: View {
                 } else {
                     VStack {
                         ForEach(selectedHues.indices, id: \.self) { index in
-                            Toggle(selectedHues[index].title, isOn: $selectedHues[index].isOn)
+                            Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
                         }
                     }
                 }
@@ -155,14 +178,14 @@ struct SettingsView: View {
         } header: {
             Label {
                 VStack(alignment: .leading) {
-                    Text("Dynamic Wallpaper")
+                    Text("Fluid Wallpaper")
                 }
             } icon: {
                 Image(systemName: "menubar.dock.rectangle")
                     .foregroundColor(.purple)
             }
         } footer: {
-            Text("Dynamic Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery.")
+            Text("Fluid Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery. This will override your current desktop picture.")
                 .font(.callout)
                 .foregroundColor(.secondary)
         }

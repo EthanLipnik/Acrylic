@@ -11,32 +11,78 @@ import Combine
 import RandomColor
 
 struct ScreenSaverView: View {
-    @State private var meshRandomizer: MeshRandomizer
-    @State private var colors: MeshGrid
+    @Environment(\.colorScheme) var colorScheme
+    @State private var meshRandomizer: MeshRandomizer?
+    @State private var colors: MeshGrid?
+    @State private var timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
+    @AppStorage("wallpaperPaletteChangeInterval") private var wallpaperPaletteChangeInterval: Double = 300
+    @AppStorage("wallpaperAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
+    @AppStorage("wallpaperSubdivisions") private var wallpaperSubdivisions: Int = 36
+    @AppStorage("wallpaperColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
+    @AppStorage("wallpaperGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     
-    var luminosity: Luminosity
-    var gridDidChange: ((_ colors: MeshGrid) -> Void)?
+    typealias GridCallback = ((_ colors: MeshGrid) -> Void)?
+    
+    var luminosity: Luminosity {
+        get {
+            switch wallpaperColorScheme {
+            case .light:
+                return .light
+            case .dark:
+                return .dark
+            case .system:
+                return colorScheme == .light ? .light : .dark
+            case .vibrant:
+                return .bright
+            }
+        }
+    }
+    var animationSpeedRange: ClosedRange<Double> {
+        switch animationSpeed {
+        case .slow:
+            return 4 ... 8
+        case .normal:
+            return 2 ... 4
+        case .fast:
+            return 1 ... 2
+        }
+    }
+    var allowedPalettes: [Hue] {
+        return Hue.allCases.filter({ !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled") })
+    }
+    var gridDidChange: GridCallback
 
-    let timer: Publishers.Autoconnect<Timer.TimerPublisher>
-
-    init(changeInterval: Double = 10, luminosity: Luminosity = .bright, gridDidChange: ((_ colors: MeshGrid) -> Void)? = nil) {
-        let colors = MeshKit.generate(palette: .randomPalette(), luminosity: luminosity)
+    init(gridDidChange: GridCallback = nil) {
+        let colors = MeshKit.generate(palette: .monochrome, luminosity: .dark)
         _colors = .init(initialValue: colors)
-        meshRandomizer = .withMeshColors(colors)
+        _meshRandomizer = .init(initialValue: .withMeshColors(colors))
         
-        self.luminosity = luminosity
         self.gridDidChange = gridDidChange
         gridDidChange?(colors)
-        
-        self.timer = Timer.publish(every: changeInterval, on: .main, in: .common).autoconnect()
     }
 
     var body: some View {
-        Mesh(colors: colors,
-             animatorConfiguration: .init(animationSpeedRange: 2 ... 4,
-                                          meshRandomizer: meshRandomizer),
-             subdivisions: 36)
+        Group {
+            if let colors,
+               let meshRandomizer {
+                Mesh(colors: colors,
+                     animatorConfiguration: .init(animationSpeedRange: animationSpeedRange,
+                                                  meshRandomizer: meshRandomizer),
+                     grainAlpha: Float(wallpaperGrainAlpha),
+                     subdivisions: wallpaperSubdivisions)
+            }
+        }
         .ignoresSafeArea()
+        .onAppear {
+            self.timer = Timer.publish(every: wallpaperPaletteChangeInterval, on: .main, in: .common).autoconnect()
+            newPalette()
+        }
+        .onChange(of: wallpaperPaletteChangeInterval) { newValue in
+            self.timer = Timer.publish(every: newValue, on: .main, in: .common).autoconnect()
+        }
+        .onChange(of: colorScheme) { _ in
+            newPalette()
+        }
         .onReceive(timer) { _ in
             newPalette()
         }
@@ -61,10 +107,13 @@ struct ScreenSaverView: View {
     }
 
     func newPalette() {
-        colors = MeshKit.generate(palette: .randomPalette(includesMonochrome: true), luminosity: luminosity)
+        colors = MeshKit.generate(palette: allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity)
+        guard let colors else { return }
         meshRandomizer = .withMeshColors(colors)
         
-        gridDidChange?(colors)
+        DispatchQueue.main.asyncAfter(deadline: .now() + (animationSpeedRange.lowerBound * 2)) {
+            gridDidChange?(colors)
+        }
     }
 }
 

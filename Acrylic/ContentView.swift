@@ -152,7 +152,7 @@ struct ContentView: View {
                 HStack {
                     Label("Grain", systemImage: "circle.grid.3x3.fill")
                         .frame(width: 150, alignment: .leading)
-                    Slider(value: $grainAlpha, in: 0...0.25) {
+                    Slider(value: $grainAlpha, in: 0.01...0.25) {
                         Text("Grain")
                     }.labelsHidden()
                 }

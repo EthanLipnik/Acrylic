@@ -25,22 +25,9 @@ class WallpaperWindow: NSWindow {
         collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
         ignoresMouseEvents = true
         
-        let luminosity: Luminosity = {
-            switch contentView?.effectiveAppearance.name ?? .aqua {
-            case .aqua:
-                return .light
-            case .darkAqua:
-                return .dark
-            default:
-                return .light
-            }
-        }()
-        let screenSaverView = ScreenSaverView(changeInterval: 5, luminosity: luminosity) { [weak self] grid in
+        let screenSaverView = ScreenSaverView { [weak self] grid in
             self?.colors = grid
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                self?.updateBackgroundImage()
-            }
+            self?.updateBackgroundImage()
         }
         contentView = NSHostingView(rootView: screenSaverView)
         
@@ -58,8 +45,18 @@ class WallpaperWindow: NSWindow {
     
     @objc
     func updateBackgroundImage() {
-        guard let colors = self.colors,
-              let color = colors.elements.first?.color else { return }
+        var color: NSColor?
+        
+        if (UserDefaults.standard.object(forKey: "shouldColorMatchWallpaperMenuBar") as? Bool) ?? true {
+            if let colors = self.colors {
+               color = colors.elements.first?.color
+            }
+        } else {
+            color = .black
+        }
+        
+        guard let color else { return }
+        
         do {
             let image = NSImage(color: color, size: NSSize(width: 10, height: 10))
             guard let imageData = image.pngData else { return }

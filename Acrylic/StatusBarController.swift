@@ -26,6 +26,10 @@ final class StatusBarController {
             statusBarButton.image?.size = NSSize(width: 18.0, height: 18.0)
             statusBarButton.image?.isTemplate = true
         }
+        
+        if UserDefaults.standard.bool(forKey: "shouldStartWallpaperOnLaunch") {
+            toggleAnimatingWallpaper()
+        }
     }
     
     func createMenu() -> NSMenu {
@@ -35,7 +39,7 @@ final class StatusBarController {
         createMeshGradientItem.target = self
         menu.addItem(createMeshGradientItem)
         
-        let toggleWallpaperItem = NSMenuItem(title: "Toggle Animating Wallpaper", action: #selector(toggleAnimatingWallpaper), keyEquivalent: "")
+        let toggleWallpaperItem = NSMenuItem(title: "Toggle Fluid Wallpaper", action: #selector(toggleAnimatingWallpaper), keyEquivalent: "")
         toggleWallpaperItem.target = self
         menu.addItem(toggleWallpaperItem)
         

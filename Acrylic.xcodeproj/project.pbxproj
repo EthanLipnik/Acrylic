@@ -17,7 +17,26 @@
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
+		AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2552898CE750023EB97 /* AnimationSpeed.swift */; };
+		AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */; };
+		AADED2742898DCC80023EB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2732898DCC80023EB97 /* AppDelegate.swift */; };
+		AADED2762898DCC90023EB97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AADED2752898DCC90023EB97 /* Assets.xcassets */; };
+		AADED2802898DD660023EB97 /* AcrylicLaunchApplication.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = AADED2712898DCC80023EB97 /* AcrylicLaunchApplication.app */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADED2812898DD880023EB97 /* ServiceManagement.framework */; platformFilters = (macos, ); };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AADED27F2898DD4A0023EB97 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				AADED2802898DD660023EB97 /* AcrylicLaunchApplication.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
@@ -33,6 +52,14 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
+		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimationSpeed.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/AnimationSpeed.swift"; sourceTree = "<group>"; };
+		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperColorScheme.swift; path = "../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/WallpaperColorScheme.swift"; sourceTree = "<group>"; };
+		AADED2712898DCC80023EB97 /* AcrylicLaunchApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcrylicLaunchApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AADED2732898DCC80023EB97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AADED2752898DCC90023EB97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AADED27A2898DCC90023EB97 /* AcrylicLaunchApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AcrylicLaunchApplication.entitlements; sourceTree = "<group>"; };
+		AADED27E2898DD440023EB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +68,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
+				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADED26E2898DCC80023EB97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +87,7 @@
 			children = (
 				AA749C7428931F63002CD39A /* Packages */,
 				AA749C6428931EFB002CD39A /* Acrylic */,
+				AADED2722898DCC80023EB97 /* AcrylicLaunchApplication */,
 				AA749C6328931EFB002CD39A /* Products */,
 				AA749C7628931F68002CD39A /* Frameworks */,
 			);
@@ -61,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				AA749C6228931EFB002CD39A /* Acrylic.app */,
+				AADED2712898DCC80023EB97 /* AcrylicLaunchApplication.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +113,8 @@
 				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
 				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
 				AA455E39289826030010938A /* SettingsView.swift */,
+				AADED2552898CE750023EB97 /* AnimationSpeed.swift */,
+				AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */,
 				AA749C6928931EFC002CD39A /* Assets.xcassets */,
 				AA749C6B28931EFC002CD39A /* Acrylic.entitlements */,
 				AA749C6C28931EFC002CD39A /* Preview Content */,
@@ -102,8 +141,20 @@
 		AA749C7628931F68002CD39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AADED2812898DD880023EB97 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AADED2722898DCC80023EB97 /* AcrylicLaunchApplication */ = {
+			isa = PBXGroup;
+			children = (
+				AADED27E2898DD440023EB97 /* Info.plist */,
+				AADED2732898DCC80023EB97 /* AppDelegate.swift */,
+				AADED2752898DCC90023EB97 /* Assets.xcassets */,
+				AADED27A2898DCC90023EB97 /* AcrylicLaunchApplication.entitlements */,
+			);
+			path = AcrylicLaunchApplication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +167,7 @@
 				AA749C5E28931EFB002CD39A /* Sources */,
 				AA749C5F28931EFB002CD39A /* Frameworks */,
 				AA749C6028931EFB002CD39A /* Resources */,
+				AADED27F2898DD4A0023EB97 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -129,6 +181,23 @@
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AADED2702898DCC80023EB97 /* AcrylicLaunchApplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AADED27B2898DCC90023EB97 /* Build configuration list for PBXNativeTarget "AcrylicLaunchApplication" */;
+			buildPhases = (
+				AADED26D2898DCC80023EB97 /* Sources */,
+				AADED26E2898DCC80023EB97 /* Frameworks */,
+				AADED26F2898DCC80023EB97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcrylicLaunchApplication;
+			productName = AcrylicLaunchApplication;
+			productReference = AADED2712898DCC80023EB97 /* AcrylicLaunchApplication.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -140,6 +209,9 @@
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					AA749C6128931EFB002CD39A = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					AADED2702898DCC80023EB97 = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
@@ -158,6 +230,7 @@
 			projectRoot = "";
 			targets = (
 				AA749C6128931EFB002CD39A /* Acrylic */,
+				AADED2702898DCC80023EB97 /* AcrylicLaunchApplication */,
 			);
 		};
 /* End PBXProject section */
@@ -172,6 +245,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AADED26F2898DCC80023EB97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AADED2762898DCC90023EB97 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -179,13 +260,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */,
 				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
+				AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
 				AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */,
 				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
 				AA749C6828931EFB002CD39A /* ContentView.swift in Sources */,
 				AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADED26D2898DCC80023EB97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AADED2742898DCC80023EB97 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +484,70 @@
 			};
 			name = Release;
 		};
+		AADED27C2898DCC90023EB97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AcrylicLaunchApplication/AcrylicLaunchApplication.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 60;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AcrylicLaunchApplication/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.LaunchApplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AADED27D2898DCC90023EB97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AcrylicLaunchApplication/AcrylicLaunchApplication.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 60;
+				DEVELOPMENT_TEAM = B6QG723P8Z;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AcrylicLaunchApplication/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic.LaunchApplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -410,6 +565,15 @@
 			buildConfigurations = (
 				AA749C7228931EFC002CD39A /* Debug */,
 				AA749C7328931EFC002CD39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AADED27B2898DCC90023EB97 /* Build configuration list for PBXNativeTarget "AcrylicLaunchApplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADED27C2898DCC90023EB97 /* Debug */,
+				AADED27D2898DCC90023EB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

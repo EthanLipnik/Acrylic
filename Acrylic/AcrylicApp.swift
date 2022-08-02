@@ -75,7 +75,7 @@ struct AcrylicApp: App {
 #if os(macOS)
         Settings {
             SettingsView()
-                .frame(width: 500, height: 350)
+                .frame(width: 400, height: 500)
         }
 #endif
     }

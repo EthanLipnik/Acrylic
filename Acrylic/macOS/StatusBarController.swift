@@ -13,7 +13,7 @@ final class StatusBarController {
     private var statusItem: NSStatusItem
     
     private var isUsingWallpaper: Bool = false
-    private var wallpaperWindow: WallpaperWindow? = nil
+    private var wallpaperWindowController: NSWindowController? = nil
     
     weak var appDelegate: AppDelegate?
 
@@ -79,15 +79,24 @@ final class StatusBarController {
     
     @objc
     func toggleAnimatingWallpaper() {
-        wallpaperWindow?.close()
-        guard !isUsingWallpaper else { isUsingWallpaper = false; return }
+        wallpaperWindowController?.close()
+        wallpaperWindowController = nil
+        guard !isUsingWallpaper else {
+            isUsingWallpaper = false
+            
+            do {
+                try appDelegate?.revertDesktopPicture()
+            } catch {
+                print("Failed to revert desktop picture", error)
+            }
+            return
+        }
         
         let window = WallpaperWindow()
-        window.makeKeyAndOrderFront(nil)
         let windowController = NSWindowController(window: window)
         windowController.showWindow(nil)
         
-        self.wallpaperWindow = window
+        wallpaperWindowController = windowController
         isUsingWallpaper  = true
     }
     

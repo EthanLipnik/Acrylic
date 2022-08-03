@@ -79,14 +79,13 @@ struct SettingsView: View {
     }
     
     @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
-    
     @State private var isShowingPalettes: Bool = false
     @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
     @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
     @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 8
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
     @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
-    @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true
+    @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = false
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30

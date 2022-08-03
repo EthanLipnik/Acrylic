@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum WallpaperColorScheme: String, Hashable, CaseIterable {
     case light

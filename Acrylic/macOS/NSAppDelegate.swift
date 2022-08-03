@@ -13,6 +13,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusBar: StatusBarController?
     private var aboutBoxWindowController: NSWindowController?
     
+    lazy var currentDesktopPictureUrl: URL? = nil
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         if let window = NSApplication.shared.windows.first {
             window.close()
@@ -27,6 +29,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         if isRunning {
             DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
+        }
+        
+        getDesktopPicture()
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        try? revertDesktopPicture()
+    }
+    
+    func revertDesktopPicture() throws {
+        guard let currentDesktopPictureUrl else { return }
+        let workspace = NSWorkspace.shared
+        if let screen = NSScreen.main {
+            try workspace.setDesktopImageURL(currentDesktopPictureUrl, for: screen)
+        }
+    }
+    
+    func getDesktopPicture() {
+        let workspace = NSWorkspace.shared
+        if let screen = NSScreen.main {
+            self.currentDesktopPictureUrl = workspace.desktopImageURL(for: screen)
         }
     }
     

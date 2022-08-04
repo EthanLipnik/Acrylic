@@ -23,7 +23,7 @@ class WallpaperWindow: NSWindow {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300), styleMask: [.borderless, .fullSizeContentView], backing: .buffered, defer: false)
         isReleasedWhenClosed = true
         level = .init(Int(CGWindowLevelForKey(.desktopWindow)))
-        collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
+        collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle, .fullScreenNone]
         ignoresMouseEvents = true
         isOpaque = false
         hasShadow = false

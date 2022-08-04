@@ -27,11 +27,11 @@ struct ScreenSaverView: View {
     var animationSpeedRange: ClosedRange<Double> {
         switch animationSpeed {
         case .slow:
-            return 16 ... 32
+            return 8 ... 16
         case .normal:
-            return 8 ... 4
+            return 4 ... 8
         case .fast:
-            return 2 ... 4
+            return 1 ... 2
         }
     }
     

@@ -9,10 +9,7 @@
 import SwiftUI
 import RandomColor
 import MeshKit
-
-#if canImport(ServiceManagement)
-import ServiceManagement
-#endif
+import LaunchAtLogin
 
 struct SettingsView: View {
     struct HueToggle: Hashable {
@@ -80,7 +77,6 @@ struct SettingsView: View {
     
     @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
     @State private var isShowingPalettes: Bool = false
-    @AppStorage("launchAtStartup") private var launchAtStartup: Bool = false
     @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
     @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 8
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
@@ -108,10 +104,9 @@ struct SettingsView: View {
         Group {
 #if os(macOS)
             SectionView {
-                Toggle("Launch Acrylic on system startup", isOn: $launchAtStartup)
-                    .onChange(of: launchAtStartup) { newValue in
-                        SMLoginItemSetEnabled("com.ethanlipnik.Acrylic.LaunchApplication" as CFString, newValue)
-                    }
+                LaunchAtLogin.Toggle {
+                    Text("Launch Acrylic on system startup")
+                }
             } header: {
                 Label {
                     Text("Startup")

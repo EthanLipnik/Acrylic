@@ -32,6 +32,7 @@ final class StatusBarController {
     
     func createMenu() -> NSMenu {
         let menu = NSMenu(title: "Acrylic")
+        menu.autoenablesItems = false
         
         let createMeshGradientItem = NSMenuItem(title: "Create Mesh Gradient", action: #selector(openWindow), keyEquivalent: "n")
         createMeshGradientItem.target = self
@@ -99,6 +100,7 @@ final class StatusBarController {
             
             sender.title = "Enable Fluid Wallpaper"
             sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
+            print(sender.menu?.items.first(where: { $0.title == "New Palette" }))
             
             return
         }

@@ -160,7 +160,7 @@ struct SettingsView: View {
             }
             .pickerStyle(.menu)
             
-            Picker(selection: $fwFramerate) {
+            Picker("Framerate", selection: $fwFramerate) {
                 Text("30 FPS")
                     .tag(30)
                 Text("60 FPS")
@@ -169,9 +169,6 @@ struct SettingsView: View {
                     .tag(120)
                 Text("240 FPS")
                     .tag(240)
-            } label: {
-                Text("Framerate")
-                Text("Higher framerates can effect the animation speed")
             }
             .pickerStyle(.menu)
             

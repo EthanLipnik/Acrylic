@@ -100,7 +100,6 @@ final class StatusBarController {
             
             sender.title = "Enable Fluid Wallpaper"
             sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
-            print(sender.menu?.items.first(where: { $0.title == "New Palette" }))
             
             return
         }

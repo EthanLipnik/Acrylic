@@ -9,7 +9,10 @@
 import SwiftUI
 import RandomColor
 import MeshKit
+
+#if os(macOS)
 import LaunchAtLogin
+#endif
 
 struct SettingsView: View {
     struct HueToggle: Hashable {

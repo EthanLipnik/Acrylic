@@ -22,7 +22,7 @@
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
-		AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = AABB715F289C27E2005D8A23 /* LaunchAtLogin */; };
+		AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = AABB715F289C27E2005D8A23 /* LaunchAtLogin */; };
 		AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2552898CE750023EB97 /* AnimationSpeed.swift */; };
 		AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */; };
 		AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADED2812898DD880023EB97 /* ServiceManagement.framework */; platformFilters = (macos, ); };
@@ -44,7 +44,7 @@
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperService.swift; path = "WallpaperService.swift"; sourceTree = "<group>"; };
+		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
 		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindow.swift; sourceTree = "<group>"; };
 		AA455E39289826030010938A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };

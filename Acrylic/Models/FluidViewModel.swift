@@ -48,6 +48,7 @@ class FluidViewModel: ObservableObject {
     @objc
     func newPalette() {
         let luminosity: Luminosity = {
+#if os(macOS)
             let interfaceStyle = InterfaceStyle()
             let wallpaperColorScheme =  WallpaperColorScheme(rawValue: UserDefaults.standard.string(forKey: "FWColorScheme") ?? "system")
             switch wallpaperColorScheme {
@@ -60,6 +61,9 @@ class FluidViewModel: ObservableObject {
             default:
                 return .bright
             }
+#else
+            return .bright
+#endif
         }()
         
         colors = MeshKit.generate(palette: allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity, withRandomizedLocations: true)
@@ -136,16 +140,18 @@ class FluidViewModel: ObservableObject {
             print(error)
         }
     }
+#endif
     
     enum InterfaceStyle : String {
         case Dark, Light
         
+#if os(macOS)
         init() {
             let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
             self = InterfaceStyle(rawValue: type)!
         }
-    }
 #endif
+    }
 }
 
 #if os(macOS)

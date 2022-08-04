@@ -12,8 +12,7 @@ final class StatusBarController {
     private var statusBar: NSStatusBar
     private var statusItem: NSStatusItem
     
-    private var isUsingWallpaper: Bool = false
-    private var wallpaperWindowController: NSWindowController? = nil
+    private lazy var wallpaperService = WallpaperService()
     
     weak var appDelegate: AppDelegate?
 
@@ -87,38 +86,17 @@ final class StatusBarController {
     
     @objc
     func toggleAnimatingWallpaper(_ sender: NSMenuItem) {
-        wallpaperWindowController?.close()
-        wallpaperWindowController = nil
-        guard !isUsingWallpaper else {
-            isUsingWallpaper = false
-            
-            do {
-                try appDelegate?.revertDesktopPicture()
-            } catch {
-                print("Failed to revert desktop picture", error)
-            }
-            
+        if wallpaperService.toggle(.fluid) {
+            sender.title = "Disable Fluid Wallpaper"
+            sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = true
+        } else {
             sender.title = "Enable Fluid Wallpaper"
             sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
-            
-            return
         }
-        
-        let window = WallpaperWindow()
-        let windowController = NSWindowController(window: window)
-        windowController.showWindow(nil)
-        
-        wallpaperWindowController = windowController
-        isUsingWallpaper  = true
-        
-        sender.title = "Disable Fluid Wallpaper"
-        sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = true
     }
     
     @objc func generateNewPalette() {
-        let viewModel = (wallpaperWindowController?.window as? WallpaperWindow)?.viewModel
-        viewModel?.newPalette()
-        viewModel?.setTimer()
+        wallpaperService.refresh()
     }
     
     @objc

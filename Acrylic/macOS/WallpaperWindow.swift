@@ -13,13 +13,15 @@ import AppKit
 import SwiftUI
 
 class WallpaperWindow: NSWindow {
-    lazy var viewModel: FluidViewModel? = {
-        let viewModel = FluidViewModel()
-        viewModel.shouldUpdateDesktopPicture = true
-        return viewModel
-    }()
+    enum WallpaperType {
+        case fluid
+        case video
+        case unknown
+    }
     
-    init() {
+    var wallpaperType: WallpaperType { return .unknown }
+    
+    required init(view: some View) {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300), styleMask: [.borderless, .fullSizeContentView], backing: .buffered, defer: false)
         isReleasedWhenClosed = true
         level = .init(Int(CGWindowLevelForKey(.desktopWindow)))
@@ -31,22 +33,13 @@ class WallpaperWindow: NSWindow {
         titleVisibility = .hidden
         titlebarAppearsTransparent = true
         
-        if let viewModel {
-            let screenSaverView = ScreenSaverView().environmentObject(viewModel)
-            contentView = NSHostingView(rootView: screenSaverView)
-        }
+        
+        contentView = NSHostingView(rootView: view)
         
         updateScreenSize()
         NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
             self?.updateScreenSize()
         }
-    }
-    
-    override func close() {
-        contentView = nil
-        viewModel?.destroy()
-        viewModel = nil
-        super.close()
     }
     
     override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect {

@@ -28,10 +28,6 @@ final class StatusBarController {
             statusBarButton.image?.size = NSSize(width: 18.0, height: 18.0)
             statusBarButton.image?.isTemplate = true
         }
-        
-        if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
-            toggleAnimatingWallpaper()
-        }
     }
     
     func createMenu() -> NSMenu {
@@ -41,9 +37,16 @@ final class StatusBarController {
         createMeshGradientItem.target = self
         menu.addItem(createMeshGradientItem)
         
-        let toggleWallpaperItem = NSMenuItem(title: "Toggle Fluid Wallpaper", action: #selector(toggleAnimatingWallpaper), keyEquivalent: "")
+        menu.addItem(.separator())
+        
+        let toggleWallpaperItem = NSMenuItem(title: "Enable Fluid Wallpaper", action: #selector(toggleAnimatingWallpaper(_:)), keyEquivalent: "")
         toggleWallpaperItem.target = self
         menu.addItem(toggleWallpaperItem)
+        
+        let newWallpaperPaletteItem = NSMenuItem(title: "New Palette", action: #selector(generateNewPalette), keyEquivalent: "")
+        newWallpaperPaletteItem.target = self
+        newWallpaperPaletteItem.isEnabled = false
+        menu.addItem(newWallpaperPaletteItem)
         
         menu.addItem(.separator())
         
@@ -68,6 +71,10 @@ final class StatusBarController {
         quitItem.target = self
         menu.addItem(quitItem)
         
+        if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
+            toggleAnimatingWallpaper(toggleWallpaperItem)
+        }
+        
         return menu
     }
     
@@ -78,7 +85,7 @@ final class StatusBarController {
     }
     
     @objc
-    func toggleAnimatingWallpaper() {
+    func toggleAnimatingWallpaper(_ sender: NSMenuItem) {
         wallpaperWindowController?.close()
         wallpaperWindowController = nil
         guard !isUsingWallpaper else {
@@ -89,6 +96,10 @@ final class StatusBarController {
             } catch {
                 print("Failed to revert desktop picture", error)
             }
+            
+            sender.title = "Enable Fluid Wallpaper"
+            sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
+            
             return
         }
         
@@ -98,6 +109,15 @@ final class StatusBarController {
         
         wallpaperWindowController = windowController
         isUsingWallpaper  = true
+        
+        sender.title = "Disable Fluid Wallpaper"
+        sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = true
+    }
+    
+    @objc func generateNewPalette() {
+        let viewModel = (wallpaperWindowController?.window as? WallpaperWindow)?.viewModel
+        viewModel?.newPalette()
+        viewModel?.setTimer()
     }
     
     @objc

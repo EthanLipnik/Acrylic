@@ -35,7 +35,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        try? revertDesktopPicture()
+        let workspace = NSWorkspace.shared
+        if let screen = NSScreen.main, let desktopImageUrl = workspace.desktopImageURL(for: screen), desktopImageUrl != currentDesktopPictureUrl {
+            try? revertDesktopPicture()
+        }
     }
     
     func revertDesktopPicture() throws {

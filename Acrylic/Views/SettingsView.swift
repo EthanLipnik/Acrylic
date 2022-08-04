@@ -85,7 +85,7 @@ struct SettingsView: View {
     @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 8
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
     @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
-    @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = false
+    @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30

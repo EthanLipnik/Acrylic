@@ -109,7 +109,7 @@ class FluidViewModel: ObservableObject {
     func updateDesktopPicture() {
         
         var color: NSColor
-        if UserDefaults.standard.bool(forKey: "shouldColorMatchFWMenuBar") {
+        if (UserDefaults.standard.object(forKey: "shouldColorMatchFWMenuBar") as? Bool) ?? true {
             color = colors.elements.first?.color ?? .black
         } else {
             color = .black

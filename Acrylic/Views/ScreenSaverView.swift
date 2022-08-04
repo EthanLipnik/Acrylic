@@ -31,7 +31,7 @@ struct ScreenSaverView: View {
         case .normal:
             return 8 ... 4
         case .fast:
-            return 4 ... 8
+            return 2 ... 4
         }
     }
     

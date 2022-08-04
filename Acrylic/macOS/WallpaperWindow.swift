@@ -13,7 +13,7 @@ import AppKit
 import SwiftUI
 
 class WallpaperWindow: NSWindow {
-    private lazy var viewModel: FluidViewModel? = {
+    lazy var viewModel: FluidViewModel? = {
         let viewModel = FluidViewModel()
         viewModel.shouldUpdateDesktopPicture = true
         return viewModel

@@ -83,7 +83,7 @@ struct AcrylicApp: App {
 #if os(macOS)
         WindowGroup("Videos") {
             VideosManagementView()
-                .frame(minWidth: 700, minHeight: 480)
+                .frame(minWidth: 700, minHeight: 500)
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
@@ -94,7 +94,10 @@ struct AcrylicApp: App {
         
         Settings {
             SettingsView()
-                .frame(width: 400, height: 600)
+                .frame(width: 400)
+                .onAppear {
+                    NSApp.activate(ignoringOtherApps: true)
+                }
         }
 #endif
     }

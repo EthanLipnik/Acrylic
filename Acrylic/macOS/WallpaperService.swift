@@ -42,6 +42,8 @@ class WallpaperService: ObservableObject {
             return false
         }
         
+        currentDesktopPictureUrl = getDesktopPicture()
+        
         switch wallpaper {
         case .fluid:
             let window = FluidWindow()

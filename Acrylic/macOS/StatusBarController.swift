@@ -12,7 +12,18 @@ final class StatusBarController {
     private var statusBar: NSStatusBar
     private var statusItem: NSStatusItem
     
-    private lazy var wallpaperService = WallpaperService()
+    private lazy var wallpaperService = WallpaperService.shared
+    
+    private lazy var toggleFluidItem: NSMenuItem = {
+        let toggleWallpaperItem = NSMenuItem(title: "Start Fluid Wallpaper", action: #selector(toggleAnimatingWallpaper), keyEquivalent: "")
+        toggleWallpaperItem.target = self
+        return toggleWallpaperItem
+    }()
+    private lazy var toggleVideoItem: NSMenuItem = {
+        let toggleWallpaperItem = NSMenuItem(title: "Start Video Wallpaper", action: #selector(toggleVideoWallpaper), keyEquivalent: "")
+        toggleWallpaperItem.target = self
+        return toggleWallpaperItem
+    }()
     
     weak var appDelegate: AppDelegate?
 
@@ -27,26 +38,42 @@ final class StatusBarController {
             statusBarButton.image?.size = NSSize(width: 18.0, height: 18.0)
             statusBarButton.image?.isTemplate = true
         }
+        
+        NotificationCenter.default.addObserver(forName: .init("didEnableVideoBackground"), object: nil, queue: .main) { [weak self] notification in
+            self?.toggleFluidItem.title = "Start Fluid Wallpaper"
+            self?.toggleFluidItem.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
+            self?.toggleFluidItem.isEnabled = false
+            
+            self?.toggleVideoItem.isEnabled = true
+            self?.toggleVideoItem.title = "Stop Video Wallpaper"
+        }
     }
     
     func createMenu() -> NSMenu {
         let menu = NSMenu(title: "Acrylic")
         menu.autoenablesItems = false
         
-        let createMeshGradientItem = NSMenuItem(title: "Create Mesh Gradient", action: #selector(openWindow), keyEquivalent: "n")
+        let createMeshGradientItem = NSMenuItem(title: "Create Mesh Gradient", action: #selector(createMeshGradient), keyEquivalent: "n")
         createMeshGradientItem.target = self
         menu.addItem(createMeshGradientItem)
         
         menu.addItem(.separator())
         
-        let toggleWallpaperItem = NSMenuItem(title: "Enable Fluid Wallpaper", action: #selector(toggleAnimatingWallpaper(_:)), keyEquivalent: "")
-        toggleWallpaperItem.target = self
-        menu.addItem(toggleWallpaperItem)
+        menu.addItem(toggleFluidItem)
         
         let newWallpaperPaletteItem = NSMenuItem(title: "New Palette", action: #selector(generateNewPalette), keyEquivalent: "")
         newWallpaperPaletteItem.target = self
         newWallpaperPaletteItem.isEnabled = false
         menu.addItem(newWallpaperPaletteItem)
+        
+        menu.addItem(.separator())
+        
+        menu.addItem(toggleVideoItem)
+        
+        let manageVideosItem = NSMenuItem(title: "Manage Videos...", action: #selector(openManageVideosWindow), keyEquivalent: "")
+        manageVideosItem.target = self
+        manageVideosItem.isEnabled = true
+        menu.addItem(manageVideosItem)
         
         menu.addItem(.separator())
         
@@ -72,31 +99,46 @@ final class StatusBarController {
         menu.addItem(quitItem)
         
         if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
-            toggleAnimatingWallpaper(toggleWallpaperItem)
+            toggleAnimatingWallpaper()
         }
         
         return menu
     }
     
     @objc
-    func openWindow() {
-        guard let url = URL(string: "acrylic://") else { return }
-        NSWorkspace.shared.open(url)
+    func createMeshGradient() {
+        WindowManager.Main.open()
     }
     
     @objc
-    func toggleAnimatingWallpaper(_ sender: NSMenuItem) {
+    func toggleAnimatingWallpaper() {
         if wallpaperService.toggle(.fluid) {
-            sender.title = "Disable Fluid Wallpaper"
-            sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = true
+            toggleFluidItem.title = "Stop Fluid Wallpaper"
+            toggleFluidItem.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = true
+            toggleVideoItem.isEnabled = false
         } else {
-            sender.title = "Enable Fluid Wallpaper"
-            sender.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
+            toggleFluidItem.title = "Start Fluid Wallpaper"
+            toggleFluidItem.menu?.items.first(where: { $0.title == "New Palette" })?.isEnabled = false
+            toggleVideoItem.isEnabled = true
         }
     }
     
     @objc func generateNewPalette() {
         wallpaperService.refresh()
+    }
+    
+    @objc func toggleVideoWallpaper() {
+        if wallpaperService.toggle(.video) {
+            toggleVideoItem.title = "Stop Video Wallpaper"
+            toggleFluidItem.isEnabled = false
+        } else {
+            toggleVideoItem.title = "Start Video Wallpaper"
+            toggleFluidItem.isEnabled = true
+        }
+    }
+    
+    @objc func openManageVideosWindow() {
+        WindowManager.Videos.open()
     }
     
     @objc

@@ -45,9 +45,15 @@ class WallpaperService: ObservableObject {
         switch wallpaper {
         case .fluid:
             let window = FluidWindow()
-            let windowController = NSWindowController(window: window)
-            windowController.showWindow(nil)
-            self.windowController = windowController
+            windowController = NSWindowController(window: window)
+            windowController?.showWindow(nil)
+            self.window = window
+            
+            return true
+        case .video:
+            let window = VideoWindow()
+            windowController = NSWindowController(window: window)
+            windowController?.showWindow(nil)
             self.window = window
             
             return true

@@ -32,24 +32,38 @@ struct AboutView: View {
         
         var body: some View {
             GroupBox {
-                if let url = URL(string: "https://ethanlipnik.com/acrylic") {
-                    Link(destination: url) {
-                        Label("Website", systemImage: "globe")
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .leading) {
+                    if let url = URL(string: "https://ethanlipnik.com/acrylic") {
+                        Link(destination: url) {
+                            Label("Website", systemImage: "globe")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
-                }
-                
-                if let url = URL(string: "https://github.com/EthanLipnik/MeshKit") {
-                    Link(destination: url) {
-                        Label("MeshKit", systemImage: "circle.grid.cross")
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if let url = URL(string: "https://github.com/EthanLipnik/MeshKit") {
+                        Link(destination: url) {
+                            Label("MeshKit", systemImage: "circle.grid.cross")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
-                }
-                
-                if let url = URL(string: "https://github.com/Nekitosss/MeshGradient") {
-                    Link(destination: url) {
-                        Label("MeshGradient", systemImage: "square.stack.3d.forward.dottedline")
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if let url = URL(string: "https://github.com/Nekitosss/MeshGradient") {
+                        Link(destination: url) {
+                            Label("MeshGradient", systemImage: "square.stack.3d.forward.dottedline")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    
+                    if let url = URL(string: "https://pixabay.com/") {
+                        Link(destination: url) {
+                            HStack {
+                                Image(systemName: "photo")
+                                Image("Pixabay")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .frame(height: 15)
+                        }
                     }
                 }
             } label: {
@@ -87,26 +101,20 @@ struct AboutView: View {
                 }
             } label: {
                 HStack {
-                    Group {
-                        if #available(iOS 15.0, macOS 12.0, *) {
-                            AsyncImage(url: profilePic) { phase in
-                                switch phase {
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                case .failure:
-                                    Color.red
-                                case .empty:
-                                    Color.secondary
-                                @unknown default:
-                                    Color.secondary
-                                }
-                            }
-                            .aspectRatio(1/1, contentMode: .fit)
-                        } else {
-                            Image(systemName: "person.circle.fill")
+                    AsyncImage(url: profilePic) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                        case .failure:
+                            Color.red
+                        case .empty:
+                            Color.secondary
+                        @unknown default:
+                            Color.secondary
                         }
                     }
+                    .aspectRatio(1/1, contentMode: .fit)
                     .frame(height: 45)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                     

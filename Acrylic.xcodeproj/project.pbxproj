@@ -11,6 +11,7 @@
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
+		AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278948289C5AC8001E897B /* VideoWindow.swift */; };
 		AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */; };
 		AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */; };
 		AA455E3A289826030010938A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* SettingsView.swift */; };
@@ -22,10 +23,18 @@
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
+		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
 		AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = AABB715F289C27E2005D8A23 /* LaunchAtLogin */; };
+		AACCD48D289D8E62006551C1 /* Sebu in Frameworks */ = {isa = PBXBuildFile; productRef = AACCD48C289D8E62006551C1 /* Sebu */; };
+		AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD48E289DA639006551C1 /* VideoDownloadService.swift */; };
+		AACCD492289DA6A3006551C1 /* VideosManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD491289DA688006551C1 /* VideosManagementView.swift */; };
+		AACCD494289DA6CB006551C1 /* VideosManagementView+SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */; };
+		AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */; };
+		AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */; };
 		AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2552898CE750023EB97 /* AnimationSpeed.swift */; };
 		AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */; };
 		AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADED2812898DD880023EB97 /* ServiceManagement.framework */; platformFilters = (macos, ); };
+		AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAFCAF18289CB2D900DADB45 /* PixabayKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +54,7 @@
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
+		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
 		AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
 		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindow.swift; sourceTree = "<group>"; };
 		AA455E39289826030010938A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -59,9 +69,16 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
+		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DebouncedObject.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/DebouncedObject.swift"; sourceTree = "<group>"; };
+		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoDownloadService.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/VideoDownloadService.swift"; sourceTree = "<group>"; };
+		AACCD491289DA688006551C1 /* VideosManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosManagementView.swift; sourceTree = "<group>"; };
+		AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+SidebarView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+SidebarView.swift"; sourceTree = "<group>"; };
+		AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+VideoItemView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+VideoItemView.swift"; sourceTree = "<group>"; };
+		AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+VideosView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+VideosView.swift"; sourceTree = "<group>"; };
 		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSpeed.swift; sourceTree = "<group>"; };
 		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperColorScheme.swift; sourceTree = "<group>"; };
 		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		AAFCAF17289CB2D000DADB45 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PixabayKit; path = "../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/PixabayKit"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */,
 				AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */,
+				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
 			);
@@ -85,6 +104,7 @@
 				AA0EA86128933069003CEB51 /* ScreenSaverView.swift */,
 				AA455E39289826030010938A /* SettingsView.swift */,
 				AA1F48E42899C301009E07A8 /* AboutView.swift */,
+				AACCD490289DA688006551C1 /* VideosView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -95,8 +115,7 @@
 				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
 				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
 				AA278945289C4B15001E897B /* WallpaperService.swift */,
-				AA108BBE289C1A25009C50A5 /* FluidWindow.swift */,
-				AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */,
+				AA278947289C5A59001E897B /* Wallpaper Windows */,
 				AA68252E289B22F8003A0D8F /* VisualEffectView.swift */,
 			);
 			path = macOS;
@@ -108,8 +127,20 @@
 				AADED2552898CE750023EB97 /* AnimationSpeed.swift */,
 				AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */,
 				AA68252A289B1419003A0D8F /* FluidViewModel.swift */,
+				AACCD48E289DA639006551C1 /* VideoDownloadService.swift */,
+				AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AA278947289C5A59001E897B /* Wallpaper Windows */ = {
+			isa = PBXGroup;
+			children = (
+				AA108BBE289C1A25009C50A5 /* FluidWindow.swift */,
+				AA278948289C5AC8001E897B /* VideoWindow.swift */,
+				AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */,
+			);
+			path = "Wallpaper Windows";
 			sourceTree = "<group>";
 		};
 		AA749C5928931EFB002CD39A = {
@@ -157,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				AA7C86582893576500D3469E /* MeshKit */,
+				AAFCAF17289CB2D000DADB45 /* PixabayKit */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -167,6 +199,17 @@
 				AADED2812898DD880023EB97 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AACCD490289DA688006551C1 /* VideosView */ = {
+			isa = PBXGroup;
+			children = (
+				AACCD491289DA688006551C1 /* VideosManagementView.swift */,
+				AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */,
+				AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */,
+				AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */,
+			);
+			path = VideosView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +233,8 @@
 			packageProductDependencies = (
 				AA7C86592893576B00D3469E /* MeshKit */,
 				AABB715F289C27E2005D8A23 /* LaunchAtLogin */,
+				AAFCAF18289CB2D900DADB45 /* PixabayKit */,
+				AACCD48C289D8E62006551C1 /* Sebu */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -221,6 +266,7 @@
 			mainGroup = AA749C5928931EFB002CD39A;
 			packageReferences = (
 				AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */,
 			);
 			productRefGroup = AA749C6328931EFB002CD39A /* Products */;
 			projectDirPath = "";
@@ -269,15 +315,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACCD492289DA6A3006551C1 /* VideosManagementView.swift in Sources */,
 				AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */,
 				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
 				AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
+				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
+				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,
+				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
 				AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */,
+				AACCD494289DA6CB006551C1 /* VideosManagementView+SidebarView.swift in Sources */,
 				AA278946289C4B15001E897B /* WallpaperService.swift in Sources */,
 				AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */,
 				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
+				AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */,
+				AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */,
 				AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */,
 				AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */,
 				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
@@ -432,10 +485,10 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -482,10 +535,10 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,6 +585,14 @@
 				kind = branch;
 			};
 		};
+		AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EthanLipnik/Sebu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -543,6 +604,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
+		};
+		AACCD48C289D8E62006551C1 /* Sebu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */;
+			productName = Sebu;
+		};
+		AAFCAF18289CB2D900DADB45 /* PixabayKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PixabayKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

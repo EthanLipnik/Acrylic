@@ -21,7 +21,7 @@ class WallpaperWindow: NSWindow {
     
     var wallpaperType: WallpaperType { return .unknown }
     
-    required init(view: some View) {
+    init() {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300), styleMask: [.borderless, .fullSizeContentView], backing: .buffered, defer: false)
         isReleasedWhenClosed = true
         level = .init(Int(CGWindowLevelForKey(.desktopWindow)))
@@ -30,15 +30,16 @@ class WallpaperWindow: NSWindow {
         isOpaque = false
         hasShadow = false
         backgroundColor = .clear
-        titleVisibility = .hidden
-        titlebarAppearsTransparent = true
-        
-        
-        contentView = NSHostingView(rootView: view)
+        identifier = .init("wallpaperWindow")
         
         updateScreenSize()
         NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
             self?.updateScreenSize()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.isOpaque = true
+            self?.backgroundColor = .black
         }
     }
     

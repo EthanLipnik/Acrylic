@@ -40,6 +40,11 @@ class FluidViewModel: ObservableObject {
 #endif
     }
     
+    deinit {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     func destroy() {
         timer?.invalidate()
         timer = nil
@@ -165,17 +170,11 @@ extension NSImage {
     
     var pngData: Data? {
         guard let tiffRepresentation = tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return nil }
-        return bitmapImage.representation(using: .tiff, properties: [:])
+        return bitmapImage.representation(using: .png, properties: [:])
     }
     
-    func pngWrite(to url: URL, options: Data.WritingOptions = .atomic) -> Bool {
-        do {
-            try pngData?.write(to: url, options: options)
-            return true
-        } catch {
-            print(error)
-            return false
-        }
+    func pngWrite(to url: URL, options: Data.WritingOptions = .atomic) throws {
+        try pngData?.write(to: url, options: options)
     }
 }
 #endif

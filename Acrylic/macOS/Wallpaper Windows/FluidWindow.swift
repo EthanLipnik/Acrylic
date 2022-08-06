@@ -14,16 +14,15 @@ final class FluidWindow: WallpaperWindow {
     
     override var wallpaperType: WallpaperWindow.WallpaperType { return .fluid }
     
-    init() {
+    override init() {
+        super.init()
+        
         let viewModel = FluidViewModel()
         viewModel.shouldUpdateDesktopPicture = true
         let screenSaverView = ScreenSaverView().environmentObject(viewModel)
-        super.init(view: screenSaverView)
+        contentView = NSHostingView(rootView: screenSaverView)
+        
         self.viewModel = viewModel
-    }
-    
-    required init(view: some View) {
-        fatalError("init(view:) has not been implemented")
     }
     
     override func close() {

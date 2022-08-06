@@ -28,36 +28,34 @@ struct AcrylicApp: App {
 #else
             ContentView()
                 .frame(minWidth: 400, minHeight: 400)
-                .onAppear {
-                    NSApp.setActivationPolicy(.regular)
-                }
                 .onDisappear {
-                    if NSApp.windows.count <= 3 {
+                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
 #endif
         }
+        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Main.rawValue))
 #if os(macOS)
         .windowToolbarStyle(.unifiedCompact)
 #endif
         .commands {
             ToolbarCommands()
-            
+
             CommandGroup(after: .newItem) {
                 Button("Info...") {
-                    
+
                 }
                 .keyboardShortcut("i")
-                
+
                 Divider()
-                
+
                 Button("Export...") {
-                    
+
                 }
                 .keyboardShortcut("e")
             }
-            
+
 #if os(macOS)
             CommandGroup(replacing: .appInfo) {
                 Button(action: {
@@ -83,6 +81,17 @@ struct AcrylicApp: App {
 #endif
         
 #if os(macOS)
+        WindowGroup("Videos") {
+            VideosManagementView()
+                .frame(minWidth: 700, minHeight: 480)
+                .onDisappear {
+                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                        NSApp.setActivationPolicy(.accessory)
+                    }
+                }
+        }
+        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Videos.rawValue))
+        
         Settings {
             SettingsView()
                 .frame(width: 400, height: 600)
@@ -95,4 +104,16 @@ struct AcrylicApp: App {
 extension Notification.Name {
     static let killLauncher = Notification.Name("killLauncher")
 }
+
 #endif
+
+enum WindowManager: String, CaseIterable {
+    case Main = "MainView"
+    case Videos = "VideosView"
+    
+    func open(){
+        if let url = URL(string: "acrylic://\(self.rawValue)") {
+            NSWorkspace.shared.open(url)
+        }
+    }
+}

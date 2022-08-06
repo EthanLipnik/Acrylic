@@ -14,16 +14,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var aboutBoxWindowController: NSWindowController?
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if let window = NSApplication.shared.windows.first {
-            window.close()
-        }
+        NSApplication.shared.windows.forEach({ $0.close() })
         
         statusBar = StatusBarController()
         statusBar?.appDelegate = self
+        
+        NSApp.setActivationPolicy(.accessory)
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        try? WallpaperService.shared.revertDesktopPicture()
+        do {
+            try WallpaperService.shared.revertDesktopPicture()
+        } catch {
+            print(error)
+        }
     }
     
     func showAboutPanel() {
@@ -34,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.titleVisibility = .hidden
             window.titlebarAppearsTransparent = true
             window.isMovableByWindowBackground = true
-            window.contentView = NSHostingView(rootView: AboutView().frame(width: 300, height: 400))
+            window.contentView = NSHostingView(rootView: AboutView().frame(width: 300, height: 500))
             aboutBoxWindowController = NSWindowController(window: window)
         }
         

@@ -35,8 +35,8 @@ struct AcrylicApp: App {
                 }
 #endif
         }
-        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Main.rawValue))
 #if os(macOS)
+        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Main.rawValue))
         .windowToolbarStyle(.unifiedCompact)
 #endif
         .commands {
@@ -108,8 +108,6 @@ extension Notification.Name {
     static let killLauncher = Notification.Name("killLauncher")
 }
 
-#endif
-
 enum WindowManager: String, CaseIterable {
     case Main = "MainView"
     case Videos = "VideosView"
@@ -120,3 +118,4 @@ enum WindowManager: String, CaseIterable {
         }
     }
 }
+#endif

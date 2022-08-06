@@ -5,6 +5,7 @@
 //  Created by Ethan Lipnik on 8/4/22.
 //
 
+#if os(macOS)
 import AppKit
 import AVKit
 import PixabayKit
@@ -91,3 +92,4 @@ class VideoWindow: WallpaperWindow {
         return NSImage(cgImage: thumbnailImageRef, size: NSSize(width: 640, height: 480))
     }
 }
+#endif

@@ -115,13 +115,16 @@ final class VideoDownloadService: ObservableObject {
             updateState(.processing)
             
             let convertedFile: URL
-            
-            do {
-                convertedFile = try await convert(videoFile)
-                print("Converted video", convertedFile.path)
-            } catch {
-                print(error)
+            if !UserDefaults.standard.bool(forKey: "shouldEnableVWCompression") {
                 convertedFile = videoFile
+            } else {
+                do {
+                    convertedFile = try await convert(videoFile)
+                    print("Converted video", convertedFile.path)
+                } catch {
+                    print(error)
+                    convertedFile = videoFile
+                }
             }
             
             try FileManager.default.moveItem(at: convertedFile, to: destinationUrl)
@@ -170,10 +173,18 @@ final class VideoDownloadService: ObservableObject {
             let duration = asset.duration.seconds
 
             let fileSize = Double(bps) * duration / 8
-
-//            let desiredHEVCFileSize = Int64(fileSize / 2)
             
-            exporter.fileLengthLimit = Int64(fileSize)
+            let fileLimit = UserDefaults.standard.integer(forKey: "VWFileLimit")
+            
+            if fileLimit != -1 {
+                var desiredFileSize: Int64 = Int64(fileSize)
+                
+                if fileLimit > 0 {
+                    desiredFileSize = Int64(fileLimit)
+                }
+                
+                exporter.fileLengthLimit = desiredFileSize
+            }
         }
         
         await exporter.export()

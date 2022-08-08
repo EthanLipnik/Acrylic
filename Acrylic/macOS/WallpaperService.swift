@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 
+@MainActor
 class WallpaperService: ObservableObject {
     static let shared = WallpaperService.init()
     
@@ -17,6 +18,7 @@ class WallpaperService: ObservableObject {
     private lazy var currentDesktopPictureUrl: URL? = nil
     
     @Published var selectedWallpaper: WallpaperType? = nil
+    @Published var isLoading: Bool = false
     
     var isUsingWallpaper: Bool {
         return window != nil || windowController != nil || selectedWallpaper != nil
@@ -26,7 +28,7 @@ class WallpaperService: ObservableObject {
         currentDesktopPictureUrl = getDesktopPicture()
         
         if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
-            Task(priority: .userInitiated) {
+            Task {
                 do {
                     try await toggle(.fluid)
                 } catch {
@@ -40,52 +42,58 @@ class WallpaperService: ObservableObject {
     func toggle(_ wallpaper: WallpaperType) async throws -> Bool {
         let isUsingWallpaper = self.isUsingWallpaper
         
-        try await disable()
+        isLoading = true
+        try await stop()
+        isLoading = true
         
         guard !isUsingWallpaper else { return false }
         
-        try await enable(wallpaper)
-        
+        try await start(wallpaper)
         return true
     }
     
-    func enable(_ wallpaper: WallpaperType) async throws {
-        try await disable()
+    func start(_ wallpaper: WallpaperType) async throws {
+        isLoading = true
+        try await stop()
         
         currentDesktopPictureUrl = getDesktopPicture()
         
         switch wallpaper {
-        case .fluid:
-            let window = await FluidWindow()
-            windowController = await NSWindowController(window: window)
+        case .fluid, .music:
+            let window = FluidWindow()
+            windowController = NSWindowController(window: window)
             self.window = window
         case .video:
-            let window = await VideoWindow()
-            windowController = await NSWindowController(window: window)
+            let window = VideoWindow()
+            windowController = NSWindowController(window: window)
             self.window = window
         }
         
-        await windowController?.showWindow(nil)
+        windowController?.showWindow(nil)
         
-        DispatchQueue.main.async { [weak self] in
-            self?.selectedWallpaper = wallpaper
-        }
+        selectedWallpaper = wallpaper
+        
+        try await Task.sleep(nanoseconds: 3_000_000_000)
+        
+        isLoading = false
     }
     
-    func disable() async throws {
+    func stop() async throws {
+        isLoading = true
+        
         let isUsingWallpaper = self.isUsingWallpaper
-        await windowController?.close()
+        windowController?.close()
         windowController = nil
         window = nil
         
-        DispatchQueue.main.async { [weak self] in
-            self?.selectedWallpaper = nil
-        }
+        selectedWallpaper = nil
         
         if isUsingWallpaper {
             try revertDesktopPicture()
-            try await Task.sleep(nanoseconds: 5_000_000_000)
+            try await Task.sleep(nanoseconds: 1_000_000_000)
         }
+        
+        isLoading = false
     }
     
     func refresh() {

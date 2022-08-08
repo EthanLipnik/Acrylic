@@ -32,7 +32,6 @@ extension VideosManagementView {
             .aspectRatio(16/9, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
             .drawingGroup()
-            .shadow(radius: 8, y: 4)
         }
     }
 }

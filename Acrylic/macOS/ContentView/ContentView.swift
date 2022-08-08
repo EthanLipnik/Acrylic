@@ -1,0 +1,161 @@
+//
+//  ContentView.swift
+//  Acrylic
+//
+//  Created by Ethan Lipnik on 8/7/22.
+//
+
+import SwiftUI
+
+#if os(macOS)
+struct ContentView: View {
+    @State private var selectedWallpaper: WallpaperType? = nil
+    
+    let openAbout: () -> Void
+    @StateObject var wallpaperService = WallpaperService.shared
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: 15)], spacing: 15) {
+                ForEach(WallpaperType.allCases, id: \.rawValue) { wallpaper in
+                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper)
+                        .animation(.easeInOut(duration: 0.2), value: selectedWallpaper)
+                        .environmentObject(wallpaperService)
+                }
+            }
+            .padding()
+            
+            Group {
+                if selectedWallpaper != nil {
+                    Divider()
+                    
+                    ScrollView(.horizontal) {
+                        LazyHStack {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(Color.black
+                                    .opacity(0.5)
+                                    .blendMode(.overlay))
+                                .aspectRatio(16/10, contentMode: .fit)
+                                .overlay(Image(systemName: "dice.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding()
+                                    .foregroundStyle(.secondary))
+                        }
+                        .padding()
+                    }
+                    .background(
+                        Color.black
+                            .opacity(0.5)
+                            .blendMode(.overlay)
+                    )
+                    .frame(height: 100)
+                } else {
+                    Spacer()
+                        .frame(height: 100)
+                }
+            }
+            .transition(.opacity)
+            
+            footer
+        }
+        .frame(width: 300)
+        .onChange(of: selectedWallpaper) { wallpaper in
+            Task {
+                do {
+                    if let wallpaper {
+                        try await wallpaperService.start(wallpaper)
+                    } else {
+                        try await wallpaperService.stop()
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    var footer: some View {
+        HStack {
+            Button {
+                if #available(macOS 13.0, *) {
+                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                } else {
+                    NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                }
+                
+                NSApp.activate(ignoringOtherApps: true)
+            } label: {
+                Image(systemName: "gearshape.fill")
+            }
+            .buttonStyle(.borderless)
+            Spacer()
+            
+            Menu {
+                Button(action: openAbout) {
+                    Label("About", systemImage: "info")
+                }
+                Divider()
+                Button {
+                    NSApplication.shared.terminate(self)
+                } label: {
+                    Label("Quit", systemImage: "xmark")
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+            }
+            .buttonStyle(.borderless)
+        }
+        .padding()
+        .overlay(Divider(), alignment: .top)
+    }
+    
+    struct WallpaperItem: View {
+        @EnvironmentObject var wallpaperService: WallpaperService
+        let wallpaper: WallpaperType
+        
+        @Binding var selectedWallpaper: WallpaperType?
+        @State private var isHolding: Bool = false
+        
+        var body: some View {
+            Image(wallpaper.rawValue.capitalized + "Thumbnail")
+                .resizable()
+                .aspectRatio(16/10, contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(
+                    selectedWallpaper == wallpaper ? RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .stroke(Color.accentColor, lineWidth: 4) : nil
+                )
+                .overlay(
+                    selectedWallpaper == wallpaper && wallpaperService.isLoading ? ProgressView() : nil
+                )
+                .shadow(radius: isHolding ? 4 : 8, y: isHolding ? 4 : 8)
+                .scaleEffect(isHolding ? 0.9 : 1)
+                .animation(.spring(), value: isHolding)
+                .onTapGesture {
+                    isHolding = false
+                    
+                    guard !wallpaperService.isLoading else { return }
+                    
+                    withAnimation(.easeInOut) {
+                        if selectedWallpaper == wallpaper {
+                            selectedWallpaper = nil
+                            return
+                        }
+                        
+                        selectedWallpaper = wallpaper
+                    }
+                }
+                .onLongPressGesture { } onPressingChanged: { isHolding in
+                    self.isHolding = isHolding
+                }
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView() {}
+    }
+}
+#endif

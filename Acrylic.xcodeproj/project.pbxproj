@@ -66,6 +66,7 @@
 		AA427C0028A09EFA009F9C44 /* WallpaperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperType.swift; sourceTree = "<group>"; };
 		AA427C0228A09FEA009F9C44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA455E39289826030010938A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA4AF8F028A166EF001F98D5 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PixabayKit; path = "../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/PixabayKit"; sourceTree = "<group>"; };
 		AA4BCF5528970A4B00D94F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -77,20 +78,19 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
-		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DebouncedObject.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/DebouncedObject.swift"; sourceTree = "<group>"; };
-		AAAE6366289EA290000ED2F0 /* SettingsView+StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView+StartupView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/SettingsView/SettingsView+StartupView.swift"; sourceTree = "<group>"; };
-		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView+FluidWallpaperView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/SettingsView/SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
-		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView+VideoWallpaperView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/SettingsView/SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
-		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoDownloadService.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/VideoDownloadService.swift"; sourceTree = "<group>"; };
+		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
+		AAAE6366289EA290000ED2F0 /* SettingsView+StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+StartupView.swift"; sourceTree = "<group>"; };
+		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
+		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
+		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadService.swift; sourceTree = "<group>"; };
 		AACCD491289DA688006551C1 /* VideosManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosManagementView.swift; sourceTree = "<group>"; };
-		AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+SidebarView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+SidebarView.swift"; sourceTree = "<group>"; };
-		AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+VideoItemView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+VideoItemView.swift"; sourceTree = "<group>"; };
-		AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+VideosView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+VideosView.swift"; sourceTree = "<group>"; };
+		AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SidebarView.swift"; sourceTree = "<group>"; };
+		AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+VideoItemView.swift"; sourceTree = "<group>"; };
+		AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+VideosView.swift"; sourceTree = "<group>"; };
 		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSpeed.swift; sourceTree = "<group>"; };
 		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperColorScheme.swift; sourceTree = "<group>"; };
 		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VideosManagementView+SelectedItemView.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Views/VideosView/VideosManagementView+SelectedItemView.swift"; sourceTree = "<group>"; };
-		AAFCAF17289CB2D000DADB45 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PixabayKit; path = "../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/PixabayKit"; sourceTree = "<group>"; };
+		AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SelectedItemView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,7 @@
 		AA1F48E22899C1C1009E07A8 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				AA427C0228A09FEA009F9C44 /* ContentView.swift */,
+				AA4AF8EF28A16686001F98D5 /* ContentView */,
 				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
 				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
 				AA278945289C4B15001E897B /* WallpaperService.swift */,
@@ -155,6 +155,14 @@
 				AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */,
 			);
 			path = "Wallpaper Windows";
+			sourceTree = "<group>";
+		};
+		AA4AF8EF28A16686001F98D5 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				AA427C0228A09FEA009F9C44 /* ContentView.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 		AA749C5928931EFB002CD39A = {
@@ -202,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				AA7C86582893576500D3469E /* MeshKit */,
-				AAFCAF17289CB2D000DADB45 /* PixabayKit */,
+				AA4AF8F028A166EF001F98D5 /* PixabayKit */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -231,8 +239,8 @@
 			children = (
 				AACCD491289DA688006551C1 /* VideosManagementView.swift */,
 				AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */,
-				AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */,
 				AACCD497289DA711006551C1 /* VideosManagementView+VideosView.swift */,
+				AACCD495289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift */,
 				AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */,
 			);
 			path = VideosView;

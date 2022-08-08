@@ -40,9 +40,6 @@ struct AcrylicApp: App {
         Settings {
             SettingsView()
                 .frame(width: 400)
-                .onAppear {
-                    NSApp.activate(ignoringOtherApps: true)
-                }
         }
 #endif
     }

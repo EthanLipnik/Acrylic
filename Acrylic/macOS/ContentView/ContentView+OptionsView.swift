@@ -52,6 +52,20 @@ extension ContentView {
                                         currentVideoBackgroundId == video.id ? RoundedRectangle(cornerRadius: 10, style: .continuous)
                                             .stroke(Color.accentColor, lineWidth: 4) : nil
                                     )
+                                    .contextMenu {
+                                        Button(role: .destructive) {
+                                            withAnimation {
+                                                try? videosViewModel.delete(video)
+                                                
+                                                if currentVideoBackgroundId == video.id {
+                                                    currentVideoBackgroundId = videosViewModel.videos.first?.id ?? ""
+                                                    videosViewModel.updateWallpaper()
+                                                }
+                                            }
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                    }
                                     .shadow(radius: 8, y: 8)
                                     .onTapGesture {
                                         currentVideoBackgroundId = video.id

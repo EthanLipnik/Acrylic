@@ -16,54 +16,76 @@ class WallpaperService: ObservableObject {
     private lazy var windowController: NSWindowController? = nil
     private lazy var currentDesktopPictureUrl: URL? = nil
     
+    @Published var selectedWallpaper: WallpaperType? = nil
+    
     var isUsingWallpaper: Bool {
-        return window != nil || windowController != nil
+        return window != nil || windowController != nil || selectedWallpaper != nil
     }
     
     init() {
         currentDesktopPictureUrl = getDesktopPicture()
+        
+        if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
+            Task(priority: .userInitiated) {
+                do {
+                    try await toggle(.fluid)
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
     
     @discardableResult
-    func toggle(_ wallpaper: WallpaperWindow.WallpaperType) -> Bool {
+    func toggle(_ wallpaper: WallpaperType) async throws -> Bool {
         let isUsingWallpaper = self.isUsingWallpaper
         
-        windowController?.close()
-        windowController = nil
-        window = nil
+        try await disable()
         
-        guard !isUsingWallpaper else {
-            do {
-                try revertDesktopPicture()
-            } catch {
-                print("Failed to revert desktop picture", error)
-            }
-            
-            return false
-        }
+        guard !isUsingWallpaper else { return false }
+        
+        try await enable(wallpaper)
+        
+        return true
+    }
+    
+    func enable(_ wallpaper: WallpaperType) async throws {
+        try await disable()
         
         currentDesktopPictureUrl = getDesktopPicture()
         
         switch wallpaper {
         case .fluid:
-            let window = FluidWindow()
-            windowController = NSWindowController(window: window)
-            windowController?.showWindow(nil)
+            let window = await FluidWindow()
+            windowController = await NSWindowController(window: window)
             self.window = window
-            
-            return true
         case .video:
-            let window = VideoWindow()
-            windowController = NSWindowController(window: window)
-            windowController?.showWindow(nil)
+            let window = await VideoWindow()
+            windowController = await NSWindowController(window: window)
             self.window = window
-            
-            return true
-        default:
-            break
         }
         
-        return false
+        await windowController?.showWindow(nil)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.selectedWallpaper = wallpaper
+        }
+    }
+    
+    func disable() async throws {
+        let isUsingWallpaper = self.isUsingWallpaper
+        await windowController?.close()
+        windowController = nil
+        window = nil
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.selectedWallpaper = nil
+        }
+        
+        if isUsingWallpaper {
+            try revertDesktopPicture()
+            try await Task.sleep(nanoseconds: 5_000_000_000)
+        }
     }
     
     func refresh() {

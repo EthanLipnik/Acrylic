@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MeshCreatorView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 7/28/22.
@@ -9,7 +9,7 @@ import SwiftUI
 import MeshKit
 
 #if !os(tvOS)
-struct ContentView: View {
+struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer
     @State private var colors: MeshGrid
     @State private var size: MeshSize
@@ -252,9 +252,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MeshCreatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MeshCreatorView()
     }
 }
 #endif

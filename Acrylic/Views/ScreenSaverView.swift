@@ -52,12 +52,6 @@ struct ScreenSaverView: View {
                 withAnimation(.easeInOut(duration: 3)) {
                     isStartingUp = false
                 }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    viewModel.newPalette()
-                    viewModel.setTimer()
-                    viewModel.updateDesktopPicture()
-                }
             }
 #endif
         }

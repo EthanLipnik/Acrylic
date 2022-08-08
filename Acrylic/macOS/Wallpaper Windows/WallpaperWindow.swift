@@ -13,13 +13,7 @@ import AppKit
 import SwiftUI
 
 class WallpaperWindow: NSWindow {
-    enum WallpaperType {
-        case fluid
-        case video
-        case unknown
-    }
-    
-    var wallpaperType: WallpaperType { return .unknown }
+    var wallpaperType: WallpaperType? { return nil }
     
     init() {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300), styleMask: [.borderless, .fullSizeContentView], backing: .buffered, defer: false)

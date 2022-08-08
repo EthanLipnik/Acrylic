@@ -142,7 +142,7 @@ extension SettingsView {
                 } footer: {
                     Text("Fluid Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery. This will override your current desktop picture.")
                         .font(.callout)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 SectionView {
@@ -173,7 +173,7 @@ extension SettingsView {
                                 Text("Transition Interval")
                                 Text("How often the palette changes")
                                     .font(.callout)
-                                    .foregroundColor(.secondary)
+                                    .foregroundStyle(.secondary)
                             }
                         }
                     }

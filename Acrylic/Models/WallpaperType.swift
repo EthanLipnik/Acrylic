@@ -11,5 +11,6 @@ import Foundation
 enum WallpaperType: String, CaseIterable {
     case fluid
     case video
+    case music
 }
 #endif

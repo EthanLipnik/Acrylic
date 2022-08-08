@@ -124,7 +124,7 @@ struct AboutView: View {
                                 .font(.headline)
                             Text("@" + username)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                                 .font(.callout)
                         }
                         Text(body)

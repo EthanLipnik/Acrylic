@@ -43,6 +43,7 @@ extension VideosManagementView {
                     }
                     .padding()
                 }
+                .shadow(radius: 8, y: 4)
                 .background(Color("Background"))
                 .frame(maxWidth: .infinity)
                 

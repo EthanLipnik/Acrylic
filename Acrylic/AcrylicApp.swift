@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if !os(tvOS)
 @main
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
@@ -16,71 +17,15 @@ struct AcrylicApp: App {
 #endif
     
     var body: some Scene {
-#if !os(tvOS)
-        WindowGroup {
-#if os(iOS)
-            NavigationView {
-                ContentView()
-                    .navigationTitle("Acrylic")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-            .navigationViewStyle(.stack)
-#else
-            ContentView()
-                .frame(minWidth: 400, minHeight: 400)
-                .onDisappear {
-                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
-                        NSApp.setActivationPolicy(.accessory)
-                    }
-                }
-#endif
-        }
-#if os(macOS)
-        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Main.rawValue))
-        .windowToolbarStyle(.unifiedCompact)
-#endif
-        .commands {
-            ToolbarCommands()
-
-            CommandGroup(after: .newItem) {
-                Button("Info...") {
-
-                }
-                .keyboardShortcut("i")
-
-                Divider()
-
-                Button("Export...") {
-
-                }
-                .keyboardShortcut("e")
-            }
-
-#if os(macOS)
-            CommandGroup(replacing: .appInfo) {
-                Button(action: {
-                    appDelegate.showAboutPanel()
-                }) {
-                    Text("About Acrylic")
-                }
-            }
-#endif
-        }
-        
-        WindowGroup("Screen Saver") {
-            ScreenSaverView()
-                .frame(minWidth: 640, minHeight: 480)
-        }
-#if os(macOS)
-        .windowStyle(.hiddenTitleBar)
-#endif
-#else
-        WindowGroup {
-            ScreenSaverView()
-        }
-#endif
+        meshCreatorWindow
         
 #if os(macOS)
+        WindowGroup {
+            ContentView {
+                appDelegate.showAboutPanel()
+            }
+        }
+        
         WindowGroup("Videos") {
             VideosManagementView()
                 .frame(minWidth: 700, minHeight: 500)
@@ -101,6 +46,65 @@ struct AcrylicApp: App {
         }
 #endif
     }
+    
+    var meshCreatorWindow: some Scene {
+        WindowGroup("Mesh Creator") {
+#if os(iOS)
+            NavigationView {
+                MeshCreatorView()
+                    .navigationTitle("Acrylic")
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationViewStyle(.stack)
+#else
+            MeshCreatorView()
+                .navigationTitle("Acrylic – Mesh Creator")
+                .frame(minWidth: 400, minHeight: 400)
+                .onDisappear {
+                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                        NSApp.setActivationPolicy(.accessory)
+                    }
+                }
+#endif
+        }
+#if os(macOS)
+        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
+        .windowToolbarStyle(.unifiedCompact)
+#endif
+        .commands {
+            ToolbarCommands()
+            
+            CommandGroup(after: .newItem) {
+                Button("Info...") {
+                    
+                }
+                .keyboardShortcut("i")
+                
+                Divider()
+                
+                Button("Export...") {
+                    
+                }
+                .keyboardShortcut("e")
+            }
+            
+#if os(macOS)
+            aboutCommand
+#endif
+        }
+    }
+    
+#if os(macOS)
+    var aboutCommand: CommandGroup<Button<Text>> {
+        CommandGroup(replacing: .appInfo) {
+            Button(action: {
+                appDelegate.showAboutPanel()
+            }) {
+                Text("About Acrylic")
+            }
+        }
+    }
+#endif
 }
 
 #if os(macOS)
@@ -110,6 +114,7 @@ extension Notification.Name {
 
 enum WindowManager: String, CaseIterable {
     case Main = "MainView"
+    case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
     
     func open(){
@@ -118,4 +123,5 @@ enum WindowManager: String, CaseIterable {
         }
     }
 }
+#endif
 #endif

@@ -133,13 +133,15 @@ extension VideosManagementView {
                         if let id = video?.id {
                             currentVideoBackgroundId = "\(id)"
                             
-                            if WallpaperService.shared.isUsingWallpaper {
-                                WallpaperService.shared.toggle(.video)
+                            Task(priority: .userInitiated) {
+                                do {
+                                    try await WallpaperService.shared.enable(.video)
+                                    
+                                    NotificationCenter.default.post(name: .init("didEnableVideoBackground"), object: nil)
+                                } catch {
+                                    print(error)
+                                }
                             }
-                            
-                            WallpaperService.shared.toggle(.video)
-                            
-                            NotificationCenter.default.post(name: .init("didEnableVideoBackground"), object: nil)
                         }
                     } label: {
                         Text("Set as Wallpaper")

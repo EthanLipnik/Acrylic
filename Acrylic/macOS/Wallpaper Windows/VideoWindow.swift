@@ -11,7 +11,7 @@ import AVKit
 import PixabayKit
 
 class VideoWindow: WallpaperWindow {
-    override var wallpaperType: WallpaperWindow.WallpaperType { return .fluid }
+    override var wallpaperType: WallpaperType? { return .fluid }
     
     private lazy var videoFile: URL? = {
         guard let currentVideoBackgroundId = UserDefaults.standard.string(forKey: "currentVideoBackgroundId") else { return nil }

@@ -57,6 +57,7 @@ extension VideosManagementView {
                 }.frame(width: 350)
             }
             .animation(.easeInOut, value: videos)
+            .navigationTitle("Acrylic – Manage Videos")
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
                     Toggle(isOn: $editorsChoice) {

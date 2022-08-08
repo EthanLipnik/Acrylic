@@ -12,7 +12,7 @@ import SwiftUI
 final class FluidWindow: WallpaperWindow {
     lazy var viewModel: FluidViewModel? = nil
     
-    override var wallpaperType: WallpaperWindow.WallpaperType { return .fluid }
+    override var wallpaperType: WallpaperType? { return .fluid }
     
     override init() {
         super.init()
@@ -23,6 +23,13 @@ final class FluidWindow: WallpaperWindow {
         contentView = NSHostingView(rootView: screenSaverView)
         
         self.viewModel = viewModel
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            guard self?.viewModel != nil else { return }
+            viewModel.newPalette()
+            viewModel.setTimer()
+            viewModel.updateDesktopPicture()
+        }
     }
     
     override func close() {

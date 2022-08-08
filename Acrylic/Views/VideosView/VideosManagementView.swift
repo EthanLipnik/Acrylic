@@ -12,7 +12,7 @@ import AVKit
 import Sebu
 
 struct VideosManagementView: View {
-    @State private var selectedCategory: SearchCategory? = .all
+    @State private var selectedCategory: SearchCategory? = .backgrounds
     
     var body: some View {
         Group {

@@ -33,7 +33,7 @@ final class StatusBarController {
     func showPopover(_ sender: NSStatusBarButton) {
         let contentView = ContentView { [weak self] in
             self?.appDelegate?.showAboutPanel()
-        }
+        }.frame(width: 300)
         let viewController = NSHostingController(rootView: contentView)
         let popover = NSPopover()
         popover.contentViewController = viewController

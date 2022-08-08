@@ -72,7 +72,6 @@ struct ContentView: View {
             
             footer
         }
-        .frame(width: 300)
         .onChange(of: selectedWallpaper) { wallpaper in
             Task {
                 do {

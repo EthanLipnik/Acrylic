@@ -17,6 +17,36 @@ extension VideosManagementView {
             .religion
         ]
         
+        let sections: [(String, [SearchCategory])] = [
+            ("", [
+                .all,
+                .backgrounds
+            ]),
+            ("Learning", [
+                .science,
+                .education,
+                .computer,
+                .nature,
+                .animals,
+                .industry,
+                .business
+            ]),
+            ("Humanity", [
+                .people,
+                .health,
+                .feelings,
+                .sports,
+                .food,
+                .music
+            ]),
+            ("Somewhere else", [
+                .transportation,
+                .travel,
+                .places,
+                .buildings
+            ])
+        ]
+        
         let images: [SearchCategory: String] = [
             .all: "square.grid.3x2.fill",
             .backgrounds: "dock.rectangle",
@@ -41,15 +71,20 @@ extension VideosManagementView {
         ]
         
         var body: some View {
-            List(SearchCategory.allCases.filter({ !filters.contains($0) }), id: \.self, selection: $selectedCategory) { category in
-                let title = category.rawValue.capitalized
-                
-                if let image = images[category] {
-                    Label(title, systemImage: image)
-                } else {
-                    Text(title)
+            List(sections, id:\.0, selection: $selectedCategory) { section in
+                Section(section.0) {
+                    ForEach(section.1, id: \.self) { category in
+                        let title = category.rawValue.capitalized
+                        
+                        if let image = images[category] {
+                            Label(title, systemImage: image)
+                        } else {
+                            Text(title)
+                        }
+                    }
                 }
             }
+            .frame(minWidth: 200)
         }
     }
 }

@@ -17,8 +17,6 @@ struct AcrylicApp: App {
 #endif
     
     var body: some Scene {
-        meshCreatorWindow
-        
 #if os(macOS)
         WindowGroup {
             ContentView {
@@ -42,6 +40,8 @@ struct AcrylicApp: App {
                 .frame(width: 400)
         }
 #endif
+        
+        meshCreatorWindow
     }
     
     var meshCreatorWindow: some Scene {

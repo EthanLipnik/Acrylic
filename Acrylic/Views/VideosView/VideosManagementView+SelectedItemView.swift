@@ -29,6 +29,7 @@ extension VideosManagementView {
                             .aspectRatio(16/9, contentMode: .fit)
                     }
                 }
+                .shadow(radius: 8, y: 4)
                 
                 Spacer()
                     .frame(height: 20)

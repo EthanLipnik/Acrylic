@@ -18,6 +18,7 @@
 		AA427C0128A09EFA009F9C44 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0028A09EFA009F9C44 /* WallpaperType.swift */; };
 		AA427C0328A09FEA009F9C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0228A09FEA009F9C44 /* ContentView.swift */; };
 		AA455E3A289826030010938A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* SettingsView.swift */; };
+		AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */; };
 		AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252A289B1419003A0D8F /* FluidViewModel.swift */; };
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
 				AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */,
 				AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
@@ -272,6 +274,7 @@
 				AABB715F289C27E2005D8A23 /* LaunchAtLogin */,
 				AAFCAF18289CB2D900DADB45 /* PixabayKit */,
 				AACCD48C289D8E62006551C1 /* Sebu */,
+				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -304,6 +307,7 @@
 			packageReferences = (
 				AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */,
+				AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = AA749C6328931EFB002CD39A /* Products */;
 			projectDirPath = "";
@@ -508,7 +512,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 68;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -558,7 +562,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 68;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -621,6 +625,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin.git";
@@ -640,6 +652,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		AA7C86592893576B00D3469E /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;

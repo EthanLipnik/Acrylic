@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
+		AA1A60E328A1895E00FB38DC /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A60E228A1895E00FB38DC /* VideoViewModel.swift */; };
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
 		AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278948289C5AC8001E897B /* VideoWindow.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
+		AA1A60E228A1895E00FB38DC /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/VideoViewModel.swift"; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				AA68252A289B1419003A0D8F /* FluidViewModel.swift */,
 				AACCD48E289DA639006551C1 /* VideoDownloadService.swift */,
 				AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */,
+				AA1A60E228A1895E00FB38DC /* VideoViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				AA278946289C4B15001E897B /* WallpaperService.swift in Sources */,
 				AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */,
 				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
+				AA1A60E328A1895E00FB38DC /* VideoViewModel.swift in Sources */,
 				AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */,
 				AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */,
 				AAAE636B289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift in Sources */,

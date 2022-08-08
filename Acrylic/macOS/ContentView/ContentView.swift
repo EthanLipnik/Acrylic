@@ -18,7 +18,18 @@ struct ContentView: View {
         VStack(spacing: 0) {
             LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: 15)], spacing: 15) {
                 ForEach(WallpaperType.allCases, id: \.rawValue) { wallpaper in
-                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper)
+                    let actions: [WallpaperItem.Action] = {
+                        switch wallpaper {
+                        case .video:
+                            return [("Manage", {
+                                WindowManager.Videos.open()
+                            })]
+                        default:
+                            return []
+                        }
+                    }()
+                    
+                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, actions: actions)
                         .animation(.easeInOut(duration: 0.2), value: selectedWallpaper)
                         .environmentObject(wallpaperService)
                 }
@@ -41,6 +52,8 @@ struct ContentView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .padding()
                                     .foregroundStyle(.secondary))
+                            
+                            Text("Coming soon!")
                         }
                         .padding()
                     }
@@ -114,8 +127,13 @@ struct ContentView: View {
         @EnvironmentObject var wallpaperService: WallpaperService
         let wallpaper: WallpaperType
         
+        typealias Action = (String, () -> Void)
+        
         @Binding var selectedWallpaper: WallpaperType?
+        var actions: [Action] = []
+        
         @State private var isHolding: Bool = false
+        @State private var isHovering: Bool = false
         
         var body: some View {
             Image(wallpaper.rawValue.capitalized + "Thumbnail")
@@ -129,9 +147,38 @@ struct ContentView: View {
                 .overlay(
                     selectedWallpaper == wallpaper && wallpaperService.isLoading ? ProgressView() : nil
                 )
+                .overlay(
+                    isHovering ? ZStack {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color.black)
+                            .opacity(0.5)
+                        VStack {
+                            Button(selectedWallpaper == wallpaper ? "Stop" : "Start") {
+                                withAnimation(.easeInOut) {
+                                    if selectedWallpaper == wallpaper {
+                                        selectedWallpaper = nil
+                                    } else {
+                                        selectedWallpaper = wallpaper
+                                    }
+                                }
+                            }
+                            
+                            ForEach(actions, id: \.0) { action in
+                                Button(action: action.1) {
+                                    Text(action.0)
+                                }
+                            }
+                        }
+                    } : nil
+                )
                 .shadow(radius: isHolding ? 4 : 8, y: isHolding ? 4 : 8)
                 .scaleEffect(isHolding ? 0.9 : 1)
                 .animation(.spring(), value: isHolding)
+                .onHover { isHovering in
+                    withAnimation(.easeInOut) {
+                        self.isHovering = isHovering
+                    }
+                }
                 .onTapGesture {
                     isHolding = false
                     

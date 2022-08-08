@@ -49,6 +49,15 @@ class VideosViewModel: ObservableObject {
         }
     }
     
+    @MainActor
+    func delete(_ video: VideoItem ) throws {
+        if let index = videos.firstIndex(of: video) {
+            videos.remove(at: index)
+        }
+        
+        try FileManager.default.removeItem(at: video.fileUrl)
+    }
+    
     func updateWallpaper() {
         Task {
             do {

@@ -12,7 +12,17 @@ struct ContentView: View {
     @State private var selectedWallpaper: WallpaperType? = nil
     
     let openAbout: () -> Void
-    @StateObject var wallpaperService = WallpaperService.shared
+    @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
+    @StateObject var videosViewModel: VideosViewModel
+    
+    init(openAbout: @escaping () -> Void) {
+        self.openAbout = openAbout
+        
+        let wallpaperService = WallpaperService.shared
+        _selectedWallpaper = .init(initialValue: wallpaperService.selectedWallpaper)
+        _wallpaperService = .init(wrappedValue: wallpaperService)
+        _videosViewModel = .init(wrappedValue: VideosViewModel())
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -40,29 +50,8 @@ struct ContentView: View {
                 if selectedWallpaper != nil {
                     Divider()
                     
-                    ScrollView(.horizontal) {
-                        LazyHStack {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(Color.black
-                                    .opacity(0.5)
-                                    .blendMode(.overlay))
-                                .aspectRatio(16/10, contentMode: .fit)
-                                .overlay(Image(systemName: "dice.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .padding()
-                                    .foregroundStyle(.secondary))
-                            
-                            Text("Coming soon!")
-                        }
-                        .padding()
-                    }
-                    .background(
-                        Color.black
-                            .opacity(0.5)
-                            .blendMode(.overlay)
-                    )
-                    .frame(height: 100)
+                    OptionsView(selectedWallpaper: $selectedWallpaper)
+                        .environmentObject(videosViewModel)
                 } else {
                     Spacer()
                         .frame(height: 100)

@@ -134,7 +134,7 @@ extension VideosManagementView {
                         if let id = video?.id {
                             currentVideoBackgroundId = "\(id)"
                             
-                            Task(priority: .userInitiated) {
+                            Task {
                                 do {
                                     try await WallpaperService.shared.start(.video)
                                     

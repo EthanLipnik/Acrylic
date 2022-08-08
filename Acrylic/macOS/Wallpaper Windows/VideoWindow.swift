@@ -75,11 +75,11 @@ class VideoWindow: WallpaperWindow {
     
     func imageFromVideo(url: URL, at time: TimeInterval) -> NSImage? {
         let asset = AVURLAsset(url: url)
-
+        
         let assetIG = AVAssetImageGenerator(asset: asset)
         assetIG.appliesPreferredTrackTransform = true
         assetIG.apertureMode = AVAssetImageGenerator.ApertureMode.encodedPixels
-
+        
         let cmTime = CMTime(seconds: time, preferredTimescale: 60)
         let thumbnailImageRef: CGImage
         do {
@@ -88,7 +88,7 @@ class VideoWindow: WallpaperWindow {
             print("Error: \(error)")
             return nil
         }
-
+        
         return NSImage(cgImage: thumbnailImageRef, size: NSSize(width: 640, height: 480))
     }
 }

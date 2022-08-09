@@ -19,7 +19,7 @@ extension VideosManagementView {
                 .resizable()
                 .background(Color.secondary)
                 .aspectRatio(16/9, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         }
     }
 }

@@ -145,8 +145,6 @@ extension VideosManagementView {
                             Task {
                                 do {
                                     try await WallpaperService.shared.start(.video)
-                                    
-                                    NotificationCenter.default.post(name: .init("didEnableVideoBackground"), object: nil)
                                 } catch {
                                     print(error)
                                 }

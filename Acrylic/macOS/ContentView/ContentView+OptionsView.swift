@@ -14,6 +14,9 @@ extension ContentView {
         @StateObject var videosViewModel = VideosViewModel()
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
         
+        let popoverNotification = NotificationCenter.default
+                    .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
+        
         var body: some View {
             ScrollView(.horizontal) {
                 LazyHStack {
@@ -90,6 +93,15 @@ extension ContentView {
                     .blendMode(.overlay)
             )
             .frame(height: 100)
+            .onReceive(popoverNotification) { _ in
+                Task(priority: .userInitiated) {
+                    do {
+                        try await videosViewModel.getVideos()
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
         }
     }
 }

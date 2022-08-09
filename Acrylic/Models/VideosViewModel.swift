@@ -37,33 +37,37 @@ class VideosViewModel: ObservableObject {
                 try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
             }
             
-            Task(priority: .userInitiated) {
+            Task(priority: .userInitiated) { [weak self] in
                 do {
-                    let contents = try FileManager.default.contentsOfDirectory(atPath: folder.path)
-                        .map({ folder.appendingPathComponent($0) })
-                        .filter({ $0.pathExtension == "mp4" && $0.lastPathComponent.hasPrefix("Video ") })
-                        .compactMap({ url -> (URL, String)? in
-                            guard let id = url.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ").last else { return nil }
-                            return (url, id)
-                        })
-                    
-                    let videos = try await contents
-                        .concurrentMap({ [weak self] video in
-                            let thumbnail = try await self?.generateThumbnail(video.0)
-                            return VideoItem(fileUrl: video.0,
-                                             id: video.1,
-                                             thumbnail: thumbnail)
-                        })
-                    
-                    withAnimation { [weak self] in
-                        self?.videos = videos
-                    }
+                    try await self?.getVideos()
                 } catch {
                     print(error)
                 }
             }
         } catch {
             print(error)
+        }
+    }
+    
+    func getVideos() async throws {
+        let contents = try FileManager.default.contentsOfDirectory(atPath: folder.path)
+            .map({ folder.appendingPathComponent($0) })
+            .filter({ $0.pathExtension == "mp4" && $0.lastPathComponent.hasPrefix("Video ") })
+            .compactMap({ url -> (URL, String)? in
+                guard let id = url.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ").last else { return nil }
+                return (url, id)
+            })
+        
+        let videos = try await contents
+            .concurrentMap({ [weak self] video in
+                let thumbnail = try await self?.generateThumbnail(video.0)
+                return VideoItem(fileUrl: video.0,
+                                 id: video.1,
+                                 thumbnail: thumbnail)
+            })
+        
+        withAnimation { [weak self] in
+            self?.videos = videos
         }
     }
     

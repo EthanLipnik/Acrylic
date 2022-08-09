@@ -39,9 +39,11 @@ class VideosViewModel: ObservableObject {
             videos = try FileManager.default.contentsOfDirectory(atPath: folder.path)
                 .map({ folder.appendingPathComponent($0) })
                 .filter({ $0.pathExtension == "mp4" })
-                .map({ [weak self] video in
+                .compactMap({ [weak self] video in
+                    guard let videoId = video.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ").last,
+                          video.lastPathComponent.hasPrefix("Video ") else { return nil }
                     return VideoItem(fileUrl: video,
-                                     id: video.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ")[1],
+                                     id: videoId,
                                      thumbnail: self?.generateThumbnail(video))
                 })
         } catch {

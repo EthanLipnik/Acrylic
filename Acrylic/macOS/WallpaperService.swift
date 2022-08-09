@@ -102,13 +102,15 @@ class WallpaperService: ObservableObject {
             fluidWindow.viewModel?.setTimer()
         }
     }
-    
+
+    @MainActor
     func revertDesktopPicture() throws {
         let workspace = NSWorkspace.shared
         guard let screen = NSScreen.main, let currentDesktopPictureUrl, currentDesktopPictureUrl != getDesktopPicture() else { return }
         try workspace.setDesktopImageURL(currentDesktopPictureUrl, for: screen)
     }
-    
+
+    @MainActor
     func getDesktopPicture() -> URL? {
         let workspace = NSWorkspace.shared
         if let screen = NSScreen.main {

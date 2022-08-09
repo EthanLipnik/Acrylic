@@ -22,7 +22,9 @@ struct AcrylicApp: App {
             ContentView {
                 appDelegate.showAboutPanel()
             }
-        }
+            .navigationTitle("Acrylic")
+            .frame(width: 300, height: 350)
+        }.windowStyle(.hiddenTitleBar)
         
         WindowGroup("Videos") {
             VideosManagementView()

@@ -11,6 +11,17 @@ import Foundation
 enum WallpaperType: String, CaseIterable {
     case fluid
     case video
-    case music
+    case nowPlaying
+    
+    var displayTitle: String {
+        switch self {
+        case .fluid:
+            return "Fluid"
+        case .video:
+            return "Video"
+        case .nowPlaying:
+            return "Now Playing"
+        }
+    }
 }
 #endif

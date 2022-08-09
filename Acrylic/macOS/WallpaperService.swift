@@ -61,7 +61,7 @@ class WallpaperService: ObservableObject {
         currentDesktopPictureUrl = getDesktopPicture()
         
         switch wallpaper {
-        case .fluid, .music:
+        case .fluid, .nowPlaying:
             let window = FluidWindow()
             windowController = NSWindowController(window: window)
             self.window = window

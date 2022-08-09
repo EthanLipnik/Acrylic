@@ -13,7 +13,6 @@ struct ContentView: View {
     
     let openAbout: () -> Void
     @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
-    @StateObject var videosViewModel: VideosViewModel
     
     init(openAbout: @escaping () -> Void) {
         self.openAbout = openAbout
@@ -21,7 +20,6 @@ struct ContentView: View {
         let wallpaperService = WallpaperService.shared
         _selectedWallpaper = .init(initialValue: wallpaperService.selectedWallpaper)
         _wallpaperService = .init(wrappedValue: wallpaperService)
-        _videosViewModel = .init(wrappedValue: VideosViewModel())
     }
     
     var body: some View {
@@ -51,7 +49,6 @@ struct ContentView: View {
                     Divider()
                     
                     OptionsView(selectedWallpaper: $selectedWallpaper)
-                        .environmentObject(videosViewModel)
                         .environmentObject(wallpaperService)
                 } else {
                     Spacer()

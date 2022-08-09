@@ -19,14 +19,6 @@ struct AcrylicApp: App {
     var body: some Scene {
 #if os(macOS)
         WindowGroup {
-            ContentView {
-                appDelegate.showAboutPanel()
-            }
-            .navigationTitle("Acrylic")
-            .frame(width: 300, height: 350)
-        }.windowStyle(.hiddenTitleBar)
-        
-        WindowGroup("Videos") {
             VideosManagementView()
                 .frame(minWidth: 700, minHeight: 500)
                 .onDisappear {

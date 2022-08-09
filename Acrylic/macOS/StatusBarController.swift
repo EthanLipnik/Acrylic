@@ -14,7 +14,7 @@ final class StatusBarController {
     private var statusItem: NSStatusItem
     
     weak var appDelegate: AppDelegate?
-    var popover: NSPopover?
+    var popover: NSPopover!
 
     init() {
         statusBar = NSStatusBar.system
@@ -27,29 +27,33 @@ final class StatusBarController {
             statusBarButton.image?.isTemplate = true
             statusBarButton.target = self
             statusBarButton.action = #selector(togglePopover(_:))
+            
+            let contentView = ContentView { [weak self] in
+                self?.appDelegate?.showAboutPanel()
+            }.frame(width: 300)
+            let viewController = NSHostingController(rootView: contentView)
+            let popover = NSPopover()
+            popover.contentViewController = viewController
+            popover.contentSize = NSSize(width: 300, height: 400)
+            popover.behavior = .transient
+            popover.setValue(true, forKeyPath: "shouldHideAnchor")
+            popover.show(relativeTo: statusBarButton.bounds, of: statusBarButton, preferredEdge: .minY)
+            popover.contentViewController?.view.window?.makeKey()
+            self.popover = popover
         }
     }
     
     @objc
     func togglePopover(_ sender: NSStatusBarButton) {
-        if let popover, popover.isShown {
+        if popover.isShown {
             popover.performClose(sender)
-            self.popover = nil
             return
         }
         
-        let contentView = ContentView { [weak self] in
-            self?.appDelegate?.showAboutPanel()
-        }.frame(width: 300)
-        let viewController = NSHostingController(rootView: contentView)
-        let popover = NSPopover()
-        popover.contentViewController = viewController
-        popover.contentSize = NSSize(width: 300, height: 400)
-        popover.behavior = .transient
-        popover.setValue(true, forKeyPath: "shouldHideAnchor")
         popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .minY)
         popover.contentViewController?.view.window?.makeKey()
-        self.popover = popover
+        
+        NotificationCenter.default.post(name: .init("didOpenStatusBarItem"), object: nil)
     }
     
     @objc

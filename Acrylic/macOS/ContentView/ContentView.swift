@@ -14,6 +14,9 @@ struct ContentView: View {
     let openAbout: () -> Void
     @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
     
+    let popoverNotification = NotificationCenter.default
+                .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
+    
     init(openAbout: @escaping () -> Void) {
         self.openAbout = openAbout
         
@@ -37,9 +40,19 @@ struct ContentView: View {
                         }
                     }()
                     
-                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, actions: actions)
-                        .animation(.easeInOut(duration: 0.2), value: selectedWallpaper)
-                        .environmentObject(wallpaperService)
+                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, actions: actions) {
+                        Task {
+                            if selectedWallpaper == wallpaper {
+                                selectedWallpaper = nil
+                                try await wallpaperService.stop()
+                            } else {
+                                selectedWallpaper = wallpaper
+                                try await wallpaperService.start(wallpaper)
+                            }
+                        }
+                    }
+                    .animation(.easeInOut(duration: 0.2), value: selectedWallpaper)
+                    .environmentObject(wallpaperService)
                 }
             }
             .padding()
@@ -59,18 +72,8 @@ struct ContentView: View {
             
             footer
         }
-        .onChange(of: selectedWallpaper) { wallpaper in
-            Task {
-                do {
-                    if let wallpaper {
-                        try await wallpaperService.start(wallpaper)
-                    } else {
-                        try await wallpaperService.stop()
-                    }
-                } catch {
-                    print(error)
-                }
-            }
+        .onReceive(popoverNotification) { _ in
+            selectedWallpaper = wallpaperService.selectedWallpaper
         }
     }
     
@@ -133,6 +136,7 @@ struct ContentView: View {
         
         @Binding var selectedWallpaper: WallpaperType?
         var actions: [Action] = []
+        let updateWallpaper: () -> Void
         
         @State private var isHolding: Bool = false
         @State private var isHovering: Bool = false
@@ -157,13 +161,8 @@ struct ContentView: View {
                                 .opacity(0.5)
                             VStack {
                                 Button(selectedWallpaper == wallpaper ? "Stop" : "Start") {
-                                    withAnimation(.easeInOut) {
-                                        if selectedWallpaper == wallpaper {
-                                            selectedWallpaper = nil
-                                        } else {
-                                            selectedWallpaper = wallpaper
-                                        }
-                                    }
+                                    guard !wallpaperService.isLoading else { return }
+                                    updateWallpaper()
                                 }
                                 
                                 ForEach(actions, id: \.0) { action in
@@ -187,20 +186,13 @@ struct ContentView: View {
                         
                         guard !wallpaperService.isLoading else { return }
                         
-                        withAnimation(.easeInOut) {
-                            if selectedWallpaper == wallpaper {
-                                selectedWallpaper = nil
-                                return
-                            }
-                            
-                            selectedWallpaper = wallpaper
-                        }
+                        updateWallpaper()
                     }
                     .onLongPressGesture { } onPressingChanged: { isHolding in
                         self.isHolding = isHolding
                     }
                 
-                Text(wallpaper.rawValue.capitalized)
+                Text(wallpaper.displayTitle)
                     .font(.headline)
             }
         }

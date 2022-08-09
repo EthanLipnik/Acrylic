@@ -44,6 +44,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
+        aboutBoxWindowController?.window?.makeKeyAndOrderFront(nil)
     }
 }
 #endif

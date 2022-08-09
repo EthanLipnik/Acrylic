@@ -34,7 +34,7 @@ extension ContentView {
                             guard !wallpaperService.isLoading else { return }
                             
                             switch selectedWallpaper {
-                            case .fluid, .music:
+                            case .fluid, .nowPlaying:
                                 break
                             case .video:
                                 currentVideoBackgroundId = videosViewModel.videos.randomElement()?.id ?? ""
@@ -45,7 +45,7 @@ extension ContentView {
                         }
                     
                     switch selectedWallpaper {
-                    case .fluid, .music:
+                    case .fluid, .nowPlaying:
                         EmptyView()
                     case .video:
                         ForEach(videosViewModel.videos) { video in

@@ -91,24 +91,40 @@ struct ContentView: View {
             }
             .buttonStyle(.borderless)
             Spacer()
-            
-            Menu {
-                Button(action: openAbout) {
-                    Label("About", systemImage: "info")
-                }
-                Divider()
-                Button {
-                    NSApplication.shared.terminate(self)
+
+            if #available(macOS 13.0, *) {
+                Menu {
+                    footerButtons
                 } label: {
-                    Label("Quit", systemImage: "xmark")
+                    Image(systemName: "ellipsis.circle")
                 }
-            } label: {
-                Image(systemName: "ellipsis.circle")
+                .buttonStyle(.borderless)
+            } else {
+                HStack {
+                    footerButtons
+                }
             }
-            .buttonStyle(.borderless)
         }
         .padding()
         .overlay(Divider(), alignment: .top)
+    }
+
+    var footerButtons: some View {
+        Group {
+            Button(action: openAbout) {
+                Label("About", systemImage: "info")
+            }
+
+            if #available(macOS 13.0, *) {
+                Divider()
+            }
+
+            Button {
+                NSApplication.shared.terminate(self)
+            } label: {
+                Label("Quit", systemImage: "xmark")
+            }
+        }
     }
     
     struct WallpaperItem: View {

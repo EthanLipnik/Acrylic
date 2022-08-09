@@ -63,7 +63,7 @@ extension ContentView {
                                                 }
                                             }
                                         } label: {
-                                            Label("Delete", systemImage: "trash")
+                                            Label("Move to Trash", systemImage: "trash")
                                         }
                                     }
                                     .shadow(radius: 8, y: 8)

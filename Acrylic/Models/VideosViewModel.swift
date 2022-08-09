@@ -55,7 +55,7 @@ class VideosViewModel: ObservableObject {
             videos.remove(at: index)
         }
         
-        try FileManager.default.removeItem(at: video.fileUrl)
+        try FileManager.default.trashItem(at: video.fileUrl, resultingItemURL: nil)
     }
     
     func updateWallpaper() {
@@ -70,7 +70,6 @@ class VideosViewModel: ObservableObject {
         }
     }
     
-    @MainActor
     private func generateThumbnail(_ url: URL) -> NSImage? {
         let asset = AVURLAsset(url: url)
         

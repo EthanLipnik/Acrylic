@@ -37,6 +37,9 @@ extension VideosManagementView {
                                 selectedVideo = video
                             } label: {
                                 VideoItemView(video: video)
+                                    .overlay(
+                                        selectedVideo == video ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.accentColor, lineWidth: 4) : nil
+                                    )
                             }
                             .buttonStyle(.plain)
                         }
@@ -46,6 +49,9 @@ extension VideosManagementView {
                 .shadow(radius: 8, y: 4)
                 .background(Color("Background"))
                 .frame(maxWidth: .infinity)
+                .onTapGesture {
+                    selectedVideo = nil
+                }
                 
                 HStack {
                     Divider()
@@ -143,6 +149,7 @@ extension VideosManagementView {
                     ForEach(downloadService.downloadingVideos.sorted(by: { $0.key.id > $1.key.id }), id: \.key) { (video, state) in
                         HStack {
                             VideoItemView(video: video)
+                                .shadow(radius: 8, y: 4)
                             switch state {
                             case .downloading(let progress, _):
                                 ProgressView(value: progress, total: .init(1))

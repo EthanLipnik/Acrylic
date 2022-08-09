@@ -55,16 +55,21 @@ final class VideoDownloadService: ObservableObject {
     }
     
     @discardableResult
-    func getVideoIsDownloaded(_ video: Video) -> Bool {
-        guard !downloadingVideos.contains(where: { $0.key.id == video.id }) else { return false }
+    func getVideoIsDownloaded(_ video: Video?) -> Bool {
+        guard let video, !downloadingVideos.contains(where: { $0.key.id == video.id }) else { return false }
         
         let file = folder.appendingPathComponent("Video \(video.id).mp4")
         let exists = FileManager.default.fileExists(atPath: file.path)
         
-        if exists {
-            downloadingVideos[video] = .done(file)
-        }
+//        if exists {
+//            downloadingVideos[video] = .done(file)
+//        }
         return exists
+    }
+    
+    func delete(_ video: Video) throws {
+        downloadingVideos.removeValue(forKey: video)
+        try FileManager.default.trashItem(at: folder.appendingPathComponent("Video \(video.id).mp4"), resultingItemURL: nil)
     }
     
     func download(_ video: Video) async throws {

@@ -17,7 +17,7 @@ extension VideosManagementView {
         let video: Video?
         
         var body: some View {
-            let state = downloadService.downloadingVideos.first(where: { $0.key.id == video?.id })?.value
+            let state = downloadService.downloadingVideos.first(where: { $0.key.id == video?.id })?.value ?? (downloadService.getVideoIsDownloaded(video) ? .done() : nil)
             
             VStack {
                 Group {
@@ -122,8 +122,16 @@ extension VideosManagementView {
                             ProgressView()
                                 .progressViewStyle(.linear)
                         case .done:
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundStyle(.secondary)
+                            Button {
+                                do {
+                                    guard let video else { return }
+                                    try downloadService.delete(video)
+                                } catch {
+                                    print(error)
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }.disabled(video == nil)
                         case .failed(let error):
                             Text("Failed to download. " + error.localizedDescription)
                         }

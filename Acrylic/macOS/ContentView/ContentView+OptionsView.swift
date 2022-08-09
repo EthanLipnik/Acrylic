@@ -10,6 +10,7 @@ import SwiftUI
 extension ContentView {
     struct OptionsView: View {
         @Binding var selectedWallpaper: WallpaperType?
+        @EnvironmentObject var wallpaperService: WallpaperService
         @EnvironmentObject var videosViewModel: VideosViewModel
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
         
@@ -27,6 +28,8 @@ extension ContentView {
                             .padding()
                             .foregroundStyle(.secondary))
                         .onTapGesture {
+                            guard !wallpaperService.isLoading else { return }
+                            
                             switch selectedWallpaper {
                             case .fluid, .music:
                                 break
@@ -68,6 +71,8 @@ extension ContentView {
                                     }
                                     .shadow(radius: 8, y: 8)
                                     .onTapGesture {
+                                        guard !wallpaperService.isLoading else { return }
+                                        
                                         currentVideoBackgroundId = video.id
                                         videosViewModel.updateWallpaper()
                                     }

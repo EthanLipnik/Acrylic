@@ -52,6 +52,7 @@ struct ContentView: View {
                     
                     OptionsView(selectedWallpaper: $selectedWallpaper)
                         .environmentObject(videosViewModel)
+                        .environmentObject(wallpaperService)
                 } else {
                     Spacer()
                         .frame(height: 100)
@@ -140,66 +141,71 @@ struct ContentView: View {
         @State private var isHovering: Bool = false
         
         var body: some View {
-            Image(wallpaper.rawValue.capitalized + "Thumbnail")
-                .resizable()
-                .aspectRatio(16/10, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .overlay(
-                    selectedWallpaper == wallpaper ? RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(Color.accentColor, lineWidth: 4) : nil
-                )
-                .overlay(
-                    selectedWallpaper == wallpaper && wallpaperService.isLoading ? ProgressView() : nil
-                )
-                .overlay(
-                    isHovering ? ZStack {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(Color.black)
-                            .opacity(0.5)
-                        VStack {
-                            Button(selectedWallpaper == wallpaper ? "Stop" : "Start") {
-                                withAnimation(.easeInOut) {
-                                    if selectedWallpaper == wallpaper {
-                                        selectedWallpaper = nil
-                                    } else {
-                                        selectedWallpaper = wallpaper
+            VStack {
+                Image(wallpaper.rawValue.capitalized + "Thumbnail")
+                    .resizable()
+                    .aspectRatio(16/10, contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .overlay(
+                        selectedWallpaper == wallpaper ? RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .stroke(Color.accentColor, lineWidth: 4) : nil
+                    )
+                    .overlay(
+                        selectedWallpaper == wallpaper && wallpaperService.isLoading ? ProgressView() : nil
+                    )
+                    .overlay(
+                        isHovering ? ZStack {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(Color.black)
+                                .opacity(0.5)
+                            VStack {
+                                Button(selectedWallpaper == wallpaper ? "Stop" : "Start") {
+                                    withAnimation(.easeInOut) {
+                                        if selectedWallpaper == wallpaper {
+                                            selectedWallpaper = nil
+                                        } else {
+                                            selectedWallpaper = wallpaper
+                                        }
+                                    }
+                                }
+                                
+                                ForEach(actions, id: \.0) { action in
+                                    Button(action: action.1) {
+                                        Text(action.0)
                                     }
                                 }
                             }
-                            
-                            ForEach(actions, id: \.0) { action in
-                                Button(action: action.1) {
-                                    Text(action.0)
-                                }
-                            }
+                        } : nil
+                    )
+                    .shadow(radius: isHolding ? 4 : 8, y: isHolding ? 4 : 8)
+                    .scaleEffect(isHolding ? 0.9 : 1)
+                    .animation(.spring(), value: isHolding)
+                    .onHover { isHovering in
+                        withAnimation(.easeInOut) {
+                            self.isHovering = isHovering
                         }
-                    } : nil
-                )
-                .shadow(radius: isHolding ? 4 : 8, y: isHolding ? 4 : 8)
-                .scaleEffect(isHolding ? 0.9 : 1)
-                .animation(.spring(), value: isHolding)
-                .onHover { isHovering in
-                    withAnimation(.easeInOut) {
-                        self.isHovering = isHovering
                     }
-                }
-                .onTapGesture {
-                    isHolding = false
-                    
-                    guard !wallpaperService.isLoading else { return }
-                    
-                    withAnimation(.easeInOut) {
-                        if selectedWallpaper == wallpaper {
-                            selectedWallpaper = nil
-                            return
-                        }
+                    .onTapGesture {
+                        isHolding = false
                         
-                        selectedWallpaper = wallpaper
+                        guard !wallpaperService.isLoading else { return }
+                        
+                        withAnimation(.easeInOut) {
+                            if selectedWallpaper == wallpaper {
+                                selectedWallpaper = nil
+                                return
+                            }
+                            
+                            selectedWallpaper = wallpaper
+                        }
                     }
-                }
-                .onLongPressGesture { } onPressingChanged: { isHolding in
-                    self.isHolding = isHolding
-                }
+                    .onLongPressGesture { } onPressingChanged: { isHolding in
+                        self.isHolding = isHolding
+                    }
+                
+                Text(wallpaper.rawValue.capitalized)
+                    .font(.headline)
+            }
         }
     }
 }

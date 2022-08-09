@@ -53,6 +53,8 @@ class WallpaperService: ObservableObject {
     }
     
     func start(_ wallpaper: WallpaperType) async throws {
+        guard !isLoading else { throw CocoaError(.fileReadNoPermission) }
+        
         isLoading = true
         try await stop()
         
@@ -90,7 +92,8 @@ class WallpaperService: ObservableObject {
         
         if isUsingWallpaper {
             try revertDesktopPicture()
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            
+            try await Task.sleep(nanoseconds: 2_000_000_000)
         }
         
         isLoading = false

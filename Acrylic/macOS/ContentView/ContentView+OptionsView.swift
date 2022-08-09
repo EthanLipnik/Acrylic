@@ -11,7 +11,7 @@ extension ContentView {
     struct OptionsView: View {
         @Binding var selectedWallpaper: WallpaperType?
         @EnvironmentObject var wallpaperService: WallpaperService
-        @EnvironmentObject var videosViewModel: VideosViewModel
+        @StateObject var videosViewModel = VideosViewModel()
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
         
         var body: some View {

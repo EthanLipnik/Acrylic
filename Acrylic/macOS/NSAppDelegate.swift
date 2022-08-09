@@ -22,6 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
     }
 
+    @MainActor
     func applicationWillTerminate(_ notification: Notification) {
         do {
             try WallpaperService.shared.revertDesktopPicture()

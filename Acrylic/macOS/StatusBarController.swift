@@ -34,7 +34,7 @@ final class StatusBarController {
             let viewController = NSHostingController(rootView: contentView)
             let popover = NSPopover()
             popover.contentViewController = viewController
-            popover.contentSize = NSSize(width: 300, height: 400)
+            popover.contentSize = NSSize(width: 300, height: 300)
             popover.behavior = .transient
             popover.setValue(true, forKeyPath: "shouldHideAnchor")
             popover.show(relativeTo: statusBarButton.bounds, of: statusBarButton, preferredEdge: .minY)

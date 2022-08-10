@@ -92,7 +92,6 @@ extension ContentView {
                     .opacity(0.5)
                     .blendMode(.overlay)
             )
-            .frame(height: 100)
             .onReceive(popoverNotification) { _ in
                 Task(priority: .userInitiated) {
                     do {

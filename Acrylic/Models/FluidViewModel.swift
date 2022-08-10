@@ -50,8 +50,7 @@ class FluidViewModel: ObservableObject {
         timer = nil
     }
     
-    @objc
-    func newPalette() {
+    func newPalette(_ palette: Hue? = nil) {
         let luminosity: Luminosity = {
 #if os(macOS)
             let interfaceStyle = InterfaceStyle()
@@ -71,7 +70,7 @@ class FluidViewModel: ObservableObject {
 #endif
         }()
         
-        colors = MeshKit.generate(palette: allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity, withRandomizedLocations: true)
+        colors = MeshKit.generate(palette: palette ?? allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity, withRandomizedLocations: true)
         meshRandomizer = .withMeshColors(colors)
         
 #if os(macOS)
@@ -98,7 +97,12 @@ class FluidViewModel: ObservableObject {
         timer?.invalidate()
         timer = nil
         
-        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(newPalette), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(generateNewPalette), userInfo: nil, repeats: true)
+    }
+    
+    @objc
+    private func generateNewPalette() {
+        newPalette()
     }
     
     static func getDefaultChangeInterval() -> Double {

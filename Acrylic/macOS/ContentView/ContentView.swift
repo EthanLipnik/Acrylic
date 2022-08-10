@@ -28,7 +28,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: 15)], spacing: 15) {
-                ForEach(WallpaperType.allCases, id: \.rawValue) { wallpaper in
+                ForEach([WallpaperType.fluid, WallpaperType.video], id: \.rawValue) { wallpaper in
                     let actions: [WallpaperItem.Action] = {
                         switch wallpaper {
                         case .video:
@@ -43,10 +43,14 @@ struct ContentView: View {
                     WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, actions: actions) {
                         Task {
                             if selectedWallpaper == wallpaper {
-                                selectedWallpaper = nil
+                                withAnimation {
+                                    selectedWallpaper = nil
+                                }
                                 try await wallpaperService.stop()
                             } else {
-                                selectedWallpaper = wallpaper
+                                withAnimation {
+                                    selectedWallpaper = wallpaper
+                                }
                                 try await wallpaperService.start(wallpaper)
                             }
                         }
@@ -57,6 +61,8 @@ struct ContentView: View {
             }
             .padding()
             
+            Spacer()
+            
             Group {
                 if selectedWallpaper != nil {
                     Divider()
@@ -64,8 +70,10 @@ struct ContentView: View {
                     OptionsView(selectedWallpaper: $selectedWallpaper)
                         .environmentObject(wallpaperService)
                 } else {
+                    Text("Select a wallpaper type")
+                        .font(.title3.bold())
+                        .foregroundStyle(.secondary)
                     Spacer()
-                        .frame(height: 100)
                 }
             }
             .transition(.opacity)

@@ -10,16 +10,24 @@ import AppKit
 import SwiftUI
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    private var statusBar: StatusBarController?
+    static var statusBar: StatusBarController?
     private var aboutBoxWindowController: NSWindowController?
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApplication.shared.windows.forEach({ $0.close() })
         
-        statusBar = StatusBarController()
-        statusBar?.appDelegate = self
+        Self.statusBar = StatusBarController()
+        Self.statusBar?.appDelegate = self
         
         NSApp.setActivationPolicy(.accessory)
+        
+        if !UserDefaults.standard.bool(forKey: "didShowOnboarding") {
+            let onboardingWindow = OnboardingWindow()
+            let onboardingController = NSWindowController(window: onboardingWindow)
+            onboardingController.showWindow(onboardingWindow)
+            onboardingWindow.makeKeyAndOrderFront(onboardingController)
+            onboardingWindow.center()
+        }
     }
 
     @MainActor

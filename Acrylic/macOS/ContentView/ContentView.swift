@@ -13,6 +13,7 @@ struct ContentView: View {
     
     let openAbout: () -> Void
     @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
+    @State var canStartVideo: Bool = false
     
     let popoverNotification = NotificationCenter.default
                 .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
@@ -40,7 +41,7 @@ struct ContentView: View {
                         }
                     }()
                     
-                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, actions: actions) {
+                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, canStart: wallpaper == .video ? canStartVideo : true, actions: actions) {
                         Task {
                             if selectedWallpaper == wallpaper {
                                 withAnimation {
@@ -80,9 +81,21 @@ struct ContentView: View {
             
             footer
         }
+        .onAppear {
+            updateCanStartVideo()
+        }
         .onReceive(popoverNotification) { _ in
             selectedWallpaper = wallpaperService.selectedWallpaper
+            updateCanStartVideo()
         }
+    }
+    
+    func updateCanStartVideo() {
+        let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
+        let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
+        let folder = acrylicFolder.appendingPathComponent("Videos")
+        
+        canStartVideo = !((try? FileManager.default.contentsOfDirectory(atPath: folder.path).filter({ $0.hasSuffix("mp4") }).isEmpty) ?? true)
     }
     
     var footer: some View {
@@ -143,6 +156,7 @@ struct ContentView: View {
         typealias Action = (String, () -> Void)
         
         @Binding var selectedWallpaper: WallpaperType?
+        var canStart: Bool = true
         var actions: [Action] = []
         let updateWallpaper: () -> Void
         
@@ -169,9 +183,9 @@ struct ContentView: View {
                                 .opacity(0.5)
                             VStack {
                                 Button(selectedWallpaper == wallpaper ? "Stop" : "Start") {
-                                    guard !wallpaperService.isLoading else { return }
+                                    guard !wallpaperService.isLoading, canStart else { return }
                                     updateWallpaper()
-                                }
+                                }.disabled(!canStart)
                                 
                                 ForEach(actions, id: \.0) { action in
                                     Button(action: action.1) {
@@ -192,7 +206,7 @@ struct ContentView: View {
                     .onTapGesture {
                         isHolding = false
                         
-                        guard !wallpaperService.isLoading else { return }
+                        guard !wallpaperService.isLoading, canStart else { return }
                         
                         updateWallpaper()
                     }

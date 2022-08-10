@@ -11,7 +11,7 @@ import SwiftUI
 
 final class StatusBarController {
     private var statusBar: NSStatusBar
-    private var statusItem: NSStatusItem
+    var statusItem: NSStatusItem
     
     weak var appDelegate: AppDelegate?
     var popover: NSPopover!

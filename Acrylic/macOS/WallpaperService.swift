@@ -30,7 +30,7 @@ class WallpaperService: ObservableObject {
         if UserDefaults.standard.bool(forKey: "shouldStartFWOnLaunch") {
             Task {
                 do {
-                    try await toggle(.fluid)
+                    try await start(.fluid)
                 } catch {
                     print(error)
                 }
@@ -42,14 +42,13 @@ class WallpaperService: ObservableObject {
     func toggle(_ wallpaper: WallpaperType) async throws -> Bool {
         let isUsingWallpaper = self.isUsingWallpaper
         
-        isLoading = true
-        try await stop()
-        isLoading = true
-        
-        guard !isUsingWallpaper else { return false }
-        
-        try await start(wallpaper)
-        return true
+        if isUsingWallpaper {
+            try await stop()
+            return false
+        } else {
+            try await start(wallpaper)
+            return true
+        }
     }
     
     func start(_ wallpaper: WallpaperType) async throws {

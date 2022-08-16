@@ -8,15 +8,14 @@
 import SwiftUI
 
 #if os(macOS)
-import LaunchAtLogin
 
 extension SettingsView {
     struct StartupView: View {
         var body: some View {
             SectionView {
-                LaunchAtLogin.Toggle {
+                Toggle(isOn: .constant(false)) {
                     Text("Launch Acrylic on system startup")
-                }
+                }.disabled(true)
             } header: {
                 Label {
                     Text("Startup")

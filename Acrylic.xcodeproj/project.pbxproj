@@ -35,7 +35,6 @@
 		AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */; };
 		AAAE636B289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */; };
 		AAB267D428A1B89300421E1A /* ContentView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */; };
-		AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = AABB715F289C27E2005D8A23 /* LaunchAtLogin */; };
 		AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */; };
 		AACCD48D289D8E62006551C1 /* Sebu in Frameworks */ = {isa = PBXBuildFile; productRef = AACCD48C289D8E62006551C1 /* Sebu */; };
 		AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD48E289DA639006551C1 /* VideoDownloadService.swift */; };
@@ -72,8 +71,8 @@
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
 		AA35B89A28A4075200F7B190 /* OnboardingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindow.swift; sourceTree = "<group>"; };
-		AA35B89C28A407DF00F7B190 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = "OnboardingView.swift"; sourceTree = "<group>"; };
-		AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingView+IntroView.swift"; path = "OnboardingView+IntroView.swift"; sourceTree = "<group>"; };
+		AA35B89C28A407DF00F7B190 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+IntroView.swift"; sourceTree = "<group>"; };
 		AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
 		AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindow.swift; sourceTree = "<group>"; };
 		AA427C0028A09EFA009F9C44 /* WallpaperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperType.swift; sourceTree = "<group>"; };
@@ -96,7 +95,7 @@
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
 		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
 		AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+OptionsView.swift"; sourceTree = "<group>"; };
-		AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowPlayingWindow.swift; path = "NowPlayingWindow.swift"; sourceTree = "<group>"; };
+		AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWindow.swift; sourceTree = "<group>"; };
 		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadService.swift; sourceTree = "<group>"; };
 		AACCD491289DA688006551C1 /* VideosManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosManagementView.swift; sourceTree = "<group>"; };
 		AACCD493289DA6CB006551C1 /* VideosManagementView+SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SidebarView.swift"; sourceTree = "<group>"; };
@@ -106,8 +105,8 @@
 		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperColorScheme.swift; sourceTree = "<group>"; };
 		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SelectedItemView.swift"; sourceTree = "<group>"; };
-		AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingView+FluidView.swift"; path = "OnboardingView+FluidView.swift"; sourceTree = "<group>"; };
-		AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingView+VideoView.swift"; path = "OnboardingView+VideoView.swift"; sourceTree = "<group>"; };
+		AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+FluidView.swift"; sourceTree = "<group>"; };
+		AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+VideoView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +116,6 @@
 			files = (
 				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
 				AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */,
-				AABB7160289C27E2005D8A23 /* LaunchAtLogin in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
@@ -291,7 +289,6 @@
 				AA749C5F28931EFB002CD39A /* Frameworks */,
 				AA749C6028931EFB002CD39A /* Resources */,
 				AADED27F2898DD4A0023EB97 /* CopyFiles */,
-				AABB7161289C27F8005D8A23 /* Copy “Launch at Login Helper” */,
 			);
 			buildRules = (
 			);
@@ -300,7 +297,6 @@
 			name = Acrylic;
 			packageProductDependencies = (
 				AA7C86592893576B00D3469E /* MeshKit */,
-				AABB715F289C27E2005D8A23 /* LaunchAtLogin */,
 				AAFCAF18289CB2D900DADB45 /* PixabayKit */,
 				AACCD48C289D8E62006551C1 /* Sebu */,
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
@@ -334,7 +330,6 @@
 			);
 			mainGroup = AA749C5928931EFB002CD39A;
 			packageReferences = (
-				AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */,
 				AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
@@ -358,27 +353,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AABB7161289C27F8005D8A23 /* Copy “Launch at Login Helper” */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy “Launch at Login Helper”";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA749C5E28931EFB002CD39A /* Sources */ = {
@@ -548,7 +522,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -598,7 +572,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -669,14 +643,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EthanLipnik/Sebu.git";
@@ -696,11 +662,6 @@
 		AA7C86592893576B00D3469E /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeshKit;
-		};
-		AABB715F289C27E2005D8A23 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AABB715E289C27E2005D8A23 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
 		};
 		AACCD48C289D8E62006551C1 /* Sebu */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/4/22.
 //
 
-#if os(macOS)
 import Foundation
 import AppKit
 
@@ -122,4 +121,3 @@ class WallpaperService: ObservableObject {
         return nil
     }
 }
-#endif

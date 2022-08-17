@@ -22,9 +22,7 @@ struct AboutView: View {
             Spacer()
         }
         .padding()
-#if os(macOS)
         .background(VisualEffectView(material: .popover, blendingMode: .behindWindow).edgesIgnoringSafeArea(.all))
-#endif
     }
     
     struct LinksView: View {

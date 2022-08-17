@@ -9,7 +9,6 @@ import SwiftUI
 import RandomColor
 import MeshKit
 
-#if os(macOS)
 extension SettingsView {
     struct FluidWallpaperView: View {
         struct HueToggle: Hashable {
@@ -212,4 +211,3 @@ struct SettingsView_FluidWallpaperView_Previews: PreviewProvider {
         SettingsView.FluidWallpaperView()
     }
 }
-#endif

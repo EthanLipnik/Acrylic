@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 7/31/22.
 //
 
-#if os(macOS)
 import AppKit
 import SwiftUI
 
@@ -55,4 +54,3 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         aboutBoxWindowController?.window?.makeKeyAndOrderFront(nil)
     }
 }
-#endif

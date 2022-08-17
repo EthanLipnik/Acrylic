@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/6/22.
 //
 
-#if os(macOS)
 import PixabayKit
 import SwiftUI
 
@@ -161,4 +160,3 @@ extension VideosManagementView {
         }
     }
 }
-#endif

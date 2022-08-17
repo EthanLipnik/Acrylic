@@ -8,15 +8,17 @@
 import Foundation
 import MeshKit
 import SwiftUI
-
-#if canImport(AppKit)
 import AppKit
-#endif
 
 class FluidViewModel: ObservableObject {
     @Published var meshRandomizer: MeshRandomizer
     @Published var colors: MeshGrid
     @Published var timer: Timer? = nil
+
+    private let fluidWallpapersFolder = FileManager.default
+        .temporaryDirectory
+        .appendingPathComponent("Fluid Wallpapers")
+    var shouldUpdateDesktopPicture: Bool = false
     
     var allowedPalettes: [Hue] {
         return Hue.allCases.filter({ !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled") })
@@ -26,8 +28,7 @@ class FluidViewModel: ObservableObject {
         let colors = MeshKit.generate(palette: .monochrome, luminosity: .dark)
         self.colors = colors
         self.meshRandomizer = .withMeshColors(colors)
-        
-#if os(macOS)
+
         do {
             if FileManager.default.fileExists(atPath: fluidWallpapersFolder.path) {
                 try FileManager.default.removeItem(at: fluidWallpapersFolder)
@@ -37,7 +38,6 @@ class FluidViewModel: ObservableObject {
         } catch {
             print(error)
         }
-#endif
     }
     
     deinit {
@@ -52,7 +52,6 @@ class FluidViewModel: ObservableObject {
     
     func newPalette(_ palette: Hue? = nil) {
         let luminosity: Luminosity = {
-#if os(macOS)
             let interfaceStyle = InterfaceStyle()
             let wallpaperColorScheme =  WallpaperColorScheme(rawValue: UserDefaults.standard.string(forKey: "FWColorScheme") ?? "system")
             switch wallpaperColorScheme {
@@ -65,15 +64,11 @@ class FluidViewModel: ObservableObject {
             default:
                 return .bright
             }
-#else
-            return .bright
-#endif
         }()
         
         colors = MeshKit.generate(palette: palette ?? allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity, withRandomizedLocations: true)
         meshRandomizer = .withMeshColors(colors)
-        
-#if os(macOS)
+
         if shouldUpdateDesktopPicture {
             let animationSpeed = AnimationSpeed(rawValue: UserDefaults.standard.string(forKey: "FWAnimationSpeed") ?? "normal") ?? .normal
             let delay: Double = {
@@ -90,7 +85,6 @@ class FluidViewModel: ObservableObject {
                 self?.updateDesktopPicture()
             }
         }
-#endif
     }
     
     func setTimer(_ interval: Double = FluidViewModel.getDefaultChangeInterval()) {
@@ -112,12 +106,6 @@ class FluidViewModel: ObservableObject {
         
         return 60
     }
-    
-#if os(macOS)
-    private let fluidWallpapersFolder = FileManager.default
-        .temporaryDirectory
-        .appendingPathComponent("Fluid Wallpapers")
-    var shouldUpdateDesktopPicture: Bool = false
     
     func updateDesktopPicture() {
         
@@ -149,21 +137,17 @@ class FluidViewModel: ObservableObject {
             print(error)
         }
     }
-#endif
     
     enum InterfaceStyle : String {
         case Dark, Light
-        
-#if os(macOS)
+
         init() {
             let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
             self = InterfaceStyle(rawValue: type)!
         }
-#endif
     }
 }
 
-#if os(macOS)
 extension NSImage {
     convenience init(color: NSColor, size: NSSize) {
         self.init(size: size)
@@ -181,4 +165,3 @@ extension NSImage {
         try pngData?.write(to: url, options: options)
     }
 }
-#endif

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-#if os(macOS)
 struct ContentView: View {
     @State private var selectedWallpaper: WallpaperType? = nil
     
@@ -226,4 +225,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView() {}
     }
 }
-#endif

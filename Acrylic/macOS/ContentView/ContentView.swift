@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedWallpaper: WallpaperType? = nil
-    
+    @State private var selectedWallpaper: WallpaperType?
+
     let openAbout: () -> Void
     @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
     @State var canStartVideo: Bool = false
-    
+
     let popoverNotification = NotificationCenter.default
                 .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
-    
+
     init(openAbout: @escaping () -> Void) {
         self.openAbout = openAbout
-        
+
         let wallpaperService = WallpaperService.shared
         _selectedWallpaper = .init(initialValue: wallpaperService.selectedWallpaper)
         _wallpaperService = .init(wrappedValue: wallpaperService)
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             LazyVGrid(columns: [.init(.adaptive(minimum: 100), spacing: 15)], spacing: 15) {
@@ -39,7 +39,7 @@ struct ContentView: View {
                             return []
                         }
                     }()
-                    
+
                     WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, canStart: wallpaper == .video ? canStartVideo : true, actions: actions) {
                         Task {
                             if selectedWallpaper == wallpaper {
@@ -60,13 +60,13 @@ struct ContentView: View {
                 }
             }
             .padding()
-            
+
             Spacer()
-            
+
             Group {
                 if selectedWallpaper != nil {
                     Divider()
-                    
+
                     OptionsView(selectedWallpaper: $selectedWallpaper)
                         .environmentObject(wallpaperService)
                 } else {
@@ -77,7 +77,7 @@ struct ContentView: View {
                 }
             }
             .transition(.opacity)
-            
+
             footer
         }
         .onAppear {
@@ -88,15 +88,15 @@ struct ContentView: View {
             updateCanStartVideo()
         }
     }
-    
+
     func updateCanStartVideo() {
         let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
-        
+
         canStartVideo = !((try? FileManager.default.contentsOfDirectory(atPath: folder.path).filter({ $0.hasSuffix("mp4") }).isEmpty) ?? true)
     }
-    
+
     var footer: some View {
         HStack {
             Button {
@@ -105,7 +105,7 @@ struct ContentView: View {
                 } else {
                     NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
                 }
-                
+
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
                 Image(systemName: "gearshape.fill")
@@ -147,21 +147,21 @@ struct ContentView: View {
             }
         }
     }
-    
+
     struct WallpaperItem: View {
         @EnvironmentObject var wallpaperService: WallpaperService
         let wallpaper: WallpaperType
-        
+
         typealias Action = (String, () -> Void)
-        
+
         @Binding var selectedWallpaper: WallpaperType?
         var canStart: Bool = true
         var actions: [Action] = []
         let updateWallpaper: () -> Void
-        
+
         @State private var isHolding: Bool = false
         @State private var isHovering: Bool = false
-        
+
         var body: some View {
             VStack {
                 Image(wallpaper.rawValue.capitalized + "Thumbnail")
@@ -185,7 +185,7 @@ struct ContentView: View {
                                     guard !wallpaperService.isLoading, canStart else { return }
                                     updateWallpaper()
                                 }.disabled(!canStart)
-                                
+
                                 ForEach(actions, id: \.0) { action in
                                     Button(action: action.1) {
                                         Text(action.0)
@@ -204,15 +204,15 @@ struct ContentView: View {
                     }
                     .onTapGesture {
                         isHolding = false
-                        
+
                         guard !wallpaperService.isLoading, canStart else { return }
-                        
+
                         updateWallpaper()
                     }
                     .onLongPressGesture { } onPressingChanged: { isHolding in
                         self.isHolding = isHolding
                     }
-                
+
                 Text(wallpaper.displayTitle)
                     .font(.headline)
             }
@@ -222,6 +222,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView() {}
+        ContentView {}
     }
 }

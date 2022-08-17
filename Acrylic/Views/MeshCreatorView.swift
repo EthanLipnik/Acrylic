@@ -12,14 +12,14 @@ struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer
     @State private var colors: MeshGrid
     @State private var size: MeshSize
-    
+
     @State private var shouldAnimate: Bool = false
     @State private var grainAlpha: Float = MeshDefaults.grainAlpha
     @State private var subdivisions: Float = Float(MeshDefaults.subdivisions)
-    
+
     @State private var shouldShowOptions: Bool = false
-    @State private var selectedPoint: MeshColor? = nil
-    
+    @State private var selectedPoint: MeshColor?
+
     @State private var currentXOffset: CGFloat = 0
     @State private var currentYOffset: CGFloat = 0
 
@@ -28,7 +28,7 @@ struct MeshCreatorView: View {
     private let defaultBackgroundColor: SystemColor = {
         return NSColor.windowBackgroundColor
     }()
-    
+
     init() {
         let size = MeshSize(width: 5, height: 5)
         let colors = MeshKit.generate(palette: .randomPalette(), size: size)
@@ -36,7 +36,7 @@ struct MeshCreatorView: View {
         meshRandomizer = .withMeshColors(colors)
         _size = .init(initialValue: size)
     }
-    
+
     var body: some View {
         Group {
             if shouldAnimate {
@@ -63,7 +63,7 @@ struct MeshCreatorView: View {
                 }
                 .keyboardShortcut("r")
             }
-            
+
             ToolbarItem(id: "options") {
                 Button {
                     shouldShowOptions.toggle()
@@ -74,16 +74,16 @@ struct MeshCreatorView: View {
                     OptionsView(grainAlpha: $grainAlpha, subdivisions: $subdivisions)
                 }
             }
-            
+
             ToolbarItem(id: "animate") {
                 Toggle(isOn: $shouldAnimate) {
                     Label("Animate", systemImage: "square.stack.3d.forward.dottedline")
                 }
             }
-            
+
             ToolbarItem(id: "save", placement: .primaryAction, showsByDefault: true) {
                 Button {
-                    
+
                 } label: {
                     Label("Save", systemImage: "square.and.arrow.up")
                 }
@@ -91,7 +91,7 @@ struct MeshCreatorView: View {
         }
         .overlay(
             ZStack {
-                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation in
+                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { _, _, translation in
                     currentXOffset = translation.width
                     currentYOffset = translation.height
                 }
@@ -99,7 +99,7 @@ struct MeshCreatorView: View {
                     Text("x")
                 }
                 .hidden()
-                
+
                 Slider(value: $currentYOffset, in: -5...5) {
                     Text("y")
                 }
@@ -111,11 +111,11 @@ struct MeshCreatorView: View {
             selectedPoint = nil
         }
     }
-    
+
     struct OptionsView: View {
         @Binding var grainAlpha: Float
         @Binding var subdivisions: Float
-        
+
         var body: some View {
             VStack {
                 HStack {
@@ -137,13 +137,13 @@ struct MeshCreatorView: View {
             .frame(minWidth: 400)
         }
     }
-    
+
     struct GrabberView: View {
         @Binding var grid: MeshGrid
         @Binding var selectedPoint: MeshColor?
-        
+
         var didMovePoint: (_ x: Int, _ y: Int, _ translation: CGSize) -> Void
-        
+
         var body: some View {
             GeometryReader { proxy in
                 HStack {
@@ -165,7 +165,7 @@ struct MeshCreatorView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        
+
         struct PointView: View {
             @State var point: MeshColor
             @Binding var grid: MeshGrid
@@ -173,9 +173,9 @@ struct MeshCreatorView: View {
             let proxy: GeometryProxy
             let isEdge: Bool
             var didMove: (_ translation: CGSize) -> Void
-            
+
             @State private var offset: CGSize = .zero
-            
+
             var body: some View {
                 Circle()
                     .fill(selectedPoint == point ? Color.white : Color.black.opacity(0.2))
@@ -193,9 +193,9 @@ struct MeshCreatorView: View {
                         DragGesture()
                             .onChanged({ value in
                                 selectedPoint = point
-                                
+
                                 guard !isEdge else { return }
-                                
+
                                 let location = value.location
                                 var width = location.x / (proxy.size.width / 2)
                                 var height = location.y / (proxy.size.height / 2)
@@ -212,7 +212,7 @@ struct MeshCreatorView: View {
                                 let offsetHeight = -proxy.size.height / CGFloat(grid.height)
                                 let offsetY = min(abs(offsetHeight) - 45, max(offsetHeight + 45, location.y))
                                 offset = CGSize(width: offsetX, height: offsetY)
-                                
+
                                 didMove(CGSize(width: width, height: 1 - height))
                             })
                     )

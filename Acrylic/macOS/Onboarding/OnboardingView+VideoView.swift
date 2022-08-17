@@ -12,7 +12,7 @@ extension OnboardingView {
         @Environment(\.colorScheme) var colorScheme
         @Binding var page: Int
         let closeWindow: () -> Void
-        
+
         var body: some View {
             VStack(spacing: 30) {
                 Image("VideoThumbnail")
@@ -25,14 +25,14 @@ extension OnboardingView {
                     .font(.largeTitle.bold())
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
-                
+
                 GroupBox {
                     Text("Reanimate your desktop with a selection of hundreds of high quality videos. Find the right one for your mood.")
                         .frame(maxWidth: 350)
                         .padding()
                 }
                 Spacer()
-                
+
                 Button("Launch Acrylic in the Menu Bar", action: closeWindow)
                 .controlSize(.large)
                 .buttonBorderShape(.roundedRectangle)

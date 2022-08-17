@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
-    
+
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
-    
+
     var body: some Scene {
         WindowGroup {
             VideosManagementView()
@@ -24,15 +24,15 @@ struct AcrylicApp: App {
                 }
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Videos.rawValue))
-        
+
         Settings {
             SettingsView()
                 .frame(width: 400)
         }
-        
+
         meshCreatorWindow
     }
-    
+
     var meshCreatorWindow: some Scene {
         WindowGroup("Mesh Creator") {
             MeshCreatorView()
@@ -48,17 +48,17 @@ struct AcrylicApp: App {
         .windowToolbarStyle(.unifiedCompact)
         .commands {
             ToolbarCommands()
-            
+
             CommandGroup(after: .newItem) {
                 Button("Info...") {
-                    
+
                 }
                 .keyboardShortcut("i")
-                
+
                 Divider()
-                
+
                 Button("Export...") {
-                    
+
                 }
                 .keyboardShortcut("e")
             }
@@ -82,8 +82,8 @@ enum WindowManager: String, CaseIterable {
     case Main = "MainView"
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
-    
-    func open(){
+
+    func open() {
         if let url = URL(string: "acrylic://\(self.rawValue)") {
             NSWorkspace.shared.open(url)
         }

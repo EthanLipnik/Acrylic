@@ -12,12 +12,12 @@ extension VideosManagementView {
     struct SelectedItemView: View {
         @EnvironmentObject var downloadService: VideoDownloadService
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
-        
+
         let video: Video?
-        
+
         var body: some View {
             let state = downloadService.downloadingVideos.first(where: { $0.key.id == video?.id })?.value ?? (downloadService.getVideoIsDownloaded(video) ? .done() : nil)
-            
+
             VStack {
                 Group {
                     if let video {
@@ -29,10 +29,10 @@ extension VideosManagementView {
                     }
                 }
                 .shadow(radius: 8, y: 4)
-                
+
                 Spacer()
                     .frame(height: 20)
-                
+
                 GroupBox {
                     if let user = video?.user {
                         Label(user.name, systemImage: "person")
@@ -42,9 +42,9 @@ extension VideosManagementView {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .redacted(reason: .placeholder)
                     }
-                    
+
                     Divider()
-                    
+
                     if let item = video?.items[.large] {
                         Label("\(item.width) x \(item.height)", systemImage: "rectangle.dashed")
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,9 +67,9 @@ extension VideosManagementView {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .redacted(reason: .placeholder)
                     }
-                    
+
                     Divider()
-                    
+
                     if let video {
                         Label("\(video.views)", systemImage: "eye")
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -94,11 +94,11 @@ extension VideosManagementView {
                     }
                 }
                 Spacer()
-                
+
                 HStack {
                     Button {
                         guard let video else { return }
-                        
+
                         Task(priority: .userInitiated) {
                             do {
                                 print("Downloading video")
@@ -111,7 +111,7 @@ extension VideosManagementView {
                         Text("Download")
                     }
                     .disabled(state != nil)
-                    
+
                     if let state {
                         switch state {
                         case .downloading(let progress, _):
@@ -135,12 +135,12 @@ extension VideosManagementView {
                             Text("Failed to download. " + error.localizedDescription)
                         }
                     }
-                    
+
                     Spacer()
                     Button {
                         if let id = video?.id {
                             currentVideoBackgroundId = "\(id)"
-                            
+
                             Task {
                                 do {
                                     try await WallpaperService.shared.start(.video)

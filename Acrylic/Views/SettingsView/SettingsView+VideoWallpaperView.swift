@@ -13,7 +13,7 @@ extension SettingsView {
         @AppStorage("VWFileLimit") private var fileLimit: Int = 0
         @AppStorage("shouldEnableVWSafeSearch") private var shouldEnableSafeSearch: Bool = true
         @AppStorage("VWSearchItemLimit") private var searchItemLimit: Int = 200
-        
+
         var body: some View {
             Group {
                 SectionView {
@@ -30,7 +30,7 @@ extension SettingsView {
                             }
                         }
                     }
-                    
+
                     Picker("File Size Limit", selection: $fileLimit) {
                         Text("20 MB")
                             .tag(20 * 1048576)
@@ -40,7 +40,7 @@ extension SettingsView {
                             .tag(100 * 1048576)
                         Text("150 MB")
                             .tag(150 * 1048576)
-                        
+
                         Text("Original File Size")
                             .tag(0)
                         Text("No Limit")
@@ -50,12 +50,12 @@ extension SettingsView {
                 } header: {
                     Label("Compression", systemImage: "doc.zipper")
                 }
-                
+
                 SectionView {
                     Toggle(isOn: $shouldEnableSafeSearch) {
                         Text("Safe Search")
                     }
-                    
+
                     Picker("Count Limit", selection: $searchItemLimit) {
                         Text("20")
                             .tag(20)

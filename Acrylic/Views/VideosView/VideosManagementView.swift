@@ -12,7 +12,7 @@ import Sebu
 
 struct VideosManagementView: View {
     @State private var selectedCategory: SearchCategory? = .backgrounds
-    
+
     var body: some View {
         Group {
             if #available(iOS 16.0, macOS 13.0, *) {

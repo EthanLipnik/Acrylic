@@ -21,7 +21,7 @@ struct ScreenSaverView: View {
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30
 
     @State private var isStartingUp: Bool = true
-    
+
     var animationSpeedRange: ClosedRange<Double> {
         switch animationSpeed {
         case .slow:
@@ -32,7 +32,7 @@ struct ScreenSaverView: View {
             return 1 ... 2
         }
     }
-    
+
     var body: some View {
         ZStack {
             Mesh(
@@ -55,7 +55,7 @@ struct ScreenSaverView: View {
         .onChange(of: wallpaperPaletteChangeInterval) { newValue in
             viewModel.setTimer(newValue)
         }
-        .onChange(of: colorScheme) { colorScheme in
+        .onChange(of: colorScheme) { _ in
             viewModel.newPalette()
         }
         .overlay(

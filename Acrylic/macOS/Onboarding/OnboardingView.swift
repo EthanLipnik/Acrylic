@@ -11,13 +11,13 @@ import MeshKit
 struct OnboardingView: View {
     @State private var page: Int = 0
     @AppStorage("didShowOnboarding") var didShowOnboarding: Bool = false
-    
+
     let finish: () -> Void
-    
+
     var body: some View {
         ZStack {
             VisualEffectView(material: .popover, blendingMode: .behindWindow, state: .active)
-            
+
             Group {
                 switch page {
                 case 0:
@@ -49,20 +49,20 @@ struct OnboardingView: View {
         .edgesIgnoringSafeArea(.all)
         .frame(width: 640, height: 480)
     }
-    
+
     func finishOnboarding() {
         didShowOnboarding = true
-        
+
         if let button = AppDelegate.statusBar?.statusItem.button {
             AppDelegate.statusBar?.togglePopover(button)
         }
-        
+
         finish()
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView() {}
+        OnboardingView {}
     }
 }

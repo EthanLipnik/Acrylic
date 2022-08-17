@@ -11,7 +11,7 @@ import SwiftUI
 final class StatusBarController {
     private var statusBar: NSStatusBar
     var statusItem: NSStatusItem
-    
+
     weak var appDelegate: AppDelegate?
     var popover: NSPopover!
 
@@ -26,7 +26,7 @@ final class StatusBarController {
             statusBarButton.image?.isTemplate = true
             statusBarButton.target = self
             statusBarButton.action = #selector(togglePopover(_:))
-            
+
             let contentView = ContentView { [weak self] in
                 self?.appDelegate?.showAboutPanel()
             }.frame(width: 300)
@@ -41,20 +41,20 @@ final class StatusBarController {
             self.popover = popover
         }
     }
-    
+
     @objc
     func togglePopover(_ sender: NSStatusBarButton) {
         if popover.isShown {
             popover.performClose(sender)
             return
         }
-        
+
         popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .minY)
         popover.contentViewController?.view.window?.makeKey()
-        
+
         NotificationCenter.default.post(name: .init("didOpenStatusBarItem"), object: nil)
     }
-    
+
     @objc
     func openAbout() {
         appDelegate?.showAboutPanel()

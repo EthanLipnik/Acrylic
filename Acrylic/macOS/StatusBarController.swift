@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/1/22.
 //
 
-#if os(macOS)
 import AppKit
 import SwiftUI
 
@@ -61,4 +60,3 @@ final class StatusBarController {
         appDelegate?.showAboutPanel()
     }
 }
-#endif

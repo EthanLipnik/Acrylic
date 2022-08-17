@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/1/22.
 //
 
-#if !os(tvOS)
 import SwiftUI
 
 struct SettingsView: View {
@@ -13,7 +12,6 @@ struct SettingsView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-#if os(macOS)
             FormView {
                 StartupView()
             }
@@ -40,7 +38,6 @@ struct SettingsView: View {
                 Label("Video", systemImage: "play.rectangle.fill")
             }
             .tag(2)
-#endif
         }
     }
     
@@ -138,4 +135,3 @@ struct GroupedFormViewModifier: ViewModifier {
         }
     }
 }
-#endif

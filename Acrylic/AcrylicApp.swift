@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-#if !os(tvOS)
 @main
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
     
-#if os(macOS)
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
-#endif
     
     var body: some Scene {
-#if os(macOS)
         WindowGroup {
             VideosManagementView()
                 .frame(minWidth: 700, minHeight: 500)
@@ -33,21 +29,12 @@ struct AcrylicApp: App {
             SettingsView()
                 .frame(width: 400)
         }
-#endif
         
         meshCreatorWindow
     }
     
     var meshCreatorWindow: some Scene {
         WindowGroup("Mesh Creator") {
-#if os(iOS)
-            NavigationView {
-                MeshCreatorView()
-                    .navigationTitle("Acrylic")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-            .navigationViewStyle(.stack)
-#else
             MeshCreatorView()
                 .navigationTitle("Acrylic – Mesh Creator")
                 .frame(minWidth: 400, minHeight: 400)
@@ -56,12 +43,9 @@ struct AcrylicApp: App {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
-#endif
         }
-#if os(macOS)
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
-#endif
         .commands {
             ToolbarCommands()
             
@@ -78,27 +62,18 @@ struct AcrylicApp: App {
                 }
                 .keyboardShortcut("e")
             }
-            
-#if os(macOS)
-            aboutCommand
-#endif
-        }
-    }
-    
-#if os(macOS)
-    var aboutCommand: CommandGroup<Button<Text>> {
-        CommandGroup(replacing: .appInfo) {
-            Button(action: {
-                appDelegate.showAboutPanel()
-            }) {
-                Text("About Acrylic")
+
+            CommandGroup(replacing: .appInfo) {
+                Button(action: {
+                    appDelegate.showAboutPanel()
+                }) {
+                    Text("About Acrylic")
+                }
             }
         }
     }
-#endif
 }
 
-#if os(macOS)
 extension Notification.Name {
     static let killLauncher = Notification.Name("killLauncher")
 }
@@ -114,5 +89,3 @@ enum WindowManager: String, CaseIterable {
         }
     }
 }
-#endif
-#endif

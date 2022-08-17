@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/4/22.
 //
 
-#if os(macOS)
 import Cocoa
 import SwiftUI
 
@@ -39,4 +38,3 @@ final class FluidWindow: WallpaperWindow {
         super.close()
     }
 }
-#endif

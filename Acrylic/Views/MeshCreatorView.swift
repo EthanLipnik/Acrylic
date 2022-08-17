@@ -8,7 +8,6 @@
 import SwiftUI
 import MeshKit
 
-#if !os(tvOS)
 struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer
     @State private var colors: MeshGrid
@@ -27,11 +26,7 @@ struct MeshCreatorView: View {
     @State private var showSettings: Bool = false
 
     private let defaultBackgroundColor: SystemColor = {
-#if canImport(UIKit)
-        return UIColor.systemBackground
-#elseif canImport(AppKit)
         return NSColor.windowBackgroundColor
-#endif
     }()
     
     init() {
@@ -55,37 +50,11 @@ struct MeshCreatorView: View {
                      subdivisions: Int(subdivisions))
             }
         }
-#if os(macOS)
         .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
-#endif
         .edgesIgnoringSafeArea([.bottom, .horizontal])
         .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
-#if os(iOS)
-                Button {
-                    showSettings.toggle()
-                } label: {
-                    Label("Settings", systemImage: "gearshape")
-                }
-                .keyboardShortcut(",")
-                .popover(isPresented: $showSettings) {
-                    NavigationView {
-                        SettingsView()
-                            .navigationTitle("Settings")
-                            .toolbar {
-                                ToolbarItem(placement: .navigation) {
-                                    Button {
-                                        showSettings = false
-                                    } label: {
-                                        Label("Done", systemImage: "xmark.circle.fill")
-                                    }
-                                }
-                            }
-                    }
-                }
-#endif
-
                 Button {
                     colors = MeshKit.generate(palette: .randomPalette(), size: size)
                     meshRandomizer = .withMeshColors(colors)
@@ -257,4 +226,3 @@ struct MeshCreatorView_Previews: PreviewProvider {
         MeshCreatorView()
     }
 }
-#endif

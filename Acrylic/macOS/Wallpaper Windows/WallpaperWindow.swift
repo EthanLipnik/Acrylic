@@ -8,7 +8,6 @@
 import Foundation
 import MeshKit
 
-#if os(macOS)
 import AppKit
 import SwiftUI
 
@@ -55,4 +54,3 @@ class WallpaperWindow: NSWindow {
         return false
     }
 }
-#endif

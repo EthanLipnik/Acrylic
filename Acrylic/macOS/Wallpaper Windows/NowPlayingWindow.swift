@@ -5,7 +5,6 @@
 //  Created by Ethan Lipnik on 8/9/22.
 //
 
-#if os(macOS)
 import Cocoa
 import SwiftUI
 
@@ -38,4 +37,3 @@ final class NowPlayingWindow: WallpaperWindow {
         super.close()
     }
 }
-#endif

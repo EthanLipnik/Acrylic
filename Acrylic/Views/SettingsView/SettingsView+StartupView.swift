@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-#if os(macOS)
-
 extension SettingsView {
     struct StartupView: View {
         var body: some View {
@@ -33,4 +31,3 @@ struct SettingsView_StartupView_Previews: PreviewProvider {
         SettingsView.StartupView()
     }
 }
-#endif

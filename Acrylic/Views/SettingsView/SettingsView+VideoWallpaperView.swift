@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-#if os(macOS)
 extension SettingsView {
     struct VideoWallpaperView: View {
         @AppStorage("shouldEnableVWCompression") private var shouldEnableCompression: Bool = false
@@ -83,4 +82,3 @@ struct SettingsView_VideoWallpaperView_Previews: PreviewProvider {
         SettingsView.VideoWallpaperView()
     }
 }
-#endif

@@ -19,10 +19,8 @@ struct ScreenSaverView: View {
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30
-    
-#if os(macOS)
+
     @State private var isStartingUp: Bool = true
-#endif
     
     var animationSpeedRange: ClosedRange<Double> {
         switch animationSpeed {
@@ -45,7 +43,6 @@ struct ScreenSaverView: View {
                 grainAlpha: Float(wallpaperGrainAlpha),
                 subdivisions: wallpaperSubdivisions
             )
-#if os(macOS)
             .transition(.opacity)
             .opacity(isStartingUp ? 0 : 1)
             .onAppear {
@@ -53,7 +50,6 @@ struct ScreenSaverView: View {
                     isStartingUp = false
                 }
             }
-#endif
         }
         .ignoresSafeArea()
         .onChange(of: wallpaperPaletteChangeInterval) { newValue in
@@ -62,7 +58,6 @@ struct ScreenSaverView: View {
         .onChange(of: colorScheme) { colorScheme in
             viewModel.newPalette()
         }
-#if !os(tvOS)
         .overlay(
             Button("New Color") {
                 viewModel.newPalette()
@@ -70,7 +65,6 @@ struct ScreenSaverView: View {
                 .keyboardShortcut(.space, modifiers: [])
                 .hidden()
         )
-#endif
     }
 }
 

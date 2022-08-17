@@ -9,7 +9,7 @@ import AppKit
 import SwiftUI
 
 class OnboardingWindow: NSWindow {
-    
+
     init() {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 640, height: 480), styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
         isOpaque = false
@@ -18,29 +18,29 @@ class OnboardingWindow: NSWindow {
         titlebarAppearsTransparent = true
         isMovableByWindowBackground = true
         identifier = .init("onboardingWindow")
-        
+
         let onboardingView = OnboardingView { [weak self] in
             self?.close()
         }
         contentView = NSHostingView(rootView: onboardingView)
     }
-    
+
     override func makeKeyAndOrderFront(_ sender: Any?) {
         super.makeKeyAndOrderFront(sender)
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
         positionCenter()
     }
-    
+
     override func close() {
         super.close()
-        
+
         NSApp.setActivationPolicy(.accessory)
     }
 }
 
 extension NSWindow {
-    
+
     /// Positions the `NSWindow` at the horizontal-vertical center of the `visibleFrame` (takes Status Bar and Dock sizes into account)
     public func positionCenter() {
         if let screenSize = screen?.visibleFrame.size {

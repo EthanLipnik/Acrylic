@@ -11,15 +11,15 @@ import SwiftUI
 final class AppDelegate: NSObject, NSApplicationDelegate {
     static var statusBar: StatusBarController?
     private var aboutBoxWindowController: NSWindowController?
-    
+
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApplication.shared.windows.forEach({ $0.close() })
-        
+
         Self.statusBar = StatusBarController()
         Self.statusBar?.appDelegate = self
-        
+
         NSApp.setActivationPolicy(.accessory)
-        
+
         if !UserDefaults.standard.bool(forKey: "didShowOnboarding") {
             let onboardingWindow = OnboardingWindow()
             let onboardingController = NSWindowController(window: onboardingWindow)
@@ -37,7 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             print(error)
         }
     }
-    
+
     func showAboutPanel() {
         if aboutBoxWindowController == nil {
             let styleMask: NSWindow.StyleMask = [.closable, .titled, .fullSizeContentView]
@@ -49,7 +49,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.contentView = NSHostingView(rootView: AboutView().frame(width: 300, height: 500))
             aboutBoxWindowController = NSWindowController(window: window)
         }
-        
+
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
         aboutBoxWindowController?.window?.makeKeyAndOrderFront(nil)
     }

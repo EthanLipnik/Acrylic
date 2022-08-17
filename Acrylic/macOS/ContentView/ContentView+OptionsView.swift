@@ -13,10 +13,10 @@ extension ContentView {
         @EnvironmentObject var wallpaperService: WallpaperService
         @StateObject var videosViewModel = VideosViewModel()
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
-        
+
         let popoverNotification = NotificationCenter.default
                     .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
-        
+
         var body: some View {
             ScrollView(.horizontal) {
                 LazyHStack {
@@ -32,7 +32,7 @@ extension ContentView {
                             .foregroundStyle(.secondary))
                         .onTapGesture {
                             guard !wallpaperService.isLoading else { return }
-                            
+
                             switch selectedWallpaper {
                             case .fluid, .nowPlaying:
                                 break
@@ -43,7 +43,7 @@ extension ContentView {
                                 break
                             }
                         }
-                    
+
                     switch selectedWallpaper {
                     case .fluid, .nowPlaying:
                         EmptyView()
@@ -62,7 +62,7 @@ extension ContentView {
                                         Button(role: .destructive) {
                                             withAnimation {
                                                 try? videosViewModel.delete(video)
-                                                
+
                                                 if currentVideoBackgroundId == video.id {
                                                     currentVideoBackgroundId = videosViewModel.videos.first?.id ?? ""
                                                     videosViewModel.updateWallpaper()
@@ -75,7 +75,7 @@ extension ContentView {
                                     .shadow(radius: 8, y: 8)
                                     .onTapGesture {
                                         guard !wallpaperService.isLoading else { return }
-                                        
+
                                         currentVideoBackgroundId = video.id
                                         videosViewModel.updateWallpaper()
                                     }

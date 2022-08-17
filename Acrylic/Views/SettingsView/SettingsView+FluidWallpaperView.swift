@@ -19,7 +19,7 @@ extension SettingsView {
                     return !UserDefaults.standard.bool(forKey: id)
                 }()
             }
-            
+
             var hue: Hue
             var isOn: Bool {
                 didSet {
@@ -27,7 +27,7 @@ extension SettingsView {
                 }
             }
         }
-        
+
         enum PaletteChangeInterval: Double, Hashable, CaseIterable {
             case fiveSec = 5
             case thirtySec = 30
@@ -36,7 +36,7 @@ extension SettingsView {
             case twentyMin = 1200
             case thirtyMin = 1800
             case oneHour = 3600
-            
+
             var displayTitle: String {
                 switch self {
                 case .fiveSec:
@@ -56,12 +56,12 @@ extension SettingsView {
                 }
             }
         }
-        
+
         enum Framerate: Int, Hashable, CaseIterable {
             case low = 30
             case normal = 60
             case high = 120
-            
+
             var displayTitle: String {
                 switch self {
                 case .low:
@@ -73,7 +73,7 @@ extension SettingsView {
                 }
             }
         }
-        
+
         @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
         @State private var isShowingPalettes: Bool = false
         @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
@@ -84,12 +84,12 @@ extension SettingsView {
         @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
         @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
         @AppStorage("FWFramerate") private var fwFramerate: Int = 30
-        
+
         var body: some View {
             Group {
                 SectionView {
                     Toggle("Automatically start on launch", isOn: $startWallpaperOnLaunch)
-                    
+
                     Picker(selection: $wallpaperSubdivisions) {
                         Text("2")
                             .tag(2)
@@ -105,11 +105,11 @@ extension SettingsView {
                         Text("Subdivisions")
                     }
                     .pickerStyle(.menu)
-                    
+
                     Slider(value: $wallpaperGrainAlpha, in: 0.01...0.25) {
                         Text("Grain")
                     }
-                    
+
                     Picker(selection: $animationSpeed) {
                         ForEach(AnimationSpeed.allCases, id: \.rawValue) {
                             Text($0.rawValue)
@@ -119,7 +119,7 @@ extension SettingsView {
                         Text("Animation Speed")
                     }
                     .pickerStyle(.menu)
-                    
+
                     Picker("Framerate", selection: $fwFramerate) {
                         Text("30 FPS")
                             .tag(30)
@@ -143,10 +143,10 @@ extension SettingsView {
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
-                
+
                 SectionView {
                     Toggle("Color Match Menu Bar", isOn: $colorMatchingMenuBar)
-                    
+
                     Picker(selection: $wallpaperColorScheme) {
                         ForEach(WallpaperColorScheme.allCases, id: \.self) { colorScheme in
                             Text(colorScheme.rawValue.capitalized)
@@ -156,8 +156,7 @@ extension SettingsView {
                         Text("Color Scheme")
                     }
                     .pickerStyle(.menu)
-                    
-                    
+
                     Picker(selection: $paletteChangeInterval) {
                         ForEach(PaletteChangeInterval.allCases, id: \.rawValue) {
                             Text($0.displayTitle)
@@ -177,7 +176,7 @@ extension SettingsView {
                         }
                     }
                     .pickerStyle(.menu)
-                    
+
                     if #available(macOS 13.0, *) {
                         DisclosureGroup(isExpanded: $isShowingPalettes) {
                             ForEach(selectedHues.indices, id: \.self) { index in

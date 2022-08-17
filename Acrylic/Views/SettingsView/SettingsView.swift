@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State var selection: Int = 0
-    
+
     var body: some View {
         TabView(selection: $selection) {
             FormView {
@@ -20,7 +20,7 @@ struct SettingsView: View {
                 Label("General", systemImage: "gearshape.fill")
             }
             .tag(0)
-            
+
             FormView {
                 FluidWallpaperView()
             }
@@ -29,7 +29,7 @@ struct SettingsView: View {
                 Label("Fluid", systemImage: "square.stack.3d.down.right.fill")
             }
             .tag(1)
-            
+
             FormView {
                 VideoWallpaperView()
             }
@@ -40,10 +40,10 @@ struct SettingsView: View {
             .tag(2)
         }
     }
-    
+
     struct FormView<Content: View>: View {
         @ViewBuilder let content: () -> Content
-        
+
         var body: some View {
             Group {
                 if #available(iOS 14.0, macOS 13.0, *) {

@@ -24,10 +24,10 @@ struct AboutView: View {
         .padding()
         .background(VisualEffectView(material: .popover, blendingMode: .behindWindow).edgesIgnoringSafeArea(.all))
     }
-    
+
     struct LinksView: View {
         @Environment(\.openURL) var openUrl
-        
+
         var body: some View {
             GroupBox {
                 VStack(alignment: .leading) {
@@ -37,21 +37,21 @@ struct AboutView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    
+
                     if let url = URL(string: "https://github.com/EthanLipnik/MeshKit") {
                         Link(destination: url) {
                             Label("MeshKit", systemImage: "circle.grid.cross")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    
+
                     if let url = URL(string: "https://github.com/Nekitosss/MeshGradient") {
                         Link(destination: url) {
                             Label("MeshGradient", systemImage: "square.stack.3d.forward.dottedline")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    
+
                     if let url = URL(string: "https://pixabay.com/") {
                         Link(destination: url) {
                             HStack {
@@ -69,19 +69,19 @@ struct AboutView: View {
             }
         }
     }
-    
+
     struct CreditsView: View {
         @Environment(\.openURL) var openUrl
-        
+
         var body: some View {
             GroupBox {
                 userView("Ethan Lipnik",
                          username: "EthanLipnik",
                          profilePic: URL(string: "https://pbs.twimg.com/profile_images/1484616636866904066/38t7SErv_400x400.jpg"),
                          body: "Developer and Designer")
-                
+
                 Divider()
-                
+
                 userView("Nikita Patskov",
                          username: "NikitkaPa",
                          profilePic: URL(string: "https://pbs.twimg.com/profile_images/1258140999672459264/QWDsekY0_400x400.jpg"),
@@ -90,7 +90,7 @@ struct AboutView: View {
                 Label("Credits", systemImage: "person.crop.square.filled.and.at.rectangle")
             }
         }
-        
+
         @ViewBuilder
         func userView(_ name: String, username: String, profilePic: URL?, body: String) -> some View {
             Button {
@@ -115,7 +115,7 @@ struct AboutView: View {
                     .aspectRatio(1/1, contentMode: .fit)
                     .frame(height: 45)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                    
+
                     VStack(alignment: .leading) {
                         HStack {
                             Text(name)

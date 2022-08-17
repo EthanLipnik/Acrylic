@@ -11,7 +11,7 @@ enum WallpaperType: String, CaseIterable {
     case fluid
     case video
     case nowPlaying
-    
+
     var displayTitle: String {
         switch self {
         case .fluid:

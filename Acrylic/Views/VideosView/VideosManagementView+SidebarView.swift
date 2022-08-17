@@ -11,11 +11,11 @@ import PixabayKit
 extension VideosManagementView {
     struct SidebarView: View {
         @Binding var selectedCategory: SearchCategory?
-        
+
         let filters: [SearchCategory] = [
             .religion
         ]
-        
+
         let sections: [(String, [SearchCategory])] = [
             ("", [
                 .all,
@@ -45,7 +45,7 @@ extension VideosManagementView {
                 .buildings
             ])
         ]
-        
+
         let images: [SearchCategory: String] = [
             .all: "square.grid.3x2.fill",
             .backgrounds: "dock.rectangle",
@@ -68,13 +68,13 @@ extension VideosManagementView {
             .business: "case.fill",
             .music: "music.note"
         ]
-        
+
         var body: some View {
-            List(sections, id:\.0, selection: $selectedCategory) { section in
+            List(sections, id: \.0, selection: $selectedCategory) { section in
                 Section(section.0) {
                     ForEach(section.1, id: \.self) { category in
                         let title = category.rawValue.capitalized
-                        
+
                         if let image = images[category] {
                             Label(title, systemImage: image)
                         } else {

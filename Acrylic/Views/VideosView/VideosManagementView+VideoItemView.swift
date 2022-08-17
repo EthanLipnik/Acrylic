@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 extension VideosManagementView {
     struct VideoItemView: View {
         let video: Video
-        
+
         var body: some View {
             WebImage(url: URL(string: "https://i.vimeocdn.com/video/\(video.pictureID)_\(720).jpg"), options: [.scaleDownLargeImages])
                 .resizable()

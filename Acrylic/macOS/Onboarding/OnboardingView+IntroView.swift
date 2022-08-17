@@ -10,7 +10,7 @@ import SwiftUI
 extension OnboardingView {
     struct IntroView: View {
         @Binding var page: Int
-        
+
         var body: some View {
             HStack {
                 VStack {
@@ -22,7 +22,7 @@ extension OnboardingView {
                         .font(.largeTitle.bold())
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)
-                    
+
                     Button("Learn More") {
                         withAnimation(.spring()) {
                             page += 1

@@ -13,20 +13,20 @@ extension VideosManagementView {
     struct VideosView: View {
         @StateObject var debounceObject = DebounceObject()
         @StateObject var downloadService = VideoDownloadService()
-        
+
         @AppStorage("VWSearchItemLimit") var searchItemLimit: Int = 200
         @AppStorage("shouldEnableVWSafeSearch") var shouldEnableSafeSearch: Bool = true
-        
+
         @State var videos: [Video] = []
         @State var shouldShowDownloadingVideos: Bool = false
         @State var sort: String = "popular"
         @State var editorsChoice: Bool = true
         @State var selectedVideo: Video?
         @State var filter4k: Bool = true
-        
+
         @Binding var category: SearchCategory?
         private let pixabay = PixabayKit("PIXABAY_API_KEY")
-        
+
         var body: some View {
             HStack(spacing: 0) {
                 ScrollView {
@@ -51,7 +51,7 @@ extension VideosManagementView {
                 .onTapGesture {
                     selectedVideo = nil
                 }
-                
+
                 HStack {
                     Divider()
                     VideosManagementView.SelectedItemView(video: selectedVideo)
@@ -75,7 +75,7 @@ extension VideosManagementView {
                             await search()
                         }
                     }
-                    
+
                     Toggle(isOn: $filter4k) {
                         Label("4K Only", systemImage: "4k.tv")
                     }
@@ -84,7 +84,7 @@ extension VideosManagementView {
                             await search()
                         }
                     }
-                    
+
                     Button {
                         shouldShowDownloadingVideos.toggle()
                     } label: {
@@ -96,11 +96,11 @@ extension VideosManagementView {
                     .popover(isPresented: $shouldShowDownloadingVideos) {
                         downloadsView
                     }
-                    
+
                     Picker(selection: $sort) {
                         Text("Popular")
                             .tag("popular")
-                        
+
                         Text("Latest")
                             .tag("latest")
                     } label: {
@@ -122,7 +122,7 @@ extension VideosManagementView {
                 Text("🦍 Gorilla")
                     .searchCompletion("Gorilla")
             })
-            .onChange(of: debounceObject.debouncedText) { text in
+            .onChange(of: debounceObject.debouncedText) { _ in
                 Task(priority: .high) {
                     await search()
                 }
@@ -136,7 +136,7 @@ extension VideosManagementView {
                 }
             }
         }
-        
+
         var downloadsView: some View {
             ScrollView {
                 LazyVStack(spacing: 10) {
@@ -172,7 +172,7 @@ extension VideosManagementView {
             }
             .frame(width: 300, height: 400)
         }
-        
+
         func search() async {
             let category = self.category ?? .all
             do {
@@ -181,7 +181,7 @@ extension VideosManagementView {
                     self.videos = videos
                     return
                 }
-                
+
                 let videos = try await pixabay.searchVideos(debounceObject.debouncedText,
                                                             safeSearch: shouldEnableSafeSearch,
                                                             order: sort,
@@ -191,7 +191,7 @@ extension VideosManagementView {
                                                             minWidth: filter4k ? 3000 : 0,
                                                             count: searchItemLimit)
                 self.videos = videos
-                
+
                 try? Sebu.default.save(videos, withName: cacheName, expiration: Calendar.current.date(byAdding: .hour, value: 24, to: Date()))
             } catch {
                 print(error)

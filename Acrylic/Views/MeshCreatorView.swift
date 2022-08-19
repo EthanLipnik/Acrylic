@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MeshKit
+import UniformTypeIdentifiers
 
 struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer
@@ -24,6 +25,9 @@ struct MeshCreatorView: View {
     @State private var currentYOffset: CGFloat = 0
 
     @State private var showSettings: Bool = false
+
+    @State private var shouldExport: Bool = false
+    @State private var imageFile: ImageDocument? = nil
 
     private let defaultBackgroundColor: SystemColor = {
         return NSColor.windowBackgroundColor
@@ -83,9 +87,27 @@ struct MeshCreatorView: View {
 
             ToolbarItem(id: "save", placement: .primaryAction, showsByDefault: true) {
                 Button {
-
+                    Task { @MainActor in
+                        do {
+                            let url = try await colors.export()
+                            if let image = NSImage(contentsOfFile: url.path) {
+                                imageFile = .init(image: image)
+                                shouldExport = true
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Label("Save", systemImage: "square.and.arrow.up")
+                }
+                .fileExporter(isPresented: $shouldExport, document: imageFile, contentType: .image, defaultFilename: "Mesh.png") { result in
+                    switch result {
+                    case .success(let url):
+                        print(url.path)
+                    case .failure(let error):
+                        print(error)
+                    }
                 }
             }
         }
@@ -224,5 +246,29 @@ struct MeshCreatorView: View {
 struct MeshCreatorView_Previews: PreviewProvider {
     static var previews: some View {
         MeshCreatorView()
+    }
+}
+
+fileprivate struct ImageDocument: FileDocument {
+    var image: NSImage
+
+    init(image: NSImage) {
+        self.image = image
+    }
+
+    static var readableContentTypes: [UTType] { [.image] }
+
+    init(configuration: ReadConfiguration) throws {
+        guard let data = configuration.file.regularFileContents,
+            let image = NSImage(data: data)
+        else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        self.image = image
+    }
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        guard let data = image.pngData else { throw CocoaError(.fileNoSuchFile) }
+        return .init(regularFileWithContents: data)
     }
 }

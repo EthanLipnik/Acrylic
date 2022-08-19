@@ -113,6 +113,13 @@ struct ContentView: View {
             .buttonStyle(.borderless)
             Spacer()
 
+            Button {
+                WindowManager.MeshCreator.open()
+            } label: {
+                Image(systemName: "plus")
+            }
+
+
             if #available(macOS 13.0, *) {
                 Menu {
                     footerButtons

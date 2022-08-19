@@ -28,6 +28,8 @@ struct MeshCreatorView: View {
 
     @State private var shouldExport: Bool = false
     @State private var imageFile: ImageDocument? = nil
+    
+    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .linearSRGB
 
     private let defaultBackgroundColor: SystemColor = {
         return NSColor.windowBackgroundColor
@@ -48,12 +50,12 @@ struct MeshCreatorView: View {
                      animatorConfiguration: .init(meshRandomizer: meshRandomizer),
                      grainAlpha: grainAlpha,
                      subdivisions: Int(subdivisions),
-                     colorSpace: .init(name: CGColorSpace.linearSRGB))
+                     colorSpace: colorSpace.cgColorSpace)
             } else {
                 Mesh(colors: colors,
                      grainAlpha: grainAlpha,
                      subdivisions: Int(subdivisions),
-                     colorSpace: .init(name: CGColorSpace.linearSRGB))
+                     colorSpace: colorSpace.cgColorSpace)
             }
         }
         .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
@@ -91,7 +93,7 @@ struct MeshCreatorView: View {
                 Button {
                     Task { @MainActor in
                         do {
-                            let url = try await colors.export()
+                            let url = try await colors.export(colorSpace: colorSpace.cgColorSpace)
                             if let image = NSImage(contentsOfFile: url.path) {
                                 imageFile = .init(image: image)
                                 shouldExport = true

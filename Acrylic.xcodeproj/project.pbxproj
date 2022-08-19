@@ -25,13 +25,14 @@
 		AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252A289B1419003A0D8F /* FluidViewModel.swift */; };
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
+		AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74099228B0520B0008A951 /* ColorSpace.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* MeshCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* MeshCreatorView.swift */; };
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
 		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
-		AAAE6367289EA290000ED2F0 /* SettingsView+StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+StartupView.swift */; };
+		AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */; };
 		AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */; };
 		AAAE636B289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */; };
 		AAB267D428A1B89300421E1A /* ContentView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */; };
@@ -83,6 +84,7 @@
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorSpace.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/ColorSpace.swift"; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
 		AA749C6728931EFB002CD39A /* MeshCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCreatorView.swift; sourceTree = "<group>"; };
@@ -91,7 +93,7 @@
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
-		AAAE6366289EA290000ED2F0 /* SettingsView+StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+StartupView.swift"; sourceTree = "<group>"; };
+		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
 		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
 		AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+OptionsView.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				AACCD48E289DA639006551C1 /* VideoDownloadService.swift */,
 				AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */,
 				AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */,
+				AA74099228B0520B0008A951 /* ColorSpace.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				AA455E39289826030010938A /* SettingsView.swift */,
-				AAAE6366289EA290000ED2F0 /* SettingsView+StartupView.swift */,
+				AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */,
 				AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */,
 				AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */,
 			);
@@ -361,9 +364,10 @@
 				AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */,
+				AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
-				AAAE6367289EA290000ED2F0 /* SettingsView+StartupView.swift in Sources */,
+				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,
 				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,

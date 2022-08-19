@@ -19,6 +19,7 @@ struct ScreenSaverView: View {
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30
+    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .linearSRGB
 
     @State private var isStartingUp: Bool = true
 
@@ -42,7 +43,7 @@ struct ScreenSaverView: View {
                                              meshRandomizer: viewModel.meshRandomizer),
                 grainAlpha: Float(wallpaperGrainAlpha),
                 subdivisions: wallpaperSubdivisions,
-                colorSpace: .init(name: CGColorSpace.displayP3)
+                colorSpace: colorSpace.cgColorSpace
             )
             .transition(.opacity)
             .opacity(isStartingUp ? 0 : 1)

@@ -1,5 +1,5 @@
 //
-//  SettingsView+StartupView.swift
+//  SettingsView+GeneralView.swift
 //  Acrylic
 //
 //  Created by Ethan Lipnik on 8/6/22.
@@ -8,17 +8,26 @@
 import SwiftUI
 
 extension SettingsView {
-    struct StartupView: View {
+    struct GeneralView: View {
+        @AppStorage("colorSpace") var colorSpace: ColorSpace = .linearSRGB
+        
         var body: some View {
             SectionView {
                 Toggle(isOn: .constant(false)) {
                     Text("Launch Acrylic on system startup")
                 }.disabled(true)
+                
+                Picker("Color Space", selection: $colorSpace) {
+                    ForEach(ColorSpace.allCases, id: \.rawValue) { colorSpace in
+                        Text(colorSpace.displayName)
+                            .tag(colorSpace)
+                    }
+                }
             } header: {
                 Label {
-                    Text("Startup")
+                    Text("General")
                 } icon: {
-                    Image(systemName: "power.circle.fill")
+                    Image(systemName: "gearshape.fill")
                         .foregroundColor(.accentColor)
                 }
             }
@@ -28,6 +37,6 @@ extension SettingsView {
 
 struct SettingsView_StartupView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView.StartupView()
+        SettingsView.GeneralView()
     }
 }

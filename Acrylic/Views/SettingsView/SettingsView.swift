@@ -13,9 +13,9 @@ struct SettingsView: View {
     var body: some View {
         TabView(selection: $selection) {
             FormView {
-                StartupView()
+                GeneralView()
             }
-            .frame(height: 100)
+            .fixedSize(horizontal: false, vertical: true)
             .tabItem {
                 Label("General", systemImage: "gearshape.fill")
             }
@@ -33,7 +33,7 @@ struct SettingsView: View {
             FormView {
                 VideoWallpaperView()
             }
-            .frame(height: 300)
+            .fixedSize(horizontal: false, vertical: true)
             .tabItem {
                 Label("Video", systemImage: "play.rectangle.fill")
             }

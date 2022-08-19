@@ -129,7 +129,7 @@ class FluidViewModel: ObservableObject {
         }
 
         if (UserDefaults.standard.object(forKey: "shouldColorMatchFWMenuBar") as? Bool) ?? true {
-            try await colors.export(to: url)
+            try await colors.export(to: url, colorSpace: .init(name: CGColorSpace.displayP3))
         } else {
             let image = NSImage(color: NSColor.black, size: NSSize(width: 10, height: 10))
             try image.pngData?.write(to: url)

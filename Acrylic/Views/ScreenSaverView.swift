@@ -41,7 +41,8 @@ struct ScreenSaverView: View {
                                              animationSpeedRange: animationSpeedRange,
                                              meshRandomizer: viewModel.meshRandomizer),
                 grainAlpha: Float(wallpaperGrainAlpha),
-                subdivisions: wallpaperSubdivisions
+                subdivisions: wallpaperSubdivisions,
+                colorSpace: .init(name: CGColorSpace.displayP3)
             )
             .transition(.opacity)
             .opacity(isStartingUp ? 0 : 1)

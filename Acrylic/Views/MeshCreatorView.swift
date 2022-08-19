@@ -10,7 +10,7 @@ import MeshKit
 
 struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer
-    @State private var colors: MeshGrid
+    @State private var colors: MeshColorGrid
     @State private var size: MeshSize
 
     @State private var shouldAnimate: Bool = false
@@ -139,7 +139,7 @@ struct MeshCreatorView: View {
     }
 
     struct GrabberView: View {
-        @Binding var grid: MeshGrid
+        @Binding var grid: MeshColorGrid
         @Binding var selectedPoint: MeshColor?
 
         var didMovePoint: (_ x: Int, _ y: Int, _ translation: CGSize) -> Void
@@ -168,7 +168,7 @@ struct MeshCreatorView: View {
 
         struct PointView: View {
             @State var point: MeshColor
-            @Binding var grid: MeshGrid
+            @Binding var grid: MeshColorGrid
             @Binding var selectedPoint: MeshColor?
             let proxy: GeometryProxy
             let isEdge: Bool

@@ -12,7 +12,7 @@ import AppKit
 
 class FluidViewModel: ObservableObject {
     @Published var meshRandomizer: MeshRandomizer
-    @Published var colors: MeshGrid
+    @Published var colors: MeshColorGrid
     @Published var timer: Timer?
 
     private let fluidWallpapersFolder = FileManager.default
@@ -81,8 +81,14 @@ class FluidViewModel: ObservableObject {
                     return 2
                 }
             }()
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-                self?.updateDesktopPicture()
+
+            Task {
+                do {
+                    try await Task.sleep(nanoseconds: UInt64(delay) * 1_000_000_000)
+                    try await updateDesktopPicture()
+                } catch {
+                    print(error)
+                }
             }
         }
     }
@@ -107,34 +113,33 @@ class FluidViewModel: ObservableObject {
         return 60
     }
 
-    func updateDesktopPicture() {
+    @MainActor
+    func updateDesktopPicture() async throws {
+        guard timer != nil else { return }
 
-        var color: NSColor
-        if (UserDefaults.standard.object(forKey: "shouldColorMatchFWMenuBar") as? Bool) ?? true {
-            color = colors.elements.first?.color ?? .black
-        } else {
-            color = .black
+        try? FileManager.default.contentsOfDirectory(atPath: fluidWallpapersFolder.path)
+            .map({ fluidWallpapersFolder.appendingPathComponent($0) })
+            .forEach { url in
+                try? FileManager.default.removeItem(at: url)
+            }
+        let url = fluidWallpapersFolder.appendingPathComponent("Acrylic Fluid Wallpaper \(Date()).png")
+
+        if FileManager.default.fileExists(atPath: url.path) {
+            try? FileManager.default.removeItem(at: url)
         }
 
-        do {
-            let image = NSImage(color: color, size: NSSize(width: 10, height: 10))
-            guard let imageData = image.pngData else { return }
-            let url = fluidWallpapersFolder.appendingPathComponent("Acrylic Fluid Wallpaper \(Date()).png")
-            if FileManager.default.fileExists(atPath: url.path) {
-                try? FileManager.default.removeItem(at: url)
-            }
-            try imageData.write(to: url)
+        if (UserDefaults.standard.object(forKey: "shouldColorMatchFWMenuBar") as? Bool) ?? true {
+            try await colors.export(to: url)
+        } else {
+            let image = NSImage(color: NSColor.black, size: NSSize(width: 10, height: 10))
+            try image.pngData?.write(to: url)
+        }
 
-            let workspace = NSWorkspace.shared
-            if let screen = NSScreen.main {
-                try workspace.setDesktopImageURL(url, for: screen)
-            }
+        guard FileManager.default.fileExists(atPath: url.path) else { return }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                try? FileManager.default.removeItem(at: url)
-            }
-        } catch {
-            print(error)
+        let workspace = NSWorkspace.shared
+        if let screen = NSScreen.main {
+            try workspace.setDesktopImageURL(url, for: screen)
         }
     }
 

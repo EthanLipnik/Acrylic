@@ -15,7 +15,7 @@ struct VideosManagementView: View {
 
     var body: some View {
         Group {
-            if #available(iOS 16.0, macOS 13.0, *) {
+            if #available(macOS 13.0, *) {
                 NavigationSplitView {
                     SidebarView(selectedCategory: $selectedCategory)
                 } detail: {

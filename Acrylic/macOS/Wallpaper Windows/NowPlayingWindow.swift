@@ -26,7 +26,6 @@ final class NowPlayingWindow: WallpaperWindow {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             guard self?.viewModel != nil else { return }
             viewModel.newPalette()
-            viewModel.updateDesktopPicture()
         }
     }
 

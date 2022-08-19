@@ -47,11 +47,13 @@ struct MeshCreatorView: View {
                 Mesh(colors: colors,
                      animatorConfiguration: .init(meshRandomizer: meshRandomizer),
                      grainAlpha: grainAlpha,
-                     subdivisions: Int(subdivisions))
+                     subdivisions: Int(subdivisions),
+                     colorSpace: .init(name: CGColorSpace.linearSRGB))
             } else {
                 Mesh(colors: colors,
                      grainAlpha: grainAlpha,
-                     subdivisions: Int(subdivisions))
+                     subdivisions: Int(subdivisions),
+                     colorSpace: .init(name: CGColorSpace.linearSRGB))
             }
         }
         .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
@@ -101,7 +103,7 @@ struct MeshCreatorView: View {
                 } label: {
                     Label("Save", systemImage: "square.and.arrow.up")
                 }
-                .fileExporter(isPresented: $shouldExport, document: imageFile, contentType: .image, defaultFilename: "Mesh.png") { result in
+                .fileExporter(isPresented: $shouldExport, document: imageFile, contentType: .png, defaultFilename: "Mesh") { result in
                     switch result {
                     case .success(let url):
                         print(url.path)
@@ -256,7 +258,8 @@ fileprivate struct ImageDocument: FileDocument {
         self.image = image
     }
 
-    static var readableContentTypes: [UTType] { [.image] }
+    static var readableContentTypes: [UTType] { [.image, .png, .jpeg] }
+    static var writableContentTypes: [UTType] { [.image, .png, .jpeg] }
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,

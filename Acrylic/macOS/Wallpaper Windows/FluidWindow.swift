@@ -27,7 +27,6 @@ final class FluidWindow: WallpaperWindow {
             guard self?.viewModel != nil else { return }
             viewModel.newPalette()
             viewModel.setTimer()
-            viewModel.updateDesktopPicture()
         }
     }
 

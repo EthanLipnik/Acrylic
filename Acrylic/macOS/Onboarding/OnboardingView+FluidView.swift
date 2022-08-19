@@ -14,7 +14,7 @@ extension OnboardingView {
         @Binding var page: Int
 
         var body: some View {
-            let mesh: (MeshGrid, MeshRandomizer) = {
+            let mesh: (MeshColorGrid, MeshRandomizer) = {
                 let luminosity: Luminosity = {
                     switch colorScheme {
                     case .light:

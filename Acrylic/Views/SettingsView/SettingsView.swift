@@ -46,7 +46,7 @@ struct SettingsView: View {
 
         var body: some View {
             Group {
-                if #available(iOS 14.0, macOS 13.0, *) {
+                if #available(macOS 13.0, *) {
                     Form {
                         content()
                     }.groupedForm()
@@ -78,7 +78,7 @@ struct SettingsView: View {
 
         var body: some View {
             Group {
-                if #available(iOS 16.0, macOS 13.0, *) {
+                if #available(macOS 13.0, *) {
                     if let footerView {
                         Section {
                             contentView
@@ -128,7 +128,7 @@ extension View {
 
 struct GroupedFormViewModifier: ViewModifier {
     func body(content: Content) -> some View {
-        if #available(iOS 16.0, macOS 13.0, *) {
+        if #available(macOS 13.0, *) {
             content.formStyle(.grouped)
         } else {
             content

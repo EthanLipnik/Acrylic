@@ -9,7 +9,7 @@ import SwiftUI
 
 extension SettingsView {
     struct GeneralView: View {
-        @AppStorage("colorSpace") var colorSpace: ColorSpace = .linearSRGB
+        @AppStorage("colorSpace") var colorSpace: ColorSpace = .sRGB
         
         var body: some View {
             SectionView {

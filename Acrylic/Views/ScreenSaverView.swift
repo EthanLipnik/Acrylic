@@ -19,7 +19,7 @@ struct ScreenSaverView: View {
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
     @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30
-    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .linearSRGB
+    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
     @State private var isStartingUp: Bool = true
 

@@ -29,7 +29,7 @@ struct MeshCreatorView: View {
     @State private var shouldExport: Bool = false
     @State private var imageFile: ImageDocument? = nil
     
-    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .linearSRGB
+    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
     private let defaultBackgroundColor: SystemColor = {
         return NSColor.windowBackgroundColor

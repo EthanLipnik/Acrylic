@@ -77,14 +77,14 @@ struct AboutView: View {
             GroupBox {
                 userView("Ethan Lipnik",
                          username: "EthanLipnik",
-                         profilePic: URL(string: "https://pbs.twimg.com/profile_images/1484616636866904066/38t7SErv_400x400.jpg"),
+                         profilePic: URL(string: "https://www.ethanlipnik.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FProfilePic.4dd0e195.png&w=1080&q=75"),
                          body: "Developer and Designer")
 
                 Divider()
 
                 userView("Nikita Patskov",
                          username: "NikitkaPa",
-                         profilePic: URL(string: "https://pbs.twimg.com/profile_images/1258140999672459264/QWDsekY0_400x400.jpg"),
+                         profilePic: URL(string: "https://avatars.githubusercontent.com/u/17741730?v=4"),
                          body: "MeshGradient Library")
             } label: {
                 Label("Credits", systemImage: "person.crop.square.filled.and.at.rectangle")

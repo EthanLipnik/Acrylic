@@ -31,6 +31,7 @@
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
+		AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */; };
 		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
 		AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */; };
 		AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */; };
@@ -84,7 +85,7 @@
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorSpace.swift; path = "../../../../../../../../Macintosh HD/Users/ethan/Developer/Acrylic/App/Acrylic/Models/ColorSpace.swift"; sourceTree = "<group>"; };
+		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorSpace.swift; path = "ColorSpace.swift"; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
 		AA749C6728931EFB002CD39A /* MeshCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCreatorView.swift; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
+		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MeshCreatorView+ExportView.swift"; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
@@ -137,7 +139,7 @@
 				AA278947289C5A59001E897B /* Wallpaper Windows */,
 				AA68252E289B22F8003A0D8F /* VisualEffectView.swift */,
 				AA35B89828A4074600F7B190 /* Onboarding */,
-				AA749C6728931EFB002CD39A /* MeshCreatorView.swift */,
+				AAA8947A28B13B6D00880278 /* MeshCreator */,
 				AA0EA86128933069003CEB51 /* ScreenSaverView.swift */,
 				AA1F48E42899C301009E07A8 /* AboutView.swift */,
 				AAAE6365289E017B000ED2F0 /* SettingsView */,
@@ -248,6 +250,15 @@
 				AADED2812898DD880023EB97 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAA8947A28B13B6D00880278 /* MeshCreator */ = {
+			isa = PBXGroup;
+			children = (
+				AA749C6728931EFB002CD39A /* MeshCreatorView.swift */,
+				AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */,
+			);
+			path = MeshCreator;
 			sourceTree = "<group>";
 		};
 		AAAE6365289E017B000ED2F0 /* SettingsView */ = {
@@ -365,6 +376,7 @@
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */,
 				AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */,
+				AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
@@ -518,7 +530,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 78;
+				CURRENT_PROJECT_VERSION = 79;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -567,7 +579,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 78;
+				CURRENT_PROJECT_VERSION = 79;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;

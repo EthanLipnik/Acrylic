@@ -12,7 +12,7 @@ enum ColorSpace: String, Hashable, CaseIterable {
     case linearSRGB
     case sRGB
     case displayP3
-    
+
     var displayName: String {
         switch self {
         case .linearSRGB:
@@ -23,7 +23,7 @@ enum ColorSpace: String, Hashable, CaseIterable {
             return "Display P3"
         }
     }
-    
+
     var cgColorSpace: CGColorSpace {
         switch self {
         case .linearSRGB:

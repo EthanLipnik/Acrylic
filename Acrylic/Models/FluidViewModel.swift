@@ -66,7 +66,12 @@ class FluidViewModel: ObservableObject {
             }
         }()
 
-        colors = MeshKit.generate(palette: palette ?? allowedPalettes.randomElement() ?? .monochrome, luminosity: luminosity, withRandomizedLocations: true)
+        colors = MeshKit.generate(
+            palette: palette ?? allowedPalettes.randomElement() ?? .monochrome,
+            luminosity: luminosity,
+            size: MeshSize(width: 5, height: 5),
+            withRandomizedLocations: true
+        )
         meshRandomizer = .withMeshColors(colors)
 
         if shouldUpdateDesktopPicture {

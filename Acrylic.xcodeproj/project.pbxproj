@@ -85,7 +85,7 @@
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorSpace.swift; path = "ColorSpace.swift"; sourceTree = "<group>"; };
+		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSpace.swift; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
 		AA749C6728931EFB002CD39A /* MeshCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshCreatorView.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
-		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MeshCreatorView+ExportView.swift"; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
+		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
@@ -530,7 +530,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -579,7 +579,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;

@@ -119,7 +119,6 @@ struct ContentView: View {
                 Image(systemName: "plus")
             }
 
-
             if #available(macOS 13.0, *) {
                 Menu {
                     footerButtons

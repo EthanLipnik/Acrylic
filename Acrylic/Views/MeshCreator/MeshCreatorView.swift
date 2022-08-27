@@ -26,9 +26,9 @@ struct MeshCreatorView: View {
     @State private var showSettings: Bool = false
 
     @State private var shouldExport: Bool = false
-    @State private var imageFile: ImageDocument? = nil
+    @State private var imageFile: ImageDocument?
     @State private var shouldExportFile: Bool = false
-    
+
     @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
     private let defaultBackgroundColor: SystemColor = {
@@ -37,7 +37,7 @@ struct MeshCreatorView: View {
 
     init() {
         let size = MeshSize(width: 5, height: 5)
-        let colors = MeshKit.generate(palette: .randomPalette(), size: size)
+        let colors = MeshKit.generate(palette: .randomPalette(), size: size, withRandomizedLocations: true)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
         _size = .init(initialValue: size)
@@ -64,7 +64,7 @@ struct MeshCreatorView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 Button {
-                    colors = MeshKit.generate(palette: .randomPalette(), size: size)
+                    colors = MeshKit.generate(palette: .randomPalette(), size: size, withRandomizedLocations: true)
                     meshRandomizer = .withMeshColors(colors)
                 } label: {
                     Label("Randomize", systemImage: "arrow.triangle.2.circlepath")

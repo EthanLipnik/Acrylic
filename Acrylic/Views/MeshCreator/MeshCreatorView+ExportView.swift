@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 extension MeshCreatorView {
     struct ExportView: View {
         let colors: MeshColorGrid
-        
+
         @Binding var imageFile: ImageDocument?
         @Binding var shouldExportFile: Bool
         @State var colorSpace: ColorSpace = .sRGB
@@ -21,15 +21,15 @@ extension MeshCreatorView {
         @State var aspectRatio: AspectRatio = .square
         @State var isVertical: Bool = false
         @State var resolution: Resolution = .medium
-        
+
         @State var isExporting: Bool = false
-        
+
         enum AspectRatio: Hashable {
             case square
             case classic
             case standard
             case wide
-            
+
             var rawValue: Double {
                 switch self {
                 case .square:
@@ -43,12 +43,12 @@ extension MeshCreatorView {
                 }
             }
         }
-        
+
         enum FileFormat: String, Hashable, CaseIterable {
             case PNG
             case JPEG
             case HEIC
-            
+
             var type: UTType {
                 switch self {
                 case .PNG:
@@ -60,14 +60,14 @@ extension MeshCreatorView {
                 }
             }
         }
-        
+
         enum Resolution: Int, Hashable, CaseIterable {
             case low = 1280
             case medium = 1920
             case high = 3072
             case ultra = 6144
             case extreme = 7680
-            
+
             var displayName: String {
                 switch self {
                 case .low:
@@ -83,14 +83,14 @@ extension MeshCreatorView {
                 }
             }
         }
-        
+
         enum Quality: Int, Hashable, CaseIterable {
             case low = 4
             case normal = 18
             case high = 32
             case ultra = 64
             case extreme = 128
-            
+
             var displayName: String {
                 switch self {
                 case .low:
@@ -106,7 +106,7 @@ extension MeshCreatorView {
                 }
             }
         }
-        
+
         var body: some View {
             VStack {
                 Form {
@@ -116,14 +116,14 @@ extension MeshCreatorView {
 //                                .tag(format)
 //                        }
 //                    }
-                    
+
                     Picker("Color Space", selection: $colorSpace) {
                         ForEach(ColorSpace.allCases, id: \.rawValue) { colorSpace in
                             Text(colorSpace.displayName)
                                 .tag(colorSpace)
                         }
                     }
-                    
+
                     Picker("Quality", selection: $quality) {
                         ForEach(Quality.allCases, id: \.rawValue) { quality in
                             Text(quality.displayName)
@@ -131,7 +131,7 @@ extension MeshCreatorView {
                         }
                     }
                     .pickerStyle(.radioGroup)
-                    
+
                     Picker("Resolution", selection: $resolution) {
                         ForEach(Resolution.allCases, id: \.rawValue) { resolution in
                             Text(resolution.displayName)
@@ -139,16 +139,16 @@ extension MeshCreatorView {
                         }
                     }
                     .pickerStyle(.radioGroup)
-                    
+
                     aspectRatioView
                 }
-                
+
                 Divider()
-                
+
                 Button("Export") {
                     Task(priority: .high) {
                         isExporting = true
-                        
+
                         do {
                             let size: MeshSize = {
                                 if isVertical {
@@ -159,7 +159,7 @@ extension MeshCreatorView {
                                                  height: resolution.rawValue)
                                 }
                             }()
-                            
+
                             let url = try await colors.export(size: size,
                                                               subdivisions: quality.rawValue,
                                                               colorSpace: colorSpace.cgColorSpace)
@@ -170,7 +170,7 @@ extension MeshCreatorView {
                         } catch {
                             print(error)
                         }
-                        
+
                         isExporting = false
                     }
                 }
@@ -181,7 +181,7 @@ extension MeshCreatorView {
             .frame(width: 300)
             .fixedSize(horizontal: false, vertical: true)
         }
-        
+
         var aspectRatioView: some View {
             HStack {
                 Picker("Aspect Ratio", selection: $aspectRatio) {
@@ -194,7 +194,7 @@ extension MeshCreatorView {
                     Text("2:1")
                         .tag(AspectRatio.wide)
                 }
-                
+
                 Toggle(isOn: $isVertical) {
                     Image(systemName: isVertical ? "trapezoid.and.line.vertical.fill" : "trapezoid.and.line.vertical")
                 }
@@ -212,14 +212,14 @@ struct MeshCreatorView_ExportView_Previews: PreviewProvider {
 
 struct ImageDocument: FileDocument {
     var image: NSImage
-    
+
     init(image: NSImage) {
         self.image = image
     }
-    
+
     static var readableContentTypes: [UTType] { [.image, .png, .jpeg, .heic] }
     static var writableContentTypes: [UTType] { [.image, .png, .jpeg, .heic] }
-    
+
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
               let image = NSImage(data: data)
@@ -228,7 +228,7 @@ struct ImageDocument: FileDocument {
         }
         self.image = image
     }
-    
+
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         guard let data = image.pngData else { throw CocoaError(.fileNoSuchFile) }
         return .init(regularFileWithContents: data)

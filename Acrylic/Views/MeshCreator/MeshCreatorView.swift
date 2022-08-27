@@ -37,7 +37,7 @@ struct MeshCreatorView: View {
 
     init() {
         let size = MeshSize(width: 5, height: 5)
-        let colors = MeshKit.generate(palette: .randomPalette(), size: size, withRandomizedLocations: true)
+        let colors = MeshKit.generate(palette: .randomPalette(), size: size)
         _colors = .init(initialValue: colors)
         meshRandomizer = .withMeshColors(colors)
         _size = .init(initialValue: size)
@@ -63,13 +63,29 @@ struct MeshCreatorView: View {
         .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
-                Button {
-                    colors = MeshKit.generate(palette: .randomPalette(), size: size, withRandomizedLocations: true)
-                    meshRandomizer = .withMeshColors(colors)
-                } label: {
+                Menu { 
+                    ForEach(Hue.allCases, id: \.self) { hue in
+                        Menu {
+                            Button("Light") { 
+                                newPalette(hue, luminosity: .light)
+                            }
+                            Button("Dark") { 
+                                newPalette(hue, luminosity: .dark)
+                            }
+                            Button("Vibrant") { 
+                                newPalette(hue, luminosity: .bright)
+                            }
+                        } label: {
+                            Text(hue.displayTitle)
+                        } primaryAction: {
+                            newPalette(hue)
+                        }
+                    }
+                } label: { 
                     Label("Randomize", systemImage: "arrow.triangle.2.circlepath")
+                } primaryAction: { 
+                    newPalette() 
                 }
-                .keyboardShortcut("r")
             }
 
             ToolbarItem(id: "options") {
@@ -110,9 +126,11 @@ struct MeshCreatorView: View {
         }
         .overlay(
             ZStack {
-                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { _, _, translation in
+                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation, meshPoint in
                     currentXOffset = translation.width
                     currentYOffset = translation.height
+                    
+                    colors[x, y].location = meshPoint
                 }
                 Slider(value: $currentXOffset, in: -5...5) {
                     Text("x")
@@ -129,6 +147,20 @@ struct MeshCreatorView: View {
         .onTapGesture {
             selectedPoint = nil
         }
+    }
+    
+    func newPalette(_ palette: Hue? = nil, luminosity: Luminosity = .bright) {
+        let oldColors = colors
+        let colors = MeshKit.generate(palette: palette ?? .randomPalette(), luminosity: luminosity, size: size)
+        
+        for y in stride(from: 0, to: colors.width, by: 1) {
+            for x in stride(from: 0, to: colors.height, by: 1) {
+                colors[x, y].location = oldColors[x, y].location
+            }
+        }
+        
+        self.colors = colors
+        meshRandomizer = .withMeshColors(self.colors)
     }
 
     struct OptionsView: View {
@@ -161,7 +193,7 @@ struct MeshCreatorView: View {
         @Binding var grid: MeshColorGrid
         @Binding var selectedPoint: MeshColor?
 
-        var didMovePoint: (_ x: Int, _ y: Int, _ translation: CGSize) -> Void
+        var didMovePoint: (_ x: Int, _ y: Int, _ translation: CGSize, _ meshPoint: MeshPoint) -> Void
 
         var body: some View {
             GeometryReader { proxy in
@@ -172,8 +204,8 @@ struct MeshCreatorView: View {
                                 Spacer()
                                 let offset = (grid.height - 1)
                                 let isEdge = grid.isEdge(x: x, y: y)
-                                PointView(point: grid[x, offset - y], grid: $grid, selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation in
-                                    didMovePoint(x, offset - y, translation)
+                                PointView(point: grid[x, offset - y], grid: $grid, selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation, meshPoint in
+                                    didMovePoint(x, offset - y, translation, meshPoint)
                                 }
                                 Spacer()
                             }
@@ -191,7 +223,7 @@ struct MeshCreatorView: View {
             @Binding var selectedPoint: MeshColor?
             let proxy: GeometryProxy
             let isEdge: Bool
-            var didMove: (_ translation: CGSize) -> Void
+            var didMove: (_ translation: CGSize, _ point: MeshPoint) -> Void
 
             @State private var offset: CGSize = .zero
 
@@ -221,9 +253,9 @@ struct MeshCreatorView: View {
 
                                 width = min(0.3, max(-0.3, width))
                                 height = min(0.3, max(-0.3, height))
-
-                                point.location.x = Float(width) + point.startLocation.x
-                                point.location.y = -Float(height) + point.startLocation.y
+                                
+                                let meshPoint = MeshPoint(x: Float(width) + point.startLocation.x, y: -Float(height) + point.startLocation.y)
+                                point.location = meshPoint
 
                                 let offsetWidth = -proxy.size.width / CGFloat(grid.width)
                                 let offsetX = min(abs(offsetWidth) - 45, max(offsetWidth + 45, location.x))
@@ -232,7 +264,7 @@ struct MeshCreatorView: View {
                                 let offsetY = min(abs(offsetHeight) - 45, max(offsetHeight + 45, location.y))
                                 offset = CGSize(width: offsetX, height: offsetY)
 
-                                didMove(CGSize(width: width, height: 1 - height))
+                                didMove(CGSize(width: width, height: 1 - height), meshPoint)
                             })
                     )
             }

@@ -37,6 +37,7 @@
 		AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */; };
 		AAAE636B289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */; };
 		AAB267D428A1B89300421E1A /* ContentView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */; };
+		AABA42EB28BAC05C00D298EB /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */; };
 		AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */; };
 		AACCD48D289D8E62006551C1 /* Sebu in Frameworks */ = {isa = PBXBuildFile; productRef = AACCD48C289D8E62006551C1 /* Sebu */; };
 		AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD48E289DA639006551C1 /* VideoDownloadService.swift */; };
@@ -99,6 +100,7 @@
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
 		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
 		AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+OptionsView.swift"; sourceTree = "<group>"; };
+		AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
 		AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWindow.swift; sourceTree = "<group>"; };
 		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadService.swift; sourceTree = "<group>"; };
 		AACCD491289DA688006551C1 /* VideosManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosManagementView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				AA4BCF5528970A4B00D94F66 /* Info.plist */,
 				AA749C6528931EFB002CD39A /* AcrylicApp.swift */,
+				AABA42E928BAC05C00D298EB /* Intents */,
 				AA1F48E12899C1B8009E07A8 /* Views */,
 				AA1F48E32899C1CB009E07A8 /* Models */,
 				AA749C6928931EFC002CD39A /* Assets.xcassets */,
@@ -270,6 +273,15 @@
 				AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */,
 			);
 			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		AABA42E928BAC05C00D298EB /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */,
+			);
+			name = Intents;
+			path = ../../Intents;
 			sourceTree = "<group>";
 		};
 		AACCD490289DA688006551C1 /* VideosView */ = {
@@ -388,6 +400,7 @@
 				AACCD494289DA6CB006551C1 /* VideosManagementView+SidebarView.swift in Sources */,
 				AA278946289C4B15001E897B /* WallpaperService.swift in Sources */,
 				AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */,
+				AABA42EB28BAC05C00D298EB /* GenerateMeshIntent.swift in Sources */,
 				AA35B89F28A40F2900F7B190 /* OnboardingView+IntroView.swift in Sources */,
 				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
 				AA1A60E328A1895E00FB38DC /* VideosViewModel.swift in Sources */,

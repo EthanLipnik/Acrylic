@@ -20,8 +20,7 @@ struct MeshCreatorView: View {
     @State private var shouldShowOptions: Bool = false
     @State private var selectedPoint: MeshColor?
 
-    @State private var currentXOffset: CGFloat = 0
-    @State private var currentYOffset: CGFloat = 0
+    @State private var currentOffset: CGSize = .zero
 
     @State private var showSettings: Bool = false
 
@@ -126,23 +125,13 @@ struct MeshCreatorView: View {
         }
         .overlay(
             ZStack {
-                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation, meshPoint in
-                    currentXOffset = translation.width
-                    currentYOffset = translation.height
-                    
-                    colors[x, y].location = meshPoint
+                GrabberView(grid: $colors, selectedPoint: $selectedPoint) { x, y, translation, _ in
+                    currentOffset = translation
                 }
-                Slider(value: $currentXOffset, in: -5...5) {
-                    Text("x")
-                }
-                .hidden()
-
-                Slider(value: $currentYOffset, in: -5...5) {
-                    Text("y")
-                }
-                .hidden()
+                Text("\(currentOffset.width) \(currentOffset.height)").hidden()
             }
             .edgesIgnoringSafeArea([.bottom, .horizontal])
+            .allowsHitTesting(!shouldAnimate)
         )
         .onTapGesture {
             selectedPoint = nil
@@ -197,28 +186,30 @@ struct MeshCreatorView: View {
 
         var body: some View {
             GeometryReader { proxy in
-                HStack {
+                ZStack {
                     ForEach(0..<grid.width, id: \.self) { x in
-                        VStack {
-                            ForEach(0..<grid.height, id: \.self) { y in
-                                Spacer()
-                                let offset = (grid.height - 1)
-                                let isEdge = grid.isEdge(x: x, y: y)
-                                PointView(point: grid[x, offset - y], grid: $grid, selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation, meshPoint in
-                                    didMovePoint(x, offset - y, translation, meshPoint)
-                                }
-                                Spacer()
+                        ForEach(0..<grid.height, id: \.self) { y in
+                            let offset = (grid.height - 1)
+                            let isEdge = grid.isEdge(x: x, y: y)
+                            
+                            let xOffset = CGFloat(Int(proxy.size.width) * x) / CGFloat(grid.width - 1)
+                            let yOffset = CGFloat(Int(proxy.size.height) * y) / CGFloat(grid.height - 1)
+                            
+                            PointView(point: $grid[x, offset - y], grid: $grid, selectedPoint: $selectedPoint, proxy: proxy, isEdge: isEdge) { translation, meshPoint in
+                                didMovePoint(x, offset - y, translation, meshPoint)
                             }
+                            .offset(
+                                x: xOffset - (x + 1 == grid.width ? 60 : 0) + (x == 0 ? 30 : -30),
+                                y: yOffset - (y + 1 == grid.height ? 60 : 0) + (y == 0 ? 30 : -30)
+                            )
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
 
         struct PointView: View {
-            @State var point: MeshColor
+            @Binding var point: MeshColor
             @Binding var grid: MeshColorGrid
             @Binding var selectedPoint: MeshColor?
             let proxy: GeometryProxy

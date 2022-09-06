@@ -9,7 +9,7 @@ import SwiftUI
 import MeshKit
 
 struct MeshCreatorView: View {
-    @State private var meshRandomizer: MeshRandomizer? = nil
+    @State private var meshRandomizer: MeshRandomizer?
     @State private var colors: MeshColorGrid
 
     @State private var shouldAnimate: Bool = false
@@ -41,11 +41,11 @@ struct MeshCreatorView: View {
 
     var body: some View {
         MeshEditor(
-            colors: $colors, 
-            selectedPoint: $selectedPoint, 
+            colors: $colors,
+            selectedPoint: $selectedPoint,
             meshRandomizer: meshRandomizer,
-            grainAlpha: grainAlpha, 
-            subdivisions: subdivisions, 
+            grainAlpha: grainAlpha,
+            subdivisions: subdivisions,
             colorSpace: colorSpace.cgColorSpace
         )
         .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
@@ -53,16 +53,16 @@ struct MeshCreatorView: View {
         .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
-                Menu { 
+                Menu {
                     ForEach(Hue.allCases, id: \.self) { hue in
                         Menu {
-                            Button("Light") { 
+                            Button("Light") {
                                 newPalette(hue, luminosity: .light)
                             }
-                            Button("Dark") { 
+                            Button("Dark") {
                                 newPalette(hue, luminosity: .dark)
                             }
-                            Button("Vibrant") { 
+                            Button("Vibrant") {
                                 newPalette(hue, luminosity: .bright)
                             }
                         } label: {
@@ -71,10 +71,10 @@ struct MeshCreatorView: View {
                             newPalette(hue)
                         }
                     }
-                } label: { 
+                } label: {
                     Label("Randomize", systemImage: "arrow.triangle.2.circlepath")
-                } primaryAction: { 
-                    newPalette() 
+                } primaryAction: {
+                    newPalette()
                 }
             }
 
@@ -125,17 +125,17 @@ struct MeshCreatorView: View {
             selectedPoint = nil
         }
     }
-    
+
     func newPalette(_ palette: Hue? = nil, luminosity: Luminosity = .bright) {
         let oldColors = colors
         let colors = MeshKit.generate(palette: palette ?? .randomPalette(), luminosity: luminosity, size: .init(width: oldColors.width, height: oldColors.height))
-        
+
         for y in stride(from: 0, to: colors.width, by: 1) {
             for x in stride(from: 0, to: colors.height, by: 1) {
                 colors[x, y].location = oldColors[x, y].location
             }
         }
-        
+
         self.colors = colors
         meshRandomizer = .withMeshColors(self.colors)
     }

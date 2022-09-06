@@ -10,18 +10,54 @@ import SwiftUI
 @main
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
-
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
+    @State private var isImportingVideo: Bool = false
 
     var body: some Scene {
         WindowGroup {
             VideosManagementView()
                 .frame(minWidth: 700, minHeight: 500)
+                .fileImporter(isPresented: $isImportingVideo, allowedContentTypes: [.movie], allowsMultipleSelection: true, onCompletion: { result in
+                    do {
+                        switch result {
+                        case .success(let fileUrls):
+                            Task(priority: .high) {
+                                let downloadService = VideoDownloadService()
+                                try await fileUrls.concurrentForEach { fileUrl in
+                                    try await downloadService.importVideo(fileUrl)
+                                }
+                            }
+                        case .failure(let error):
+                            throw error
+                        }
+                    } catch {
+                        print(error)
+                    }
+                })
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
+        }
+        .commands {
+            ToolbarCommands()
+            SidebarCommands()
+
+            CommandGroup(after: .newItem) {
+                Button("Import Video...") {
+                    isImportingVideo.toggle()
+                }
+                .keyboardShortcut("i")
+            }
+
+            CommandGroup(replacing: .appInfo) {
+                Button(action: {
+                    appDelegate.showAboutPanel()
+                }) {
+                    Text("About Acrylic")
+                }
+            }
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.Videos.rawValue))
 
@@ -46,31 +82,6 @@ struct AcrylicApp: App {
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
-        .commands {
-            ToolbarCommands()
-
-            CommandGroup(after: .newItem) {
-                Button("Info...") {
-
-                }
-                .keyboardShortcut("i")
-
-                Divider()
-
-                Button("Export...") {
-
-                }
-                .keyboardShortcut("e")
-            }
-
-            CommandGroup(replacing: .appInfo) {
-                Button(action: {
-                    appDelegate.showAboutPanel()
-                }) {
-                    Text("About Acrylic")
-                }
-            }
-        }
     }
 }
 

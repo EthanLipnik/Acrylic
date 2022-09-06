@@ -18,6 +18,7 @@
 		AA35B89F28A40F2900F7B190 /* OnboardingView+IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */; };
 		AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */; };
 		AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B814B2896D8C20092D06A /* WallpaperWindow.swift */; };
+		AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA42606928C7D56300B67DE1 /* PixabayKit */; };
 		AA427C0128A09EFA009F9C44 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0028A09EFA009F9C44 /* WallpaperType.swift */; };
 		AA427C0328A09FEA009F9C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0228A09FEA009F9C44 /* ContentView.swift */; };
 		AA455E3A289826030010938A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* SettingsView.swift */; };
@@ -51,7 +52,6 @@
 		AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */; };
 		AAF6747128A4221100044BFD /* OnboardingView+FluidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */; };
 		AAF6747528A42E6B00044BFD /* OnboardingView+VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */; };
-		AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAFCAF18289CB2D900DADB45 /* PixabayKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,8 +121,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
-				AAFCAF19289CB2D900DADB45 /* PixabayKit in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
+				AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
 			);
@@ -315,9 +315,9 @@
 			name = Acrylic;
 			packageProductDependencies = (
 				AA7C86592893576B00D3469E /* MeshKit */,
-				AAFCAF18289CB2D900DADB45 /* PixabayKit */,
 				AACCD48C289D8E62006551C1 /* Sebu */,
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
+				AA42606928C7D56300B67DE1 /* PixabayKit */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -673,6 +673,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA42606928C7D56300B67DE1 /* PixabayKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PixabayKit;
+		};
 		AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
@@ -686,10 +690,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */;
 			productName = Sebu;
-		};
-		AAFCAF18289CB2D900DADB45 /* PixabayKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PixabayKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

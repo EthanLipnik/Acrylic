@@ -52,7 +52,11 @@ class VideosViewModel: ObservableObject {
     func getVideos() async throws {
         let contents = try FileManager.default.contentsOfDirectory(atPath: folder.path)
             .map({ folder.appendingPathComponent($0) })
-            .filter({ $0.pathExtension == "mp4" && $0.lastPathComponent.hasPrefix("Video ") })
+            .filter({ fileUrl in
+                let type = UTType(filenameExtension: fileUrl.pathExtension)
+                let isVideo = type?.isSubtype(of: .movie) ?? false
+                return isVideo && fileUrl.lastPathComponent.hasPrefix("Video ")
+            })
             .compactMap({ url -> (URL, String)? in
                 guard let id = url.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ").last else { return nil }
                 return (url, id)
@@ -133,12 +137,27 @@ extension Sequence {
     ) async throws -> [T] {
         let tasks = map { element in
             Task {
-    try await transform(element)
-}
+                try await transform(element)
+            }
         }
 
         return try await tasks.asyncMap { task in
             try await task.value
+        }
+    }
+
+    func concurrentForEach(
+        _ operation: @escaping (Element) async throws -> Void
+    ) async throws {
+        // A task group automatically waits for all of its
+        // sub-tasks to complete, while also performing those
+        // tasks in parallel:
+        await withThrowingTaskGroup(of: Void.self) { group in
+            for element in self {
+                group.addTask {
+                    try await operation(element)
+                }
+            }
         }
     }
 }

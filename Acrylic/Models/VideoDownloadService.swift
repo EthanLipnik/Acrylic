@@ -148,8 +148,8 @@ final class VideoDownloadService: ObservableObject {
     private func convert(_ url: URL) async throws -> URL {
         let asset = AVURLAsset(url: url)
 
-        let outputUrl = FileManager.default.temporaryDirectory.appendingPathComponent("output-\(Int(Date().timeIntervalSinceReferenceDate)).mp4")
-
+        let outputUrl = FileManager.default.temporaryDirectory.appendingPathComponent("output-\(Int(Date().timeIntervalSinceReferenceDate))-\(UUID().uuidString).mp4")
+        
         let preset = AVAssetExportPresetHEVCHighestQuality
         let outFileType = AVFileType.m4v
 
@@ -195,5 +195,26 @@ final class VideoDownloadService: ObservableObject {
         await exporter.export()
 
         return outputUrl
+    }
+    
+    func importVideo(_ url: URL) async throws {
+        let videoTitle = "Video \(UUID().uuidString)"
+        var destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension(url.pathExtension)
+        
+        let convertedFile: URL
+        if !UserDefaults.standard.bool(forKey: "shouldEnableVWCompression") {
+            convertedFile = url
+        } else {
+            do {
+                convertedFile = try await convert(url)
+                destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension("mp4")
+                print("Converted video", convertedFile.path)
+            } catch {
+                print(error)
+                convertedFile = url
+            }
+        }
+
+        try FileManager.default.moveItem(at: convertedFile, to: destinationUrl)
     }
 }

@@ -104,7 +104,7 @@ final class VideoDownloadService: ObservableObject {
             }
 
             let videoFile = FileManager.default.temporaryDirectory.appendingPathComponent("video-download-\(video.id).mp4")
-            let destinationUrl = folder.appendingPathComponent("Video \(video.id).mp4")
+            let destinationUrl = folder.appendingPathComponent("\(video.id).mp4")
 
             if FileManager.default.fileExists(atPath: videoFile.path) {
                 try FileManager.default.removeItem(at: videoFile)
@@ -198,7 +198,7 @@ final class VideoDownloadService: ObservableObject {
     }
     
     func importVideo(_ url: URL) async throws {
-        let videoTitle = "Video \(UUID().uuidString)"
+        let videoTitle = url.deletingPathExtension().lastPathComponent
         var destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension(url.pathExtension)
         
         let convertedFile: URL

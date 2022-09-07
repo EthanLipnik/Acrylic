@@ -23,33 +23,51 @@ extension VideosManagementView {
         @State var editorsChoice: Bool = true
         @State var selectedVideo: Video?
         @State var filter4k: Bool = true
+        @State var didFailToLoad: Bool = false
 
         @Binding var category: SearchCategory?
         private let pixabay = PixabayKit("PIXABAY_API_KEY")
 
         var body: some View {
             HStack(spacing: 0) {
-                ScrollView {
-                    LazyVGrid(columns: [.init(.adaptive(minimum: 150, maximum: 250))]) {
-                        ForEach(videos) { video in
-                            Button {
-                                selectedVideo = video
-                            } label: {
-                                VideoItemView(video: video)
-                                    .overlay(
-                                        selectedVideo == video ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.accentColor, lineWidth: 4) : nil
-                                    )
+                if didFailToLoad {
+                    VStack {
+                        Text("Failed to load videos")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity)
+                        Button("Retry") {
+                            didFailToLoad = false
+                            Task(priority: .high) {
+                                await search()
                             }
-                            .buttonStyle(.plain)
                         }
                     }
-                    .padding()
-                }
-                .shadow(radius: 8, y: 4)
-                .background(Color("Background"))
-                .frame(maxWidth: .infinity)
-                .onTapGesture {
-                    selectedVideo = nil
+                    .transition(.opacity)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: [.init(.adaptive(minimum: 150, maximum: 250))]) {
+                            ForEach(videos) { video in
+                                Button {
+                                    selectedVideo = video
+                                } label: {
+                                    VideoItemView(video: video)
+                                        .overlay(
+                                            selectedVideo == video ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.accentColor, lineWidth: 4) : nil
+                                        )
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding()
+                    }
+                    .shadow(radius: 8, y: 4)
+                    .background(Color("Background"))
+                    .frame(maxWidth: .infinity)
+                    .onTapGesture {
+                        selectedVideo = nil
+                    }
                 }
 
                 HStack {
@@ -63,6 +81,7 @@ extension VideosManagementView {
                 }.frame(width: 350)
             }
             .animation(.easeInOut, value: videos)
+            .animation(.easeInOut, value: didFailToLoad)
             .navigationTitle("Acrylic – Manage Videos")
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -195,6 +214,7 @@ extension VideosManagementView {
                 try? Sebu.default.save(videos, withName: cacheName, expiration: Calendar.current.date(byAdding: .hour, value: 24, to: Date()))
             } catch {
                 print(error)
+                didFailToLoad = true
             }
         }
     }

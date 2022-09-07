@@ -55,10 +55,10 @@ class VideosViewModel: ObservableObject {
             .filter({ fileUrl in
                 let type = UTType(filenameExtension: fileUrl.pathExtension)
                 let isVideo = type?.isSubtype(of: .movie) ?? false
-                return isVideo && fileUrl.lastPathComponent.hasPrefix("Video ")
+                return isVideo
             })
             .compactMap({ url -> (URL, String)? in
-                guard let id = url.deletingPathExtension().lastPathComponent.components(separatedBy: "Video ").last else { return nil }
+                guard let id = url.deletingPathExtension().lastPathComponent else { return nil }
                 return (url, id)
             })
 

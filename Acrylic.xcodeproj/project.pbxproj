@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
+		AA1702EA28D7C97B00B68F20 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */; };
 		AA1A60E328A1895E00FB38DC /* VideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */; };
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
+		AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AcrylicShortcuts.swift; path = "AcrylicShortcuts.swift"; sourceTree = "<group>"; };
 		AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewModel.swift; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */,
+				AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */,
 			);
 			name = Intents;
 			path = ../../Intents;
@@ -391,6 +394,7 @@
 				AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
+				AA1702EA28D7C97B00B68F20 /* AcrylicShortcuts.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,

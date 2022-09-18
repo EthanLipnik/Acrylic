@@ -58,7 +58,7 @@ class VideosViewModel: ObservableObject {
                 return isVideo
             })
             .compactMap({ url -> (URL, String)? in
-                guard let id = url.deletingPathExtension().lastPathComponent else { return nil }
+                let id = url.deletingPathExtension().lastPathComponent
                 return (url, id)
             })
 

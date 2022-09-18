@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MeshKit
 
 extension ContentView {
     struct OptionsView: View {
@@ -13,6 +14,9 @@ extension ContentView {
         @EnvironmentObject var wallpaperService: WallpaperService
         @StateObject var videosViewModel = VideosViewModel()
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
+        
+        @State private var isHoldingRandomizeButton: Bool = false
+        @State private var selectedHue: Hue?
 
         let popoverNotification = NotificationCenter.default
                     .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
@@ -20,29 +24,7 @@ extension ContentView {
         var body: some View {
             ScrollView(.horizontal) {
                 LazyHStack {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(Color.black
-                            .opacity(0.5)
-                            .blendMode(.overlay))
-                        .aspectRatio(16/10, contentMode: .fit)
-                        .overlay(Image(systemName: "dice.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding()
-                            .foregroundStyle(.secondary))
-                        .onTapGesture {
-                            guard !wallpaperService.isLoading else { return }
-
-                            switch selectedWallpaper {
-                            case .fluid, .nowPlaying:
-                                break
-                            case .video:
-                                currentVideoBackgroundId = videosViewModel.videos.randomElement()?.id ?? ""
-                                videosViewModel.updateWallpaper()
-                            case .none:
-                                break
-                            }
-                        }
+                    randomizeButton
 
                     switch selectedWallpaper {
                     case .fluid, .nowPlaying:
@@ -101,6 +83,44 @@ extension ContentView {
                     }
                 }
             }
+        }
+        
+        var randomizeButton: some View {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color.black
+                    .opacity(0.5)
+                    .blendMode(.overlay))
+                .aspectRatio(16/10, contentMode: .fit)
+                .overlay(Image(systemName: "dice.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding()
+                    .foregroundStyle(.secondary))
+                .scaleEffect(isHoldingRandomizeButton ? 0.9 : 1)
+                .animation(.spring(), value: isHoldingRandomizeButton)
+                .onTapGesture {
+                    isHoldingRandomizeButton = false
+                    guard !wallpaperService.isLoading else { return }
+                    
+                    switch selectedWallpaper {
+                    case .fluid, .nowPlaying:
+                        getFluidWindow()?.viewModel?.newPalette()
+                    case .video:
+                        currentVideoBackgroundId = videosViewModel.videos.randomElement()?.id ?? ""
+                        videosViewModel.updateWallpaper()
+                    case .none:
+                        break
+                    }
+                }
+                .onLongPressGesture(perform: {
+                    isHoldingRandomizeButton = true
+                }, onPressingChanged: { bool in
+                    isHoldingRandomizeButton = bool
+                })
+        }
+        
+        func getFluidWindow() -> FluidWindow? {
+            return NSApp.windows.compactMap({ $0 as? FluidWindow }).first
         }
     }
 }

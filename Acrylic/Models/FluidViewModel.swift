@@ -14,6 +14,7 @@ class FluidViewModel: ObservableObject {
     @Published var meshRandomizer: MeshRandomizer
     @Published var colors: MeshColorGrid
     @Published var timer: Timer?
+    @Published var currentPalette: Hue?
 
     private let fluidWallpapersFolder = FileManager.default
         .temporaryDirectory
@@ -65,14 +66,18 @@ class FluidViewModel: ObservableObject {
                 return .bright
             }
         }()
+        
+        let newPalette = palette ?? allowedPalettes.randomElement() ?? .monochrome
 
         colors = MeshKit.generate(
-            palette: palette ?? allowedPalettes.randomElement() ?? .monochrome,
+            palette: newPalette,
             luminosity: luminosity,
             size: MeshSize(width: 5, height: 5),
             withRandomizedLocations: true
         )
         meshRandomizer = .withMeshColors(colors)
+        
+        currentPalette = newPalette
 
         if shouldUpdateDesktopPicture {
             let animationSpeed = AnimationSpeed(rawValue: UserDefaults.standard.string(forKey: "FWAnimationSpeed") ?? "normal") ?? .normal

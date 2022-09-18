@@ -135,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				AA4AF8EF28A16686001F98D5 /* ContentView */,
-				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
 				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
 				AA278945289C4B15001E897B /* WallpaperService.swift */,
 				AA278947289C5A59001E897B /* Wallpaper Windows */,
@@ -220,6 +219,7 @@
 			children = (
 				AA4BCF5528970A4B00D94F66 /* Info.plist */,
 				AA749C6528931EFB002CD39A /* AcrylicApp.swift */,
+				AA38CB3028972A9500FF4909 /* NSAppDelegate.swift */,
 				AABA42E928BAC05C00D298EB /* Intents */,
 				AA1F48E12899C1B8009E07A8 /* Views */,
 				AA1F48E32899C1CB009E07A8 /* Models */,

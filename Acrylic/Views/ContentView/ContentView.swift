@@ -11,14 +11,16 @@ struct ContentView: View {
     @State private var selectedWallpaper: WallpaperType?
 
     let openAbout: () -> Void
+    let openOnboarding: () -> Void
     @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
     @State var canStartVideo: Bool = false
 
     let popoverNotification = NotificationCenter.default
                 .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
 
-    init(openAbout: @escaping () -> Void) {
+    init(openAbout: @escaping () -> Void, openOnboarding: @escaping () -> Void) {
         self.openAbout = openAbout
+        self.openOnboarding = openOnboarding
 
         let wallpaperService = WallpaperService.shared
         _selectedWallpaper = .init(initialValue: wallpaperService.selectedWallpaper)
@@ -141,6 +143,10 @@ struct ContentView: View {
             Button(action: openAbout) {
                 Label("About", systemImage: "info")
             }
+            
+            Button(action: openOnboarding) {
+                Label("Onboarding", systemImage: "circle.circle.fill")
+            }
 
             if #available(macOS 13.0, *) {
                 Divider()
@@ -228,6 +234,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView {}
+        ContentView(openAbout: {}, openOnboarding: {})
     }
 }

@@ -29,7 +29,10 @@ final class StatusBarController {
 
             let contentView = ContentView { [weak self] in
                 self?.appDelegate?.showAboutPanel()
+            } openOnboarding: { [weak self] in
+                self?.appDelegate?.showOnboarding()
             }.frame(width: 300)
+            
             let viewController = NSHostingController(rootView: contentView)
             let popover = NSPopover()
             popover.contentViewController = viewController

@@ -21,11 +21,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
 
         if !UserDefaults.standard.bool(forKey: "didShowOnboarding") {
-            let onboardingWindow = OnboardingWindow()
-            let onboardingController = NSWindowController(window: onboardingWindow)
-            onboardingController.showWindow(onboardingWindow)
-            onboardingWindow.makeKeyAndOrderFront(onboardingController)
-            onboardingWindow.center()
+            showOnboarding()
         }
     }
 
@@ -52,5 +48,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
         aboutBoxWindowController?.window?.makeKeyAndOrderFront(nil)
+    }
+    
+    func showOnboarding() {
+        let onboardingWindow = OnboardingWindow()
+        let onboardingController = NSWindowController(window: onboardingWindow)
+        onboardingController.showWindow(onboardingWindow)
+        onboardingWindow.makeKeyAndOrderFront(onboardingController)
+        onboardingWindow.center()
     }
 }

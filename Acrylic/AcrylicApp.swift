@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MeshKit
 
 @main
 struct AcrylicApp: App {
@@ -39,6 +40,9 @@ struct AcrylicApp: App {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
+                .onAppear {
+                    NSApp.setActivationPolicy(.regular)
+                }
         }
         .commands {
             ToolbarCommands()
@@ -71,7 +75,7 @@ struct AcrylicApp: App {
 
     var meshCreatorWindow: some Scene {
         WindowGroup("Mesh Creator") {
-            MeshCreatorView()
+            DeepLinkMeshCreatorView()
                 .navigationTitle("Acrylic – Mesh Creator")
                 .frame(minWidth: 400, minHeight: 400)
                 .onDisappear {
@@ -79,9 +83,33 @@ struct AcrylicApp: App {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
+                .onAppear {
+                    NSApp.setActivationPolicy(.regular)
+                }
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
+    }
+    
+    struct DeepLinkMeshCreatorView: View {
+        @State private var size: MeshSize? = nil
+        
+        var body: some View {
+            Group {
+                if let size {
+                    MeshCreatorView(size: size)
+                } else {
+                    ProgressView()
+                        .onOpenURL { url in
+                            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                            if let sizeStr = urlComponents?.queryItems?.first(where: { $0.name == "size" })?.value, 
+                                let size = Int(sizeStr) {
+                                self.size = MeshSize(width: size, height: size)
+                            }
+                        }
+                }
+            }
+        }
     }
 }
 
@@ -94,9 +122,21 @@ enum WindowManager: String, CaseIterable {
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
 
-    func open() {
-        if let url = URL(string: "acrylic://\(self.rawValue)") {
+    func open(query: URLQueryItem...) {
+        var urlComponents = URLComponents(string: urlStr)
+        urlComponents?.queryItems = query
+        if let url = urlComponents?.url {
             NSWorkspace.shared.open(url)
         }
+    }
+    
+    func open() {
+        if let url = URL(string: urlStr) {
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
+    var urlStr: String {
+        return "acrylic://\(self.rawValue)"
     }
 }

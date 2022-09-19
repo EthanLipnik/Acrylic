@@ -115,10 +115,38 @@ struct ContentView: View {
             .buttonStyle(.borderless)
             Spacer()
 
-            Button {
-                WindowManager.MeshCreator.open()
+            Menu {
+                Button("3x3") { 
+                    let query = URLQueryItem(name: "size", value: "3")
+                    WindowManager.MeshCreator.open(query: query)
+                }
+                
+                Button("4x4") { 
+                    let query = URLQueryItem(name: "size", value: "4")
+                    WindowManager.MeshCreator.open(query: query)
+                }
+                
+                Button("5x5") { 
+                    let query = URLQueryItem(name: "size", value: "5")
+                    WindowManager.MeshCreator.open(query: query)
+                }
+                
+                Button("6x6") { 
+                    let query = URLQueryItem(name: "size", value: "6")
+                    WindowManager.MeshCreator.open(query: query)
+                }
+                
+                Button("7x7") { 
+                    let query = URLQueryItem(name: "size", value: "7")
+                    WindowManager.MeshCreator.open(query: query)
+                }
+                
+                Button("8x8") { 
+                    let query = URLQueryItem(name: "size", value: "8")
+                    WindowManager.MeshCreator.open(query: query)
+                }
             } label: {
-                Image(systemName: "plus")
+                Label("Create Mesh", systemImage: "plus")
             }
 
             if #available(macOS 13.0, *) {
@@ -141,11 +169,19 @@ struct ContentView: View {
     var footerButtons: some View {
         Group {
             Button(action: openAbout) {
-                Label("About", systemImage: "info")
+                if #available(macOS 13.0, *) {
+                    Label("About", systemImage: "info")
+                } else {
+                    Image(systemName: "info")
+                }
             }
             
             Button(action: openOnboarding) {
-                Label("Onboarding", systemImage: "circle.circle.fill")
+                if #available(macOS 13.0, *) {
+                    Label("Onboarding", systemImage: "circle.circle.fill")
+                } else {
+                    Image(systemName: "circle.circle.fill")
+                }
             }
 
             if #available(macOS 13.0, *) {
@@ -155,7 +191,11 @@ struct ContentView: View {
             Button {
                 NSApplication.shared.terminate(self)
             } label: {
-                Label("Quit", systemImage: "xmark")
+                if #available(macOS 13.0, *) {
+                    Label("Quit", systemImage: "xmark")
+                } else {
+                    Image(systemName: "xmark")
+                }
             }
         }
     }

@@ -26,6 +26,8 @@ struct MeshCreatorView: View {
     @State private var shouldExport: Bool = false
     @State private var imageFile: ImageDocument?
     @State private var shouldExportFile: Bool = false
+    
+    @State private var currentImage: Image? = nil
 
     @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
@@ -33,8 +35,7 @@ struct MeshCreatorView: View {
         return NSColor.windowBackgroundColor
     }()
 
-    init() {
-        let size = MeshSize(width: 5, height: 5)
+    init(size: MeshSize = .init(width: 5, height: 5)) {
         let colors = MeshKit.generate(palette: .randomPalette(), size: size)
         _colors = .init(initialValue: colors)
     }
@@ -48,9 +49,17 @@ struct MeshCreatorView: View {
             subdivisions: subdivisions,
             colorSpace: colorSpace.cgColorSpace
         )
-        .background(Color(colors.elements.first?.color ?? defaultBackgroundColor).edgesIgnoringSafeArea(.all))
+        .background {
+            Group {
+                if let currentImage {
+                    currentImage
+                } else {
+                    Color(colors.elements.first?.color ?? defaultBackgroundColor)
+                }
+            }
+            .edgesIgnoringSafeArea(.all)
+        }
         .edgesIgnoringSafeArea([.bottom, .horizontal])
-        .animation(.easeInOut(duration: shouldAnimate ? 5 : 0.2), value: colors)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 Menu {
@@ -137,7 +146,21 @@ struct MeshCreatorView: View {
         }
 
         self.colors = colors
-        meshRandomizer = .withMeshColors(self.colors)
+        
+        if shouldAnimate {
+            meshRandomizer = .withMeshColors(self.colors)
+        }
+        
+        Task(priority: .userInitiated) {
+            do {
+                let url = try await colors.export()
+                if let nsImage = NSImage(contentsOfFile: url.path) {
+                    currentImage = Image(nsImage: nsImage)
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 
     struct OptionsView: View {

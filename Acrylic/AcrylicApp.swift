@@ -71,6 +71,7 @@ struct AcrylicApp: App {
         }
 
         meshCreatorWindow
+        stableDiffusionWindow
     }
 
     var meshCreatorWindow: some Scene {
@@ -89,6 +90,25 @@ struct AcrylicApp: App {
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
+    }
+    
+    var stableDiffusionWindow: some Scene {
+        WindowGroup("Stable Diffusion") {
+            StableDiffusionView()
+                .navigationTitle("Acrylic – Stable Diffusion")
+                .frame(minWidth: 400, minHeight: 400)
+                .onDisappear {
+                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                        NSApp.setActivationPolicy(.accessory)
+                    }
+                }
+                .onAppear {
+                    NSApp.setActivationPolicy(.regular)
+                }
+                .frame(width: 600, height: 480)
+        }
+        .windowResizability(.contentSize)
+        .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.StableDiffusion.rawValue))
     }
     
     struct DeepLinkMeshCreatorView: View {
@@ -121,6 +141,7 @@ enum WindowManager: String, CaseIterable {
     case Main = "MainView"
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
+    case StableDiffusion = "StableDiffusionView"
 
     func open(query: URLQueryItem...) {
         var urlComponents = URLComponents(string: urlStr)

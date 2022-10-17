@@ -33,6 +33,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             print(error)
         }
     }
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        return false
+    }
 
     func showAboutPanel() {
         if aboutBoxWindowController == nil {

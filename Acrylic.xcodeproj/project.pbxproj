@@ -14,6 +14,7 @@
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
 		AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278948289C5AC8001E897B /* VideoWindow.swift */; };
+		AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */; };
 		AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89A28A4075200F7B190 /* OnboardingWindow.swift */; };
 		AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89C28A407DF00F7B190 /* OnboardingView.swift */; };
 		AA35B89F28A40F2900F7B190 /* OnboardingView+IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */; };
@@ -50,7 +51,10 @@
 		AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2552898CE750023EB97 /* AnimationSpeed.swift */; };
 		AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */; };
 		AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADED2812898DD880023EB97 /* ServiceManagement.framework */; platformFilters = (macos, ); };
+		AAE1101728FD9D980066B6E3 /* BlurTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1101628FD9D980066B6E3 /* BlurTransition.swift */; };
+		AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */; };
 		AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */; };
+		AAED965428FA30720069B3D9 /* MapleDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = AAED965328FA30720069B3D9 /* MapleDiffusion */; };
 		AAF6747128A4221100044BFD /* OnboardingView+FluidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */; };
 		AAF6747528A42E6B00044BFD /* OnboardingView+VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +79,7 @@
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
+		AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionView.swift; sourceTree = "<group>"; };
 		AA35B89A28A4075200F7B190 /* OnboardingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindow.swift; sourceTree = "<group>"; };
 		AA35B89C28A407DF00F7B190 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+IntroView.swift"; sourceTree = "<group>"; };
@@ -112,6 +117,8 @@
 		AADED2552898CE750023EB97 /* AnimationSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSpeed.swift; sourceTree = "<group>"; };
 		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperColorScheme.swift; sourceTree = "<group>"; };
 		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		AAE1101628FD9D980066B6E3 /* BlurTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTransition.swift; sourceTree = "<group>"; };
+		AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLModelDownloader.swift; sourceTree = "<group>"; };
 		AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SelectedItemView.swift"; sourceTree = "<group>"; };
 		AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+FluidView.swift"; sourceTree = "<group>"; };
 		AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+VideoView.swift"; sourceTree = "<group>"; };
@@ -126,6 +133,7 @@
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
 				AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
+				AAED965428FA30720069B3D9 /* MapleDiffusion in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +144,7 @@
 		AA1F48E12899C1B8009E07A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1101528FD9D7C0066B6E3 /* Animations */,
 				AA4AF8EF28A16686001F98D5 /* ContentView */,
 				AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */,
 				AA278945289C4B15001E897B /* WallpaperService.swift */,
@@ -147,6 +156,7 @@
 				AA1F48E42899C301009E07A8 /* AboutView.swift */,
 				AAAE6365289E017B000ED2F0 /* SettingsView */,
 				AACCD490289DA688006551C1 /* VideosView */,
+				AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +164,7 @@
 		AA1F48E32899C1CB009E07A8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */,
 				AA427C0028A09EFA009F9C44 /* WallpaperType.swift */,
 				AADED2552898CE750023EB97 /* AnimationSpeed.swift */,
 				AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */,
@@ -299,6 +310,14 @@
 			path = VideosView;
 			sourceTree = "<group>";
 		};
+		AAE1101528FD9D7C0066B6E3 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1101628FD9D980066B6E3 /* BlurTransition.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +340,7 @@
 				AACCD48C289D8E62006551C1 /* Sebu */,
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
 				AA42606928C7D56300B67DE1 /* PixabayKit */,
+				AAED965328FA30720069B3D9 /* MapleDiffusion */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -353,6 +373,7 @@
 			packageReferences = (
 				AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */,
 				AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				AAED965228FA30720069B3D9 /* XCRemoteSwiftPackageReference "maple-diffusion" */,
 			);
 			productRefGroup = AA749C6328931EFB002CD39A /* Products */;
 			projectDirPath = "";
@@ -387,6 +408,7 @@
 				AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */,
 				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
 				AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */,
+				AAE1101728FD9D980066B6E3 /* BlurTransition.swift in Sources */,
 				AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */,
@@ -396,7 +418,9 @@
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
 				AA1702EA28D7C97B00B68F20 /* AcrylicShortcuts.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
+				AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
+				AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,
 				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,
 				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
@@ -539,6 +563,7 @@
 		AA749C7228931EFC002CD39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
@@ -547,7 +572,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 86;
+				CURRENT_PROJECT_VERSION = 87;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -571,7 +596,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -588,6 +612,7 @@
 		AA749C7328931EFC002CD39A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Acrylic/Acrylic.entitlements;
@@ -596,7 +621,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 86;
+				CURRENT_PROJECT_VERSION = 87;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -620,7 +645,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -674,6 +698,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		AAED965228FA30720069B3D9 /* XCRemoteSwiftPackageReference "maple-diffusion" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mortenjust/maple-diffusion/";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -694,6 +726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */;
 			productName = Sebu;
+		};
+		AAED965328FA30720069B3D9 /* MapleDiffusion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAED965228FA30720069B3D9 /* XCRemoteSwiftPackageReference "maple-diffusion" */;
+			productName = MapleDiffusion;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -94,7 +94,7 @@ struct AcrylicApp: App {
     
     var stableDiffusionWindow: some Scene {
         WindowGroup("Stable Diffusion") {
-            StableDiffusionView()
+            StableDiffusionDownloaderView()
                 .navigationTitle("Acrylic – Stable Diffusion")
                 .frame(minWidth: 400, minHeight: 400)
                 .onDisappear {

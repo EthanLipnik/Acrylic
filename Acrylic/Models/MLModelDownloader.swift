@@ -27,9 +27,14 @@ class MLModelDownloader: NSObject, ObservableObject, URLSessionDownloadDelegate 
     func download() throws {
         print("Downloading model")
         let tempDirectory = FileManager.default.temporaryDirectory
+        let applicationSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         
         if !FileManager.default.fileExists(atPath: tempDirectory.path) {
             try FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
+        }
+        
+        if !FileManager.default.fileExists(atPath: applicationSupportDirectory.path) {
+            try FileManager.default.createDirectory(at: applicationSupportDirectory, withIntermediateDirectories: true)
         }
         
         var downloadRequest = URLRequest(url: url)
@@ -83,6 +88,11 @@ class MLModelDownloader: NSObject, ObservableObject, URLSessionDownloadDelegate 
             }
             
             try FileManager.default.unzipItem(at: location, to: unzipLocation)
+            
+            if !FileManager.default.fileExists(atPath: destination.deletingLastPathComponent().path) {
+                try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
+            }
+            
             try FileManager.default.moveItem(at: unzipLocation.appendingPathComponent(destination.lastPathComponent), to: destination)
             
             didComplete = true

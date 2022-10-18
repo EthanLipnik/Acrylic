@@ -38,6 +38,15 @@ struct SettingsView: View {
                 Label("Video", systemImage: "play.rectangle.fill")
             }
             .tag(2)
+
+            FormView {
+                StableDiffusionView()
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .tabItem {
+                Label("Stable Diffusion", systemImage: "text.below.photo.fill")
+            }
+            .tag(3)
         }
     }
 
@@ -65,15 +74,15 @@ struct SettingsView: View {
         let footerView: AnyView?
 
         init(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header) {
-            self.contentView = content()
-            self.headerView = header()
-            self.footerView = nil
+            contentView = content()
+            headerView = header()
+            footerView = nil
         }
 
         init<Footer: View>(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
-            self.contentView = content()
-            self.headerView = header()
-            self.footerView = AnyView(footer())
+            contentView = content()
+            headerView = header()
+            footerView = AnyView(footer())
         }
 
         var body: some View {
@@ -93,7 +102,6 @@ struct SettingsView: View {
                         } header: {
                             headerView
                         }
-
                     }
                 } else {
                     GroupBox {
@@ -122,7 +130,7 @@ struct MacSettingsView_Previews: PreviewProvider {
 extension View {
     @ViewBuilder
     func groupedForm() -> some View {
-        self.modifier(GroupedFormViewModifier())
+        modifier(GroupedFormViewModifier())
     }
 }
 

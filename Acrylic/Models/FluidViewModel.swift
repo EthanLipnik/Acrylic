@@ -5,10 +5,10 @@
 //  Created by Ethan Lipnik on 8/3/22.
 //
 
+import AppKit
 import Foundation
 import MeshKit
 import SwiftUI
-import AppKit
 
 class FluidViewModel: ObservableObject {
     @Published var meshRandomizer: MeshRandomizer
@@ -22,13 +22,13 @@ class FluidViewModel: ObservableObject {
     var shouldUpdateDesktopPicture: Bool = false
 
     var allowedPalettes: [Hue] {
-        return Hue.allCases.filter({ !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled") })
+        return Hue.allCases.filter { !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled") }
     }
 
     init() {
         let colors = MeshKit.generate(palette: .monochrome, luminosity: .dark)
         self.colors = colors
-        self.meshRandomizer = .withMeshColors(colors)
+        meshRandomizer = .withMeshColors(colors)
 
         do {
             if FileManager.default.fileExists(atPath: fluidWallpapersFolder.path) {
@@ -54,7 +54,7 @@ class FluidViewModel: ObservableObject {
     func newPalette(_ palette: Hue? = nil) {
         let luminosity: Luminosity = {
             let interfaceStyle = InterfaceStyle()
-            let wallpaperColorScheme =  WallpaperColorScheme(rawValue: UserDefaults.standard.string(forKey: "FWColorScheme") ?? "system")
+            let wallpaperColorScheme = WallpaperColorScheme(rawValue: UserDefaults.standard.string(forKey: "FWColorScheme") ?? "system")
             switch wallpaperColorScheme {
             case .light:
                 return .light
@@ -66,7 +66,7 @@ class FluidViewModel: ObservableObject {
                 return .bright
             }
         }()
-        
+
         let newPalette = palette ?? allowedPalettes.randomElement() ?? .monochrome
 
         colors = MeshKit.generate(
@@ -76,7 +76,7 @@ class FluidViewModel: ObservableObject {
             withRandomizedLocations: true
         )
         meshRandomizer = .withMeshColors(colors)
-        
+
         currentPalette = newPalette
 
         if shouldUpdateDesktopPicture {
@@ -128,7 +128,7 @@ class FluidViewModel: ObservableObject {
         guard timer != nil else { return }
 
         try? FileManager.default.contentsOfDirectory(atPath: fluidWallpapersFolder.path)
-            .map({ fluidWallpapersFolder.appendingPathComponent($0) })
+            .map { fluidWallpapersFolder.appendingPathComponent($0) }
             .forEach { url in
                 try? FileManager.default.removeItem(at: url)
             }

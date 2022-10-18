@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/6/22.
 //
 
-import SwiftUI
 import ServiceManagement
+import SwiftUI
 
 extension SettingsView {
     struct GeneralView: View {
@@ -20,8 +20,6 @@ extension SettingsView {
                         Text("Launch Acrylic on system startup")
                     }
                     .onChange(of: launchAtLogin) { newValue in
-                        let bundleId = "com.ethanlipnik.Acrylic.AutoLauncher"
-                        
                         do {
                             let item = SMAppService.mainApp
                             if newValue {

@@ -154,27 +154,17 @@ struct ContentView: View {
             .buttonStyle(.borderless)
 
             Spacer()
-
-            if #available(macOS 13.0, *) {
-                Menu {
-                    footerButtons
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                }
-                .buttonStyle(.borderless)
-            } else {
-                HStack {
-                    footerButtons
-                }
+            
+            Menu {
+                footerButtons
+            } label: {
+                Image(systemName: "ellipsis.circle")
             }
-
+            .buttonStyle(.borderless)
+            
             Button {
-                if #available(macOS 13.0, *) {
-                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-                } else {
-                    NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                }
-
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
                 Image(systemName: "gearshape")
@@ -188,33 +178,19 @@ struct ContentView: View {
     var footerButtons: some View {
         Group {
             Button(action: openAbout) {
-                if #available(macOS 13.0, *) {
-                    Label("About", systemImage: "info")
-                } else {
-                    Image(systemName: "info")
-                }
+                Label("About", systemImage: "info")
             }
-
+            
             Button(action: openOnboarding) {
-                if #available(macOS 13.0, *) {
-                    Label("Onboarding", systemImage: "circle.circle.fill")
-                } else {
-                    Image(systemName: "circle.circle.fill")
-                }
+                Label("Onboarding", systemImage: "circle.circle.fill")
             }
-
-            if #available(macOS 13.0, *) {
-                Divider()
-            }
+            
+            Divider()
 
             Button {
                 NSApplication.shared.terminate(self)
             } label: {
-                if #available(macOS 13.0, *) {
-                    Label("Quit", systemImage: "xmark")
-                } else {
-                    Image(systemName: "xmark")
-                }
+                Label("Quit", systemImage: "xmark")
             }
         }
     }

@@ -163,34 +163,17 @@ extension SettingsView {
                                 .tag($0.rawValue)
                         }
                     } label: {
-                        if #available(macOS 13.0, *) {
-                            Text("Transition Interval")
-                            Text("How often the palette changes")
-                        } else {
-                            VStack(alignment: .leading) {
-                                Text("Transition Interval")
-                                Text("How often the palette changes")
-                                    .font(.callout)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
+                        Text("Transition Interval")
+                        Text("How often the palette changes")
                     }
                     .pickerStyle(.menu)
-
-                    if #available(macOS 13.0, *) {
-                        DisclosureGroup(isExpanded: $isShowingPalettes) {
-                            ForEach(selectedHues.indices, id: \.self) { index in
-                                Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
-                            }
-                        } label: {
-                            Toggle("All Palettes", sources: $selectedHues, isOn: \.isOn)
+                    
+                    DisclosureGroup(isExpanded: $isShowingPalettes) {
+                        ForEach(selectedHues.indices, id: \.self) { index in
+                            Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
                         }
-                    } else {
-                        VStack(alignment: .leading) {
-                            ForEach(selectedHues.indices, id: \.self) { index in
-                                Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
-                            }
-                        }
+                    } label: {
+                        Toggle("All Palettes", sources: $selectedHues, isOn: \.isOn)
                     }
                 } header: {
                     Label {

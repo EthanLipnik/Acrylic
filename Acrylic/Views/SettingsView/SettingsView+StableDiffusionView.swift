@@ -128,6 +128,8 @@ extension SettingsView {
                 withAnimation(.none) {
                     hasImageModel = FileManager.default.fileExists(atPath: imageModelDestination.path)
                     hasUpscaleModel = FileManager.default.fileExists(atPath: upscaleModelDestination.path)
+                    
+                    print(imageModelDestination.path)
                 }
             }
         }

@@ -5,14 +5,17 @@
 //  Created by Ethan Lipnik on 10/14/22.
 //
 
-import SwiftUI
-import MapleDiffusion
+// import MapleDiffusion
 import Combine
+import SwiftUI
 import UniformTypeIdentifiers
 
 struct StableDiffusionView: View {
-    @StateObject var mapleDiffusion = MapleDiffusion(saveMemoryButBeSlower: false)
-    
+    @StateObject var mapleDiffusion = MapleDiffusion(
+        saveMemoryButBeSlower: false,
+        modelFolder: FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("StableDiffusion/bins")
+    )
+
     let dispatchQueue = DispatchQueue(label: "Generation")
     @State private var steps: Float = 20
     @State private var image: Image?
@@ -22,42 +25,40 @@ struct StableDiffusionView: View {
     @State private var running: Bool = false
     @State private var progressProp: Float = 1
     @State private var progressStage: String = "Ready"
-    @State private var seed : Int = 42
+    @State private var seed: Int = 42
     @State private var photoToSave: URL? = nil
-    
+
     @State var bin = Set<AnyCancellable>()
-    
+
     func generate() throws {
         running = true
         progressStage = ""
         progressProp = 0
-        
+
         try mapleDiffusion.generate(prompt: prompt, negativePrompt: negativePrompt, seed: seed, steps: Int(steps), guidanceScale: guidanceScale)
-        
-            .sink(receiveCompletion: { completion in
-                running = false
-            },
-                  receiveValue:  { result in
-                if let i = result.image {
-                    image = Image(i, scale: 1, label: Text("Generated Image"))
-                    
-                    if result.stage == "Cooling down..." {
-                        let url = FileManager.default.temporaryDirectory.appendingPathComponent("image.png")
-                        print(url.path)
-                        if let destination = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil) {
-                            CGImageDestinationAddImage(destination, i, nil)
-                            CGImageDestinationFinalize(destination)
-                        }
-                    }
-                }
-                print("stage", result.stage)
-                progressStage = result.stage
-                progressProp = Float(result.progress)
-            }).store(in: &bin)
-        
+
+            .sink(receiveCompletion: { _ in
+                      running = false
+                  },
+                  receiveValue: { result in
+                      if let i = result.image {
+                          image = Image(i, scale: 1, label: Text("Generated Image"))
+
+                          if result.stage == "Cooling down..." {
+                              let url = FileManager.default.temporaryDirectory.appendingPathComponent("image.png")
+                              print(url.path)
+                              if let destination = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil) {
+                                  CGImageDestinationAddImage(destination, i, nil)
+                                  CGImageDestinationFinalize(destination)
+                              }
+                          }
+                      }
+                      print("stage", result.stage)
+                      progressStage = result.stage
+                      progressProp = Float(result.progress)
+                  }).store(in: &bin)
     }
-    
-    
+
     var body: some View {
         VStack {
             HStack(spacing: 20) {
@@ -74,11 +75,11 @@ struct StableDiffusionView: View {
                                 )
                                 .fill(Color(.textBackgroundColor))
                             }
-                            .aspectRatio(1/1, contentMode: .fit)
+                            .aspectRatio(1 / 1, contentMode: .fit)
                     }
                     .transition(.blur)
                 }
-                
+
                 VStack(alignment: .leading) {
                     Text("Render")
                         .bold()
@@ -106,15 +107,15 @@ struct StableDiffusionView: View {
                 }
             }
             .padding(.bottom)
-            
+
             Spacer()
-            
+
             HStack {
                 Text("Negative Prompt").bold()
                 TextField("What you don't want", text: $negativePrompt)
                     .textFieldStyle(.roundedBorder)
             }
-            
+
             HStack {
                 HStack {
                     HStack {
@@ -124,7 +125,7 @@ struct StableDiffusionView: View {
                             .foregroundColor(.secondary)
                     }
                     .frame(width: 70, alignment: .leading)
-                    Slider(value: $guidanceScale, in: 1...20)
+                    Slider(value: $guidanceScale, in: 1 ... 20)
                 }
                 HStack {
                     Text("Seed").bold()
@@ -132,7 +133,7 @@ struct StableDiffusionView: View {
                         .textFieldStyle(.roundedBorder)
                         .frame(maxWidth: 180)
                     Button {
-                        seed = Int.random(in: 1...Int.max)
+                        seed = Int.random(in: 1 ... Int.max)
                     } label: {
                         Image(systemName: "arrow.clockwise.circle.fill")
                     }
@@ -148,12 +149,12 @@ struct StableDiffusionView: View {
                         .foregroundColor(.secondary)
                 }
                 .frame(width: 70, alignment: .leading)
-                Slider(value: $steps, in: 5...150)
+                Slider(value: $steps, in: 5 ... 150)
             }
-            
+
             if running {
                 Spacer()
-                
+
                 ProgressView(progressStage, value: progressProp, total: 1)
                     .foregroundColor(.secondary)
             }
@@ -161,13 +162,11 @@ struct StableDiffusionView: View {
         .animation(.spring(), value: running)
         .padding()
         .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
-                if let photoToSave {
-                    ShareLink("Share Image", item: photoToSave)
-                        .buttonStyle(.bordered)
-                        .controlSize(.large)
-                }
-                
+//            if let photoToSave {
+//                ShareLink("Share Image", item: photoToSave)
+//            }
+
+            ToolbarItem(placement: .primaryAction) {
                 Button {
                     do {
                         try generate()
@@ -184,10 +183,10 @@ struct StableDiffusionView: View {
             switch newState {
             case .notStarted:
                 print("Model not started")
-            case .modelIsLoading(progress: let progress):
+            case let .modelIsLoading(progress: progress):
                 running = true
                 print("model loading", progress.message, progress.fractionCompleted)
-                progressProp = Float( progress.fractionCompleted)
+                progressProp = Float(progress.fractionCompleted)
                 progressStage = progress.message
             case .ready:
                 print("model ready")

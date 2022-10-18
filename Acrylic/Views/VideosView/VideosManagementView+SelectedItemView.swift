@@ -25,7 +25,7 @@ extension VideosManagementView {
                     } else {
                         RoundedRectangle(cornerRadius: 5, style: .continuous)
                             .fill(.secondary)
-                            .aspectRatio(16/9, contentMode: .fit)
+                            .aspectRatio(16 / 9, contentMode: .fit)
                     }
                 }
                 .shadow(radius: 8, y: 4)
@@ -114,7 +114,7 @@ extension VideosManagementView {
 
                     if let state {
                         switch state {
-                        case .downloading(let progress, _):
+                        case let .downloading(progress, _):
                             ProgressView(value: progress, total: .init(1))
                                 .progressViewStyle(.linear)
                         case .processing, .notStarted:
@@ -131,7 +131,7 @@ extension VideosManagementView {
                             } label: {
                                 Image(systemName: "trash")
                             }.disabled(video == nil)
-                        case .failed(let error):
+                        case let .failed(error):
                             Text("Failed to download. " + error.localizedDescription)
                         }
                     }

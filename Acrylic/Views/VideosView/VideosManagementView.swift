@@ -5,10 +5,10 @@
 //  Created by Ethan Lipnik on 8/5/22.
 //
 
-import SwiftUI
-import PixabayKit
 import AVKit
+import PixabayKit
 import Sebu
+import SwiftUI
 
 struct VideosManagementView: View {
     @State private var selectedCategory: SearchCategory? = .backgrounds

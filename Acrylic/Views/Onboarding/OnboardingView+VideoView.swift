@@ -18,7 +18,7 @@ extension OnboardingView {
                 Image("VideoThumbnail")
                     .resizable()
                     .frame(width: 300)
-                    .aspectRatio(16/10, contentMode: .fit)
+                    .aspectRatio(16 / 10, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .shadow(radius: 15, y: 8)
                 Text("Video Wallpaper")
@@ -34,9 +34,9 @@ extension OnboardingView {
                 Spacer()
 
                 Button("Launch Acrylic in the Menu Bar", action: closeWindow)
-                .controlSize(.large)
-                .buttonBorderShape(.roundedRectangle)
-                .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .buttonBorderShape(.roundedRectangle)
+                    .buttonStyle(.borderedProminent)
             }
             .padding(30)
         }

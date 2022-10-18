@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/20/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 import UniformTypeIdentifiers
 
 extension MeshCreatorView {
@@ -35,11 +35,11 @@ extension MeshCreatorView {
                 case .square:
                     return 1
                 case .classic:
-                    return 4/3
+                    return 4 / 3
                 case .standard:
-                    return 16/9
+                    return 16 / 9
                 case .wide:
-                    return 2/1
+                    return 2 / 1
                 }
             }
         }
@@ -229,7 +229,7 @@ struct ImageDocument: FileDocument {
         self.image = image
     }
 
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+    func fileWrapper(configuration _: WriteConfiguration) throws -> FileWrapper {
         guard let data = image.pngData else { throw CocoaError(.fileNoSuchFile) }
         return .init(regularFileWithContents: data)
     }

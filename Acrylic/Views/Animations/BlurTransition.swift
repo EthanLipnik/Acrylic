@@ -17,23 +17,23 @@ public struct BlurModifier: ViewModifier {
     }
 }
 
-extension AnyTransition {
-    public static var blur: AnyTransition {
+public extension AnyTransition {
+    static var blur: AnyTransition {
         .blur()
     }
-    
-    public static func blur(
+
+    static func blur(
         intensity: CGFloat = 5,
         scale: CGFloat = 0.8,
         scaleAnimation animation: Animation = .spring()
     ) -> AnyTransition {
         .scale(scale: scale)
-        .animation(animation)
-        .combined(
-            with: .modifier(
-                active: BlurModifier(isIdentity: true, intensity: intensity),
-                identity: BlurModifier(isIdentity: false, intensity: intensity)
+            .animation(animation)
+            .combined(
+                with: .modifier(
+                    active: BlurModifier(isIdentity: true, intensity: intensity),
+                    identity: BlurModifier(isIdentity: false, intensity: intensity)
+                )
             )
-        )
     }
 }

@@ -5,16 +5,16 @@
 //  Created by Ethan Lipnik on 8/6/22.
 //
 
-import SwiftUI
-import RandomColor
 import MeshKit
+import RandomColor
+import SwiftUI
 
 extension SettingsView {
     struct FluidWallpaperView: View {
         struct HueToggle: Hashable {
             init(_ hue: Hue) {
                 self.hue = hue
-                self.isOn = {
+                isOn = {
                     let id = "isWallpaperPalette-\(hue.displayTitle)Disabled"
                     return !UserDefaults.standard.bool(forKey: id)
                 }()
@@ -82,7 +82,7 @@ extension SettingsView {
         @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
         @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true
         @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-        @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+        @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = .init(MeshDefaults.grainAlpha)
         @AppStorage("FWFramerate") private var fwFramerate: Int = 30
 
         var body: some View {
@@ -106,7 +106,7 @@ extension SettingsView {
                     }
                     .pickerStyle(.menu)
 
-                    Slider(value: $wallpaperGrainAlpha, in: 0.01...0.25) {
+                    Slider(value: $wallpaperGrainAlpha, in: 0.01 ... 0.25) {
                         Text("Grain")
                     }
 

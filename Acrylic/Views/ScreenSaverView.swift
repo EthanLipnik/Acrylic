@@ -5,10 +5,10 @@
 //  Created by Ethan Lipnik on 7/28/22.
 //
 
-import SwiftUI
-import MeshKit
 import Combine
+import MeshKit
 import RandomColor
+import SwiftUI
 
 struct ScreenSaverView: View {
     @EnvironmentObject var viewModel: FluidViewModel
@@ -17,7 +17,7 @@ struct ScreenSaverView: View {
     @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
     @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
     @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-    @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = Double(MeshDefaults.grainAlpha)
+    @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = .init(MeshDefaults.grainAlpha)
     @AppStorage("FWFramerate") private var fwFramerate: Int = 30
     @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
@@ -64,8 +64,8 @@ struct ScreenSaverView: View {
             Button("New Color") {
                 viewModel.newPalette()
             }
-                .keyboardShortcut(.space, modifiers: [])
-                .hidden()
+            .keyboardShortcut(.space, modifiers: [])
+            .hidden()
         )
     }
 }

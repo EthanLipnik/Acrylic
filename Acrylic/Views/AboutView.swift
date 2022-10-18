@@ -12,7 +12,7 @@ struct AboutView: View {
         VStack {
             Image("Icon")
                 .resizable()
-                .aspectRatio(1/1, contentMode: .fit)
+                .aspectRatio(1 / 1, contentMode: .fit)
                 .frame(maxWidth: 100)
             Text("Acrylic")
                 .font(.largeTitle)
@@ -101,7 +101,7 @@ struct AboutView: View {
                 HStack {
                     AsyncImage(url: profilePic) { phase in
                         switch phase {
-                        case .success(let image):
+                        case let .success(image):
                             image
                                 .resizable()
                         case .failure:
@@ -112,7 +112,7 @@ struct AboutView: View {
                             Color.secondary
                         }
                     }
-                    .aspectRatio(1/1, contentMode: .fit)
+                    .aspectRatio(1 / 1, contentMode: .fit)
                     .frame(height: 45)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
 

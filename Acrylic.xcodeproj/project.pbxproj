@@ -81,8 +81,8 @@
 		AA0B118A28FDB7D80086277A /* MapleDiffusion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapleDiffusion.swift; sourceTree = "<group>"; };
 		AA0B118B28FDB7D80086277A /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AA0B118C28FDB7D80086277A /* BPETokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPETokenizer.swift; sourceTree = "<group>"; };
-		AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView+StableDiffusionView.swift"; path = "../../../../../../../../../../Macintosh HD/Users/ethan/Developer/Apps/Acrylic/macOS/Acrylic/Views/SettingsView/SettingsView+StableDiffusionView.swift"; sourceTree = "<group>"; };
-		AA0B119728FDDBEE0086277A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URL+Extensions.swift"; path = "../../../../../../../../../Macintosh HD/Users/ethan/Developer/Apps/Acrylic/macOS/Acrylic/Extensions/URL+Extensions.swift"; sourceTree = "<group>"; };
+		AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+StableDiffusionView.swift"; sourceTree = "<group>"; };
+		AA0B119728FDDBEE0086277A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
 		AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
@@ -645,7 +645,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 87;
+				CURRENT_PROJECT_VERSION = 88;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -669,6 +669,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -694,7 +695,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 87;
+				CURRENT_PROJECT_VERSION = 88;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -718,6 +719,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethanlipnik.Acrylic;
 				PRODUCT_NAME = "$(TARGET_NAME)";

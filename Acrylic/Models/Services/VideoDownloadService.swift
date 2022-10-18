@@ -172,10 +172,10 @@ final class VideoDownloadService: ObservableObject {
         exporter.outputFileType = outFileType
         exporter.outputURL = outputUrl
 
-        if let track = asset.tracks(withMediaType: AVMediaType.video).first {
-            let bps = track.estimatedDataRate
+        if let track = try await asset.loadTracks(withMediaType: AVMediaType.video).first {
+            let bps = try await track.load(.estimatedDataRate)
 
-            let duration = asset.duration.seconds
+            let duration = try await asset.load(.duration).seconds
 
             let fileSize = Double(bps) * duration / 8
 

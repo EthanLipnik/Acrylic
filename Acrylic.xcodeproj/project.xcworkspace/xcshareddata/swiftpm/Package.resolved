@@ -3,7 +3,7 @@
     {
       "identity" : "maple-diffusion",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mortenjust/maple-diffusion/",
+      "location" : "git@github.com:mortenjust/maple-diffusion.git",
       "state" : {
         "branch" : "main",
         "revision" : "6e1c06d3a18d5d51a013fac60e6e8dc17addd9e6"

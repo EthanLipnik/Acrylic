@@ -27,10 +27,15 @@ struct StableDiffusionView: View {
     @State private var progressStage: String = "Ready"
     @State private var seed: Int = 42
     @State private var photoToSave: URL? = nil
+    
+    @State private var imageFile: ImageDocument?
+    @State private var shouldExportFile: Bool = false
 
     @State var bin = Set<AnyCancellable>()
 
     func generate() throws {
+        guard !prompt.isEmpty else { return }
+        
         running = true
         progressStage = ""
         progressProp = 0
@@ -45,11 +50,16 @@ struct StableDiffusionView: View {
                           image = Image(i, scale: 1, label: Text("Generated Image"))
 
                           if result.stage == "Cooling down..." {
-                              let url = FileManager.default.temporaryDirectory.appendingPathComponent("image.png")
+                              let url = FileManager.default.temporaryDirectory.appendingPathComponent("Image.png")
                               print(url.path)
                               if let destination = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil) {
                                   CGImageDestinationAddImage(destination, i, nil)
                                   CGImageDestinationFinalize(destination)
+                                  
+                                  if let image = NSImage(contentsOfFile: url.path()) {
+                                      imageFile = .init(image: image)
+                                      photoToSave = url
+                                  }
                               }
                           }
                       }
@@ -67,6 +77,13 @@ struct StableDiffusionView: View {
                         Text("Prompt")
                             .bold()
                         TextEditor(text: $prompt)
+                            .overlay(alignment: .topLeading) {
+                                if prompt.isEmpty {
+                                    Text("eg) a photo of a gorilla walking in Time Square")
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 8)
+                                }
+                            }
                             .padding()
                             .background {
                                 RoundedRectangle(
@@ -115,6 +132,7 @@ struct StableDiffusionView: View {
                 TextField("What you don't want", text: $negativePrompt)
                     .textFieldStyle(.roundedBorder)
             }
+            .disabled(running)
 
             HStack {
                 HStack {
@@ -140,6 +158,8 @@ struct StableDiffusionView: View {
                     .buttonStyle(.plain)
                 }
             }
+            .disabled(running)
+            
             HStack {
                 HStack {
                     Text("Steps")
@@ -151,6 +171,7 @@ struct StableDiffusionView: View {
                 .frame(width: 70, alignment: .leading)
                 Slider(value: $steps, in: 5 ... 150)
             }
+            .disabled(running)
 
             if running {
                 Spacer()
@@ -162,10 +183,29 @@ struct StableDiffusionView: View {
         .animation(.spring(), value: running)
         .padding()
         .toolbar {
-//            if let photoToSave {
-//                ShareLink("Share Image", item: photoToSave)
-//            }
-
+            ToolbarItem {
+                if let photoToSave,
+                   let imageFile = imageFile
+                {
+                    Menu {
+                        ShareLink("Share", item: photoToSave, preview: SharePreview("Render", image: Image(nsImage: imageFile.image)))
+                        Button("Export") {
+                            shouldExportFile.toggle()
+                        }
+                    } label: {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    .fileExporter(isPresented: $shouldExportFile, document: imageFile, contentType: .png, defaultFilename: "Render.png") { result in
+                        switch result {
+                        case .success(let url):
+                            try? FileManager.default.removeItem(at: photoToSave)
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+            }
+            
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     do {
@@ -176,7 +216,7 @@ struct StableDiffusionView: View {
                 } label: {
                     Label("Generate", systemImage: running ? "stop.fill" : "play.fill")
                 }
-                .disabled(running || !mapleDiffusion.isModelLoaded)
+                .disabled(running || !mapleDiffusion.isModelLoaded || prompt.isEmpty)
             }
         }
         .onReceive(mapleDiffusion.state) { newState in

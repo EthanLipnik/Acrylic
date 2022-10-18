@@ -133,6 +133,7 @@ extension SettingsView {
         }
 
         struct DownloadView<TitleView: View>: View {
+            @Environment(\.mlDownloadService) var downloadService
             @EnvironmentObject var download: MLModelDownload
 
             @State private var isDeleting: Bool = false
@@ -218,7 +219,17 @@ extension SettingsView {
                             + Text(bytesTotal.formatted(.byteCount(style: .file)))
                             .monospacedDigit()
                     }
-                    Button {} label: {
+                    Button {
+                        Task {
+                            do {
+                                let url = download.url
+                                try await download.cancel()
+                                downloadService.downloads.removeValue(forKey: url)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
                         Image(systemName: "x.circle.fill")
                     }
                     .buttonStyle(.borderless)

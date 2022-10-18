@@ -86,6 +86,11 @@ class MLModelDownload: NSObject, ObservableObject, URLSessionDownloadDelegate {
         self.downloadTask = downloadTask
         state = .downloading(progress: 0, bytesWritten: 0, bytesTotal: 0)
     }
+    
+    func cancel() async throws {
+        downloadTask?.cancel()
+        downloadTask = nil
+    }
 
     func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didWriteData _: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         guard downloadTask == self.downloadTask else { return }
@@ -151,6 +156,7 @@ class MLModelDownload: NSObject, ObservableObject, URLSessionDownloadDelegate {
                     }
                 } catch {
                     print(error)
+                    try? await cancel()
                 }
             }
         } catch {

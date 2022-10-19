@@ -64,7 +64,7 @@ public class MapleDiffusion: ObservableObject {
     var device: MTLDevice?
     var graphDevice: MPSGraphDevice?
     var commandQueue: MTLCommandQueue?
-    var saveMemory: Bool?
+    @Published var saveMemory: Bool
 
     // text tokenization
     var tokenizer: BPETokenizer?
@@ -104,6 +104,7 @@ public class MapleDiffusion: ObservableObject {
     public init(saveMemoryButBeSlower: Bool = true,
                 modelFolder mf: URL? = Bundle.main.url(forResource: "bins", withExtension: nil))
     {
+        self.saveMemory = saveMemoryButBeSlower
         // set global folder
         modelFolder = mf
         try? loadModel(saveMemoryButBeSlower: saveMemoryButBeSlower)
@@ -124,7 +125,6 @@ public class MapleDiffusion: ObservableObject {
             self.updateState(.modelIsLoading(progress: progress.increasing(withMessage: "Creating device and queue")))
 
             print("instantiate device and queue")
-            saveMemory = saveMemoryButBeSlower
             guard let device = MTLCreateSystemDefaultDevice() else { throw ModelLoadError.whileLoading }
             graphDevice = MPSGraphDevice(mtlDevice: device)
             commandQueue = device.makeCommandQueue()!
@@ -201,8 +201,6 @@ public class MapleDiffusion: ObservableObject {
     }
 
     private func initAnUnexpectedJourney() throws {
-        guard let saveMemory else { throw ModelLoadError.other }
-
         let graph = makeGraph()
         let xIn = graph.placeholder(shape: [1, height, width, 4], dataType: MPSDataType.float16, name: nil)
         let condIn = graph.placeholder(shape: [saveMemory ? 1 : 2, 77, 768], dataType: MPSDataType.float16, name: nil)
@@ -214,8 +212,6 @@ public class MapleDiffusion: ObservableObject {
     }
 
     private func initTheDesolationOfSmaug() throws {
-        guard let saveMemory else { throw ModelLoadError.other }
-
         let graph = makeGraph()
         let condIn = graph.placeholder(shape: [saveMemory ? 1 : 2, 77, 768], dataType: MPSDataType.float16, name: nil)
         let placeholders = anUnexpectedJourneyShapes.map { graph.placeholder(shape: $0, dataType: MPSDataType.float16, name: nil) } + [condIn]
@@ -230,8 +226,6 @@ public class MapleDiffusion: ObservableObject {
     }
 
     private func initTheBattleOfTheFiveArmies() throws {
-        guard let saveMemory else { throw ModelLoadError.other }
-
         let graph = makeGraph()
         let condIn = graph.placeholder(shape: [saveMemory ? 1 : 2, 77, 768], dataType: MPSDataType.float16, name: nil)
         let unetPlaceholders = theDesolationOfSmaugShapes.map { graph.placeholder(shape: $0, dataType: MPSDataType.float16, name: nil) } + [condIn]
@@ -336,7 +330,7 @@ public class MapleDiffusion: ObservableObject {
 
         // 2. Tokens -> Embedding
         let (baseGuidance, textGuidance) = try runTextGuidance(baseTokens: baseTokens, tokens: tokens)
-        if saveMemory! {
+        if saveMemory {
             // MEM-HACK unload the text guidance to fit the unet
             textGuidanceExecutable = nil
         }
@@ -362,7 +356,7 @@ public class MapleDiffusion: ObservableObject {
             let temb = tembGraph!.run(with: commandQueue!, feeds: [tembTIn!: tMPSData], targetTensors: [tembOut!], targetOperations: nil)[tembOut!]!
             let etaUncond: MPSGraphTensorData
             let etaCond: MPSGraphTensorData
-            if saveMemory! {
+            if saveMemory {
                 // MEM-HACK: un/neg-conditional and text-conditional are run in two separate passes (not batched) to save memory
                 etaUncond = try runUNet(latent: latent, guidance: baseGuidance, temb: temb)
                 etaCond = try runUNet(latent: latent, guidance: textGuidance, temb: temb)
@@ -431,8 +425,6 @@ public class MapleDiffusion: ObservableObject {
     }
 
     public func generate(prompt: String, negativePrompt: String, seed: Int, steps: Int, guidanceScale: Float, completion: @escaping (CGImage?, Float, String) -> Void) throws {
-        guard let saveMemory else { throw GenerationError.placeholder(#function) }
-
         let latent = try generateLatent(prompt: prompt,
                                         negativePrompt: negativePrompt,
                                         seed: seed,

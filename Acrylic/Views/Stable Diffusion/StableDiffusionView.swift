@@ -29,6 +29,9 @@ struct StableDiffusionView: View {
     @State private var seed: Int = Int.random(in: 1 ... Int.max)
     @State private var photoToSave: URL? = nil
     
+    @State private var isShowingOptions: Bool = false
+    
+    @State private var isExporting: Bool = false
     @State private var imageFile: ImageDocument?
     @State private var shouldExportFile: Bool = false
     
@@ -41,8 +44,25 @@ struct StableDiffusionView: View {
         in: .userDomainMask
     )[0].appendingPathComponent("CoreML/realesrgan512.mlmodel")
     
+    let intFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.alwaysShowsDecimalSeparator = false
+        numberFormatter.generatesDecimalNumbers = false
+        return numberFormatter
+    }()
+    
+    let doubleFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 1
+        return numberFormatter
+    }()
+    
     func generate() throws {
-        guard !prompt.isEmpty else { return }
+        guard !prompt.isEmpty,
+              steps > 0,
+              guidanceScale > 0
+        else { return }
         
         running = true
         progressStage = ""
@@ -132,13 +152,13 @@ struct StableDiffusionView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                                 .frame(
                                     idealWidth: mapleDiffusion.width.doubleValue,
                                     idealHeight: mapleDiffusion.height.doubleValue
                                 )
+                                .id(progressProp)
                         } else {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            Rectangle()
                                 .fill(.secondary)
                                 .aspectRatio(1.0, contentMode: .fit)
                                 .frame(
@@ -147,57 +167,12 @@ struct StableDiffusionView: View {
                                 )
                         }
                     }
+                    .transition(.blur(scale: 1, scaleAnimation: .linear(duration: 0)).animation(.easeInOut))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .shadow(radius: 30, y: 8)
                 }
             }
             .padding(.bottom)
-            
-            HStack {
-                HStack {
-                    HStack {
-                        Text("Scale").bold()
-                        Text(String(format: "%.1f", guidanceScale))
-                            .monospacedDigit()
-                            .foregroundColor(.secondary)
-                    }
-                    .frame(width: 96, alignment: .leading)
-                    Slider(value: $guidanceScale, in: 1 ... 20)
-                }
-                HStack {
-                    Text("Seed").bold()
-                    TextField("", value: $seed, format: .number)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(maxWidth: 180)
-                    Button {
-                        seed = Int.random(in: 1 ... Int.max)
-                    } label: {
-                        Image(systemName: "arrow.clockwise.circle.fill")
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-            .disabled(running)
-            
-            HStack {
-                HStack {
-                    Text("Quality")
-                        .bold()
-                    Text("\(Int(steps))")
-                        .monospacedDigit()
-                        .foregroundColor(.secondary)
-                }
-                .frame(width: 96, alignment: .leading)
-                Slider(value: $steps, in: 5 ... 150)
-                
-                Toggle("Upscale (4x)", isOn: $shouldUpscale)
-                    .bold()
-                    .toggleStyle(.switch)
-                    .disabled(!FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false)))
-                    .onAppear {
-                        shouldUpscale = FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false))
-                    }
-            }
-            .disabled(running)
             
             if running {
                 Spacer()
@@ -209,17 +184,43 @@ struct StableDiffusionView: View {
         .animation(.spring(), value: running)
         .padding()
         .toolbar {
-            ToolbarItem {
+            
+            ToolbarItem(placement: .navigation) {
                 if let photoToSave,
                    let imageFile = imageFile
                 {
-                    Menu {
-                        ShareLink("Share", item: photoToSave, preview: SharePreview("Render", image: Image(nsImage: imageFile.image)))
-                        Button("Export") {
-                            shouldExportFile.toggle()
-                        }
+                    Button {
+                        isExporting.toggle()
                     } label: {
-                        Label("Share", systemImage: "square.and.arrow.up")
+                        Label("Export", systemImage: "square.and.arrow.up")
+                    }
+                    .popover(isPresented: $isExporting) {
+                        HStack(spacing: 10) {
+                            ShareLink(item: photoToSave, preview: SharePreview("Render", image: Image(nsImage: imageFile.image))) {
+                                Image(systemName: "arrowshape.turn.up.right.fill")
+                                    .aspectRatio(1/1, contentMode: .fit)
+                                    .padding(20)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                            .fill(Color.white.opacity(0.4).blendMode(.overlay))
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                            
+                            Button {
+                                shouldExportFile.toggle()
+                            } label: {
+                                Image(systemName: "doc.fill")
+                                    .aspectRatio(1/1, contentMode: .fit)
+                                    .padding(20)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                            .fill(Color.white.opacity(0.4).blendMode(.overlay))
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .padding(10)
                     }
                     .fileExporter(isPresented: $shouldExportFile, document: imageFile, contentType: .png, defaultFilename: "Render.png") { result in
                         switch result {
@@ -232,7 +233,68 @@ struct StableDiffusionView: View {
                 }
             }
             
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    isShowingOptions.toggle()
+                } label: {
+                    Label("Options", systemImage: "ellipsis.rectangle")
+                }
+                .popover(isPresented: $isShowingOptions) {
+                    Form {
+                        HStack {
+                            Slider(value: $guidanceScale, in: 1 ... 20) {
+                                HStack {
+                                    Text("Guidance Scale")
+                                    Text(String(format: "%.1f", guidanceScale))
+                                        .monospacedDigit()
+                                        .foregroundColor(.secondary)
+                                        .frame(width: 40)
+                                }
+                            }
+                            Button {
+                                withAnimation {
+                                    guidanceScale = 7.5
+                                }
+                            } label: {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                        }
+                        
+                        HStack {
+                            Slider(value: $steps, in: 5 ... 150) {
+                                HStack {
+                                    Text("Steps")
+                                    Text("\(Int(steps))")
+                                        .monospacedDigit()
+                                        .foregroundColor(.secondary)
+                                        .frame(width: 40)
+                                }
+                            }
+                            
+                            Button {
+                                withAnimation {
+                                    steps = 20
+                                }
+                            } label: {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                        }
+                        
+                        Toggle("Super Resolution (4x)", isOn: $shouldUpscale)
+                            .toggleStyle(.switch)
+                            .disabled(!FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false)))
+                            .onAppear {
+                                shouldUpscale = FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false))
+                            }
+                        
+                        Toggle("Conserve Memory", isOn: $mapleDiffusion.saveMemory)
+                            .toggleStyle(.switch)
+                    }
+                    .frame(width: 300)
+                    .padding()
+                    .disabled(running)
+                }
+                
                 Button {
                     do {
                         try generate()

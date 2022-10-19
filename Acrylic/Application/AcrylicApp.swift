@@ -115,9 +115,9 @@ struct AcrylicApp: App {
                     .onAppear {
                         NSApp.setActivationPolicy(.regular)
                     }
-                    .frame(width: 600, height: 420)
+                    .frame(minWidth: 600)
             }
-            .windowResizability(.contentSize)
+            .windowResizability(.contentMinSize)
             .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.StableDiffusion.rawValue))
         }
     #endif

@@ -39,6 +39,7 @@
 		AA749C6A28931EFC002CD39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6928931EFC002CD39A /* Assets.xcassets */; };
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
+		AA94ED2228FFA783007F58C6 /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */; };
 		AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */; };
 		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
 		AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */; };
@@ -112,6 +113,7 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
+		AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		AA0B119628FDDBE10086277A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */,
 				AA0B119728FDDBEE0086277A /* URL+Extensions.swift */,
 			);
 			path = Extensions;
@@ -496,6 +499,7 @@
 				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
 				AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */,
 				AACCD494289DA6CB006551C1 /* VideosManagementView+SidebarView.swift in Sources */,
+				AA94ED2228FFA783007F58C6 /* CGImage+CVPixelBuffer.swift in Sources */,
 				AA278946289C4B15001E897B /* WallpaperService.swift in Sources */,
 				AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */,
 				AABA42EB28BAC05C00D298EB /* GenerateMeshIntent.swift in Sources */,
@@ -645,7 +649,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -695,7 +699,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;

@@ -126,10 +126,8 @@ extension SettingsView {
             }
             .onAppear {
                 withAnimation(.none) {
-                    hasImageModel = FileManager.default.fileExists(atPath: imageModelDestination.path)
-                    hasUpscaleModel = FileManager.default.fileExists(atPath: upscaleModelDestination.path)
-                    
-                    print(imageModelDestination.path)
+                    hasImageModel = FileManager.default.fileExists(atPath: imageModelDestination.path(percentEncoded: false))
+                    hasUpscaleModel = FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false))
                 }
             }
         }
@@ -172,6 +170,11 @@ extension SettingsView {
                                 isDeleting.toggle()
                             } label: {
                                 Image(systemName: "trash")
+                            }
+                        }
+                        .contextMenu {
+                            Button("Show in Finder") {
+                                NSWorkspace.shared.activateFileViewerSelecting([download.destination])
                             }
                         }
                     }

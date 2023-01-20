@@ -14,7 +14,6 @@
 		AA0B119828FDDBEE0086277A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B119728FDDBEE0086277A /* URL+Extensions.swift */; };
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
-		AA1702EA28D7C97B00B68F20 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */; };
 		AA1A60E328A1895E00FB38DC /* VideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */; };
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
@@ -40,13 +39,14 @@
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
 		AA94ED2228FFA783007F58C6 /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */; };
+		AA9533CF297B02D0002A4028 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */; };
+		AA9533D0297B02D0002A4028 /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */; };
 		AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */; };
 		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
 		AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */; };
 		AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */; };
 		AAAE636B289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */; };
 		AAB267D428A1B89300421E1A /* ContentView+OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */; };
-		AABA42EB28BAC05C00D298EB /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */; };
 		AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */; };
 		AACCD48D289D8E62006551C1 /* Sebu in Frameworks */ = {isa = PBXBuildFile; productRef = AACCD48C289D8E62006551C1 /* Sebu */; };
 		AACCD48F289DA639006551C1 /* VideoDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACCD48E289DA639006551C1 /* VideoDownloadService.swift */; };
@@ -86,7 +86,6 @@
 		AA0B119728FDDBEE0086277A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
-		AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
 		AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewModel.swift; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
@@ -114,13 +113,14 @@
 		AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		AA9533C9297B021B002A4028 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AA9533CA297B0221002A4028 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PixabayKit; sourceTree = "<group>"; };
+		AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
+		AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
 		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
 		AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+OptionsView.swift"; sourceTree = "<group>"; };
-		AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
 		AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWindow.swift; sourceTree = "<group>"; };
 		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadService.swift; sourceTree = "<group>"; };
 		AACCD491289DA688006551C1 /* VideosManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosManagementView.swift; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 			children = (
 				AA0B119028FDB84A0086277A /* Application */,
 				AA0B118928FDB7D80086277A /* MapleDiffusion */,
-				AABA42E928BAC05C00D298EB /* Intents */,
+				AA9533CC297B02D0002A4028 /* Intents */,
 				AA1F48E12899C1B8009E07A8 /* Views */,
 				AA1F48E32899C1CB009E07A8 /* Models */,
 				AA0B119628FDDBE10086277A /* Extensions */,
@@ -336,6 +336,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA9533CC297B02D0002A4028 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */,
+				AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		AAA8947A28B13B6D00880278 /* MeshCreator */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,16 +364,6 @@
 				AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */,
 			);
 			path = SettingsView;
-			sourceTree = "<group>";
-		};
-		AABA42E928BAC05C00D298EB /* Intents */ = {
-			isa = PBXGroup;
-			children = (
-				AABA42EA28BAC05C00D298EB /* GenerateMeshIntent.swift */,
-				AA1702E928D7C97B00B68F20 /* AcrylicShortcuts.swift */,
-			);
-			name = Intents;
-			path = ../../Intents;
 			sourceTree = "<group>";
 		};
 		AACCD490289DA688006551C1 /* VideosView */ = {
@@ -487,14 +486,15 @@
 				AA0B119828FDDBEE0086277A /* URL+Extensions.swift in Sources */,
 				AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */,
 				AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */,
+				AA9533D0297B02D0002A4028 /* GenerateMeshIntent.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
-				AA1702EA28D7C97B00B68F20 /* AcrylicShortcuts.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
 				AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
 				AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,
+				AA9533CF297B02D0002A4028 /* AcrylicShortcuts.swift in Sources */,
 				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,
 				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
 				AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */,
@@ -502,7 +502,6 @@
 				AA94ED2228FFA783007F58C6 /* CGImage+CVPixelBuffer.swift in Sources */,
 				AA278946289C4B15001E897B /* WallpaperService.swift in Sources */,
 				AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */,
-				AABA42EB28BAC05C00D298EB /* GenerateMeshIntent.swift in Sources */,
 				AA35B89F28A40F2900F7B190 /* OnboardingView+IntroView.swift in Sources */,
 				AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */,
 				AA1A60E328A1895E00FB38DC /* VideosViewModel.swift in Sources */,

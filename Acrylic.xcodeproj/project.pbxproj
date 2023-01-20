@@ -100,7 +100,6 @@
 		AA427C0028A09EFA009F9C44 /* WallpaperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperType.swift; sourceTree = "<group>"; };
 		AA427C0228A09FEA009F9C44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA455E39289826030010938A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AA4AF8F028A166EF001F98D5 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PixabayKit; path = ../PixabayKit; sourceTree = "<group>"; };
 		AA4BCF5528970A4B00D94F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -112,8 +111,9 @@
 		AA749C6928931EFC002CD39A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
 		AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		AA9533C9297B021B002A4028 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
+		AA9533CA297B0221002A4028 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PixabayKit; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 		AA749C7428931F63002CD39A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				AA7C86582893576500D3469E /* MeshKit */,
-				AA4AF8F028A166EF001F98D5 /* PixabayKit */,
+				AA9533C9297B021B002A4028 /* MeshKit */,
+				AA9533CA297B0221002A4028 /* PixabayKit */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

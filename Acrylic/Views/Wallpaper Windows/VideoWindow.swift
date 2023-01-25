@@ -19,7 +19,7 @@ class VideoWindow: WallpaperWindow {
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        return folder.appendingPathComponent("Video " + currentVideoBackgroundId + ".mp4")
+        return folder.appendingPathComponent(currentVideoBackgroundId + ".mp4")
     }()
 
     private lazy var playerItem: AVPlayerItem? = {
@@ -88,7 +88,7 @@ class VideoWindow: WallpaperWindow {
         do {
             thumbnailImageRef = try assetIG.copyCGImage(at: cmTime, actualTime: nil)
         } catch {
-            print("Error: \(error)")
+            print(error, url.path)
             return nil
         }
 

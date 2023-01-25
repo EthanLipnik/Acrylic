@@ -13,6 +13,7 @@
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
 		AA1A60E328A1895E00FB38DC /* VideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */; };
 		AA1F48E52899C301009E07A8 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F48E42899C301009E07A8 /* AboutView.swift */; };
+		AA263B9B2980C00F005861C0 /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA263B992980C00F005861C0 /* GenerateMeshIntent.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
 		AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278948289C5AC8001E897B /* VideoWindow.swift */; };
 		AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */; };
@@ -30,6 +31,7 @@
 		AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252A289B1419003A0D8F /* FluidViewModel.swift */; };
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
+		AA7397792980C09800B38BE0 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA263B982980C00F005861C0 /* AcrylicShortcuts.swift */; };
 		AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74099228B0520B0008A951 /* ColorSpace.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* MeshCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* MeshCreatorView.swift */; };
@@ -37,8 +39,6 @@
 		AA749C6E28931EFC002CD39A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */; };
 		AA7C865A2893576B00D3469E /* MeshKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7C86592893576B00D3469E /* MeshKit */; };
 		AA94ED2228FFA783007F58C6 /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */; };
-		AA9533CF297B02D0002A4028 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */; };
-		AA9533D0297B02D0002A4028 /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */; };
 		AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */; };
 		AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */; };
 		AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */; };
@@ -83,6 +83,8 @@
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
 		AA1A60E228A1895E00FB38DC /* VideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewModel.swift; sourceTree = "<group>"; };
 		AA1F48E42899C301009E07A8 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		AA263B982980C00F005861C0 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
+		AA263B992980C00F005861C0 /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
 		AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionView.swift; sourceTree = "<group>"; };
@@ -106,11 +108,11 @@
 		AA749C6B28931EFC002CD39A /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
-		AA9D1B732918411500F64564 /* MapleDiffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MapleDiffusion; path = ../MapleDiffusion; sourceTree = "<group>"; };
 		AA9533C9297B021B002A4028 /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MeshKit; sourceTree = "<group>"; };
 		AA9533CA297B0221002A4028 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PixabayKit; sourceTree = "<group>"; };
 		AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
 		AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
+		AA9D1B732918411500F64564 /* MapleDiffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MapleDiffusion; path = ../MapleDiffusion; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
@@ -232,6 +234,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		AA263B962980BFB4005861C0 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */,
+				AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		AA263B972980C00F005861C0 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				AA263B982980C00F005861C0 /* AcrylicShortcuts.swift */,
+				AA263B992980C00F005861C0 /* GenerateMeshIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		AA278947289C5A59001E897B /* Wallpaper Windows */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +291,7 @@
 				AA749C6428931EFB002CD39A /* Acrylic */,
 				AA749C6328931EFB002CD39A /* Products */,
 				AA749C7628931F68002CD39A /* Frameworks */,
+				AA263B962980BFB4005861C0 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,9 +306,8 @@
 		AA749C6428931EFB002CD39A /* Acrylic */ = {
 			isa = PBXGroup;
 			children = (
+				AA263B972980C00F005861C0 /* Intents */,
 				AA0B119028FDB84A0086277A /* Application */,
-				AABA42E928BAC05C00D298EB /* Intents */,
-				AA0B118928FDB7D80086277A /* MapleDiffusion */,
 				AA1F48E12899C1B8009E07A8 /* Views */,
 				AA1F48E32899C1CB009E07A8 /* Models */,
 				AA0B119628FDDBE10086277A /* Extensions */,
@@ -322,15 +342,6 @@
 				AADED2812898DD880023EB97 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AA9533CC297B02D0002A4028 /* Intents */ = {
-			isa = PBXGroup;
-			children = (
-				AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */,
-				AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */,
-			);
-			path = Intents;
 			sourceTree = "<group>";
 		};
 		AAA8947A28B13B6D00880278 /* MeshCreator */ = {
@@ -471,18 +482,18 @@
 				AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
 				AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */,
+				AA263B9B2980C00F005861C0 /* GenerateMeshIntent.swift in Sources */,
 				AA0B119828FDDBEE0086277A /* URL+Extensions.swift in Sources */,
 				AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */,
 				AAA8947C28B13BBA00880278 /* MeshCreatorView+ExportView.swift in Sources */,
-				AA9533D0297B02D0002A4028 /* GenerateMeshIntent.swift in Sources */,
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
 				AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
+				AA7397792980C09800B38BE0 /* AcrylicShortcuts.swift in Sources */,
 				AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,
-				AA9533CF297B02D0002A4028 /* AcrylicShortcuts.swift in Sources */,
 				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,
 				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
 				AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */,

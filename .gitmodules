@@ -4,3 +4,6 @@
 [submodule "PixabayKit"]
 	path = PixabayKit
 	url = git@github.com:EthanLipnik/PixabayKit.git
+[submodule "maple-diffusion"]
+	path = maple-diffusion
+	url = https://github.com/EthanLipnik/maple-diffusion.git

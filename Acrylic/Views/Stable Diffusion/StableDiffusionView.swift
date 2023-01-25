@@ -5,7 +5,7 @@
 //  Created by Ethan Lipnik on 10/14/22.
 //
 
-// import MapleDiffusion
+import MapleDiffusion
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
@@ -13,7 +13,6 @@ import Vision
 
 struct StableDiffusionView: View {
     @StateObject var mapleDiffusion = MapleDiffusion(
-        saveMemoryButBeSlower: false,
         modelFolder: FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("StableDiffusion/bins")
     )
     
@@ -38,6 +37,8 @@ struct StableDiffusionView: View {
     @State private var shouldUpscale: Bool = false
     
     @State var bin = Set<AnyCancellable>()
+    
+    @Namespace private var nspace
     
     let upscaleModelDestination = FileManager.default.urls(
         for: .applicationSupportDirectory,
@@ -122,6 +123,7 @@ struct StableDiffusionView: View {
                                         Text("eg) a photo of a gorilla walking in Time Square")
                                             .foregroundStyle(.secondary)
                                             .padding(.horizontal, 8)
+                                            .allowsHitTesting(false)
                                     }
                                 }
                                 .padding()
@@ -139,6 +141,7 @@ struct StableDiffusionView: View {
                                     .textFieldStyle(.roundedBorder)
                             }
                         }
+                        .matchedGeometryEffect(id: "prompt", in: nspace)
                         .aspectRatio(1/1, contentMode: .fit)
                     }
                     .transition(.blur)
@@ -175,13 +178,22 @@ struct StableDiffusionView: View {
             .padding(.bottom)
             
             if running {
+                
+                if !prompt.isEmpty {
+                    Text(prompt)
+                        .foregroundColor(.secondary)
+                        .matchedGeometryEffect(id: "prompt", in: nspace)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .transition(.blur.animation(.easeInOut))
+                }
+                
                 Spacer()
                 
                 ProgressView(progressStage, value: min(1, progressProp), total: 1)
                     .foregroundColor(.secondary)
             }
         }
-        .animation(.spring(), value: running)
+        .animation(.easeInOut, value: running)
         .padding()
         .toolbar {
             
@@ -240,59 +252,7 @@ struct StableDiffusionView: View {
                     Label("Options", systemImage: "ellipsis.rectangle")
                 }
                 .popover(isPresented: $isShowingOptions) {
-                    Form {
-                        HStack {
-                            Slider(value: $guidanceScale, in: 1 ... 20) {
-                                HStack {
-                                    Text("Guidance Scale")
-                                    Text(String(format: "%.1f", guidanceScale))
-                                        .monospacedDigit()
-                                        .foregroundColor(.secondary)
-                                        .frame(width: 40)
-                                }
-                            }
-                            Button {
-                                withAnimation {
-                                    guidanceScale = 7.5
-                                }
-                            } label: {
-                                Image(systemName: "arrow.clockwise")
-                            }
-                        }
-                        
-                        HStack {
-                            Slider(value: $steps, in: 5 ... 150) {
-                                HStack {
-                                    Text("Steps")
-                                    Text("\(Int(steps))")
-                                        .monospacedDigit()
-                                        .foregroundColor(.secondary)
-                                        .frame(width: 40)
-                                }
-                            }
-                            
-                            Button {
-                                withAnimation {
-                                    steps = 20
-                                }
-                            } label: {
-                                Image(systemName: "arrow.clockwise")
-                            }
-                        }
-                        
-                        Toggle("Super Resolution (4x)", isOn: $shouldUpscale)
-                            .toggleStyle(.switch)
-                            .disabled(!FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false)))
-                            .onAppear {
-                                shouldUpscale = FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false))
-                            }
-                        
-                        Toggle("Conserve Memory", isOn: $mapleDiffusion.saveMemory)
-                            .toggleStyle(.switch)
-                    }
-                    .frame(width: 300)
-                    .padding()
-                    .disabled(running)
+                    optionsView
                 }
                 
                 Button {
@@ -321,6 +281,13 @@ struct StableDiffusionView: View {
                 running = false
             }
         }
+        .task {
+            do {
+                try await mapleDiffusion.loadModel(saveMemoryButBeSlower: false)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func upscale(_ image: CGImage) throws -> CGImage {
@@ -339,6 +306,81 @@ struct StableDiffusionView: View {
         
         guard let image = CGImage.create(pixelBuffer: result.pixelBuffer) else { throw MLModelError(.generic) }
         return image
+    }
+    
+    var optionsView: some View {
+        Form {
+            HStack {
+                Slider(value: $guidanceScale, in: 1 ... 20) {
+                    HStack {
+                        Text("Guidance Scale")
+                        Text(String(format: "%.1f", guidanceScale))
+                            .monospacedDigit()
+                            .foregroundColor(.secondary)
+                            .frame(width: 40)
+                    }
+                }
+                Button {
+                    withAnimation {
+                        guidanceScale = 7.5
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+            
+            HStack {
+                Slider(value: $steps, in: 5 ... 150) {
+                    HStack {
+                        Text("Steps")
+                        Text("\(Int(steps))")
+                            .monospacedDigit()
+                            .foregroundColor(.secondary)
+                            .frame(width: 40)
+                    }
+                }
+                
+                Button {
+                    withAnimation {
+                        steps = 20
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+            
+            HStack {
+                HStack {
+                    Text("Seed")
+                        .padding(.trailing, 40)
+                    TextField("", value: $seed, format: .number)
+                        .textFieldStyle(.roundedBorder)
+                }
+                Button {
+                    withAnimation {
+                        seed = Int.random(in: 1 ... Int.max)
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+            
+            Toggle("Super Resolution (4x)", isOn: $shouldUpscale)
+                .toggleStyle(.switch)
+                .disabled(!FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false)))
+                .onAppear {
+                    shouldUpscale = FileManager.default.fileExists(atPath: upscaleModelDestination.path(percentEncoded: false))
+                }
+            
+//                        Toggle("Conserve Memory", isOn: $mapleDiffusion.saveMemory)
+//                            .toggleStyle(.switch)
+//                            .onChange(of: mapleDiffusion.saveMemory) { newValue in
+//                                try? mapleDiffusion.loadModel(saveMemoryButBeSlower: newValue)
+//                            }
+        }
+        .frame(width: 300)
+        .padding()
+        .disabled(running)
     }
 }
 

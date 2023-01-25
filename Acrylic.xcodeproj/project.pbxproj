@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA0B118D28FDB7D80086277A /* MapleDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B118A28FDB7D80086277A /* MapleDiffusion.swift */; };
-		AA0B118E28FDB7D80086277A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B118B28FDB7D80086277A /* Functions.swift */; };
-		AA0B118F28FDB7D80086277A /* BPETokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B118C28FDB7D80086277A /* BPETokenizer.swift */; };
 		AA0B119528FDBEC50086277A /* SettingsView+StableDiffusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */; };
 		AA0B119828FDDBEE0086277A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B119728FDDBEE0086277A /* URL+Extensions.swift */; };
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
@@ -30,6 +27,7 @@
 		AA427C0328A09FEA009F9C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0228A09FEA009F9C44 /* ContentView.swift */; };
 		AA455E3A289826030010938A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* SettingsView.swift */; };
 		AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */; };
+		AA55734F29019C560009E4A3 /* MapleDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = AA55734E29019C560009E4A3 /* MapleDiffusion */; };
 		AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252A289B1419003A0D8F /* FluidViewModel.swift */; };
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
@@ -79,9 +77,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA0B118A28FDB7D80086277A /* MapleDiffusion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapleDiffusion.swift; sourceTree = "<group>"; };
-		AA0B118B28FDB7D80086277A /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		AA0B118C28FDB7D80086277A /* BPETokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPETokenizer.swift; sourceTree = "<group>"; };
 		AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+StableDiffusionView.swift"; sourceTree = "<group>"; };
 		AA0B119728FDDBEE0086277A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
@@ -114,6 +109,7 @@
 		AA749C6D28931EFC002CD39A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA7C86582893576500D3469E /* MeshKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MeshKit; path = ../MeshKit; sourceTree = "<group>"; };
 		AA94ED2128FFA783007F58C6 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		AA9D1B732918411500F64564 /* MapleDiffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MapleDiffusion; path = ../MapleDiffusion; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
@@ -145,6 +141,7 @@
 			files = (
 				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
+				AA55734F29019C560009E4A3 /* MapleDiffusion in Frameworks */,
 				AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
@@ -155,16 +152,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA0B118928FDB7D80086277A /* MapleDiffusion */ = {
-			isa = PBXGroup;
-			children = (
-				AA0B118A28FDB7D80086277A /* MapleDiffusion.swift */,
-				AA0B118B28FDB7D80086277A /* Functions.swift */,
-				AA0B118C28FDB7D80086277A /* BPETokenizer.swift */,
-			);
-			path = MapleDiffusion;
-			sourceTree = "<group>";
-		};
 		AA0B119028FDB84A0086277A /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,7 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				AA0B119028FDB84A0086277A /* Application */,
-				AA0B118928FDB7D80086277A /* MapleDiffusion */,
 				AABA42E928BAC05C00D298EB /* Intents */,
 				AA1F48E12899C1B8009E07A8 /* Views */,
 				AA1F48E32899C1CB009E07A8 /* Models */,
@@ -324,6 +310,7 @@
 			children = (
 				AA7C86582893576500D3469E /* MeshKit */,
 				AA4AF8F028A166EF001F98D5 /* PixabayKit */,
+				AA9D1B732918411500F64564 /* MapleDiffusion */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -410,6 +397,7 @@
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
 				AA42606928C7D56300B67DE1 /* PixabayKit */,
 				AAE1101B28FDA17A0066B6E3 /* ZIPFoundation */,
+				AA55734E29019C560009E4A3 /* MapleDiffusion */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -442,7 +430,6 @@
 			packageReferences = (
 				AACCD48B289D8E62006551C1 /* XCRemoteSwiftPackageReference "Sebu" */,
 				AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				AAED965228FA30720069B3D9 /* XCRemoteSwiftPackageReference "maple-diffusion" */,
 				AAE1101A28FDA17A0066B6E3 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			productRefGroup = AA749C6328931EFB002CD39A /* Products */;
@@ -512,12 +499,9 @@
 				AAB267D428A1B89300421E1A /* ContentView+OptionsView.swift in Sources */,
 				AAAE6369289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift in Sources */,
 				AA38CB3128972A9500FF4909 /* NSAppDelegate.swift in Sources */,
-				AA0B118E28FDB7D80086277A /* Functions.swift in Sources */,
 				AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */,
 				AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */,
-				AA0B118F28FDB7D80086277A /* BPETokenizer.swift in Sources */,
 				AAF6747128A4221100044BFD /* OnboardingView+FluidView.swift in Sources */,
-				AA0B118D28FDB7D80086277A /* MapleDiffusion.swift in Sources */,
 				AA749C6828931EFB002CD39A /* MeshCreatorView.swift in Sources */,
 				AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */,
 			);
@@ -649,7 +633,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 90;
+				CURRENT_PROJECT_VERSION = 94;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -699,7 +683,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 90;
+				CURRENT_PROJECT_VERSION = 94;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Acrylic/Preview Content\"";
 				DEVELOPMENT_TEAM = B6QG723P8Z;
@@ -785,14 +769,6 @@
 				kind = branch;
 			};
 		};
-		AAED965228FA30720069B3D9 /* XCRemoteSwiftPackageReference "maple-diffusion" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mortenjust/maple-diffusion/";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -804,6 +780,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		AA55734E29019C560009E4A3 /* MapleDiffusion */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MapleDiffusion;
 		};
 		AA7C86592893576B00D3469E /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;

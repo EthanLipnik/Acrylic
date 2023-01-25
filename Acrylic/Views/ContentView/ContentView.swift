@@ -149,27 +149,27 @@ struct ContentView: View {
                     .disabled(true)
                 #endif
             } label: {
-                Image(systemName: "plus")
+                Image(systemName: "plus.circle.fill")
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.plain)
 
             Spacer()
             
             Menu {
                 footerButtons
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "ellipsis.circle.fill")
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.plain)
             
             Button {
                 NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
                 
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
-                Image(systemName: "gearshape")
+                Image(systemName: "gearshape.fill")
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.plain)
         }
         .padding()
         .overlay(Divider(), alignment: .top)

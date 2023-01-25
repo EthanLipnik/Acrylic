@@ -27,11 +27,11 @@
 		AA427C0328A09FEA009F9C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA427C0228A09FEA009F9C44 /* ContentView.swift */; };
 		AA455E3A289826030010938A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA455E39289826030010938A /* SettingsView.swift */; };
 		AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */; };
-		AA55734F29019C560009E4A3 /* MapleDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = AA55734E29019C560009E4A3 /* MapleDiffusion */; };
 		AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252A289B1419003A0D8F /* FluidViewModel.swift */; };
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
 		AA7397792980C09800B38BE0 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA263B982980C00F005861C0 /* AcrylicShortcuts.swift */; };
+		AA73977C2980C2EA00B38BE0 /* MapleDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = AA73977B2980C2EA00B38BE0 /* MapleDiffusion */; };
 		AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74099228B0520B0008A951 /* ColorSpace.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* MeshCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* MeshCreatorView.swift */; };
@@ -100,6 +100,7 @@
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		AA73977A2980C2E100B38BE0 /* Maple Diffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Maple Diffusion"; sourceTree = "<group>"; };
 		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSpace.swift; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		AA9533CA297B0221002A4028 /* PixabayKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PixabayKit; sourceTree = "<group>"; };
 		AA9533CD297B02D0002A4028 /* AcrylicShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcrylicShortcuts.swift; sourceTree = "<group>"; };
 		AA9533CE297B02D0002A4028 /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
-		AA9D1B732918411500F64564 /* MapleDiffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MapleDiffusion; path = ../MapleDiffusion; sourceTree = "<group>"; };
 		AAA8947B28B13BBA00880278 /* MeshCreatorView+ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeshCreatorView+ExportView.swift"; sourceTree = "<group>"; };
 		AAAE6363289DC620000ED2F0 /* DebouncedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedObject.swift; sourceTree = "<group>"; };
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			files = (
 				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
-				AA55734F29019C560009E4A3 /* MapleDiffusion in Frameworks */,
+				AA73977C2980C2EA00B38BE0 /* MapleDiffusion in Frameworks */,
 				AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
@@ -329,9 +329,9 @@
 		AA749C7428931F63002CD39A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				AA9D1B732918411500F64564 /* MapleDiffusion */,
 				AA9533C9297B021B002A4028 /* MeshKit */,
 				AA9533CA297B0221002A4028 /* PixabayKit */,
+				AA73977A2980C2E100B38BE0 /* Maple Diffusion */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
 				AA42606928C7D56300B67DE1 /* PixabayKit */,
 				AAE1101B28FDA17A0066B6E3 /* ZIPFoundation */,
-				AA55734E29019C560009E4A3 /* MapleDiffusion */,
+				AA73977B2980C2EA00B38BE0 /* MapleDiffusion */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -792,7 +792,7 @@
 			package = AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		AA55734E29019C560009E4A3 /* MapleDiffusion */ = {
+		AA73977B2980C2EA00B38BE0 /* MapleDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MapleDiffusion;
 		};

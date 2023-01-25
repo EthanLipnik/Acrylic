@@ -100,7 +100,7 @@
 		AA68252A289B1419003A0D8F /* FluidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidViewModel.swift; sourceTree = "<group>"; };
 		AA68252E289B22F8003A0D8F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		AA73977A2980C2E100B38BE0 /* Maple Diffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Maple Diffusion"; sourceTree = "<group>"; };
+		AA73977D2980C34200B38BE0 /* maple-diffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "maple-diffusion"; sourceTree = "<group>"; };
 		AA74099228B0520B0008A951 /* ColorSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSpace.swift; sourceTree = "<group>"; };
 		AA749C6228931EFB002CD39A /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA749C6528931EFB002CD39A /* AcrylicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicApp.swift; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 			children = (
 				AA9533C9297B021B002A4028 /* MeshKit */,
 				AA9533CA297B0221002A4028 /* PixabayKit */,
-				AA73977A2980C2E100B38BE0 /* Maple Diffusion */,
+				AA73977D2980C34200B38BE0 /* maple-diffusion */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

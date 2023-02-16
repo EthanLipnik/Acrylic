@@ -14,8 +14,6 @@ struct AcrylicApp: App {
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
     @State private var isImportingVideo: Bool = false
 
-    @ObservedObject var mlDownloadService = MLDownloadService()
-
     var body: some Scene {
         WindowGroup {
             VideosManagementView()
@@ -37,7 +35,6 @@ struct AcrylicApp: App {
                         print(error)
                     }
                 })
-                .environment(\.mlDownloadService, mlDownloadService)
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
@@ -70,15 +67,10 @@ struct AcrylicApp: App {
 
         Settings {
             SettingsView()
-                .environmentObject(mlDownloadService)
                 .frame(width: 400)
         }
 
         meshCreatorWindow
-
-        #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
-            stableDiffusionWindow
-        #endif
     }
 
     var meshCreatorWindow: some Scene {
@@ -86,7 +78,6 @@ struct AcrylicApp: App {
             DeepLinkMeshCreatorView()
                 .navigationTitle("Acrylic – Mesh Creator")
                 .frame(minWidth: 400, minHeight: 400)
-                .environment(\.mlDownloadService, mlDownloadService)
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
@@ -99,28 +90,6 @@ struct AcrylicApp: App {
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
     }
-
-    #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
-        var stableDiffusionWindow: some Scene {
-            WindowGroup("Stable Diffusion") {
-                StableDiffusionDownloaderView()
-                    .navigationTitle("Acrylic – Stable Diffusion")
-                    .frame(minWidth: 400, minHeight: 400)
-                    .onDisappear {
-                        if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
-                            NSApp.setActivationPolicy(.accessory)
-                        }
-                    }
-                    .environment(\.mlDownloadService, mlDownloadService)
-                    .onAppear {
-                        NSApp.setActivationPolicy(.regular)
-                    }
-                    .frame(minWidth: 600)
-            }
-            .windowResizability(.contentMinSize)
-            .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.StableDiffusion.rawValue))
-        }
-    #endif
 
     struct DeepLinkMeshCreatorView: View {
         @State private var size: MeshSize? = nil

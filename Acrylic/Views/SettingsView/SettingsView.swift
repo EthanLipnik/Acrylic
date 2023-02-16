@@ -38,15 +38,6 @@ struct SettingsView: View {
                 Label("Video", systemImage: "play.rectangle.fill")
             }
             .tag(2)
-
-            FormView {
-                StableDiffusionView()
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .tabItem {
-                Label("Stable Diffusion", systemImage: "text.below.photo.fill")
-            }
-            .tag(3)
         }
     }
 

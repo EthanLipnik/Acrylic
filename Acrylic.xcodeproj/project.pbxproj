@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA0B119528FDBEC50086277A /* SettingsView+StableDiffusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */; };
 		AA0B119828FDDBEE0086277A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B119728FDDBEE0086277A /* URL+Extensions.swift */; };
 		AA0EA86228933069003CEB51 /* ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EA86128933069003CEB51 /* ScreenSaverView.swift */; };
 		AA108BBF289C1A25009C50A5 /* FluidWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108BBE289C1A25009C50A5 /* FluidWindow.swift */; };
@@ -16,7 +15,6 @@
 		AA263B9B2980C00F005861C0 /* GenerateMeshIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA263B992980C00F005861C0 /* GenerateMeshIntent.swift */; };
 		AA278946289C4B15001E897B /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278945289C4B15001E897B /* WallpaperService.swift */; };
 		AA278949289C5AC8001E897B /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA278948289C5AC8001E897B /* VideoWindow.swift */; };
-		AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */; };
 		AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89A28A4075200F7B190 /* OnboardingWindow.swift */; };
 		AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89C28A407DF00F7B190 /* OnboardingView.swift */; };
 		AA35B89F28A40F2900F7B190 /* OnboardingView+IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */; };
@@ -31,7 +29,6 @@
 		AA68252F289B22F8003A0D8F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68252E289B22F8003A0D8F /* VisualEffectView.swift */; };
 		AA6BD43028981EA2007AD3ED /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6BD42F28981EA2007AD3ED /* StatusBarController.swift */; };
 		AA7397792980C09800B38BE0 /* AcrylicShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA263B982980C00F005861C0 /* AcrylicShortcuts.swift */; };
-		AA73977C2980C2EA00B38BE0 /* MapleDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = AA73977B2980C2EA00B38BE0 /* MapleDiffusion */; };
 		AA74099328B0520B0008A951 /* ColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74099228B0520B0008A951 /* ColorSpace.swift */; };
 		AA749C6628931EFB002CD39A /* AcrylicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6528931EFB002CD39A /* AcrylicApp.swift */; };
 		AA749C6828931EFB002CD39A /* MeshCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA749C6728931EFB002CD39A /* MeshCreatorView.swift */; };
@@ -56,9 +53,7 @@
 		AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */; };
 		AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADED2812898DD880023EB97 /* ServiceManagement.framework */; platformFilters = (macos, ); };
 		AAE1101728FD9D980066B6E3 /* BlurTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1101628FD9D980066B6E3 /* BlurTransition.swift */; };
-		AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */; };
 		AAE1101C28FDA17A0066B6E3 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = AAE1101B28FDA17A0066B6E3 /* ZIPFoundation */; };
-		AAE1101E28FDA19B0066B6E3 /* StableDiffusionDownloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1101D28FDA19B0066B6E3 /* StableDiffusionDownloaderView.swift */; };
 		AAE43D69289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */; };
 		AAF6747128A4221100044BFD /* OnboardingView+FluidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */; };
 		AAF6747528A42E6B00044BFD /* OnboardingView+VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */; };
@@ -77,7 +72,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+StableDiffusionView.swift"; sourceTree = "<group>"; };
 		AA0B119728FDDBEE0086277A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		AA0EA86128933069003CEB51 /* ScreenSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverView.swift; sourceTree = "<group>"; };
 		AA108BBE289C1A25009C50A5 /* FluidWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidWindow.swift; sourceTree = "<group>"; };
@@ -87,7 +81,6 @@
 		AA263B992980C00F005861C0 /* GenerateMeshIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateMeshIntent.swift; sourceTree = "<group>"; };
 		AA278945289C4B15001E897B /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		AA278948289C5AC8001E897B /* VideoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
-		AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableDiffusionView.swift; sourceTree = "<group>"; };
 		AA35B89A28A4075200F7B190 /* OnboardingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindow.swift; sourceTree = "<group>"; };
 		AA35B89C28A407DF00F7B190 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AA35B89E28A40F2900F7B190 /* OnboardingView+IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+IntroView.swift"; sourceTree = "<group>"; };
@@ -117,7 +110,6 @@
 		AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+GeneralView.swift"; sourceTree = "<group>"; };
 		AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+FluidWallpaperView.swift"; sourceTree = "<group>"; };
 		AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+VideoWallpaperView.swift"; sourceTree = "<group>"; };
-		AAAF34DF2980C4B2008E8057 /* Maple Diffusion */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Maple Diffusion"; sourceTree = "<group>"; };
 		AAB267D328A1B89300421E1A /* ContentView+OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+OptionsView.swift"; sourceTree = "<group>"; };
 		AACAE31028A31F9100E630C7 /* NowPlayingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWindow.swift; sourceTree = "<group>"; };
 		AACCD48E289DA639006551C1 /* VideoDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDownloadService.swift; sourceTree = "<group>"; };
@@ -129,8 +121,6 @@
 		AADED2572898D35E0023EB97 /* WallpaperColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperColorScheme.swift; sourceTree = "<group>"; };
 		AADED2812898DD880023EB97 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		AAE1101628FD9D980066B6E3 /* BlurTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTransition.swift; sourceTree = "<group>"; };
-		AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLModelDownloader.swift; sourceTree = "<group>"; };
-		AAE1101D28FDA19B0066B6E3 /* StableDiffusionDownloaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StableDiffusionDownloaderView.swift; sourceTree = "<group>"; };
 		AAE43D68289EFD2C002098DC /* VideosManagementView+SelectedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideosManagementView+SelectedItemView.swift"; sourceTree = "<group>"; };
 		AAF6747028A4221100044BFD /* OnboardingView+FluidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+FluidView.swift"; sourceTree = "<group>"; };
 		AAF6747428A42E6B00044BFD /* OnboardingView+VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView+VideoView.swift"; sourceTree = "<group>"; };
@@ -143,7 +133,6 @@
 			files = (
 				AA50940428A19FC4007B1F30 /* SDWebImageSwiftUI in Frameworks */,
 				AACCD48D289D8E62006551C1 /* Sebu in Frameworks */,
-				AA73977C2980C2EA00B38BE0 /* MapleDiffusion in Frameworks */,
 				AA42606A28C7D56300B67DE1 /* PixabayKit in Frameworks */,
 				AA7C865A2893576B00D3469E /* MeshKit in Frameworks */,
 				AADED2822898DD880023EB97 /* ServiceManagement.framework in Frameworks */,
@@ -164,15 +153,6 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		AA0B119128FDB8530086277A /* Stable Diffusion */ = {
-			isa = PBXGroup;
-			children = (
-				AA33839728F9FE6500C3D63C /* StableDiffusionView.swift */,
-				AAE1101D28FDA19B0066B6E3 /* StableDiffusionDownloaderView.swift */,
-			);
-			path = "Stable Diffusion";
-			sourceTree = "<group>";
-		};
 		AA0B119228FDB8690086277A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				AA278945289C4B15001E897B /* WallpaperService.swift */,
-				AAE1101828FDA0E40066B6E3 /* MLModelDownloader.swift */,
 				AACCD48E289DA639006551C1 /* VideoDownloadService.swift */,
 			);
 			path = Services;
@@ -214,7 +193,6 @@
 				AAA8947A28B13B6D00880278 /* MeshCreator */,
 				AAAE6365289E017B000ED2F0 /* SettingsView */,
 				AACCD490289DA688006551C1 /* VideosView */,
-				AA0B119128FDB8530086277A /* Stable Diffusion */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,7 +309,6 @@
 			children = (
 				AA9533C9297B021B002A4028 /* MeshKit */,
 				AA9533CA297B0221002A4028 /* PixabayKit */,
-				AAAF34DF2980C4B2008E8057 /* Maple Diffusion */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -360,7 +337,6 @@
 				AAAE6366289EA290000ED2F0 /* SettingsView+GeneralView.swift */,
 				AAAE6368289EA351000ED2F0 /* SettingsView+FluidWallpaperView.swift */,
 				AAAE636A289EDB15000ED2F0 /* SettingsView+VideoWallpaperView.swift */,
-				AA0B119428FDBEC50086277A /* SettingsView+StableDiffusionView.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -408,7 +384,6 @@
 				AA50940328A19FC4007B1F30 /* SDWebImageSwiftUI */,
 				AA42606928C7D56300B67DE1 /* PixabayKit */,
 				AAE1101B28FDA17A0066B6E3 /* ZIPFoundation */,
-				AA73977B2980C2EA00B38BE0 /* MapleDiffusion */,
 			);
 			productName = Acrylic;
 			productReference = AA749C6228931EFB002CD39A /* Acrylic.app */;
@@ -469,7 +444,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0B119528FDBEC50086277A /* SettingsView+StableDiffusionView.swift in Sources */,
 				AA427C0128A09EFA009F9C44 /* WallpaperType.swift in Sources */,
 				AAF6747528A42E6B00044BFD /* OnboardingView+VideoView.swift in Sources */,
 				AACCD492289DA6A3006551C1 /* VideosManagementView.swift in Sources */,
@@ -477,7 +451,6 @@
 				AADED2562898CE750023EB97 /* AnimationSpeed.swift in Sources */,
 				AA3B814C2896D8C20092D06A /* WallpaperWindow.swift in Sources */,
 				AADED2582898D35E0023EB97 /* WallpaperColorScheme.swift in Sources */,
-				AAE1101E28FDA19B0066B6E3 /* StableDiffusionDownloaderView.swift in Sources */,
 				AAE1101728FD9D980066B6E3 /* BlurTransition.swift in Sources */,
 				AA35B89B28A4075A00F7B190 /* OnboardingWindow.swift in Sources */,
 				AA455E3A289826030010938A /* SettingsView.swift in Sources */,
@@ -489,10 +462,8 @@
 				AA68252B289B1419003A0D8F /* FluidViewModel.swift in Sources */,
 				AACAE31128A31F9100E630C7 /* NowPlayingWindow.swift in Sources */,
 				AAAE6367289EA290000ED2F0 /* SettingsView+GeneralView.swift in Sources */,
-				AAE1101928FDA0E40066B6E3 /* MLModelDownloader.swift in Sources */,
 				AACCD498289DA711006551C1 /* VideosManagementView+VideosView.swift in Sources */,
 				AA7397792980C09800B38BE0 /* AcrylicShortcuts.swift in Sources */,
-				AA33839828F9FE6500C3D63C /* StableDiffusionView.swift in Sources */,
 				AA35B89D28A407DF00F7B190 /* OnboardingView.swift in Sources */,
 				AAAE6364289DC620000ED2F0 /* DebouncedObject.swift in Sources */,
 				AACCD496289DA6ED006551C1 /* VideosManagementView+VideoItemView.swift in Sources */,
@@ -791,10 +762,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA50940228A19FC4007B1F30 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		AA73977B2980C2EA00B38BE0 /* MapleDiffusion */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MapleDiffusion;
 		};
 		AA7C86592893576B00D3469E /* MeshKit */ = {
 			isa = XCSwiftPackageProductDependency;

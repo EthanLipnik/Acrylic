@@ -38,6 +38,15 @@ struct SettingsView: View {
                 Label("Video", systemImage: "play.rectangle.fill")
             }
             .tag(2)
+
+            FormView {
+                StableDiffusionView()
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .tabItem {
+                Label("Stable Diffusion", systemImage: "text.below.photo.fill")
+            }
+            .tag(3)
         }
     }
 
@@ -46,15 +55,10 @@ struct SettingsView: View {
 
         var body: some View {
             Group {
-                if #available(macOS 13.0, *) {
-                    Form {
-                        content()
-                    }.groupedForm()
-                } else {
-                    ScrollView {
-                        content()
-                    }
+                Form {
+                    content()
                 }
+                .formStyle(.grouped)
             }
         }
     }
@@ -65,48 +69,33 @@ struct SettingsView: View {
         let footerView: AnyView?
 
         init(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header) {
-            self.contentView = content()
-            self.headerView = header()
-            self.footerView = nil
+            contentView = content()
+            headerView = header()
+            footerView = nil
         }
 
         init<Footer: View>(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
-            self.contentView = content()
-            self.headerView = header()
-            self.footerView = AnyView(footer())
+            contentView = content()
+            headerView = header()
+            footerView = AnyView(footer())
         }
 
         var body: some View {
             Group {
-                if #available(macOS 13.0, *) {
-                    if let footerView {
-                        Section {
-                            contentView
-                        } header: {
-                            headerView
-                        } footer: {
-                            footerView
-                        }
-                    } else {
-                        Section {
-                            contentView
-                        } header: {
-                            headerView
-                        }
-
+                if let footerView {
+                    Section {
+                        contentView
+                    } header: {
+                        headerView
+                    } footer: {
+                        footerView
                     }
                 } else {
-                    GroupBox {
+                    Section {
                         contentView
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                        if let footerView {
-                            footerView
-                        }
-                    } label: {
+                    } header: {
                         headerView
                     }
-                    .padding()
                 }
             }
         }
@@ -116,22 +105,5 @@ struct SettingsView: View {
 struct MacSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-    }
-}
-
-extension View {
-    @ViewBuilder
-    func groupedForm() -> some View {
-        self.modifier(GroupedFormViewModifier())
-    }
-}
-
-struct GroupedFormViewModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(macOS 13.0, *) {
-            content.formStyle(.grouped)
-        } else {
-            content
-        }
     }
 }

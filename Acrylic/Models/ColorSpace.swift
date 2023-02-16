@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/19/22.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 enum ColorSpace: String, Hashable, CaseIterable {
     case linearSRGB

@@ -5,12 +5,12 @@
 //  Created by Ethan Lipnik on 8/4/22.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 @MainActor
 class WallpaperService: ObservableObject {
-    static let shared = WallpaperService.init()
+    static let shared = WallpaperService()
 
     private lazy var window: WallpaperWindow? = nil
     private lazy var windowController: NSWindowController? = nil

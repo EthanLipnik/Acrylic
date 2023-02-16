@@ -5,9 +5,9 @@
 //  Created by Ethan Lipnik on 8/5/22.
 //
 
+import AVKit
 import Foundation
 import PixabayKit
-import AVKit
 
 final class VideoDownloadService: ObservableObject {
     @Published var downloadingVideos: [Video: State] = [:]
@@ -149,7 +149,7 @@ final class VideoDownloadService: ObservableObject {
         let asset = AVURLAsset(url: url)
 
         let outputUrl = FileManager.default.temporaryDirectory.appendingPathComponent("output-\(Int(Date().timeIntervalSinceReferenceDate))-\(UUID().uuidString).mp4")
-        
+
         let preset = AVAssetExportPresetHEVCHighestQuality
         let outFileType = AVFileType.m4v
 
@@ -172,17 +172,17 @@ final class VideoDownloadService: ObservableObject {
         exporter.outputFileType = outFileType
         exporter.outputURL = outputUrl
 
-        if let track = asset.tracks(withMediaType: AVMediaType.video).first {
-            let bps = track.estimatedDataRate
+        if let track = try await asset.loadTracks(withMediaType: AVMediaType.video).first {
+            let bps = try await track.load(.estimatedDataRate)
 
-            let duration = asset.duration.seconds
+            let duration = try await asset.load(.duration).seconds
 
             let fileSize = Double(bps) * duration / 8
 
             let fileLimit = UserDefaults.standard.integer(forKey: "VWFileLimit")
 
             if fileLimit != -1 {
-                var desiredFileSize: Int64 = Int64(fileSize)
+                var desiredFileSize = Int64(fileSize)
 
                 if fileLimit > 0 {
                     desiredFileSize = Int64(fileLimit)
@@ -196,11 +196,11 @@ final class VideoDownloadService: ObservableObject {
 
         return outputUrl
     }
-    
+
     func importVideo(_ url: URL) async throws {
         let videoTitle = url.deletingPathExtension().lastPathComponent
         var destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension(url.pathExtension)
-        
+
         let convertedFile: URL
         if !UserDefaults.standard.bool(forKey: "shouldEnableVWCompression") {
             convertedFile = url

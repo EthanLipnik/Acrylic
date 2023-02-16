@@ -5,28 +5,19 @@
 //  Created by Ethan Lipnik on 8/5/22.
 //
 
-import SwiftUI
-import PixabayKit
 import AVKit
+import PixabayKit
 import Sebu
+import SwiftUI
 
 struct VideosManagementView: View {
     @State private var selectedCategory: SearchCategory? = .backgrounds
 
     var body: some View {
-        Group {
-            if #available(macOS 13.0, *) {
-                NavigationSplitView {
-                    SidebarView(selectedCategory: $selectedCategory)
-                } detail: {
-                    VideosView(category: $selectedCategory)
-                }
-            } else {
-                NavigationView {
-                    SidebarView(selectedCategory: $selectedCategory)
-                    VideosView(category: $selectedCategory)
-                }
-            }
+        NavigationSplitView {
+            SidebarView(selectedCategory: $selectedCategory)
+        } detail: {
+            VideosView(category: $selectedCategory)
         }
         .navigationTitle("Videos")
     }

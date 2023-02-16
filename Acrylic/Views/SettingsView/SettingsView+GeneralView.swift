@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/6/22.
 //
 
-import SwiftUI
 import ServiceManagement
+import SwiftUI
 
 extension SettingsView {
     struct GeneralView: View {
@@ -15,29 +15,25 @@ extension SettingsView {
 
         var body: some View {
             SectionView {
-                if #available(macOS 13.0, *) {
-                    Toggle(isOn: $launchAtLogin) {
-                        Text("Launch Acrylic on system startup")
-                    }
-                    .onChange(of: launchAtLogin) { newValue in
-                        let bundleId = "com.ethanlipnik.Acrylic.AutoLauncher"
-                        
-                        do {
-                            let item = SMAppService.mainApp
-                            if newValue {
-                                try item.register()
-                            } else {
-                                try item.unregister()
-                            }
-                        } catch {
-                            print(error)
+                Toggle(isOn: $launchAtLogin) {
+                    Text("Launch Acrylic on system startup")
+                }
+                .onChange(of: launchAtLogin) { newValue in
+                    do {
+                        let item = SMAppService.mainApp
+                        if newValue {
+                            try item.register()
+                        } else {
+                            try item.unregister()
                         }
-                    }
-                    .onAppear {
-                        launchAtLogin = SMAppService.mainApp.status == .enabled
+                    } catch {
+                        print(error)
                     }
                 }
-
+                .onAppear {
+                    launchAtLogin = SMAppService.mainApp.status == .enabled
+                }
+                
                 Picker("Color Space", selection: $colorSpace) {
                     ForEach(ColorSpace.allCases, id: \.rawValue) { colorSpace in
                         Text(colorSpace.displayName)

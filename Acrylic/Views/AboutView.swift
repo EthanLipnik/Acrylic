@@ -12,7 +12,7 @@ struct AboutView: View {
         VStack {
             Image("Icon")
                 .resizable()
-                .aspectRatio(1/1, contentMode: .fit)
+                .aspectRatio(1 / 1, contentMode: .fit)
                 .frame(maxWidth: 100)
             Text("Acrylic")
                 .font(.largeTitle)
@@ -75,17 +75,29 @@ struct AboutView: View {
 
         var body: some View {
             GroupBox {
-                userView("Ethan Lipnik",
-                         username: "EthanLipnik",
-                         profilePic: URL(string: "https://www.ethanlipnik.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FProfilePic.4dd0e195.png&w=1080&q=75"),
-                         body: "Developer and Designer")
+                userView(
+                    "Ethan Lipnik",
+                    username: "EthanLipnik",
+                    profilePic: URL(string: "https://www.ethanlipnik.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FProfilePic.4dd0e195.png&w=1080&q=75"),
+                    body: "Developer and Designer"
+                )
 
                 Divider()
 
-                userView("Nikita Patskov",
-                         username: "NikitkaPa",
-                         profilePic: URL(string: "https://avatars.githubusercontent.com/u/17741730?v=4"),
-                         body: "MeshGradient Library")
+                userView(
+                    "Nikita Patskov",
+                    username: "NikitkaPa",
+                    profilePic: URL(string: "https://avatars.githubusercontent.com/u/17741730?v=4"),
+                    body: "MeshGradient Library"
+                )
+
+                Divider()
+
+                userView("Alexander Vilinskyy",
+                         username: "vilinskyy",
+                         profilePic: URL(string: "https://pbs.twimg.com/profile_images/1615753830133600256/lBk-E9Rr_400x400.jpg"),
+                         body: "Icon Designer"
+                )
             } label: {
                 Label("Credits", systemImage: "person.crop.square.filled.and.at.rectangle")
             }
@@ -101,7 +113,7 @@ struct AboutView: View {
                 HStack {
                     AsyncImage(url: profilePic) { phase in
                         switch phase {
-                        case .success(let image):
+                        case let .success(image):
                             image
                                 .resizable()
                         case .failure:
@@ -112,7 +124,7 @@ struct AboutView: View {
                             Color.secondary
                         }
                     }
-                    .aspectRatio(1/1, contentMode: .fit)
+                    .aspectRatio(1 / 1, contentMode: .fit)
                     .frame(height: 45)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
 

@@ -5,21 +5,21 @@
 //  Created by Ethan Lipnik on 8/5/22.
 //
 
-import SwiftUI
 import PixabayKit
+import SwiftUI
 
 extension VideosManagementView {
     struct SidebarView: View {
         @Binding var selectedCategory: SearchCategory?
 
         let filters: [SearchCategory] = [
-            .religion
+            .religion,
         ]
 
         let sections: [(String, [SearchCategory])] = [
             ("", [
                 .all,
-                .backgrounds
+                .backgrounds,
             ]),
             ("Learning", [
                 .science,
@@ -28,7 +28,7 @@ extension VideosManagementView {
                 .nature,
                 .animals,
                 .industry,
-                .business
+                .business,
             ]),
             ("Humanity", [
                 .people,
@@ -36,14 +36,14 @@ extension VideosManagementView {
                 .feelings,
                 .sports,
                 .food,
-                .music
+                .music,
             ]),
             ("Somewhere else", [
                 .transportation,
                 .travel,
                 .places,
-                .buildings
-            ])
+                .buildings,
+            ]),
         ]
 
         let images: [SearchCategory: String] = [
@@ -66,7 +66,7 @@ extension VideosManagementView {
             .travel: "airplane.departure",
             .buildings: "building.2.fill",
             .business: "case.fill",
-            .music: "music.note"
+            .music: "music.note",
         ]
 
         var body: some View {

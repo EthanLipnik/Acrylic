@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/8/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 
 extension ContentView {
     struct OptionsView: View {
@@ -14,12 +14,12 @@ extension ContentView {
         @EnvironmentObject var wallpaperService: WallpaperService
         @StateObject var videosViewModel = VideosViewModel()
         @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
-        
+
         @State private var isHoldingRandomizeButton: Bool = false
         @State private var selectedHue: Hue?
 
         let popoverNotification = NotificationCenter.default
-                    .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
+            .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
 
         var body: some View {
             ScrollView(.horizontal) {
@@ -34,7 +34,7 @@ extension ContentView {
                             if let image = video.thumbnail {
                                 Image(nsImage: image)
                                     .resizable()
-                                    .aspectRatio(16/10, contentMode: .fit)
+                                    .aspectRatio(16 / 10, contentMode: .fit)
                                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                                     .overlay(
                                         currentVideoBackgroundId == video.id ? RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -84,13 +84,13 @@ extension ContentView {
                 }
             }
         }
-        
+
         var randomizeButton: some View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Color.black
                     .opacity(0.5)
                     .blendMode(.overlay))
-                .aspectRatio(16/10, contentMode: .fit)
+                .aspectRatio(16 / 10, contentMode: .fit)
                 .overlay(Image(systemName: "dice.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -101,7 +101,7 @@ extension ContentView {
                 .onTapGesture {
                     isHoldingRandomizeButton = false
                     guard !wallpaperService.isLoading else { return }
-                    
+
                     switch selectedWallpaper {
                     case .fluid, .nowPlaying:
                         getFluidWindow()?.viewModel?.newPalette()
@@ -118,9 +118,9 @@ extension ContentView {
                     isHoldingRandomizeButton = bool
                 })
         }
-        
+
         func getFluidWindow() -> FluidWindow? {
-            return NSApp.windows.compactMap({ $0 as? FluidWindow }).first
+            return NSApp.windows.compactMap { $0 as? FluidWindow }.first
         }
     }
 }

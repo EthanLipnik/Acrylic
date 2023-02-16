@@ -36,7 +36,7 @@ class WallpaperWindow: NSWindow {
         }
     }
 
-    override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect {
+    override func constrainFrameRect(_ frameRect: NSRect, to _: NSScreen?) -> NSRect {
         return frameRect
     }
 

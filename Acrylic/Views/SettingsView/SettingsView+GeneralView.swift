@@ -10,8 +10,10 @@ import SwiftUI
 
 extension SettingsView {
     struct GeneralView: View {
-        @AppStorage("colorSpace") var colorSpace: ColorSpace = .sRGB
-        @AppStorage("launchAtLogin") var launchAtLogin: Bool = false
+        @AppStorage("colorSpace")
+        var colorSpace: ColorSpace = .sRGB
+        @AppStorage("launchAtLogin")
+        var launchAtLogin: Bool = false
 
         var body: some View {
             SectionView {
@@ -33,7 +35,7 @@ extension SettingsView {
                 .onAppear {
                     launchAtLogin = SMAppService.mainApp.status == .enabled
                 }
-                
+
                 Picker("Color Space", selection: $colorSpace) {
                     ForEach(ColorSpace.allCases, id: \.rawValue) { colorSpace in
                         Text(colorSpace.displayName)

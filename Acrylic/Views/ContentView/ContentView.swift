@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedWallpaper: WallpaperType?
+    @State
+    private var selectedWallpaper: WallpaperType?
 
     let openAbout: () -> Void
     let openOnboarding: () -> Void
-    @StateObject var wallpaperService: WallpaperService = .shared
-    @State var canStartVideo: Bool = false
+    @StateObject
+    var wallpaperService: WallpaperService = .shared
+    @State
+    var canStartVideo: Bool = false
 
     let popoverNotification = NotificationCenter.default
         .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
@@ -42,7 +45,12 @@ struct ContentView: View {
                         }
                     }()
 
-                    WallpaperItem(wallpaper: wallpaper, selectedWallpaper: $selectedWallpaper, canStart: wallpaper == .video ? canStartVideo : true, actions: actions) {
+                    WallpaperItem(
+                        wallpaper: wallpaper,
+                        selectedWallpaper: $selectedWallpaper,
+                        canStart: wallpaper == .video ? canStartVideo : true,
+                        actions: actions
+                    ) {
                         Task {
                             if selectedWallpaper == wallpaper {
                                 withAnimation {
@@ -92,11 +100,16 @@ struct ContentView: View {
     }
 
     func updateCanStartVideo() {
-        let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
+        let documentsFolder = FileManager.default
+            .urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        canStartVideo = !((try? FileManager.default.contentsOfDirectory(atPath: folder.path).filter { $0.hasSuffix("mp4") }.isEmpty) ?? true)
+        canStartVideo =
+            !((
+                try? FileManager.default.contentsOfDirectory(atPath: folder.path)
+                    .filter { $0.hasSuffix("mp4") }.isEmpty
+            ) ?? true)
     }
 
     var footer: some View {
@@ -136,35 +149,38 @@ struct ContentView: View {
                     Label("Create Mesh", systemImage: "square.stack.3d.down.right.fill")
                 }
 
-                #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
-                    Button {
-                        WindowManager.StableDiffusion.open()
-                    } label: {
-                        Label("Generate Image", systemImage: "text.below.photo.fill")
-                    }
-                #else
-                    Button {} label: {
-                        Label("Generate Image (Requires Apple Silicon)", systemImage: "text.below.photo.fill")
-                    }
-                    .disabled(true)
-                #endif
+#if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+                Button {
+                    WindowManager.StableDiffusion.open()
+                } label: {
+                    Label("Generate Image", systemImage: "text.below.photo.fill")
+                }
+#else
+                Button {} label: {
+                    Label(
+                        "Generate Image (Requires Apple Silicon)",
+                        systemImage: "text.below.photo.fill"
+                    )
+                }
+                .disabled(true)
+#endif
             } label: {
                 Image(systemName: "plus.circle.fill")
             }
             .buttonStyle(.plain)
 
             Spacer()
-            
+
             Menu {
                 footerButtons
             } label: {
                 Image(systemName: "ellipsis.circle.fill")
             }
             .buttonStyle(.plain)
-            
+
             Button {
                 NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-                
+
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
                 Image(systemName: "gearshape.fill")
@@ -180,11 +196,11 @@ struct ContentView: View {
             Button(action: openAbout) {
                 Label("About", systemImage: "info")
             }
-            
+
             Button(action: openOnboarding) {
                 Label("Onboarding", systemImage: "circle.circle.fill")
             }
-            
+
             Divider()
 
             Button {
@@ -196,18 +212,22 @@ struct ContentView: View {
     }
 
     struct WallpaperItem: View {
-        @EnvironmentObject var wallpaperService: WallpaperService
+        @EnvironmentObject
+        var wallpaperService: WallpaperService
         let wallpaper: WallpaperType
 
         typealias Action = (String, () -> Void)
 
-        @Binding var selectedWallpaper: WallpaperType?
+        @Binding
+        var selectedWallpaper: WallpaperType?
         var canStart: Bool = true
         var actions: [Action] = []
         let updateWallpaper: () -> Void
 
-        @State private var isHolding: Bool = false
-        @State private var isHovering: Bool = false
+        @State
+        private var isHolding: Bool = false
+        @State
+        private var isHovering: Bool = false
 
         var body: some View {
             VStack {
@@ -216,11 +236,15 @@ struct ContentView: View {
                     .aspectRatio(16 / 10, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .overlay(
-                        selectedWallpaper == wallpaper ? RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .stroke(Color.accentColor, lineWidth: 4) : nil
+                        selectedWallpaper == wallpaper ? RoundedRectangle(
+                            cornerRadius: 10,
+                            style: .continuous
+                        )
+                        .stroke(Color.accentColor, lineWidth: 4) : nil
                     )
                     .overlay(
-                        selectedWallpaper == wallpaper && wallpaperService.isLoading ? ProgressView() : nil
+                        selectedWallpaper == wallpaper && wallpaperService
+                            .isLoading ? ProgressView() : nil
                     )
                     .overlay(
                         isHovering ? ZStack {

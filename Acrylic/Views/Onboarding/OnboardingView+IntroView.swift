@@ -9,7 +9,8 @@ import SwiftUI
 
 extension OnboardingView {
     struct IntroView: View {
-        @Binding var page: Int
+        @Binding
+        var page: Int
 
         var body: some View {
             HStack {

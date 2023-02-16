@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var selection: Int = 0
+    @State
+    var selection: Int = 0
 
     var body: some View {
         TabView(selection: $selection) {
@@ -42,7 +43,8 @@ struct SettingsView: View {
     }
 
     struct FormView<Content: View>: View {
-        @ViewBuilder let content: () -> Content
+        @ViewBuilder
+        let content: () -> Content
 
         var body: some View {
             Group {
@@ -65,7 +67,11 @@ struct SettingsView: View {
             footerView = nil
         }
 
-        init<Footer: View>(@ViewBuilder content: () -> Content, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
+        init(
+            @ViewBuilder content: () -> Content,
+            @ViewBuilder header: () -> Header,
+            @ViewBuilder footer: () -> some View
+        ) {
             contentView = content()
             headerView = header()
             footerView = AnyView(footer())

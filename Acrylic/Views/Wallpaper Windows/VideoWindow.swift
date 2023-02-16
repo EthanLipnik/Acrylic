@@ -10,12 +10,14 @@ import AVKit
 import PixabayKit
 
 class VideoWindow: WallpaperWindow {
-    override var wallpaperType: WallpaperType? { return .fluid }
+    override var wallpaperType: WallpaperType? { .fluid }
 
     private lazy var videoFile: URL? = {
-        guard let currentVideoBackgroundId = UserDefaults.standard.string(forKey: "currentVideoBackgroundId") else { return nil }
+        guard let currentVideoBackgroundId = UserDefaults.standard
+            .string(forKey: "currentVideoBackgroundId") else { return nil }
 
-        let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
+        let documentsFolder = FileManager.default
+            .urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
@@ -63,7 +65,10 @@ class VideoWindow: WallpaperWindow {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 guard let screen = NSScreen.main,
                       let image = self?.imageFromVideo(url: videoFile, at: 2) else { return }
-                let backgroundUrl = FileManager.default.temporaryDirectory.appendingPathComponent("\(videoFile.deletingPathExtension().lastPathComponent).png")
+                let backgroundUrl = FileManager.default.temporaryDirectory
+                    .appendingPathComponent(
+                        "\(videoFile.deletingPathExtension().lastPathComponent).png"
+                    )
                 do {
                     try image.pngWrite(to: backgroundUrl)
 

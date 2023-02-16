@@ -10,8 +10,10 @@ import SwiftUI
 
 extension OnboardingView {
     struct FluidView: View {
-        @Environment(\.colorScheme) var colorScheme
-        @Binding var page: Int
+        @Environment(\.colorScheme)
+        var colorScheme
+        @Binding
+        var page: Int
 
         var body: some View {
             let mesh: (MeshColorGrid, MeshRandomizer) = {
@@ -25,27 +27,38 @@ extension OnboardingView {
                         return .bright
                     }
                 }()
-                let colors = MeshKit.generate(palette: .blue, luminosity: luminosity, withRandomizedLocations: true)
+                let colors = MeshKit.generate(
+                    palette: .blue,
+                    luminosity: luminosity,
+                    withRandomizedLocations: true
+                )
                 return (colors, .withMeshColors(colors))
             }()
 
             return VStack(spacing: 30) {
-                Mesh(colors: mesh.0,
-                     animatorConfiguration: .init(animationSpeedRange: 1 ... 2, meshRandomizer: mesh.1),
-                     grainAlpha: MeshDefaults.grainAlpha / 2)
-                    .frame(width: 300)
-                    .aspectRatio(16 / 10, contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    .shadow(radius: 15, y: 8)
+                Mesh(
+                    colors: mesh.0,
+                    animatorConfiguration: .init(
+                        animationSpeedRange: 1 ... 2,
+                        meshRandomizer: mesh.1
+                    ),
+                    grainAlpha: MeshDefaults.grainAlpha / 2
+                )
+                .frame(width: 300)
+                .aspectRatio(16 / 10, contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .shadow(radius: 15, y: 8)
                 Text("Fluid Wallpaper")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
 
                 GroupBox {
-                    Text("Bring your desktop to life with **Fluid Wallpaper**. Life mesh gradients smoothly animate between points and colors based on your settings.")
-                        .frame(maxWidth: 350)
-                        .padding()
+                    Text(
+                        "Bring your desktop to life with **Fluid Wallpaper**. Life mesh gradients smoothly animate between points and colors based on your settings."
+                    )
+                    .frame(maxWidth: 350)
+                    .padding()
                 }
                 Spacer()
 

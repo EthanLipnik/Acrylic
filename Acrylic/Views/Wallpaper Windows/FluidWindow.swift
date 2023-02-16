@@ -11,7 +11,7 @@ import SwiftUI
 final class FluidWindow: WallpaperWindow {
     lazy var viewModel: FluidViewModel? = nil
 
-    override var wallpaperType: WallpaperType? { return .fluid }
+    override var wallpaperType: WallpaperType? { .fluid }
 
     override init() {
         super.init()

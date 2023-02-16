@@ -11,10 +11,14 @@ import MeshKit
 import SwiftUI
 
 class FluidViewModel: ObservableObject {
-    @Published var meshRandomizer: MeshRandomizer
-    @Published var colors: MeshColorGrid
-    @Published var timer: Timer?
-    @Published var currentPalette: Hue?
+    @Published
+    var meshRandomizer: MeshRandomizer
+    @Published
+    var colors: MeshColorGrid
+    @Published
+    var timer: Timer?
+    @Published
+    var currentPalette: Hue?
 
     private let fluidWallpapersFolder = FileManager.default
         .temporaryDirectory
@@ -22,7 +26,10 @@ class FluidViewModel: ObservableObject {
     var shouldUpdateDesktopPicture: Bool = false
 
     var allowedPalettes: [Hue] {
-        return Hue.allCases.filter { !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled") }
+        Hue.allCases
+            .filter {
+                !UserDefaults.standard.bool(forKey: "isWallpaperPalette-\($0.displayTitle)Disabled")
+            }
     }
 
     init() {
@@ -35,7 +42,10 @@ class FluidViewModel: ObservableObject {
                 try FileManager.default.removeItem(at: fluidWallpapersFolder)
             }
 
-            try FileManager.default.createDirectory(at: fluidWallpapersFolder, withIntermediateDirectories: true)
+            try FileManager.default.createDirectory(
+                at: fluidWallpapersFolder,
+                withIntermediateDirectories: true
+            )
         } catch {
             print(error)
         }
@@ -54,7 +64,10 @@ class FluidViewModel: ObservableObject {
     func newPalette(_ palette: Hue? = nil) {
         let luminosity: Luminosity = {
             let interfaceStyle = InterfaceStyle()
-            let wallpaperColorScheme = WallpaperColorScheme(rawValue: UserDefaults.standard.string(forKey: "FWColorScheme") ?? "system")
+            let wallpaperColorScheme = WallpaperColorScheme(
+                rawValue: UserDefaults.standard
+                    .string(forKey: "FWColorScheme") ?? "system"
+            )
             switch wallpaperColorScheme {
             case .light:
                 return .light
@@ -80,7 +93,10 @@ class FluidViewModel: ObservableObject {
         currentPalette = newPalette
 
         if shouldUpdateDesktopPicture {
-            let animationSpeed = AnimationSpeed(rawValue: UserDefaults.standard.string(forKey: "FWAnimationSpeed") ?? "normal") ?? .normal
+            let animationSpeed = AnimationSpeed(
+                rawValue: UserDefaults.standard
+                    .string(forKey: "FWAnimationSpeed") ?? "normal"
+            ) ?? .normal
             let delay: Double = {
                 switch animationSpeed {
                 case .slow:
@@ -107,7 +123,13 @@ class FluidViewModel: ObservableObject {
         timer?.invalidate()
         timer = nil
 
-        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(generateNewPalette), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(
+            timeInterval: interval,
+            target: self,
+            selector: #selector(generateNewPalette),
+            userInfo: nil,
+            repeats: true
+        )
     }
 
     @objc
@@ -132,7 +154,8 @@ class FluidViewModel: ObservableObject {
             .forEach { url in
                 try? FileManager.default.removeItem(at: url)
             }
-        let url = fluidWallpapersFolder.appendingPathComponent("Acrylic Fluid Wallpaper \(Date()).png")
+        let url = fluidWallpapersFolder
+            .appendingPathComponent("Acrylic Fluid Wallpaper \(Date()).png")
 
         if FileManager.default.fileExists(atPath: url.path) {
             try? FileManager.default.removeItem(at: url)
@@ -172,7 +195,8 @@ extension NSImage {
     }
 
     var pngData: Data? {
-        guard let tiffRepresentation = tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return nil }
+        guard let tiffRepresentation,
+              let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else { return nil }
         return bitmapImage.representation(using: .png, properties: [:])
     }
 

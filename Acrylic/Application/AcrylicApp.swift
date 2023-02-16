@@ -10,33 +10,45 @@ import SwiftUI
 
 @main
 struct AcrylicApp: App {
-    @Environment(\.openURL) var openUrl
-    @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
-    @State private var isImportingVideo: Bool = false
+    @Environment(\.openURL)
+    var openUrl
+    @NSApplicationDelegateAdaptor
+    var appDelegate: AppDelegate
+    @State
+    private var isImportingVideo: Bool = false
 
     var body: some Scene {
         WindowGroup {
             VideosManagementView()
                 .frame(minWidth: 700, minHeight: 500)
-                .fileImporter(isPresented: $isImportingVideo, allowedContentTypes: [.movie], allowsMultipleSelection: true, onCompletion: { result in
-                    do {
-                        switch result {
-                        case let .success(fileUrls):
-                            Task(priority: .high) {
-                                let downloadService = VideoDownloadService()
-                                try await fileUrls.concurrentForEach { fileUrl in
-                                    try await downloadService.importVideo(fileUrl)
+                .fileImporter(
+                    isPresented: $isImportingVideo,
+                    allowedContentTypes: [.movie],
+                    allowsMultipleSelection: true,
+                    onCompletion: { result in
+                        do {
+                            switch result {
+                            case let .success(fileUrls):
+                                Task(priority: .high) {
+                                    let downloadService = VideoDownloadService()
+                                    try await fileUrls.concurrentForEach { fileUrl in
+                                        try await downloadService.importVideo(fileUrl)
+                                    }
                                 }
+                            case let .failure(error):
+                                throw error
                             }
-                        case let .failure(error):
-                            throw error
+                        } catch {
+                            print(error)
                         }
-                    } catch {
-                        print(error)
                     }
-                })
+                )
                 .onDisappear {
-                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                    if NSApp.windows.compactMap(\.identifier)
+                        .filter({
+                            $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") })
+                        .count == 0
+                    {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
@@ -79,7 +91,11 @@ struct AcrylicApp: App {
                 .navigationTitle("Acrylic – Mesh Creator")
                 .frame(minWidth: 400, minHeight: 400)
                 .onDisappear {
-                    if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                    if NSApp.windows.compactMap(\.identifier)
+                        .filter({
+                            $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") })
+                        .count == 0
+                    {
                         NSApp.setActivationPolicy(.accessory)
                     }
                 }
@@ -92,7 +108,8 @@ struct AcrylicApp: App {
     }
 
     struct DeepLinkMeshCreatorView: View {
-        @State private var size: MeshSize? = nil
+        @State
+        private var size: MeshSize?
 
         var body: some View {
             Group {
@@ -101,9 +118,13 @@ struct AcrylicApp: App {
                 } else {
                     ProgressView()
                         .onOpenURL { url in
-                            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-                            if let sizeStr = urlComponents?.queryItems?.first(where: { $0.name == "size" })?.value,
-                               let size = Int(sizeStr)
+                            let urlComponents = URLComponents(
+                                url: url,
+                                resolvingAgainstBaseURL: true
+                            )
+                            if let sizeStr = urlComponents?.queryItems?
+                                .first(where: { $0.name == "size" })?.value,
+                                let size = Int(sizeStr)
                             {
                                 self.size = MeshSize(width: size, height: size)
                             }
@@ -123,9 +144,9 @@ enum WindowManager: String, CaseIterable {
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
 
-    #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
-        case StableDiffusion = "StableDiffusionView"
-    #endif
+#if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+    case StableDiffusion = "StableDiffusionView"
+#endif
 
     func open(query: URLQueryItem...) {
         var urlComponents = URLComponents(string: urlStr)
@@ -142,6 +163,6 @@ enum WindowManager: String, CaseIterable {
     }
 
     var urlStr: String {
-        return "acrylic://\(rawValue)"
+        "acrylic://\(rawValue)"
     }
 }

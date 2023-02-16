@@ -12,7 +12,8 @@ import SwiftUI
 
 @MainActor
 class VideosViewModel: ObservableObject {
-    @Published var videos: [VideoItem] = []
+    @Published
+    var videos: [VideoItem] = []
 
     let folder: URL
 
@@ -24,17 +25,24 @@ class VideosViewModel: ObservableObject {
     }
 
     init() {
-        let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
+        let documentsFolder = FileManager.default
+            .urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         folder = acrylicFolder.appendingPathComponent("Videos")
 
         do {
             if !FileManager.default.fileExists(atPath: acrylicFolder.path) {
-                try FileManager.default.createDirectory(at: acrylicFolder, withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(
+                    at: acrylicFolder,
+                    withIntermediateDirectories: true
+                )
             }
 
             if !FileManager.default.fileExists(atPath: folder.path) {
-                try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(
+                    at: folder,
+                    withIntermediateDirectories: true
+                )
             }
 
             Task(priority: .userInitiated) { [weak self] in
@@ -65,9 +73,11 @@ class VideosViewModel: ObservableObject {
         let videos = try await contents
             .concurrentMap { [weak self] video in
                 let thumbnail = try await self?.generateThumbnail(video.0)
-                return VideoItem(fileUrl: video.0,
-                                 id: video.1,
-                                 thumbnail: thumbnail)
+                return VideoItem(
+                    fileUrl: video.0,
+                    id: video.1,
+                    thumbnail: thumbnail
+                )
             }
 
         withAnimation { [weak self] in
@@ -113,7 +123,11 @@ class VideosViewModel: ObservableObject {
                     return
                 }
 
-                continuation.resume(returning: NSImage(cgImage: thumbnailImageRef, size: NSSize(width: 640, height: 480)))
+                continuation
+                    .resume(returning: NSImage(
+                        cgImage: thumbnailImageRef,
+                        size: NSSize(width: 640, height: 480)
+                    ))
             }
         }
     }

@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 9/18/22.
 //
 
-import Foundation
 import AppIntents
+import Foundation
 
 @available(iOS 16.0, macOS 13.0, *)
 struct AcrylicShortcuts: AppShortcutsProvider {

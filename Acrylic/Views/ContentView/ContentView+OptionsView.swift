@@ -16,8 +16,8 @@ extension ContentView {
         var wallpaperService: WallpaperService
         @StateObject
         var videosViewModel = VideosViewModel()
-        @AppStorage("currentVideoBackgroundId")
-        var currentVideoBackgroundId: String = ""
+        @AppStorage("currentBackgroundVideoFile")
+        var currentBackgroundVideoFile: String = ""
 
         @State
         private var isHoldingRandomizeButton: Bool = false
@@ -46,7 +46,7 @@ extension ContentView {
                                         style: .continuous
                                     ))
                                     .overlay(
-                                        currentVideoBackgroundId == video.id ? RoundedRectangle(
+                                        currentBackgroundVideoFile == video.fileUrl.lastPathComponent ? RoundedRectangle(
                                             cornerRadius: 10,
                                             style: .continuous
                                         )
@@ -57,9 +57,9 @@ extension ContentView {
                                             withAnimation {
                                                 try? videosViewModel.delete(video)
 
-                                                if currentVideoBackgroundId == video.id {
-                                                    currentVideoBackgroundId = videosViewModel
-                                                        .videos.first?.id ?? ""
+                                                if currentBackgroundVideoFile == video.fileUrl.lastPathComponent {
+                                                    currentBackgroundVideoFile = videosViewModel
+                                                        .videos.first?.fileUrl.lastPathComponent ?? ""
                                                     videosViewModel.updateWallpaper()
                                                 }
                                             }
@@ -71,7 +71,7 @@ extension ContentView {
                                     .onTapGesture {
                                         guard !wallpaperService.isLoading else { return }
 
-                                        currentVideoBackgroundId = video.id
+                                        currentBackgroundVideoFile = video.fileUrl.lastPathComponent
                                         videosViewModel.updateWallpaper()
                                     }
                             }
@@ -123,7 +123,7 @@ extension ContentView {
                     case .fluid, .nowPlaying:
                         getFluidWindow()?.viewModel?.newPalette()
                     case .video:
-                        currentVideoBackgroundId = videosViewModel.videos.randomElement()?.id ?? ""
+                        currentBackgroundVideoFile = videosViewModel.videos.randomElement()?.fileUrl.lastPathComponent ?? ""
                         videosViewModel.updateWallpaper()
                     case .none:
                         break

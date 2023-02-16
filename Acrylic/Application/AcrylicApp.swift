@@ -64,7 +64,7 @@ struct AcrylicApp: App {
                 Button("Import Video...") {
                     isImportingVideo.toggle()
                 }
-                .keyboardShortcut("i")
+                .keyboardShortcut("o")
             }
 
             CommandGroup(replacing: .appInfo) {

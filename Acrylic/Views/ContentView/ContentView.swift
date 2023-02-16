@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State
@@ -105,11 +106,15 @@ struct ContentView: View {
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        canStartVideo =
-            !((
-                try? FileManager.default.contentsOfDirectory(atPath: folder.path)
-                    .filter { $0.hasSuffix("mp4") }.isEmpty
-            ) ?? true)
+        do {
+            let contents = try FileManager.default.contentsOfDirectory(atPath: folder.path)
+                .map { folder.appending(path: $0) }
+                .compactMap { UTType(filenameExtension: $0.pathExtension) }
+                .filter { $0.isSubtype(of: .movie) }
+            canStartVideo = !contents.isEmpty
+        } catch {
+            print(error)
+        }
     }
 
     var footer: some View {

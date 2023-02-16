@@ -12,8 +12,8 @@ extension VideosManagementView {
     struct SelectedItemView: View {
         @EnvironmentObject
         var downloadService: VideoDownloadService
-        @AppStorage("currentVideoBackgroundId")
-        var currentVideoBackgroundId: String = ""
+        @AppStorage("currentBackgroundVideoFile")
+        var currentBackgroundVideoFile: String = ""
 
         let video: Video?
 
@@ -145,7 +145,7 @@ extension VideosManagementView {
                     Spacer()
                     Button {
                         if let id = video?.id {
-                            currentVideoBackgroundId = "\(id)"
+                            currentBackgroundVideoFile = "\(id).mp4"
 
                             Task {
                                 do {
@@ -159,7 +159,7 @@ extension VideosManagementView {
                         Text("Set as Wallpaper")
                     }
                     .keyboardShortcut(.return)
-                    .disabled(state != .done() || currentVideoBackgroundId == "\(video?.id ?? 0)")
+                    .disabled(state != .done() || currentBackgroundVideoFile == "\(video?.id ?? 0).mp4")
                 }.disabled(video == nil)
             }
             .padding()

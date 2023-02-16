@@ -13,15 +13,15 @@ class VideoWindow: WallpaperWindow {
     override var wallpaperType: WallpaperType? { .fluid }
 
     private lazy var videoFile: URL? = {
-        guard let currentVideoBackgroundId = UserDefaults.standard
-            .string(forKey: "currentVideoBackgroundId") else { return nil }
+        guard let currentBackgroundVideoFile = UserDefaults.standard
+            .string(forKey: "currentBackgroundVideoFile") else { return nil }
 
         let documentsFolder = FileManager.default
             .urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        return folder.appendingPathComponent(currentVideoBackgroundId + ".mp4")
+        return folder.appendingPathComponent(currentBackgroundVideoFile)
     }()
 
     private lazy var playerItem: AVPlayerItem? = {

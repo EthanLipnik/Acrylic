@@ -16,11 +16,13 @@ class WallpaperService: ObservableObject {
     private lazy var windowController: NSWindowController? = nil
     private lazy var currentDesktopPictureUrl: URL? = nil
 
-    @Published var selectedWallpaper: WallpaperType?
-    @Published var isLoading: Bool = false
+    @Published
+    var selectedWallpaper: WallpaperType?
+    @Published
+    var isLoading: Bool = false
 
     var isUsingWallpaper: Bool {
-        return window != nil || windowController != nil || selectedWallpaper != nil
+        window != nil || windowController != nil || selectedWallpaper != nil
     }
 
     init() {
@@ -39,7 +41,7 @@ class WallpaperService: ObservableObject {
 
     @discardableResult
     func toggle(_ wallpaper: WallpaperType) async throws -> Bool {
-        let isUsingWallpaper = self.isUsingWallpaper
+        let isUsingWallpaper = isUsingWallpaper
 
         if isUsingWallpaper {
             try await stop()
@@ -81,7 +83,7 @@ class WallpaperService: ObservableObject {
     func stop() async throws {
         isLoading = true
 
-        let isUsingWallpaper = self.isUsingWallpaper
+        let isUsingWallpaper = isUsingWallpaper
         windowController?.close()
         windowController = nil
         window = nil
@@ -107,7 +109,8 @@ class WallpaperService: ObservableObject {
     @MainActor
     func revertDesktopPicture() throws {
         let workspace = NSWorkspace.shared
-        guard let screen = NSScreen.main, let currentDesktopPictureUrl, currentDesktopPictureUrl != getDesktopPicture() else { return }
+        guard let screen = NSScreen.main, let currentDesktopPictureUrl,
+              currentDesktopPictureUrl != getDesktopPicture() else { return }
         try workspace.setDesktopImageURL(currentDesktopPictureUrl, for: screen)
     }
 

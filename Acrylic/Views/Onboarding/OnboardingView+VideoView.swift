@@ -9,8 +9,10 @@ import SwiftUI
 
 extension OnboardingView {
     struct VideoView: View {
-        @Environment(\.colorScheme) var colorScheme
-        @Binding var page: Int
+        @Environment(\.colorScheme)
+        var colorScheme
+        @Binding
+        var page: Int
         let closeWindow: () -> Void
 
         var body: some View {
@@ -27,9 +29,11 @@ extension OnboardingView {
                     .frame(maxWidth: .infinity)
 
                 GroupBox {
-                    Text("Reanimate your desktop with a selection of hundreds of high quality videos. Find the right one for your mood.")
-                        .frame(maxWidth: 350)
-                        .padding()
+                    Text(
+                        "Reanimate your desktop with a selection of hundreds of high quality videos. Find the right one for your mood."
+                    )
+                    .frame(maxWidth: 350)
+                    .padding()
                 }
                 Spacer()
 

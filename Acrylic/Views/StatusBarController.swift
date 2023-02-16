@@ -21,7 +21,10 @@ final class StatusBarController {
         statusItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
 
         if let statusBarButton = statusItem.button {
-            statusBarButton.image = NSImage(systemSymbolName: "paintbrush.fill", accessibilityDescription: nil)
+            statusBarButton.image = NSImage(
+                systemSymbolName: "paintbrush.fill",
+                accessibilityDescription: nil
+            )
             statusBarButton.image?.size = NSSize(width: 18.0, height: 18.0)
             statusBarButton.image?.isTemplate = true
             statusBarButton.target = self
@@ -39,7 +42,11 @@ final class StatusBarController {
             popover.contentSize = NSSize(width: 300, height: 300)
             popover.behavior = .transient
             popover.setValue(true, forKeyPath: "shouldHideAnchor")
-            popover.show(relativeTo: statusBarButton.bounds, of: statusBarButton, preferredEdge: .minY)
+            popover.show(
+                relativeTo: statusBarButton.bounds,
+                of: statusBarButton,
+                preferredEdge: .minY
+            )
             popover.contentViewController?.view.window?.makeKey()
             self.popover = popover
         }

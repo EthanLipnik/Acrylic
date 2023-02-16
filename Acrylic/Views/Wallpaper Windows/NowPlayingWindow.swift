@@ -11,7 +11,7 @@ import SwiftUI
 final class NowPlayingWindow: WallpaperWindow {
     lazy var viewModel: FluidViewModel? = nil
 
-    override var wallpaperType: WallpaperType? { return .nowPlaying }
+    override var wallpaperType: WallpaperType? { .nowPlaying }
 
     override init() {
         super.init()

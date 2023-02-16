@@ -11,7 +11,8 @@ import Sebu
 import SwiftUI
 
 struct VideosManagementView: View {
-    @State private var selectedCategory: SearchCategory? = .backgrounds
+    @State
+    private var selectedCategory: SearchCategory? = .backgrounds
 
     var body: some View {
         NavigationSplitView {

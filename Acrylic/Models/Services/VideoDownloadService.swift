@@ -10,7 +10,8 @@ import Foundation
 import PixabayKit
 
 final class VideoDownloadService: ObservableObject {
-    @Published var downloadingVideos: [Video: State] = [:]
+    @Published
+    var downloadingVideos: [Video: State] = [:]
 
     enum State: Equatable {
         case notStarted(URL? = nil)
@@ -41,12 +42,16 @@ final class VideoDownloadService: ObservableObject {
     let folder: URL
 
     init() {
-        let documentsFolder = FileManager.default.urls(for: .moviesDirectory, in: .userDomainMask)[0]
+        let documentsFolder = FileManager.default
+            .urls(for: .moviesDirectory, in: .userDomainMask)[0]
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         folder = acrylicFolder.appendingPathComponent("Videos")
 
         if !FileManager.default.fileExists(atPath: acrylicFolder.path) {
-            try? FileManager.default.createDirectory(at: acrylicFolder, withIntermediateDirectories: true)
+            try? FileManager.default.createDirectory(
+                at: acrylicFolder,
+                withIntermediateDirectories: true
+            )
         }
 
         if !FileManager.default.fileExists(atPath: folder.path) {
@@ -56,7 +61,8 @@ final class VideoDownloadService: ObservableObject {
 
     @discardableResult
     func getVideoIsDownloaded(_ video: Video?) -> Bool {
-        guard let video, !downloadingVideos.contains(where: { $0.key.id == video.id }) else { return false }
+        guard let video,
+              !downloadingVideos.contains(where: { $0.key.id == video.id }) else { return false }
 
         let file = folder.appendingPathComponent("Video \(video.id).mp4")
         let exists = FileManager.default.fileExists(atPath: file.path)
@@ -69,7 +75,10 @@ final class VideoDownloadService: ObservableObject {
 
     func delete(_ video: Video) throws {
         downloadingVideos.removeValue(forKey: video)
-        try FileManager.default.trashItem(at: folder.appendingPathComponent("Video \(video.id).mp4"), resultingItemURL: nil)
+        try FileManager.default.trashItem(
+            at: folder.appendingPathComponent("Video \(video.id).mp4"),
+            resultingItemURL: nil
+        )
     }
 
     func download(_ video: Video) async throws {
@@ -103,7 +112,8 @@ final class VideoDownloadService: ObservableObject {
                 }
             }
 
-            let videoFile = FileManager.default.temporaryDirectory.appendingPathComponent("video-download-\(video.id).mp4")
+            let videoFile = FileManager.default.temporaryDirectory
+                .appendingPathComponent("video-download-\(video.id).mp4")
             let destinationUrl = folder.appendingPathComponent("\(video.id).mp4")
 
             if FileManager.default.fileExists(atPath: videoFile.path) {
@@ -148,13 +158,20 @@ final class VideoDownloadService: ObservableObject {
     private func convert(_ url: URL) async throws -> URL {
         let asset = AVURLAsset(url: url)
 
-        let outputUrl = FileManager.default.temporaryDirectory.appendingPathComponent("output-\(Int(Date().timeIntervalSinceReferenceDate))-\(UUID().uuidString).mp4")
+        let outputUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent(
+                "output-\(Int(Date().timeIntervalSinceReferenceDate))-\(UUID().uuidString).mp4"
+            )
 
         let preset = AVAssetExportPresetHEVCHighestQuality
         let outFileType = AVFileType.m4v
 
         let isCompatible = await withCheckedContinuation { continuation in
-            AVAssetExportSession.determineCompatibility(ofExportPreset: preset, with: asset, outputFileType: outFileType) { bool in
+            AVAssetExportSession.determineCompatibility(
+                ofExportPreset: preset,
+                with: asset,
+                outputFileType: outFileType
+            ) { bool in
                 continuation.resume(returning: bool)
             }
         }
@@ -199,7 +216,8 @@ final class VideoDownloadService: ObservableObject {
 
     func importVideo(_ url: URL) async throws {
         let videoTitle = url.deletingPathExtension().lastPathComponent
-        var destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension(url.pathExtension)
+        var destinationUrl = folder.appendingPathComponent(videoTitle)
+            .appendingPathExtension(url.pathExtension)
 
         let convertedFile: URL
         if !UserDefaults.standard.bool(forKey: "shouldEnableVWCompression") {
@@ -207,7 +225,8 @@ final class VideoDownloadService: ObservableObject {
         } else {
             do {
                 convertedFile = try await convert(url)
-                destinationUrl = folder.appendingPathComponent(videoTitle).appendingPathExtension("mp4")
+                destinationUrl = folder.appendingPathComponent(videoTitle)
+                    .appendingPathExtension("mp4")
                 print("Converted video", convertedFile.path)
             } catch {
                 print(error)

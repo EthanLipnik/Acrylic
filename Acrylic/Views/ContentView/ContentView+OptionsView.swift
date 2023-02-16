@@ -10,13 +10,19 @@ import SwiftUI
 
 extension ContentView {
     struct OptionsView: View {
-        @Binding var selectedWallpaper: WallpaperType?
-        @EnvironmentObject var wallpaperService: WallpaperService
-        @StateObject var videosViewModel = VideosViewModel()
-        @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
+        @Binding
+        var selectedWallpaper: WallpaperType?
+        @EnvironmentObject
+        var wallpaperService: WallpaperService
+        @StateObject
+        var videosViewModel = VideosViewModel()
+        @AppStorage("currentVideoBackgroundId")
+        var currentVideoBackgroundId: String = ""
 
-        @State private var isHoldingRandomizeButton: Bool = false
-        @State private var selectedHue: Hue?
+        @State
+        private var isHoldingRandomizeButton: Bool = false
+        @State
+        private var selectedHue: Hue?
 
         let popoverNotification = NotificationCenter.default
             .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
@@ -35,10 +41,16 @@ extension ContentView {
                                 Image(nsImage: image)
                                     .resizable()
                                     .aspectRatio(16 / 10, contentMode: .fit)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                    .clipShape(RoundedRectangle(
+                                        cornerRadius: 10,
+                                        style: .continuous
+                                    ))
                                     .overlay(
-                                        currentVideoBackgroundId == video.id ? RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                            .stroke(Color.accentColor, lineWidth: 4) : nil
+                                        currentVideoBackgroundId == video.id ? RoundedRectangle(
+                                            cornerRadius: 10,
+                                            style: .continuous
+                                        )
+                                        .stroke(Color.accentColor, lineWidth: 4) : nil
                                     )
                                     .contextMenu {
                                         Button(role: .destructive) {
@@ -46,7 +58,8 @@ extension ContentView {
                                                 try? videosViewModel.delete(video)
 
                                                 if currentVideoBackgroundId == video.id {
-                                                    currentVideoBackgroundId = videosViewModel.videos.first?.id ?? ""
+                                                    currentVideoBackgroundId = videosViewModel
+                                                        .videos.first?.id ?? ""
                                                     videosViewModel.updateWallpaper()
                                                 }
                                             }
@@ -87,15 +100,19 @@ extension ContentView {
 
         var randomizeButton: some View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color.black
-                    .opacity(0.5)
-                    .blendMode(.overlay))
+                .fill(
+                    Color.black
+                        .opacity(0.5)
+                        .blendMode(.overlay)
+                )
                 .aspectRatio(16 / 10, contentMode: .fit)
-                .overlay(Image(systemName: "dice.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-                    .foregroundStyle(.secondary))
+                .overlay(
+                    Image(systemName: "dice.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                        .foregroundStyle(.secondary)
+                )
                 .scaleEffect(isHoldingRandomizeButton ? 0.9 : 1)
                 .animation(.spring(), value: isHoldingRandomizeButton)
                 .onTapGesture {
@@ -120,7 +137,7 @@ extension ContentView {
         }
 
         func getFluidWindow() -> FluidWindow? {
-            return NSApp.windows.compactMap { $0 as? FluidWindow }.first
+            NSApp.windows.compactMap { $0 as? FluidWindow }.first
         }
     }
 }

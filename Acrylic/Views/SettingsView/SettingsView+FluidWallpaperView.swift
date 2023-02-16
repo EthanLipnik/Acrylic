@@ -23,7 +23,10 @@ extension SettingsView {
             var hue: Hue
             var isOn: Bool {
                 didSet {
-                    UserDefaults.standard.set(!isOn, forKey: "isWallpaperPalette-\(hue.displayTitle)Disabled")
+                    UserDefaults.standard.set(
+                        !isOn,
+                        forKey: "isWallpaperPalette-\(hue.displayTitle)Disabled"
+                    )
                 }
             }
         }
@@ -74,16 +77,31 @@ extension SettingsView {
             }
         }
 
-        @State private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
-        @State private var isShowingPalettes: Bool = false
-        @AppStorage("shouldStartFWOnLaunch") private var startWallpaperOnLaunch: Bool = false
-        @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 8
-        @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
-        @AppStorage("FWPaletteChangeInterval") private var paletteChangeInterval: Double = PaletteChangeInterval.oneMin.rawValue
-        @AppStorage("shouldColorMatchFWMenuBar") private var colorMatchingMenuBar: Bool = true
-        @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-        @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = .init(MeshDefaults.grainAlpha)
-        @AppStorage("FWFramerate") private var fwFramerate: Int = 30
+        @State
+        private var selectedHues: [HueToggle] = Hue.allCases.map(HueToggle.init)
+        @State
+        private var isShowingPalettes: Bool = false
+        @AppStorage("shouldStartFWOnLaunch")
+        private var startWallpaperOnLaunch: Bool = false
+        @AppStorage("FWSubdivisions")
+        private var wallpaperSubdivisions: Int = 8
+        @AppStorage("FWAnimationSpeed")
+        private var animationSpeed: AnimationSpeed = .normal
+        @AppStorage("FWPaletteChangeInterval")
+        private var paletteChangeInterval: Double =
+            PaletteChangeInterval.oneMin.rawValue
+        @AppStorage("shouldColorMatchFWMenuBar")
+        private var colorMatchingMenuBar: Bool = true
+        @AppStorage("FWColorScheme")
+        private var wallpaperColorScheme: WallpaperColorScheme =
+            .system
+        @AppStorage("FWGrainAlpha")
+        private var wallpaperGrainAlpha: Double = .init(
+            MeshDefaults
+                .grainAlpha
+        )
+        @AppStorage("FWFramerate")
+        private var fwFramerate: Int = 30
 
         var body: some View {
             Group {
@@ -139,9 +157,11 @@ extension SettingsView {
                             .symbolRenderingMode(.multicolor)
                     }
                 } footer: {
-                    Text("Fluid Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery. This will override your current desktop picture.")
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
+                    Text(
+                        "Fluid Wallpaper gives you an animated wallpaper on your desktop. This can use moderate energy so it is recommended to not use on battery. This will override your current desktop picture."
+                    )
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
                 }
 
                 SectionView {
@@ -167,10 +187,13 @@ extension SettingsView {
                         Text("How often the palette changes")
                     }
                     .pickerStyle(.menu)
-                    
+
                     DisclosureGroup(isExpanded: $isShowingPalettes) {
                         ForEach(selectedHues.indices, id: \.self) { index in
-                            Toggle(selectedHues[index].hue.displayTitle, isOn: $selectedHues[index].isOn)
+                            Toggle(
+                                selectedHues[index].hue.displayTitle,
+                                isOn: $selectedHues[index].isOn
+                            )
                         }
                     } label: {
                         Toggle("All Palettes", sources: $selectedHues, isOn: \.isOn)

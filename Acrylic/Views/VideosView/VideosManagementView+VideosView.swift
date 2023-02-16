@@ -11,21 +11,33 @@ import SwiftUI
 
 extension VideosManagementView {
     struct VideosView: View {
-        @StateObject var debounceObject = DebounceObject()
-        @StateObject var downloadService = VideoDownloadService()
+        @StateObject
+        var debounceObject = DebounceObject()
+        @StateObject
+        var downloadService = VideoDownloadService()
 
-        @AppStorage("VWSearchItemLimit") var searchItemLimit: Int = 200
-        @AppStorage("shouldEnableVWSafeSearch") var shouldEnableSafeSearch: Bool = true
+        @AppStorage("VWSearchItemLimit")
+        var searchItemLimit: Int = 200
+        @AppStorage("shouldEnableVWSafeSearch")
+        var shouldEnableSafeSearch: Bool = true
 
-        @State var videos: [Video] = []
-        @State var shouldShowDownloadingVideos: Bool = false
-        @State var sort: String = "popular"
-        @State var editorsChoice: Bool = true
-        @State var selectedVideo: Video?
-        @State var filter4k: Bool = true
-        @State var didFailToLoad: Bool = false
+        @State
+        var videos: [Video] = []
+        @State
+        var shouldShowDownloadingVideos: Bool = false
+        @State
+        var sort: String = "popular"
+        @State
+        var editorsChoice: Bool = true
+        @State
+        var selectedVideo: Video?
+        @State
+        var filter4k: Bool = true
+        @State
+        var didFailToLoad: Bool = false
 
-        @Binding var category: SearchCategory?
+        @Binding
+        var category: SearchCategory?
         private let pixabay = PixabayKit("PIXABAY_API_KEY")
 
         var body: some View {
@@ -54,7 +66,10 @@ extension VideosManagementView {
                                 } label: {
                                     VideoItemView(video: video)
                                         .overlay(
-                                            selectedVideo == video ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.accentColor, lineWidth: 4) : nil
+                                            selectedVideo == video ? RoundedRectangle(
+                                                cornerRadius: 10,
+                                                style: .continuous
+                                            ).stroke(Color.accentColor, lineWidth: 4) : nil
                                         )
                                 }
                                 .buttonStyle(.plain)
@@ -86,8 +101,11 @@ extension VideosManagementView {
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
                     Toggle(isOn: $editorsChoice) {
-                        Label("Editors Choice", systemImage: "bookmark.circle" + (editorsChoice ? ".fill" : ""))
-                            .animation(.easeInOut(duration: 0.1), value: editorsChoice)
+                        Label(
+                            "Editors Choice",
+                            systemImage: "bookmark.circle" + (editorsChoice ? ".fill" : "")
+                        )
+                        .animation(.easeInOut(duration: 0.1), value: editorsChoice)
                     }
                     .onChange(of: editorsChoice) { _ in
                         Task(priority: .high) {
@@ -107,10 +125,15 @@ extension VideosManagementView {
                     Button {
                         shouldShowDownloadingVideos.toggle()
                     } label: {
-                        Label("Downloads",
-                              systemImage: "arrow.down.circle" + ((downloadService.downloadingVideos
-                                      .contains(where: { $0.value != .done() })) ? ".fill" : ""))
-                            .animation(.easeInOut(duration: 0.1), value: downloadService.downloadingVideos)
+                        Label(
+                            "Downloads",
+                            systemImage: "arrow.down.circle" + ((downloadService.downloadingVideos
+                                    .contains(where: { $0.value != .done() })) ? ".fill" : "")
+                        )
+                        .animation(
+                            .easeInOut(duration: 0.1),
+                            value: downloadService.downloadingVideos
+                        )
                     }
                     .popover(isPresented: $shouldShowDownloadingVideos) {
                         downloadsView
@@ -164,7 +187,10 @@ extension VideosManagementView {
                             .font(.title3.bold())
                             .foregroundStyle(.secondary)
                     }
-                    ForEach(downloadService.downloadingVideos.sorted(by: { $0.key.id > $1.key.id }), id: \.key) { video, state in
+                    ForEach(
+                        downloadService.downloadingVideos.sorted(by: { $0.key.id > $1.key.id }),
+                        id: \.key
+                    ) { video, state in
                         HStack {
                             VideoItemView(video: video)
                                 .shadow(radius: 8, y: 4)
@@ -193,25 +219,34 @@ extension VideosManagementView {
         }
 
         func search() async {
-            let category = self.category ?? .all
+            let category = category ?? .all
             do {
-                let cacheName = "videos" + "-\(sort)-" + "-safeSearch \(shouldEnableSafeSearch)-" + "-limit \(searchItemLimit)-" + "-editorsChoice \(editorsChoice)-" + "-category \(category.rawValue)-" + "-width \(filter4k ? 3000 : 0)" + debounceObject.debouncedText
+                let cacheName = "videos" + "-\(sort)-" + "-safeSearch \(shouldEnableSafeSearch)-" +
+                    "-limit \(searchItemLimit)-" + "-editorsChoice \(editorsChoice)-" +
+                    "-category \(category.rawValue)-" + "-width \(filter4k ? 3000 : 0)" +
+                    debounceObject.debouncedText
                 if let videos: [Video] = try? Sebu.default.get(withName: cacheName) {
                     self.videos = videos
                     return
                 }
 
-                let videos = try await pixabay.searchVideos(debounceObject.debouncedText,
-                                                            safeSearch: shouldEnableSafeSearch,
-                                                            order: sort,
-                                                            type: .all,
-                                                            editorsChoice: editorsChoice,
-                                                            category: category,
-                                                            minWidth: filter4k ? 3000 : 0,
-                                                            count: searchItemLimit)
+                let videos = try await pixabay.searchVideos(
+                    debounceObject.debouncedText,
+                    safeSearch: shouldEnableSafeSearch,
+                    order: sort,
+                    type: .all,
+                    editorsChoice: editorsChoice,
+                    category: category,
+                    minWidth: filter4k ? 3000 : 0,
+                    count: searchItemLimit
+                )
                 self.videos = videos
 
-                try? Sebu.default.save(videos, withName: cacheName, expiration: Calendar.current.date(byAdding: .hour, value: 24, to: Date()))
+                try? Sebu.default.save(
+                    videos,
+                    withName: cacheName,
+                    expiration: Calendar.current.date(byAdding: .hour, value: 24, to: Date())
+                )
             } catch {
                 print(error)
                 didFailToLoad = true

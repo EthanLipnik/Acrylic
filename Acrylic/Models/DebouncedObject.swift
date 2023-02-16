@@ -9,8 +9,10 @@ import Combine
 import Foundation
 
 public final class DebounceObject: ObservableObject {
-    @Published var text: String = ""
-    @Published var debouncedText: String = ""
+    @Published
+    var text: String = ""
+    @Published
+    var debouncedText: String = ""
     private var bag = Set<AnyCancellable>()
 
     public init(dueTime: TimeInterval = 0.5) {

@@ -13,16 +13,25 @@ extension MeshCreatorView {
     struct ExportView: View {
         let colors: MeshColorGrid
 
-        @Binding var imageFile: ImageDocument?
-        @Binding var shouldExportFile: Bool
-        @State var colorSpace: ColorSpace = .sRGB
-        @State var quality: Quality = .normal
-        @State var fileFormat: FileFormat = .PNG
-        @State var aspectRatio: AspectRatio = .square
-        @State var isVertical: Bool = false
-        @State var resolution: Resolution = .medium
+        @Binding
+        var imageFile: ImageDocument?
+        @Binding
+        var shouldExportFile: Bool
+        @State
+        var colorSpace: ColorSpace = .sRGB
+        @State
+        var quality: Quality = .normal
+        @State
+        var fileFormat: FileFormat = .PNG
+        @State
+        var aspectRatio: AspectRatio = .square
+        @State
+        var isVertical: Bool = false
+        @State
+        var resolution: Resolution = .medium
 
-        @State var isExporting: Bool = false
+        @State
+        var isExporting: Bool = false
 
         enum AspectRatio: Hashable {
             case square
@@ -152,17 +161,29 @@ extension MeshCreatorView {
                         do {
                             let size: MeshSize = {
                                 if isVertical {
-                                    return .init(width: resolution.rawValue,
-                                                 height: Int(Double(resolution.rawValue) * aspectRatio.rawValue))
+                                    return .init(
+                                        width: resolution.rawValue,
+                                        height: Int(
+                                            Double(resolution.rawValue) *
+                                                aspectRatio.rawValue
+                                        )
+                                    )
                                 } else {
-                                    return .init(width: Int(Double(resolution.rawValue) * aspectRatio.rawValue),
-                                                 height: resolution.rawValue)
+                                    return .init(
+                                        width: Int(
+                                            Double(resolution.rawValue) * aspectRatio
+                                                .rawValue
+                                        ),
+                                        height: resolution.rawValue
+                                    )
                                 }
                             }()
 
-                            let url = try await colors.export(size: size,
-                                                              subdivisions: quality.rawValue,
-                                                              colorSpace: colorSpace.cgColorSpace)
+                            let url = try await colors.export(
+                                size: size,
+                                subdivisions: quality.rawValue,
+                                colorSpace: colorSpace.cgColorSpace
+                            )
                             if let image = NSImage(contentsOfFile: url.path) {
                                 imageFile = .init(image: image)
                                 shouldExportFile = true
@@ -196,7 +217,10 @@ extension MeshCreatorView {
                 }
 
                 Toggle(isOn: $isVertical) {
-                    Image(systemName: isVertical ? "trapezoid.and.line.vertical.fill" : "trapezoid.and.line.vertical")
+                    Image(
+                        systemName: isVertical ? "trapezoid.and.line.vertical.fill" :
+                            "trapezoid.and.line.vertical"
+                    )
                 }
                 .toggleStyle(.button)
             }
@@ -206,7 +230,11 @@ extension MeshCreatorView {
 
 struct MeshCreatorView_ExportView_Previews: PreviewProvider {
     static var previews: some View {
-        MeshCreatorView.ExportView(colors: MeshKit.generate(palette: .blue), imageFile: .constant(nil), shouldExportFile: .constant(false))
+        MeshCreatorView.ExportView(
+            colors: MeshKit.generate(palette: .blue),
+            imageFile: .constant(nil),
+            shouldExportFile: .constant(false)
+        )
     }
 }
 

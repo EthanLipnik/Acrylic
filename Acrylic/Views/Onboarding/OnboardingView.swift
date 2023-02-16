@@ -9,8 +9,10 @@ import MeshKit
 import SwiftUI
 
 struct OnboardingView: View {
-    @State private var page: Int = 0
-    @AppStorage("didShowOnboarding") var didShowOnboarding: Bool = false
+    @State
+    private var page: Int = 0
+    @AppStorage("didShowOnboarding")
+    var didShowOnboarding: Bool = false
 
     let finish: () -> Void
 
@@ -33,7 +35,10 @@ struct OnboardingView: View {
                 }
             }
             .zIndex(999)
-            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+            .transition(.asymmetric(
+                insertion: .move(edge: .trailing),
+                removal: .move(edge: .leading)
+            ))
         }
         .overlay(
             Button {

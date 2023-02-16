@@ -11,17 +11,30 @@ import RandomColor
 import SwiftUI
 
 struct ScreenSaverView: View {
-    @EnvironmentObject var viewModel: FluidViewModel
-    @Environment(\.colorScheme) var colorScheme
-    @AppStorage("FWPaletteChangeInterval") private var wallpaperPaletteChangeInterval: Double = 60
-    @AppStorage("FWAnimationSpeed") private var animationSpeed: AnimationSpeed = .normal
-    @AppStorage("FWSubdivisions") private var wallpaperSubdivisions: Int = 36
-    @AppStorage("FWColorScheme") private var wallpaperColorScheme: WallpaperColorScheme = .system
-    @AppStorage("FWGrainAlpha") private var wallpaperGrainAlpha: Double = .init(MeshDefaults.grainAlpha)
-    @AppStorage("FWFramerate") private var fwFramerate: Int = 30
-    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
+    @EnvironmentObject
+    var viewModel: FluidViewModel
+    @Environment(\.colorScheme)
+    var colorScheme
+    @AppStorage("FWPaletteChangeInterval")
+    private var wallpaperPaletteChangeInterval: Double = 60
+    @AppStorage("FWAnimationSpeed")
+    private var animationSpeed: AnimationSpeed = .normal
+    @AppStorage("FWSubdivisions")
+    private var wallpaperSubdivisions: Int = 36
+    @AppStorage("FWColorScheme")
+    private var wallpaperColorScheme: WallpaperColorScheme = .system
+    @AppStorage("FWGrainAlpha")
+    private var wallpaperGrainAlpha: Double = .init(
+        MeshDefaults
+            .grainAlpha
+    )
+    @AppStorage("FWFramerate")
+    private var fwFramerate: Int = 30
+    @AppStorage("colorSpace")
+    private var colorSpace: ColorSpace = .sRGB
 
-    @State private var isStartingUp: Bool = true
+    @State
+    private var isStartingUp: Bool = true
 
     var animationSpeedRange: ClosedRange<Double> {
         switch animationSpeed {
@@ -38,9 +51,11 @@ struct ScreenSaverView: View {
         ZStack {
             Mesh(
                 colors: viewModel.colors,
-                animatorConfiguration: .init(framesPerSecond: fwFramerate,
-                                             animationSpeedRange: animationSpeedRange,
-                                             meshRandomizer: viewModel.meshRandomizer),
+                animatorConfiguration: .init(
+                    framesPerSecond: fwFramerate,
+                    animationSpeedRange: animationSpeedRange,
+                    meshRandomizer: viewModel.meshRandomizer
+                ),
                 grainAlpha: Float(wallpaperGrainAlpha),
                 subdivisions: wallpaperSubdivisions,
                 colorSpace: colorSpace.cgColorSpace

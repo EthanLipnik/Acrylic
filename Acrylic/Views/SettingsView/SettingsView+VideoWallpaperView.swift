@@ -9,10 +9,14 @@ import SwiftUI
 
 extension SettingsView {
     struct VideoWallpaperView: View {
-        @AppStorage("shouldEnableVWCompression") private var shouldEnableCompression: Bool = false
-        @AppStorage("VWFileLimit") private var fileLimit: Int = 0
-        @AppStorage("shouldEnableVWSafeSearch") private var shouldEnableSafeSearch: Bool = true
-        @AppStorage("VWSearchItemLimit") private var searchItemLimit: Int = 200
+        @AppStorage("shouldEnableVWCompression")
+        private var shouldEnableCompression: Bool = false
+        @AppStorage("VWFileLimit")
+        private var fileLimit: Int = 0
+        @AppStorage("shouldEnableVWSafeSearch")
+        private var shouldEnableSafeSearch: Bool = true
+        @AppStorage("VWSearchItemLimit")
+        private var searchItemLimit: Int = 200
 
         var body: some View {
             Group {
@@ -21,7 +25,7 @@ extension SettingsView {
                         Text("Download Compression")
                         Text("Compression can improve battery life and file size.")
                     }
-                    
+
                     Picker("File Size Limit", selection: $fileLimit) {
                         Text("20 MB")
                             .tag(20 * 1_048_576)

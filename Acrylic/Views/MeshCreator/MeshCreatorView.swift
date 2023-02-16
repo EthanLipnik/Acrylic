@@ -9,27 +9,41 @@ import MeshKit
 import SwiftUI
 
 struct MeshCreatorView: View {
-    @State private var meshRandomizer: MeshRandomizer?
-    @State private var colors: MeshColorGrid
+    @State
+    private var meshRandomizer: MeshRandomizer?
+    @State
+    private var colors: MeshColorGrid
 
-    @State private var shouldAnimate: Bool = false
-    @State private var grainAlpha: Float = MeshDefaults.grainAlpha
-    @State private var subdivisions: Float = .init(MeshDefaults.subdivisions)
+    @State
+    private var shouldAnimate: Bool = false
+    @State
+    private var grainAlpha: Float = MeshDefaults.grainAlpha
+    @State
+    private var subdivisions: Float = .init(MeshDefaults.subdivisions)
 
-    @State private var shouldShowOptions: Bool = false
-    @State private var selectedPoint: MeshColor?
+    @State
+    private var shouldShowOptions: Bool = false
+    @State
+    private var selectedPoint: MeshColor?
 
-    @State private var currentOffset: CGSize = .zero
+    @State
+    private var currentOffset: CGSize = .zero
 
-    @State private var showSettings: Bool = false
+    @State
+    private var showSettings: Bool = false
 
-    @State private var shouldExport: Bool = false
-    @State private var imageFile: ImageDocument?
-    @State private var shouldExportFile: Bool = false
+    @State
+    private var shouldExport: Bool = false
+    @State
+    private var imageFile: ImageDocument?
+    @State
+    private var shouldExportFile: Bool = false
 
-    @State private var currentImage: Image? = nil
+    @State
+    private var currentImage: Image?
 
-    @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
+    @AppStorage("colorSpace")
+    private var colorSpace: ColorSpace = .sRGB
 
     private let defaultBackgroundColor: SystemColor = NSColor.windowBackgroundColor
 
@@ -116,9 +130,18 @@ struct MeshCreatorView: View {
                     Label("Export", systemImage: "square.and.arrow.up")
                 }
                 .popover(isPresented: $shouldExport) {
-                    ExportView(colors: colors, imageFile: $imageFile, shouldExportFile: $shouldExportFile)
+                    ExportView(
+                        colors: colors,
+                        imageFile: $imageFile,
+                        shouldExportFile: $shouldExportFile
+                    )
                 }
-                .fileExporter(isPresented: $shouldExportFile, document: imageFile, contentType: .png, defaultFilename: "Mesh") { result in
+                .fileExporter(
+                    isPresented: $shouldExportFile,
+                    document: imageFile,
+                    contentType: .png,
+                    defaultFilename: "Mesh"
+                ) { result in
                     switch result {
                     case let .success(url):
                         print(url.path)
@@ -135,7 +158,11 @@ struct MeshCreatorView: View {
 
     func newPalette(_ palette: Hue? = nil, luminosity: Luminosity = .bright) {
         let oldColors = colors
-        let colors = MeshKit.generate(palette: palette ?? .randomPalette(), luminosity: luminosity, size: .init(width: oldColors.width, height: oldColors.height))
+        let colors = MeshKit.generate(
+            palette: palette ?? .randomPalette(),
+            luminosity: luminosity,
+            size: .init(width: oldColors.width, height: oldColors.height)
+        )
 
         for y in stride(from: 0, to: colors.width, by: 1) {
             for x in stride(from: 0, to: colors.height, by: 1) {
@@ -162,8 +189,10 @@ struct MeshCreatorView: View {
     }
 
     struct OptionsView: View {
-        @Binding var grainAlpha: Float
-        @Binding var subdivisions: Float
+        @Binding
+        var grainAlpha: Float
+        @Binding
+        var subdivisions: Float
 
         var body: some View {
             VStack {

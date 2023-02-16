@@ -12,10 +12,15 @@ import AppKit
 import SwiftUI
 
 class WallpaperWindow: NSWindow {
-    var wallpaperType: WallpaperType? { return nil }
+    var wallpaperType: WallpaperType? { nil }
 
     init() {
-        super.init(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300), styleMask: [.borderless, .fullSizeContentView], backing: .buffered, defer: false)
+        super.init(
+            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            styleMask: [.borderless, .fullSizeContentView],
+            backing: .buffered,
+            defer: false
+        )
         isReleasedWhenClosed = true
         level = .init(Int(CGWindowLevelForKey(.desktopWindow)))
         collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle, .fullScreenNone]
@@ -26,7 +31,11 @@ class WallpaperWindow: NSWindow {
         identifier = .init("wallpaperWindow")
 
         updateScreenSize()
-        NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
+        NotificationCenter.default.addObserver(
+            forName: NSApplication.didChangeScreenParametersNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
             self?.updateScreenSize()
         }
 
@@ -37,7 +46,7 @@ class WallpaperWindow: NSWindow {
     }
 
     override func constrainFrameRect(_ frameRect: NSRect, to _: NSScreen?) -> NSRect {
-        return frameRect
+        frameRect
     }
 
     func updateScreenSize() {
@@ -47,10 +56,10 @@ class WallpaperWindow: NSWindow {
     }
 
     override var canBecomeKey: Bool {
-        return false
+        false
     }
 
     override var canBecomeMain: Bool {
-        return false
+        false
     }
 }

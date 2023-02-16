@@ -10,13 +10,16 @@ import SwiftUI
 
 extension VideosManagementView {
     struct SelectedItemView: View {
-        @EnvironmentObject var downloadService: VideoDownloadService
-        @AppStorage("currentVideoBackgroundId") var currentVideoBackgroundId: String = ""
+        @EnvironmentObject
+        var downloadService: VideoDownloadService
+        @AppStorage("currentVideoBackgroundId")
+        var currentVideoBackgroundId: String = ""
 
         let video: Video?
 
         var body: some View {
-            let state = downloadService.downloadingVideos.first(where: { $0.key.id == video?.id })?.value ?? (downloadService.getVideoIsDownloaded(video) ? .done() : nil)
+            let state = downloadService.downloadingVideos.first(where: { $0.key.id == video?.id })?
+                .value ?? (downloadService.getVideoIsDownloaded(video) ? .done() : nil)
 
             VStack {
                 Group {
@@ -49,8 +52,11 @@ extension VideosManagementView {
                         Label("\(item.width) x \(item.height)", systemImage: "rectangle.dashed")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Divider()
-                        Label(ByteCountFormatter().string(for: item.size) ?? "\(item.size)b", systemImage: "doc")
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Label(
+                            ByteCountFormatter().string(for: item.size) ?? "\(item.size)b",
+                            systemImage: "doc"
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         Divider()
                         Label("\(video?.duration ?? 0)s", systemImage: "timer")
                             .frame(maxWidth: .infinity, alignment: .leading)

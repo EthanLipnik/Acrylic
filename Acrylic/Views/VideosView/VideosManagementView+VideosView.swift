@@ -5,9 +5,9 @@
 //  Created by Ethan Lipnik on 8/5/22.
 //
 
-import SwiftUI
 import PixabayKit
 import Sebu
+import SwiftUI
 
 extension VideosManagementView {
     struct VideosView: View {
@@ -109,8 +109,8 @@ extension VideosManagementView {
                     } label: {
                         Label("Downloads",
                               systemImage: "arrow.down.circle" + ((downloadService.downloadingVideos
-                                .contains(where: { $0.value != .done() })) ? ".fill" : ""))
-                        .animation(.easeInOut(duration: 0.1), value: downloadService.downloadingVideos)
+                                      .contains(where: { $0.value != .done() })) ? ".fill" : ""))
+                            .animation(.easeInOut(duration: 0.1), value: downloadService.downloadingVideos)
                     }
                     .popover(isPresented: $shouldShowDownloadingVideos) {
                         downloadsView
@@ -164,12 +164,12 @@ extension VideosManagementView {
                             .font(.title3.bold())
                             .foregroundStyle(.secondary)
                     }
-                    ForEach(downloadService.downloadingVideos.sorted(by: { $0.key.id > $1.key.id }), id: \.key) { (video, state) in
+                    ForEach(downloadService.downloadingVideos.sorted(by: { $0.key.id > $1.key.id }), id: \.key) { video, state in
                         HStack {
                             VideoItemView(video: video)
                                 .shadow(radius: 8, y: 4)
                             switch state {
-                            case .downloading(let progress, _):
+                            case let .downloading(progress, _):
                                 ProgressView(value: progress, total: .init(1))
                                     .progressViewStyle(.linear)
                             case .processing, .notStarted:
@@ -179,7 +179,7 @@ extension VideosManagementView {
                                 Spacer()
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.accentColor)
-                            case .failed(let error):
+                            case let .failed(error):
                                 Text("Failed to download. " + error.localizedDescription)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }

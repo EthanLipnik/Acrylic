@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 7/28/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 
 struct MeshCreatorView: View {
     @State private var meshRandomizer: MeshRandomizer?
@@ -14,7 +14,7 @@ struct MeshCreatorView: View {
 
     @State private var shouldAnimate: Bool = false
     @State private var grainAlpha: Float = MeshDefaults.grainAlpha
-    @State private var subdivisions: Float = Float(MeshDefaults.subdivisions)
+    @State private var subdivisions: Float = .init(MeshDefaults.subdivisions)
 
     @State private var shouldShowOptions: Bool = false
     @State private var selectedPoint: MeshColor?
@@ -26,14 +26,12 @@ struct MeshCreatorView: View {
     @State private var shouldExport: Bool = false
     @State private var imageFile: ImageDocument?
     @State private var shouldExportFile: Bool = false
-    
+
     @State private var currentImage: Image? = nil
 
     @AppStorage("colorSpace") private var colorSpace: ColorSpace = .sRGB
 
-    private let defaultBackgroundColor: SystemColor = {
-        return NSColor.windowBackgroundColor
-    }()
+    private let defaultBackgroundColor: SystemColor = NSColor.windowBackgroundColor
 
     init(size: MeshSize = .init(width: 5, height: 5)) {
         let colors = MeshKit.generate(palette: .randomPalette(), size: size)
@@ -122,9 +120,9 @@ struct MeshCreatorView: View {
                 }
                 .fileExporter(isPresented: $shouldExportFile, document: imageFile, contentType: .png, defaultFilename: "Mesh") { result in
                     switch result {
-                    case .success(let url):
+                    case let .success(url):
                         print(url.path)
-                    case .failure(let error):
+                    case let .failure(error):
                         print(error)
                     }
                 }
@@ -146,11 +144,11 @@ struct MeshCreatorView: View {
         }
 
         self.colors = colors
-        
+
         if shouldAnimate {
             meshRandomizer = .withMeshColors(self.colors)
         }
-        
+
         Task(priority: .userInitiated) {
             do {
                 let url = try await colors.export()
@@ -172,14 +170,14 @@ struct MeshCreatorView: View {
                 HStack {
                     Label("Grain", systemImage: "circle.grid.3x3.fill")
                         .frame(width: 150, alignment: .leading)
-                    Slider(value: $grainAlpha, in: 0.01...0.25) {
+                    Slider(value: $grainAlpha, in: 0.01 ... 0.25) {
                         Text("Grain")
                     }.labelsHidden()
                 }
                 HStack {
                     Label("Subdivisions", systemImage: "cube.fill")
                         .frame(width: 150, alignment: .leading)
-                    Slider(value: $subdivisions, in: 2...32, step: 1.0) {
+                    Slider(value: $subdivisions, in: 2 ... 32, step: 1.0) {
                         Text("Subdivisions")
                     }.labelsHidden()
                 }

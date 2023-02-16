@@ -5,9 +5,9 @@
 //  Created by Ethan Lipnik on 8/8/22.
 //
 
-import Foundation
 import AppKit
 import AVKit
+import Foundation
 import SwiftUI
 
 @MainActor
@@ -51,24 +51,24 @@ class VideosViewModel: ObservableObject {
 
     func getVideos() async throws {
         let contents = try FileManager.default.contentsOfDirectory(atPath: folder.path)
-            .map({ folder.appendingPathComponent($0) })
-            .filter({ fileUrl in
+            .map { folder.appendingPathComponent($0) }
+            .filter { fileUrl in
                 let type = UTType(filenameExtension: fileUrl.pathExtension)
                 let isVideo = type?.isSubtype(of: .movie) ?? false
                 return isVideo
-            })
-            .compactMap({ url -> (URL, String)? in
+            }
+            .compactMap { url -> (URL, String)? in
                 let id = url.deletingPathExtension().lastPathComponent
                 return (url, id)
-            })
+            }
 
         let videos = try await contents
-            .concurrentMap({ [weak self] video in
+            .concurrentMap { [weak self] video in
                 let thumbnail = try await self?.generateThumbnail(video.0)
                 return VideoItem(fileUrl: video.0,
                                  id: video.1,
                                  thumbnail: thumbnail)
-            })
+            }
 
         withAnimation { [weak self] in
             self?.videos = videos
@@ -76,7 +76,7 @@ class VideosViewModel: ObservableObject {
     }
 
     @MainActor
-    func delete(_ video: VideoItem ) throws {
+    func delete(_ video: VideoItem) throws {
         if let index = videos.firstIndex(of: video) {
             videos.remove(at: index)
         }
@@ -107,7 +107,7 @@ class VideosViewModel: ObservableObject {
                 let thumbnailImageRef: CGImage
                 do {
                     thumbnailImageRef = try assetIG.copyCGImage(at: cmTime, actualTime: nil)
-                } catch let error {
+                } catch {
                     print("Error: \(error)")
                     continuation.resume(throwing: error)
                     return

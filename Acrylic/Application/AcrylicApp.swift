@@ -5,14 +5,16 @@
 //  Created by Ethan Lipnik on 7/28/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 
 @main
 struct AcrylicApp: App {
     @Environment(\.openURL) var openUrl
     @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
     @State private var isImportingVideo: Bool = false
+
+    @ObservedObject var mlDownloadService = MLDownloadService()
 
     var body: some Scene {
         WindowGroup {
@@ -21,20 +23,21 @@ struct AcrylicApp: App {
                 .fileImporter(isPresented: $isImportingVideo, allowedContentTypes: [.movie], allowsMultipleSelection: true, onCompletion: { result in
                     do {
                         switch result {
-                        case .success(let fileUrls):
+                        case let .success(fileUrls):
                             Task(priority: .high) {
                                 let downloadService = VideoDownloadService()
                                 try await fileUrls.concurrentForEach { fileUrl in
                                     try await downloadService.importVideo(fileUrl)
                                 }
                             }
-                        case .failure(let error):
+                        case let .failure(error):
                             throw error
                         }
                     } catch {
                         print(error)
                     }
                 })
+                .environment(\.mlDownloadService, mlDownloadService)
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
@@ -67,10 +70,15 @@ struct AcrylicApp: App {
 
         Settings {
             SettingsView()
+                .environmentObject(mlDownloadService)
                 .frame(width: 400)
         }
 
         meshCreatorWindow
+
+        #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+            stableDiffusionWindow
+        #endif
     }
 
     var meshCreatorWindow: some Scene {
@@ -78,6 +86,7 @@ struct AcrylicApp: App {
             DeepLinkMeshCreatorView()
                 .navigationTitle("Acrylic – Mesh Creator")
                 .frame(minWidth: 400, minHeight: 400)
+                .environment(\.mlDownloadService, mlDownloadService)
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
                         NSApp.setActivationPolicy(.accessory)
@@ -90,10 +99,32 @@ struct AcrylicApp: App {
         .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.MeshCreator.rawValue))
         .windowToolbarStyle(.unifiedCompact)
     }
-    
+
+    #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+        var stableDiffusionWindow: some Scene {
+            WindowGroup("Stable Diffusion") {
+                StableDiffusionDownloaderView()
+                    .navigationTitle("Acrylic – Stable Diffusion")
+                    .frame(minWidth: 400, minHeight: 400)
+                    .onDisappear {
+                        if NSApp.windows.compactMap(\.identifier).filter({ $0.rawValue.hasPrefix("SwiftUI") || $0.rawValue.hasPrefix("Acrylic") }).count == 0 {
+                            NSApp.setActivationPolicy(.accessory)
+                        }
+                    }
+                    .environment(\.mlDownloadService, mlDownloadService)
+                    .onAppear {
+                        NSApp.setActivationPolicy(.regular)
+                    }
+                    .frame(minWidth: 600)
+            }
+            .windowResizability(.contentMinSize)
+            .handlesExternalEvents(matching: Set(arrayLiteral: WindowManager.StableDiffusion.rawValue))
+        }
+    #endif
+
     struct DeepLinkMeshCreatorView: View {
         @State private var size: MeshSize? = nil
-        
+
         var body: some View {
             Group {
                 if let size {
@@ -102,8 +133,9 @@ struct AcrylicApp: App {
                     ProgressView()
                         .onOpenURL { url in
                             let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-                            if let sizeStr = urlComponents?.queryItems?.first(where: { $0.name == "size" })?.value, 
-                                let size = Int(sizeStr) {
+                            if let sizeStr = urlComponents?.queryItems?.first(where: { $0.name == "size" })?.value,
+                               let size = Int(sizeStr)
+                            {
                                 self.size = MeshSize(width: size, height: size)
                             }
                         }
@@ -122,6 +154,10 @@ enum WindowManager: String, CaseIterable {
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
 
+    #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+        case StableDiffusion = "StableDiffusionView"
+    #endif
+
     func open(query: URLQueryItem...) {
         var urlComponents = URLComponents(string: urlStr)
         urlComponents?.queryItems = query
@@ -129,14 +165,14 @@ enum WindowManager: String, CaseIterable {
             NSWorkspace.shared.open(url)
         }
     }
-    
+
     func open() {
         if let url = URL(string: urlStr) {
             NSWorkspace.shared.open(url)
         }
     }
-    
+
     var urlStr: String {
-        return "acrylic://\(self.rawValue)"
+        return "acrylic://\(rawValue)"
     }
 }

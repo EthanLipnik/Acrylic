@@ -12,11 +12,11 @@ struct ContentView: View {
 
     let openAbout: () -> Void
     let openOnboarding: () -> Void
-    @StateObject var wallpaperService: WallpaperService = WallpaperService.shared
+    @StateObject var wallpaperService: WallpaperService = .shared
     @State var canStartVideo: Bool = false
 
     let popoverNotification = NotificationCenter.default
-                .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
+        .publisher(for: NSNotification.Name("didOpenStatusBarItem"))
 
     init(openAbout: @escaping () -> Void, openOnboarding: @escaping () -> Void) {
         self.openAbout = openAbout
@@ -96,71 +96,80 @@ struct ContentView: View {
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        canStartVideo = !((try? FileManager.default.contentsOfDirectory(atPath: folder.path).filter({ $0.hasSuffix("mp4") }).isEmpty) ?? true)
+        canStartVideo = !((try? FileManager.default.contentsOfDirectory(atPath: folder.path).filter { $0.hasSuffix("mp4") }.isEmpty) ?? true)
     }
 
     var footer: some View {
         HStack {
-            Button {
-                if #available(macOS 13.0, *) {
-                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-                } else {
-                    NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+            Menu {
+                Menu {
+                    Button("3x3") {
+                        let query = URLQueryItem(name: "size", value: "3")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("4x4") {
+                        let query = URLQueryItem(name: "size", value: "4")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("5x5") {
+                        let query = URLQueryItem(name: "size", value: "5")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("6x6") {
+                        let query = URLQueryItem(name: "size", value: "6")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("7x7") {
+                        let query = URLQueryItem(name: "size", value: "7")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("8x8") {
+                        let query = URLQueryItem(name: "size", value: "8")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+                } label: {
+                    Label("Create Mesh", systemImage: "square.stack.3d.down.right.fill")
                 }
 
+                #if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
+                    Button {
+                        WindowManager.StableDiffusion.open()
+                    } label: {
+                        Label("Generate Image", systemImage: "text.below.photo.fill")
+                    }
+                #else
+                    Button {} label: {
+                        Label("Generate Image (Requires Apple Silicon)", systemImage: "text.below.photo.fill")
+                    }
+                    .disabled(true)
+                #endif
+            } label: {
+                Image(systemName: "plus.circle.fill")
+            }
+            .buttonStyle(.plain)
+
+            Spacer()
+            
+            Menu {
+                footerButtons
+            } label: {
+                Image(systemName: "ellipsis.circle.fill")
+            }
+            .buttonStyle(.plain)
+            
+            Button {
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                
                 NSApp.activate(ignoringOtherApps: true)
             } label: {
                 Image(systemName: "gearshape.fill")
             }
-            .buttonStyle(.borderless)
-            Spacer()
-
-            Menu {
-                Button("3x3") { 
-                    let query = URLQueryItem(name: "size", value: "3")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-                
-                Button("4x4") { 
-                    let query = URLQueryItem(name: "size", value: "4")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-                
-                Button("5x5") { 
-                    let query = URLQueryItem(name: "size", value: "5")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-                
-                Button("6x6") { 
-                    let query = URLQueryItem(name: "size", value: "6")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-                
-                Button("7x7") { 
-                    let query = URLQueryItem(name: "size", value: "7")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-                
-                Button("8x8") { 
-                    let query = URLQueryItem(name: "size", value: "8")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-            } label: {
-                Label("Create Mesh", systemImage: "plus")
-            }
-
-            if #available(macOS 13.0, *) {
-                Menu {
-                    footerButtons
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                }
-                .buttonStyle(.borderless)
-            } else {
-                HStack {
-                    footerButtons
-                }
-            }
+            .buttonStyle(.plain)
         }
         .padding()
         .overlay(Divider(), alignment: .top)
@@ -169,33 +178,19 @@ struct ContentView: View {
     var footerButtons: some View {
         Group {
             Button(action: openAbout) {
-                if #available(macOS 13.0, *) {
-                    Label("About", systemImage: "info")
-                } else {
-                    Image(systemName: "info")
-                }
+                Label("About", systemImage: "info")
             }
             
             Button(action: openOnboarding) {
-                if #available(macOS 13.0, *) {
-                    Label("Onboarding", systemImage: "circle.circle.fill")
-                } else {
-                    Image(systemName: "circle.circle.fill")
-                }
+                Label("Onboarding", systemImage: "circle.circle.fill")
             }
-
-            if #available(macOS 13.0, *) {
-                Divider()
-            }
+            
+            Divider()
 
             Button {
                 NSApplication.shared.terminate(self)
             } label: {
-                if #available(macOS 13.0, *) {
-                    Label("Quit", systemImage: "xmark")
-                } else {
-                    Image(systemName: "xmark")
-                }
+                Label("Quit", systemImage: "xmark")
             }
         }
     }
@@ -218,7 +213,7 @@ struct ContentView: View {
             VStack {
                 Image(wallpaper.rawValue.capitalized + "Thumbnail")
                     .resizable()
-                    .aspectRatio(16/10, contentMode: .fit)
+                    .aspectRatio(16 / 10, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .overlay(
                         selectedWallpaper == wallpaper ? RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -261,7 +256,7 @@ struct ContentView: View {
 
                         updateWallpaper()
                     }
-                    .onLongPressGesture { } onPressingChanged: { isHolding in
+                    .onLongPressGesture {} onPressingChanged: { isHolding in
                         self.isHolding = isHolding
                     }
 

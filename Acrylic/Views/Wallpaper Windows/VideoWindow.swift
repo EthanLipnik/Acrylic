@@ -19,8 +19,9 @@ class VideoWindow: WallpaperWindow {
         let acrylicFolder = documentsFolder.appendingPathComponent("Acrylic")
         let folder = acrylicFolder.appendingPathComponent("Videos")
 
-        return folder.appendingPathComponent("Video " + currentVideoBackgroundId + ".mp4")
+        return folder.appendingPathComponent(currentVideoBackgroundId + ".mp4")
     }()
+
     private lazy var playerItem: AVPlayerItem? = {
         guard let videoFile else { return nil }
 
@@ -29,6 +30,7 @@ class VideoWindow: WallpaperWindow {
 
         return playerItem
     }()
+
     private lazy var player: AVQueuePlayer = {
         let player = AVQueuePlayer(playerItem: playerItem)
 
@@ -37,12 +39,14 @@ class VideoWindow: WallpaperWindow {
 
         return player
     }()
+
     private lazy var playerLayer: AVPlayerLayer = {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
         playerLayer.frame = contentView?.bounds ?? .zero
         return playerLayer
     }()
+
     private var playerLooper: AVPlayerLooper!
 
     override init() {
@@ -83,8 +87,8 @@ class VideoWindow: WallpaperWindow {
         let thumbnailImageRef: CGImage
         do {
             thumbnailImageRef = try assetIG.copyCGImage(at: cmTime, actualTime: nil)
-        } catch let error {
-            print("Error: \(error)")
+        } catch {
+            print(error, url.path)
             return nil
         }
 

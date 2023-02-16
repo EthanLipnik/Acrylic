@@ -12,8 +12,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     static var statusBar: StatusBarController?
     private var aboutBoxWindowController: NSWindowController?
 
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        NSApplication.shared.windows.forEach({ $0.close() })
+    func applicationDidFinishLaunching(_: Notification) {
+        NSApplication.shared.windows.forEach { $0.close() }
 
         Self.statusBar = StatusBarController()
         Self.statusBar?.appDelegate = self
@@ -26,12 +26,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @MainActor
-    func applicationWillTerminate(_ notification: Notification) {
+    func applicationWillTerminate(_: Notification) {
         do {
             try WallpaperService.shared.revertDesktopPicture()
         } catch {
             print(error)
         }
+    }
+
+    func applicationShouldHandleReopen(_: NSApplication, hasVisibleWindows _: Bool) -> Bool {
+        return false
     }
 
     func showAboutPanel() {
@@ -49,7 +53,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
         aboutBoxWindowController?.window?.makeKeyAndOrderFront(nil)
     }
-    
+
     func showOnboarding() {
         let onboardingWindow = OnboardingWindow()
         let onboardingController = NSWindowController(window: onboardingWindow)

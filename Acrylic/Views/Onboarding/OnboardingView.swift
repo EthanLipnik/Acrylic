@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/10/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 
 struct OnboardingView: View {
     @State private var page: Int = 0
@@ -41,9 +41,9 @@ struct OnboardingView: View {
             } label: {
                 Image(systemName: "xmark.circle.fill")
             }
-                .buttonStyle(.borderless)
-                .foregroundStyle(.secondary)
-                .padding(),
+            .buttonStyle(.borderless)
+            .foregroundStyle(.secondary)
+            .padding(),
             alignment: .topTrailing
         )
         .edgesIgnoringSafeArea(.all)

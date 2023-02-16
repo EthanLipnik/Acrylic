@@ -5,8 +5,8 @@
 //  Created by Ethan Lipnik on 8/10/22.
 //
 
-import SwiftUI
 import MeshKit
+import SwiftUI
 
 extension OnboardingView {
     struct FluidView: View {
@@ -33,10 +33,10 @@ extension OnboardingView {
                 Mesh(colors: mesh.0,
                      animatorConfiguration: .init(animationSpeedRange: 1 ... 2, meshRandomizer: mesh.1),
                      grainAlpha: MeshDefaults.grainAlpha / 2)
-                .frame(width: 300)
-                .aspectRatio(16/10, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .shadow(radius: 15, y: 8)
+                    .frame(width: 300)
+                    .aspectRatio(16 / 10, contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .shadow(radius: 15, y: 8)
                 Text("Fluid Wallpaper")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.secondary)

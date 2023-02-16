@@ -18,28 +18,19 @@ extension SettingsView {
             Group {
                 SectionView {
                     Toggle(isOn: $shouldEnableCompression) {
-                        if #available(macOS 13.0, *) {
-                            Text("Download Compression")
-                            Text("Compression can improve battery life and file size.")
-                        } else {
-                            VStack(alignment: .leading) {
-                                Text("Download Compression")
-                                Text("Compression can improve battery life and file size.")
-                                    .font(.callout)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
+                        Text("Download Compression")
+                        Text("Compression can improve battery life and file size.")
                     }
-
+                    
                     Picker("File Size Limit", selection: $fileLimit) {
                         Text("20 MB")
-                            .tag(20 * 1048576)
+                            .tag(20 * 1_048_576)
                         Text("50 MB")
-                            .tag(50 * 1048576)
+                            .tag(50 * 1_048_576)
                         Text("100 MB")
-                            .tag(100 * 1048576)
+                            .tag(100 * 1_048_576)
                         Text("150 MB")
-                            .tag(150 * 1048576)
+                            .tag(150 * 1_048_576)
 
                         Text("Original File Size")
                             .tag(0)

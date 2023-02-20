@@ -144,10 +144,6 @@ enum WindowManager: String, CaseIterable {
     case MeshCreator = "MeshCreatorView"
     case Videos = "VideosView"
 
-#if !((os(macOS) || targetEnvironment(macCatalyst)) && arch(x86_64))
-    case StableDiffusion = "StableDiffusionView"
-#endif
-
     func open(query: URLQueryItem...) {
         var urlComponents = URLComponents(string: urlStr)
         urlComponents?.queryItems = query

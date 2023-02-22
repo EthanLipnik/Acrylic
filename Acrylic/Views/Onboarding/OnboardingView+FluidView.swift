@@ -55,7 +55,7 @@ extension OnboardingView {
 
                 GroupBox {
                     Text(
-                        "Bring your desktop to life with **Fluid Wallpaper**. Life mesh gradients smoothly animate between points and colors based on your settings."
+                        "Bring your desktop to life with **Fluid Wallpaper**. Live mesh gradients animates smoothly between points and colors based on your settings."
                     )
                     .frame(maxWidth: 350)
                     .padding()

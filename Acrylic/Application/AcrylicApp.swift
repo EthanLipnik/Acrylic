@@ -76,7 +76,7 @@ struct AcrylicApp: App {
                 Button("Import Video...") {
                     isImportingVideo.toggle()
                 }
-                .keyboardShortcut("o")
+                .keyboardShortcut("i")
             }
 
             CommandGroup(replacing: .appInfo) {
@@ -84,6 +84,12 @@ struct AcrylicApp: App {
                     appDelegate.showAboutPanel()
                 }) {
                     Text("About Acrylic")
+                }
+            }
+
+            CommandGroup(replacing: .help) {
+                Button("Acrylic Help") {
+                    appDelegate.showAboutPanel()
                 }
             }
         }

@@ -23,7 +23,7 @@ struct AcrylicApp: App {
                 .frame(minWidth: 700, minHeight: 500)
                 .fileImporter(
                     isPresented: $isImportingVideo,
-                    allowedContentTypes: [.movie],
+                    allowedContentTypes: [.video, .movie],
                     allowsMultipleSelection: true,
                     onCompletion: { result in
                         do {
@@ -43,6 +43,18 @@ struct AcrylicApp: App {
                         }
                     }
                 )
+                .onOpenURL { url in
+                    let urlComponents = URLComponents(
+                        url: url,
+                        resolvingAgainstBaseURL: true
+                    )
+                    if let isImportingStr = urlComponents?.queryItems?
+                        .first(where: { $0.name == "isImporting" })?.value,
+                        Bool(isImportingStr) ?? false
+                    {
+                        isImportingVideo = true
+                    }
+                }
                 .onDisappear {
                     if NSApp.windows.compactMap(\.identifier)
                         .filter({

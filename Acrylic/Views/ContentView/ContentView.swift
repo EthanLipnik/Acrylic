@@ -120,34 +120,40 @@ struct ContentView: View {
     var footer: some View {
         HStack {
             Menu {
-                Button("3x3") {
-                    let query = URLQueryItem(name: "size", value: "3")
-                    WindowManager.MeshCreator.open(query: query)
+                Menu("Create Mesh") {
+                    Button("3x3") {
+                        let query = URLQueryItem(name: "size", value: "3")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("4x4") {
+                        let query = URLQueryItem(name: "size", value: "4")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("5x5") {
+                        let query = URLQueryItem(name: "size", value: "5")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("6x6") {
+                        let query = URLQueryItem(name: "size", value: "6")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("7x7") {
+                        let query = URLQueryItem(name: "size", value: "7")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
+
+                    Button("8x8") {
+                        let query = URLQueryItem(name: "size", value: "8")
+                        WindowManager.MeshCreator.open(query: query)
+                    }
                 }
 
-                Button("4x4") {
-                    let query = URLQueryItem(name: "size", value: "4")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-
-                Button("5x5") {
-                    let query = URLQueryItem(name: "size", value: "5")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-
-                Button("6x6") {
-                    let query = URLQueryItem(name: "size", value: "6")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-
-                Button("7x7") {
-                    let query = URLQueryItem(name: "size", value: "7")
-                    WindowManager.MeshCreator.open(query: query)
-                }
-
-                Button("8x8") {
-                    let query = URLQueryItem(name: "size", value: "8")
-                    WindowManager.MeshCreator.open(query: query)
+                Button("Import video...") {
+                    WindowManager.Videos.open(query: .init(name: "isImporting", value: "true"))
                 }
             } label: {
                 Image(systemName: "plus.circle.fill")

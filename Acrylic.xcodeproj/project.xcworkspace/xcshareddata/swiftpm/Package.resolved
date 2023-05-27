@@ -1,57 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "blackbird",
+      "identity" : "meshgradient",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/CanisterEditor/Blackbird.git",
+      "location" : "https://github.com/EthanLipnik/MeshGradient.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "14ece340f47fed9d41959688ced0f29b7ee91290"
-      }
-    },
-    {
-      "identity" : "differencekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ra1028/DifferenceKit.git",
-      "state" : {
-        "revision" : "62745d7780deef4a023a792a1f8f763ec7bf9705",
-        "version" : "1.2.0"
-      }
-    },
-    {
-      "identity" : "directorywatcher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/GianniCarlo/DirectoryWatcher.git",
-      "state" : {
-        "revision" : "76af69f1d19146b0c5d3e38747bb5eabe547143b",
-        "version" : "2.7.3"
-      }
-    },
-    {
-      "identity" : "fileprovider",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/amosavian/FileProvider.git",
-      "state" : {
-        "revision" : "abf68a62541a4193c8d106367ddb3648e8ab693f",
-        "version" : "0.26.0"
-      }
-    },
-    {
-      "identity" : "hero",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/HeroTransitions/Hero.git",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "dd260a30a4075cbe9527d3de590666db4ca59feb"
-      }
-    },
-    {
-      "identity" : "meshkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EthanLipnik/MeshKit.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "4401524d8cfb090ad787e053ed6aa0c90070b8bd"
+        "revision" : "e176a9dc45137a2cc93956e6bf80986b484a284e",
+        "version" : "1.0.9"
       }
     },
     {
@@ -64,21 +19,39 @@
       }
     },
     {
-      "identity" : "swiftclient",
+      "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/TelemetryDeck/SwiftClient",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
-        "version" : "1.1.6"
+        "revision" : "9248fe561a2a153916fb9597e3af4434784c6d32",
+        "version" : "5.13.4"
       }
     },
     {
-      "identity" : "uionboarding",
+      "identity" : "sdwebimageswiftui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EthanLipnik/UIOnboarding.git",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
       "state" : {
-        "revision" : "96b9aed3b11c37aea588a9849d27211153b7fecf",
-        "version" : "1.1.4"
+        "revision" : "ed288667c909c89127ab1b690113a3e397af3098",
+        "version" : "2.2.1"
+      }
+    },
+    {
+      "identity" : "sebu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EthanLipnik/Sebu.git",
+      "state" : {
+        "revision" : "1a19df25a45df2d5e5ec25297384f3e613282d60",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "zipfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:weichsel/ZIPFoundation.git",
+      "state" : {
+        "branch" : "development",
+        "revision" : "642436f3684009ca7a5e3d6b30f2ecea26f8f772"
       }
     }
   ],

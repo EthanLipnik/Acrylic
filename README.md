@@ -1,3 +1,5 @@
+![Acrylic Icon](Icon.png)
+
 # Acrylic
 
 ##### for macOS

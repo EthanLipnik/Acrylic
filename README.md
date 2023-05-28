@@ -28,7 +28,7 @@ Acrylic is licensed under the MIT License. See the `LICENSE` file for more detai
 
 ## Support and FAQ
 
-Support for Acrylic is provided through GitHub issues. If you encounter a problem or have a question, feel free to open a new issue there. We also have an FAQ section that might answer some of your questions.
+Support for Acrylic is provided through GitHub issues. If you encounter a problem or have a question, feel free to open a new issue there.
 
 ## Additional Resources
 

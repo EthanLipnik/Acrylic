@@ -16,7 +16,7 @@ Acrylic is a fluid wallpaper engine for Mac, allowing you to create and enjoy li
 
 ## Installation
 
-Acrylic is available for download on the App Store. Alternatively, you can build the app yourself from the source code.
+Acrylic is available for download on the [App Store](https://apps.apple.com/us/app/acrylic-wallpaper-engine/id1591850668). Alternatively, you can build the app yourself from the source code.
 
 ## Contributing
 
